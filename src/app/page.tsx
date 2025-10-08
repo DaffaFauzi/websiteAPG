@@ -1,10 +1,11 @@
 import HeroSection from '@/components/sections/HeroSection';
-import { heroData } from '@/constants/heroData';
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <HeroSection data={heroData} />
+      <LanguageSwitcher />
+      <HeroSection />
     </main>
   );
 }

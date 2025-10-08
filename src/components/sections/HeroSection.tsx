@@ -2,22 +2,26 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HeroSectionProps } from '@/types/Hero';
 import Button from '@/components/ui/Button';
+import { useTranslation } from '@/contexts/LanguageContext';
 import {
   containerVariants,
   textRevealVariants,
   wordVariants,
   buttonVariants,
-  particleVariants,
   backgroundVariants,
   trustIndicatorVariants,
   pulseVariants,
   breatheVariants,
 } from '@/lib/animations/variants';
 
-const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
-  const { headline, subheadline, ctaText, ctaLink } = data;
+const HeroSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const headline = t('hero.headline');
+  const subheadline = t('hero.subheadline');
+  const ctaText = t('hero.ctaText');
+  const learnMoreText = t('hero.learnMore');
 
   return (
     <motion.section
@@ -69,7 +73,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
             variants={breatheVariants}
             animate="breathe"
           >
-            Quantum Dynamics Creations
+            {t('hero.companyTagline')}
           </motion.span>
         </motion.div>
 
@@ -143,7 +147,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
             whileTap="tap"
           >
             <Button variant="outline" size="lg">
-              Learn More
+              {learnMoreText}
               <motion.svg
                 className="ml-2 w-5 h-5"
                 fill="none"
@@ -171,9 +175,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
           animate="visible"
         >
           {[
-            { color: 'bg-green-500', text: 'Enterprise-Grade Security' },
-            { color: 'bg-blue-500', text: 'Low-Code Platform' },
-            { color: 'bg-purple-500', text: 'Scalable Solutions' },
+            { color: 'bg-green-500', key: 'hero.trustIndicators.security' },
+            { color: 'bg-blue-500', key: 'hero.trustIndicators.platform' },
+            { color: 'bg-purple-500', key: 'hero.trustIndicators.solutions' },
           ].map((item, index) => (
             <motion.div
               key={index}
@@ -190,7 +194,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
                 animate="pulse"
                 transition={{ delay: index * 0.5 }}
               />
-              <span>{item.text}</span>
+              <span>{t(item.key)}</span>
             </motion.div>
           ))}
         </motion.div>
