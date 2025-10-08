@@ -27,7 +27,7 @@ export type Language = keyof typeof resources;
 export type TranslationKey = string;
 
 // Simple translation function
-export const getTranslation = (key: TranslationKey, language: Language = 'en'): string => {
+export const getTranslation = (key: TranslationKey, language: Language = 'en'): unknown => {
   const keys = key.split('.');
   let value: unknown = resources[language]?.common;
 
@@ -48,5 +48,5 @@ export const getTranslation = (key: TranslationKey, language: Language = 'en'): 
     }
   }
 
-  return typeof value === 'string' ? value : key;
+  return value;
 };

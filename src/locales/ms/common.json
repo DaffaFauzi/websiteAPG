@@ -1,7 +1,10 @@
 {
   "hero": {
     "companyTagline": "Quantum Dynamics Creations",
-    "headline": "Memperkasa Perusahaan dengan Transformasi Dipacu Quantum",
+    "headline": {
+      "text": "Memperkasa Perusahaan dengan Transformasi Dipacu Quantum",
+      "highlightWords": ["Perusahaan", "Quantum"]
+    },
     "subheadline": "Kami membantu anda mengautomasikan, mengintegrasikan, dan berinovasi lebih cepat daripada sebelumnya dengan platform perusahaan kod rendah kami.",
     "ctaText": "Mulakan Evolusi Digital Anda",
     "learnMore": "Ketahui Lebih Lanjut",

@@ -6,7 +6,7 @@ import { Language, getTranslation, resources } from '../lib/i18n';
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string) => unknown;
   availableLanguages: { code: Language; name: string }[];
 }
 

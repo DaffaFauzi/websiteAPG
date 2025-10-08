@@ -18,10 +18,12 @@ import {
 const HeroSection: React.FC = () => {
   const { t } = useTranslation();
 
-  const headline = t('hero.headline');
-  const subheadline = t('hero.subheadline');
-  const ctaText = t('hero.ctaText');
-  const learnMoreText = t('hero.learnMore');
+  const headlineData = t('hero.headline') as { text: string; highlightWords: string[] };
+  const headline = headlineData.text;
+  const highlightWords = headlineData.highlightWords;
+  const subheadline = t('hero.subheadline') as string;
+  const ctaText = t('hero.ctaText') as string;
+  const learnMoreText = t('hero.learnMore') as string;
 
   return (
     <motion.section
@@ -73,7 +75,7 @@ const HeroSection: React.FC = () => {
             variants={breatheVariants}
             animate="breathe"
           >
-            {t('hero.companyTagline')}
+            {t('hero.companyTagline') as string}
           </motion.span>
         </motion.div>
 
@@ -82,11 +84,11 @@ const HeroSection: React.FC = () => {
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight"
           variants={textRevealVariants}
         >
-          {headline.split(' ').map((word, index) => (
+          {headline.split(' ').map((word: string, index: number) => (
             <motion.span
               key={index}
               className={`inline-block mr-2 ${
-                word === 'Quantum-Driven' || word === 'Enterprises'
+                highlightWords.includes(word)
                   ? 'text-indigo-600'
                   : 'text-gray-900'
               }`}
@@ -194,7 +196,7 @@ const HeroSection: React.FC = () => {
                 animate="pulse"
                 transition={{ delay: index * 0.5 }}
               />
-              <span>{t(item.key)}</span>
+              <span>{t(item.key) as string}</span>
             </motion.div>
           ))}
         </motion.div>

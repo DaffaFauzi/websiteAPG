@@ -1,7 +1,10 @@
 {
   "hero": {
     "companyTagline": "Quantum Dynamics Creations",
-    "headline": "Empowering Enterprises with Quantum-Driven Transformation",
+    "headline": {
+      "text": "Empowering Enterprises with Quantum-Driven Transformation",
+      "highlightWords": ["Quantum-Driven", "Enterprises"]
+    },
     "subheadline": "We help you automate, integrate, and innovate faster than ever with our low-code enterprise platform.",
     "ctaText": "Start Your Digital Evolution",
     "learnMore": "Learn More",
