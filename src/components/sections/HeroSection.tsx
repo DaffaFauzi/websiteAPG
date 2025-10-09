@@ -27,16 +27,18 @@ const HeroSection: React.FC = () => {
 
   return (
     <motion.section
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-white px-6 py-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-white px-6 pt-20 pb-12 md:pt-24 md:pb-16 lg:pt-28 lg:pb-20 overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
+      suppressHydrationWarning={true}
     >
       {/* Animated Background Pattern */}
       <motion.div
         className="absolute inset-0 opacity-5"
         variants={backgroundVariants}
         animate="animate"
+        suppressHydrationWarning={true}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.15)_1px,transparent_0)] bg-[length:24px_24px]" />
       </motion.div>
@@ -64,11 +66,13 @@ const HeroSection: React.FC = () => {
       <motion.div
         className="relative z-10 max-w-4xl mx-auto text-center"
         variants={containerVariants}
+        suppressHydrationWarning={true}
       >
         {/* Company tagline with breathing effect */}
         <motion.div
           className="mb-6"
           variants={textRevealVariants}
+          suppressHydrationWarning={true}
         >
           <motion.span
             className="inline-block px-4 py-2 bg-indigo-50 text-indigo-600 text-sm font-medium rounded-full border border-indigo-100"
@@ -81,7 +85,7 @@ const HeroSection: React.FC = () => {
 
         {/* Main headline with word-by-word reveal */}
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight"
+          className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 md:mb-8 leading-tight"
           variants={textRevealVariants}
         >
           {headline.split(' ').map((word: string, index: number) => (
@@ -106,7 +110,7 @@ const HeroSection: React.FC = () => {
 
         {/* Subheadline with smooth reveal */}
         <motion.p
-          className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+          className="text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light"
           variants={textRevealVariants}
         >
           {subheadline}
@@ -114,8 +118,9 @@ const HeroSection: React.FC = () => {
 
         {/* CTA Buttons with premium interactions */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 md:mb-12 lg:mb-16"
           variants={textRevealVariants}
+          suppressHydrationWarning={true}
         >
           <motion.div
             variants={buttonVariants}
@@ -175,6 +180,7 @@ const HeroSection: React.FC = () => {
           variants={trustIndicatorVariants}
           initial="hidden"
           animate="visible"
+          suppressHydrationWarning={true}
         >
           {[
             { color: 'bg-green-500', key: 'hero.trustIndicators.security' },
@@ -189,6 +195,7 @@ const HeroSection: React.FC = () => {
                 scale: 1.05,
                 transition: { duration: 0.2 }
               }}
+              suppressHydrationWarning={true}
             >
               <motion.div
                 className={`w-2 h-2 ${item.color} rounded-full`}
@@ -208,6 +215,7 @@ const HeroSection: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
+        suppressHydrationWarning={true}
       />
     </motion.section>
   );

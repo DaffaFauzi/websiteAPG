@@ -13,5 +13,53 @@
       "platform": "Platform Kode Rendah",
       "solutions": "Solusi Terukur"
     }
+  },
+  "aboutQDC": {
+    "title": "Tentang QDC",
+    "quantum": {
+      "word": "Quantum",
+      "meaning": "Perubahan besar, presisi, inovasi."
+    },
+    "dynamics": {
+      "word": "Dynamics",
+      "meaning": "Energi, gerakan, adaptabilitas."
+    },
+    "creations": {
+      "word": "Creations",
+      "meaning": "Realisasi ide menjadi kenyataan digital."
+    },
+    "philosophy": "Quantum Dynamics Creations (QDC) memadukan sains, kreativitas, dan kerajinan digital untuk mentransformasi cara organisasi bekerja, berpikir, dan berkembang."
+  },
+  "services": {
+    "title": "Layanan",
+    "platform": "Platform Quantum Officeless",
+    "automation": {
+      "title": "Otomasi",
+      "description": "Menyederhanakan alur kerja, mengurangi upaya manual.",
+      "features": {
+        "workflow": "Optimasi Alur Kerja",
+        "process": "Otomasi Proses",
+        "efficiency": "Peningkatan Efisiensi"
+      }
+    },
+    "integration": {
+      "title": "Integrasi",
+      "description": "Menghubungkan data, alat, dan sistem dengan lancar.",
+      "features": {
+        "api": "Koneksi API",
+        "sync": "Sinkronisasi Data",
+        "harmony": "Harmoni Sistem"
+      }
+    },
+    "analytics": {
+      "title": "Analitik",
+      "description": "Dasbor real-time dan wawasan untuk pengambilan keputusan yang lebih baik.",
+      "features": {
+        "insights": "Wawasan Real-time",
+        "visualization": "Visualisasi Data",
+        "reporting": "Pelaporan Pintar"
+      }
+    },
+    "subtext": "Didukung oleh kerangka kerja kode rendah dan otomasi, Quantum Officeless™ mempercepat penerapan perangkat lunak, integrasi, dan kecerdasan data untuk skala apa pun."
   }
 }

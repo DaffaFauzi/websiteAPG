@@ -13,5 +13,53 @@
       "platform": "低代码平台",
       "solutions": "可扩展解决方案"
     }
+  },
+  "aboutQDC": {
+    "title": "关于QDC",
+    "quantum": {
+      "word": "Quantum",
+      "meaning": "重大变革、精准、创新。"
+    },
+    "dynamics": {
+      "word": "Dynamics",
+      "meaning": "能量、运动、适应性。"
+    },
+    "creations": {
+      "word": "Creations",
+      "meaning": "将想法转化为数字现实。"
+    },
+    "philosophy": "Quantum Dynamics Creations (QDC) 将科学、创意和数字工艺相结合，改变组织的工作、思考和发展方式。"
+  },
+  "services": {
+    "title": "服务",
+    "platform": "Quantum Officeless 平台",
+    "automation": {
+      "title": "自动化",
+      "description": "简化工作流程，减少手动操作。",
+      "features": {
+        "workflow": "工作流程优化",
+        "process": "流程自动化",
+        "efficiency": "效率提升"
+      }
+    },
+    "integration": {
+      "title": "集成",
+      "description": "无缝连接数据、工具和系统。",
+      "features": {
+        "api": "API 连接",
+        "sync": "数据同步",
+        "harmony": "系统和谐"
+      }
+    },
+    "analytics": {
+      "title": "分析",
+      "description": "实时仪表板和洞察，更好地做出决策。",
+      "features": {
+        "insights": "实时洞察",
+        "visualization": "数据可视化",
+        "reporting": "智能报告"
+      }
+    },
+    "subtext": "由低代码和自动化框架驱动，Quantum Officeless™ 加速软件部署、集成和数据智能，适用于任何规模。"
   }
 }

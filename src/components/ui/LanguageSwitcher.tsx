@@ -36,24 +36,25 @@ const LanguageSwitcher: React.FC = () => {
   const currentLanguage = availableLanguages.find(lang => lang.code === language);
 
   return (
-    <div className="fixed top-4 right-4 z-50" ref={dropdownRef}>
-      <div className="relative">
+    <div className="absolute top-4 right-4 z-50" ref={dropdownRef} suppressHydrationWarning={true}>
+      <div className="relative" suppressHydrationWarning={true}>
         {/* Trigger Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 bg-white rounded-lg shadow-lg border px-4 py-2 hover:bg-gray-50 transition-colors"
+          className="flex items-center gap-1.5 md:gap-2 bg-white rounded-lg shadow-lg border px-3 py-1.5 md:px-4 md:py-2 hover:bg-gray-50 transition-colors"
         >
           <ReactCountryFlag
             countryCode={getCountryCode(language)}
             svg
             style={{
-              width: '20px',
-              height: '15px',
+              width: '16px',
+              height: '12px',
             }}
+            className="md:w-5 md:h-[15px]"
           />
-          <span className="text-sm text-gray-700">{currentLanguage?.name}</span>
+          <span className="text-xs md:text-sm text-gray-700">{currentLanguage?.name}</span>
           <svg
-            className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            className={`w-3 h-3 md:w-4 md:h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -64,7 +65,7 @@ const LanguageSwitcher: React.FC = () => {
 
         {/* Dropdown Menu */}
         {isOpen && (
-          <div className="absolute top-full right-0 mt-1 bg-white rounded-lg shadow-lg border min-w-[220px] py-1 z-10">
+          <div className="absolute top-full right-0 mt-1 bg-white rounded-lg shadow-lg border min-w-[180px] md:min-w-[220px] py-1 z-10">
             {availableLanguages.map((lang) => (
               <button
                 key={lang.code}
@@ -72,7 +73,7 @@ const LanguageSwitcher: React.FC = () => {
                   setLanguage(lang.code);
                   setIsOpen(false);
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                className={`w-full flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm hover:bg-gray-50 transition-colors ${
                   language === lang.code ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
                 }`}
               >
@@ -80,13 +81,14 @@ const LanguageSwitcher: React.FC = () => {
                   countryCode={getCountryCode(lang.code)}
                   svg
                   style={{
-                    width: '20px',
-                    height: '15px',
+                    width: '16px',
+                    height: '12px',
                   }}
+                  className="md:w-5 md:h-[15px]"
                 />
                 <span>{lang.name}</span>
                 {language === lang.code && (
-                  <svg className="w-4 h-4 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 md:w-4 md:h-4 ml-auto" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 )}

@@ -13,5 +13,53 @@
       "platform": "Low-Code Platform",
       "solutions": "Scalable Solutions"
     }
+  },
+  "aboutQDC": {
+    "title": "About QDC",
+    "quantum": {
+      "word": "Quantum",
+      "meaning": "Big changes, precision, innovation."
+    },
+    "dynamics": {
+      "word": "Dynamics",
+      "meaning": "Energy, movement, adaptability."
+    },
+    "creations": {
+      "word": "Creations",
+      "meaning": "Realization of ideas into digital reality."
+    },
+    "philosophy": "Quantum Dynamics Creations (QDC) blends science, creativity, and digital craftsmanship to transform how organizations work, think, and grow."
+  },
+  "services": {
+    "title": "Services",
+    "platform": "Quantum Officeless Platform",
+    "automation": {
+      "title": "Automation",
+      "description": "Streamline workflows, reduce manual effort.",
+      "features": {
+        "workflow": "Workflow Optimization",
+        "process": "Process Automation",
+        "efficiency": "Efficiency Gains"
+      }
+    },
+    "integration": {
+      "title": "Integration",
+      "description": "Connect data, tools, and systems seamlessly.",
+      "features": {
+        "api": "API Connections",
+        "sync": "Data Sync",
+        "harmony": "System Harmony"
+      }
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Real-time dashboards and insights for better decisions.",
+      "features": {
+        "insights": "Real-time Insights",
+        "visualization": "Data Visualization",
+        "reporting": "Smart Reporting"
+      }
+    },
+    "subtext": "Powered by low-code and automation frameworks, Quantum Officeless™ accelerates software deployment, integration, and data intelligence for any scale."
   }
 }
