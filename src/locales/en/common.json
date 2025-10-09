@@ -61,5 +61,164 @@
       }
     },
     "subtext": "Powered by low-code and automation frameworks, Quantum Officeless™ accelerates software deployment, integration, and data intelligence for any scale."
+  },
+  "enterpriseProducts": {
+    "badge": "Enterprise Solutions Portfolio",
+    "title": "Enterprise Products",
+    "subtitle": "Comprehensive enterprise software solutions designed to transform your business operations with cutting-edge technology and unparalleled efficiency.",
+    "cta": "Ready to transform your enterprise with our comprehensive product suite?",
+    "exploreButton": "Explore Our Solutions",
+    "consultationButton": "Schedule Consultation",
+    "products": {
+      "erp": {
+        "title": "ERP Platform",
+        "description": "Comprehensive enterprise resource planning with modern AI-enhanced modules for streamlined business operations.",
+        "features": {
+          "finance": "Finance & Accounting Management",
+          "procurement": "Procurement & Supplier Relations",
+          "inventory": "Inventory & Warehouse Control",
+          "manufacturing": "Manufacturing & Production Planning",
+          "hr": "Human Resources & Payroll",
+          "sales": "Sales & Order Management"
+        }
+      },
+      "kpi": {
+        "title": "KPI & Business Intelligence",
+        "description": "Advanced performance management platform with real-time dashboards and predictive analytics for data-driven decisions.",
+        "features": {
+          "definition": "KPI Definition & Monitoring",
+          "dashboards": "Real-time Dashboards",
+          "benchmarking": "Benchmarking & Comparisons",
+          "alerting": "Automated Alerting",
+          "planning": "Scenario Planning",
+          "reporting": "Executive Reporting"
+        }
+      },
+      "supplyChain": {
+        "title": "Supply Chain Management",
+        "description": "End-to-end supply chain optimization with demand forecasting, logistics management, and real-time tracking capabilities.",
+        "features": {
+          "forecasting": "Demand Forecasting",
+          "suppliers": "Supplier Management",
+          "transport": "Transport Optimization",
+          "warehouse": "Warehouse Automation",
+          "coldChain": "Cold Chain Monitoring",
+          "returns": "Returns Processing"
+        }
+      },
+      "assetManagement": {
+        "title": "Asset Management & MRO",
+        "description": "Comprehensive asset lifecycle management with predictive maintenance and field service optimization for industrial operations.",
+        "features": {
+          "registry": "Asset Registry & Tracking",
+          "maintenance": "Predictive Maintenance",
+          "workOrders": "Work Order Management",
+          "spareParts": "Spare Parts Inventory",
+          "safety": "Safety Compliance",
+          "fieldService": "Field Service Dispatch"
+        }
+      },
+      "compliance": {
+        "title": "Compliance & Risk Management",
+        "description": "Enterprise-grade compliance management with regulatory tracking, risk assessment, and automated workflow enforcement.",
+        "features": {
+          "tracking": "Regulation Tracking",
+          "policies": "Policy Management",
+          "assessment": "Risk Assessment",
+          "dashboards": "Compliance Dashboards",
+          "workflows": "Automated Workflows",
+          "audits": "Audit Trails"
+        }
+      },
+      "hrAnalytics": {
+        "title": "HR & Workforce Analytics",
+        "description": "Advanced human capital management with AI-driven analytics, performance management, and talent optimization tools.",
+        "features": {
+          "recruitment": "Recruitment & Onboarding",
+          "performance": "Performance Management",
+          "learning": "Learning & Development",
+          "attendance": "Time & Attendance",
+          "analytics": "Talent Analytics",
+          "planning": "Workforce Planning"
+        }
+      },
+      "mes": {
+        "title": "Manufacturing Execution System",
+        "description": "Complete MES solution with production monitoring, quality control, and comprehensive traceability for manufacturing excellence.",
+        "features": {
+          "control": "Shop Floor Control",
+          "monitoring": "Production Monitoring",
+          "quality": "Quality Management",
+          "bom": "BOM & Version Control",
+          "traceability": "Traceability Systems",
+          "reporting": "Compliance Reporting"
+        }
+      },
+      "sustainability": {
+        "title": "Sustainability & ESG Management",
+        "description": "Comprehensive platform for tracking, reporting, and improving environmental, social, and governance performance in line with global standards.",
+        "features": {
+          "goals": "ESG Goal Setting & Target Management",
+          "carbon": "Carbon Footprint & Emissions Tracking",
+          "energy": "Energy Consumption Analytics",
+          "reporting": "ESG Reporting & Disclosure Management",
+          "risk": "Climate Risk Assessment",
+          "compliance": "Regulatory Compliance Tracking"
+        }
+      },
+      "cybersecurity": {
+        "title": "AI-Powered Cybersecurity Platform",
+        "description": "Advanced threat intelligence and automated security operations platform powered by AI for proactive cyber defense and compliance.",
+        "features": {
+          "threatDetection": "AI-Driven Threat Detection",
+          "incidentResponse": "Automated Incident Response",
+          "zeroTrust": "Zero-Trust Network Access",
+          "endpoint": "Endpoint Detection & Response",
+          "intelligence": "Threat Intelligence & Analysis",
+          "compliance": "Security Compliance Monitoring"
+        }
+      }
+    }
+  },
+  "competitiveAdvantage": {
+    "badge": "Competitive Edge",
+    "title": "What Makes Enterprise Products Competitive",
+    "subtitle": "When building or offering enterprise products, consider these essential features that set successful solutions apart from the competition.",
+    "examplesLabel": "Key Examples",
+    "cta": "Ready to build enterprise solutions that stand out in the market?",
+    "discussButton": "Discuss Strategy",
+    "learnMoreButton": "Learn More",
+    "features": {
+      "verticalTemplates": {
+        "title": "Pre-configured Vertical Templates",
+        "description": "Reduce implementation time with industry-specific templates and configurations.",
+        "examples": "Manufacturing, retail, F&B, construction, logistics, healthcare, and other vertical solutions."
+      },
+      "kpiAnalytics": {
+        "title": "Strong KPI & Analytics Dashboards",
+        "description": "Provide powerful business intelligence with predictive analytics and real-time insights.",
+        "examples": "Real-time dashboards, predictive forecasting, anomaly detection, and executive reporting."
+      },
+      "aiModules": {
+        "title": "AI-Powered Modules",
+        "description": "Leverage artificial intelligence to automate processes and provide intelligent insights.",
+        "examples": "Anomaly detection, demand forecasting, process automation, and smart assistants."
+      },
+      "mobileAccess": {
+        "title": "Mobile & Remote Access",
+        "description": "Enable productivity anywhere with comprehensive mobile capabilities and offline support.",
+        "examples": "Mobile apps, remote workflows, approvals, offline capabilities, and cross-device sync."
+      },
+      "integrations": {
+        "title": "Integration Capabilities",
+        "description": "Seamlessly connect with existing systems and third-party platforms.",
+        "examples": "APIs, microservices, connectors for popular tools, and enterprise system integrations."
+      },
+      "compliance": {
+        "title": "Local Compliance & Localization",
+        "description": "Address regional requirements with localized features and compliance support.",
+        "examples": "Local tax compliance, payroll regulations, language support, and regional business practices."
+      }
+    }
   }
 }

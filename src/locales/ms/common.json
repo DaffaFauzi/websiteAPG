@@ -61,5 +61,164 @@
       }
     },
     "subtext": "Didorong oleh rangka kerja kod rendah dan automasi, Quantum Officeless™ mempercepatkan penggunaan perisian, integrasi, dan kecerdasan data untuk skala apa pun."
+  },
+  "enterpriseProducts": {
+    "badge": "Portfolio Penyelesaian Enterprise",
+    "title": "Produk Enterprise",
+    "subtitle": "Penyelesaian perisian perusahaan yang komprehensif yang direka untuk mentransformasi operasi perniagaan anda dengan teknologi canggih dan kecekapan yang tiada tandingan.",
+    "cta": "Bersedia untuk mentransformasi perusahaan anda dengan portfolio penyelesaian kami yang komprehensif?",
+    "exploreButton": "Terokai Penyelesaian Kami",
+    "consultationButton": "Jadual Perundingan",
+    "products": {
+      "erp": {
+        "title": "Platform ERP",
+        "description": "Sistem perancangan sumber perusahaan yang komprehensif dengan modul dipertingkatkan AI untuk menjalankan operasi perniagaan dengan lancar.",
+        "features": {
+          "finance": "Pengurusan Kewangan & Perakaunan",
+          "procurement": "Perolehan & Pengurusan Pembekal",
+          "inventory": "Kawalan Inventori & Gudang",
+          "manufacturing": "Perancangan & Penjadualan Pembuatan",
+          "hr": "Sumber Manusia & Penggajian",
+          "sales": "Jualan & Pengurusan Pesanan"
+        }
+      },
+      "kpi": {
+        "title": "KPI & Perisikan Perniagaan",
+        "description": "Platform pengurusan prestasi lanjutan dengan papan pemuka masa nyata dan analitik ramalan untuk membuat keputusan berdasarkan data.",
+        "features": {
+          "definition": "Takrifan & Pemantauan KPI",
+          "dashboards": "Papan Pemuka Masa Nyata",
+          "benchmarking": "Perbandingan & Penanda Aras",
+          "alerting": "Amaran Automatik",
+          "planning": "Perancangan Skenario",
+          "reporting": "Pelaporan Eksekutif"
+        }
+      },
+      "supplyChain": {
+        "title": "Pengurusan Rantaian Bekalan",
+        "description": "Pengoptimuman rantaian bekalan menyeluruh dengan ramalan permintaan, pengurusan logistik, dan keupayaan penjejakan masa nyata.",
+        "features": {
+          "forecasting": "Ramalan Permintaan",
+          "suppliers": "Pengurusan Pembekal",
+          "transport": "Pengoptimuman Pengangkutan",
+          "warehouse": "Automasi Gudang",
+          "coldChain": "Pemantauan Rantaian Sejuk",
+          "returns": "Pemprosesan Pulangan"
+        }
+      },
+      "assetManagement": {
+        "title": "Pengurusan Aset & MRO",
+        "description": "Pengurusan kitar hayat aset yang komprehensif dengan penyelenggaraan ramalan dan pengoptimuman perkhidmatan lapangan untuk operasi perindustrian.",
+        "features": {
+          "registry": "Pendaftaran & Penjejakan Aset",
+          "maintenance": "Penyelenggaraan Ramalan",
+          "workOrders": "Pengurusan Pesanan Kerja",
+          "spareParts": "Inventori Alat Ganti",
+          "safety": "Pematuhan Keselamatan",
+          "fieldService": "Penghantaran Perkhidmatan Lapangan"
+        }
+      },
+      "compliance": {
+        "title": "Pengurusan Pematuhan & Risiko",
+        "description": "Pengurusan pematuhan gred perusahaan dengan penjejakan peraturan, penilaian risiko, dan penguatkuasaan aliran kerja automatik.",
+        "features": {
+          "tracking": "Penjejakan Peraturan",
+          "policies": "Pengurusan Polisi",
+          "assessment": "Penilaian Risiko",
+          "dashboards": "Papan Pemuka Pematuhan",
+          "workflows": "Aliran Kerja Automatik",
+          "audits": "Jejak Audit"
+        }
+      },
+      "hrAnalytics": {
+        "title": "Analitik Sumber Manusia & Tenaga Kerja",
+        "description": "Pengurusan modal insan lanjutan dengan analitik didorong AI, pengurusan prestasi, dan alat pengoptimuman bakat.",
+        "features": {
+          "recruitment": "Pengambilan & Orientasi",
+          "performance": "Pengurusan Prestasi",
+          "learning": "Pembelajaran & Pembangunan",
+          "attendance": "Masa & Kehadiran",
+          "analytics": "Analitik Bakat",
+          "planning": "Perancangan Tenaga Kerja"
+        }
+      },
+      "mes": {
+        "title": "Sistem Pelaksanaan Pembuatan",
+        "description": "Penyelesaian MES lengkap dengan pemantauan pengeluaran, kawalan kualiti, dan penjejakan menyeluruh untuk kecemerlangan pembuatan.",
+        "features": {
+          "control": "Kawalan Lantai Kedai",
+          "monitoring": "Pemantauan Pengeluaran",
+          "quality": "Pengurusan Kualiti",
+          "bom": "BOM & Kawalan Versi",
+          "traceability": "Sistem Penjejakan",
+          "reporting": "Pelaporan Pematuhan"
+        }
+      },
+      "sustainability": {
+        "title": "Pengurusan Kelestarian & ESG",
+        "description": "Platform komprehensif untuk menjejaki, melaporkan, dan menambah baik prestasi alam sekitar, sosial, dan tadbir urus selaras dengan piawaian global.",
+        "features": {
+          "goals": "Penetapan Sasaran & Pengurusan ESG",
+          "carbon": "Penjejakan Tapak Karbon & Emisi",
+          "energy": "Analitik Penggunaan Tenaga",
+          "reporting": "Pengurusan Pelaporan & Pendedahan ESG",
+          "risk": "Penilaian Risiko Iklim",
+          "compliance": "Penjejakan Pematuhan Peraturan"
+        }
+      },
+      "cybersecurity": {
+        "title": "Platform Keselamatan Siber Berkuasa AI",
+        "description": "Platform perisikan ancaman lanjutan dan operasi keselamatan automatik dikuasakan oleh AI untuk pertahanan siber proaktif dan pematuhan.",
+        "features": {
+          "threatDetection": "Pengesanan Ancaman Didorong AI",
+          "incidentResponse": "Tindak Balas Insiden Automatik",
+          "zeroTrust": "Akses Rangkaian Zero-Trust",
+          "endpoint": "Pengesanan & Tindak Balas Endpoint",
+          "intelligence": "Perisikan & Analisis Ancaman",
+          "compliance": "Pemantauan Pematuhan Keselamatan"
+        }
+      }
+    }
+  },
+  "competitiveAdvantage": {
+    "badge": "Kelebihan Persaingan",
+    "title": "Apa Yang Membuat Produk Enterprise Bersaing",
+    "subtitle": "Apabila membina atau menawarkan produk enterprise, pertimbangkan ciri-ciri penting ini yang membezakan penyelesaian yang berjaya daripada persaingan.",
+    "examplesLabel": "Contoh Utama",
+    "cta": "Bersedia untuk membina penyelesaian enterprise yang menonjol di pasaran?",
+    "discussButton": "Bincang Strategi",
+    "learnMoreButton": "Ketahui Lebih Lanjut",
+    "features": {
+      "verticalTemplates": {
+        "title": "Templat Vertikal Pra-Konfigurasi",
+        "description": "Kurangkan masa pelaksanaan dengan templat dan konfigurasi khusus industri.",
+        "examples": "Pembuatan, runcit, F&B, pembinaan, logistik, penjagaan kesihatan, dan penyelesaian vertikal lain."
+      },
+      "kpiAnalytics": {
+        "title": "Papan Pemuka KPI & Analitik Yang Kuat",
+        "description": "Sediakan perisikan perniagaan yang kuat dengan analitik ramalan dan cerapan masa nyata.",
+        "examples": "Papan pemuka masa nyata, ramalan ramalan, pengesanan anomali, dan pelaporan eksekutif."
+      },
+      "aiModules": {
+        "title": "Modul Berkuasa AI",
+        "description": "Gunakan kecerdasan buatan untuk mengautomasikan proses dan menyediakan cerapan pintar.",
+        "examples": "Pengesanan anomali, ramalan permintaan, automasi proses, dan pembantu pintar."
+      },
+      "mobileAccess": {
+        "title": "Akses Mudah Alih & Jauh",
+        "description": "Dayakan produktiviti di mana sahaja dengan keupayaan mudah alih yang menyeluruh dan sokongan luar talian.",
+        "examples": "Aplikasi mudah alih, aliran kerja jauh, kelulusan, keupayaan luar talian, dan penyegerakan merentas peranti."
+      },
+      "integrations": {
+        "title": "Keupayaan Integrasi",
+        "description": "Sambung dengan lancar dengan sistem sedia ada dan platform pihak ketiga.",
+        "examples": "API, mikroperkhidmatan, penyambung untuk alat popular, dan integrasi sistem enterprise."
+      },
+      "compliance": {
+        "title": "Pematuhan Tempatan & Lokalisasi",
+        "description": "Alamat keperluan serantau dengan ciri yang dilokalkan dan sokongan pematuhan.",
+        "examples": "Pematuhan cukai tempatan, peraturan gaji, sokongan bahasa, dan amalan perniagaan serantau."
+      }
+    }
   }
 }

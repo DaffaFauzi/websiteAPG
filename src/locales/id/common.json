@@ -61,5 +61,164 @@
       }
     },
     "subtext": "Didukung oleh kerangka kerja kode rendah dan otomasi, Quantum Officeless™ mempercepat penerapan perangkat lunak, integrasi, dan kecerdasan data untuk skala apa pun."
+  },
+  "enterpriseProducts": {
+    "badge": "Portofolio Solusi Enterprise",
+    "title": "Produk Enterprise",
+    "subtitle": "Solusi perangkat lunak enterprise yang komprehensif yang dirancang untuk mentransformasi operasi bisnis Anda dengan teknologi mutakhir dan efisiensi yang tak tertandingi.",
+    "cta": "Siap mentransformasi enterprise Anda dengan portofolio solusi komprehensif kami?",
+    "exploreButton": "Jelajahi Solusi Kami",
+    "consultationButton": "Jadwalkan Konsultasi",
+    "products": {
+      "erp": {
+        "title": "Platform ERP",
+        "description": "Sistem perencanaan sumber daya enterprise yang komprehensif dengan modul yang diperkaya AI untuk operasi bisnis yang lancar.",
+        "features": {
+          "finance": "Pengelolaan Keuangan dan Akuntansi",
+          "procurement": "Pengadaan dan Pengelolaan Pemasok",
+          "inventory": "Kontrol Inventori dan Gudang",
+          "manufacturing": "Perencanaan dan Penjadwalan Manufaktur",
+          "hr": "Sumber Daya Manusia dan Penggajian",
+          "sales": "Penjualan dan Pengelolaan Pesanan"
+        }
+      },
+      "kpi": {
+        "title": "KPI dan Business Intelligence",
+        "description": "Platform pengelolaan performa canggih dengan dashboard real-time dan analitik prediktif untuk pengambilan keputusan berbasis data.",
+        "features": {
+          "definition": "Definisi dan Pemantauan KPI",
+          "dashboards": "Dashboard Real-time",
+          "benchmarking": "Perbandingan dan Benchmarking",
+          "alerting": "Peringatan Otomatis",
+          "planning": "Perencanaan Skenario",
+          "reporting": "Pelaporan Eksekutif"
+        }
+      },
+      "supplyChain": {
+        "title": "Pengelolaan Rantai Pasokan",
+        "description": "Optimasi rantai pasokan menyeluruh dengan peramalan permintaan, manajemen logistik, dan kemampuan pelacakan real-time.",
+        "features": {
+          "forecasting": "Peramalan Permintaan",
+          "suppliers": "Pengelolaan Pemasok",
+          "transport": "Optimasi Transportasi",
+          "warehouse": "Otomasi Gudang",
+          "coldChain": "Pemantauan Cold Chain",
+          "returns": "Pemrosesan Pengembalian"
+        }
+      },
+      "assetManagement": {
+        "title": "Pengelolaan Aset dan MRO",
+        "description": "Pengelolaan siklus hidup aset yang komprehensif dengan pemeliharaan prediktif dan optimasi layanan lapangan untuk operasi industri.",
+        "features": {
+          "registry": "Registrasi dan Pelacakan Aset",
+          "maintenance": "Pemeliharaan Prediktif",
+          "workOrders": "Pengelolaan Work Order",
+          "spareParts": "Inventori Suku Cadang",
+          "safety": "Kepatuhan Keselamatan",
+          "fieldService": "Penjadwalan Layanan Lapangan"
+        }
+      },
+      "compliance": {
+        "title": "Pengelolaan Kepatuhan dan Risiko",
+        "description": "Pengelolaan kepatuhan kelas enterprise dengan pelacakan regulasi, penilaian risiko, dan penegakan alur kerja otomatis.",
+        "features": {
+          "tracking": "Pelacakan Regulasi",
+          "policies": "Pengelolaan Kebijakan",
+          "assessment": "Penilaian Risiko",
+          "dashboards": "Dashboard Kepatuhan",
+          "workflows": "Alur Kerja Otomatis",
+          "audits": "Jejak Audit"
+        }
+      },
+      "hrAnalytics": {
+        "title": "Analitik SDM dan Tenaga Kerja",
+        "description": "Pengelolaan modal manusia canggih dengan analitik bertenaga AI, pengelolaan performa, dan alat optimasi bakat.",
+        "features": {
+          "recruitment": "Rekrutmen dan Orientasi",
+          "performance": "Pengelolaan Performa",
+          "learning": "Pembelajaran dan Pengembangan",
+          "attendance": "Waktu dan Kehadiran",
+          "analytics": "Analitik Bakat",
+          "planning": "Perencanaan Tenaga Kerja"
+        }
+      },
+      "mes": {
+        "title": "Sistem Eksekusi Manufaktur",
+        "description": "Solusi MES lengkap dengan pemantauan produksi, kontrol kualitas, dan pelacakan menyeluruh untuk keunggulan manufaktur.",
+        "features": {
+          "control": "Kontrol Lantai Produksi",
+          "monitoring": "Pemantauan Produksi",
+          "quality": "Pengelolaan Kualitas",
+          "bom": "BOM dan Kontrol Versi",
+          "traceability": "Sistem Pelacakan",
+          "reporting": "Pelaporan Kepatuhan"
+        }
+      },
+      "sustainability": {
+        "title": "Pengelolaan Keberlanjutan dan ESG",
+        "description": "Platform komprehensif untuk melacak, melaporkan, dan meningkatkan performa lingkungan, sosial, dan tata kelola sesuai standar global.",
+        "features": {
+          "goals": "Penetapan Tujuan dan Pengelolaan ESG",
+          "carbon": "Pelacakan Footprint Karbon dan Emisi",
+          "energy": "Analitik Konsumsi Energi",
+          "reporting": "Pengelolaan Pelaporan dan Pengungkapan ESG",
+          "risk": "Penilaian Risiko Iklim",
+          "compliance": "Pelacakan Kepatuhan Regulasi"
+        }
+      },
+      "cybersecurity": {
+        "title": "Platform Keamanan Siber Berbasis AI",
+        "description": "Platform intelijen ancaman canggih dan operasi keamanan otomatis bertenaga AI untuk pertahanan siber proaktif dan kepatuhan.",
+        "features": {
+          "threatDetection": "Deteksi Ancaman Berbasis AI",
+          "incidentResponse": "Respons Insiden Otomatis",
+          "zeroTrust": "Akses Jaringan Zero Trust",
+          "endpoint": "Deteksi dan Respons Endpoint",
+          "intelligence": "Intelijen dan Analisis Ancaman",
+          "compliance": "Pemantauan Kepatuhan Keamanan"
+        }
+      }
+    }
+  },
+  "competitiveAdvantage": {
+    "badge": "Keunggulan Bersaing",
+    "title": "Apa yang Membuat Produk Enterprise Bersaing",
+    "subtitle": "Ketika membangun atau menawarkan produk enterprise, pertimbangkan fitur-fitur penting ini yang membedakan solusi yang sukses dari kompetisi.",
+    "examplesLabel": "Contoh Utama",
+    "cta": "Siap membangun solusi enterprise yang menonjol di pasar?",
+    "discussButton": "Diskusikan Strategi",
+    "learnMoreButton": "Pelajari Lebih Lanjut",
+    "features": {
+      "verticalTemplates": {
+        "title": "Template Vertikal Pra-Konfigurasi",
+        "description": "Kurangi waktu implementasi dengan template dan konfigurasi khusus industri.",
+        "examples": "Manufaktur, ritel, F&B, konstruksi, logistik, kesehatan, dan solusi vertikal lainnya."
+      },
+      "kpiAnalytics": {
+        "title": "Dashboard KPI & Analitik yang Kuat",
+        "description": "Berikan kecerdasan bisnis yang kuat dengan analitik prediktif dan wawasan real-time.",
+        "examples": "Dashboard real-time, pemodelan prediktif, deteksi anomali, dan pelaporan eksekutif."
+      },
+      "aiModules": {
+        "title": "Modul Bertenaga AI",
+        "description": "Manfaatkan kecerdasan buatan untuk mengotomatisasi proses dan memberikan wawasan cerdas.",
+        "examples": "Deteksi anomali, peramalan permintaan, otomasi proses, dan asisten cerdas."
+      },
+      "mobileAccess": {
+        "title": "Akses Mobile & Remote",
+        "description": "Aktifkan produktivitas di mana saja dengan kemampuan mobile yang komprehensif dan dukungan offline.",
+        "examples": "Aplikasi mobile, alur kerja remote, persetujuan, kemampuan offline, dan sinkronisasi lintas perangkat."
+      },
+      "integrations": {
+        "title": "Kemampuan Integrasi",
+        "description": "Terhubung dengan lancar ke sistem yang ada dan platform pihak ketiga.",
+        "examples": "API, layanan mikro, konektor untuk alat populer, dan integrasi sistem enterprise."
+      },
+      "compliance": {
+        "title": "Kepatuhan Lokal & Lokalisasi",
+        "description": "Alamat persyaratan regional dengan fitur yang dilokalkan dan dukungan kepatuhan.",
+        "examples": "Kepatuhan pajak lokal, regulasi penggajian, dukungan bahasa, dan praktik bisnis regional."
+      }
+    }
   }
 }

@@ -1,6 +1,8 @@
 import HeroSection from '@/components/sections/HeroSection';
 import AboutQDCSection from '@/components/sections/AboutQDCSection';
 import ServicesSection from '@/components/sections/ServicesSection';
+import EnterpriseProductsSection from '@/components/sections/EnterpriseProductsSection';
+import CompetitiveAdvantageSection from '@/components/sections/CompetitiveAdvantageSection';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 
 export default function Home() {
@@ -10,6 +12,8 @@ export default function Home() {
       <HeroSection />
       <AboutQDCSection />
       <ServicesSection />
+      <EnterpriseProductsSection />
+      <CompetitiveAdvantageSection />
     </main>
   );
 }

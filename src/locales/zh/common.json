@@ -61,5 +61,164 @@
       }
     },
     "subtext": "由低代码和自动化框架驱动，Quantum Officeless™ 加速软件部署、集成和数据智能，适用于任何规模。"
+  },
+  "enterpriseProducts": {
+    "badge": "企业解决方案组合",
+    "title": "企业产品",
+    "subtitle": "全面的企业软件解决方案，旨在通过先进技术和无与伦比的效率来改变您的业务运营。",
+    "cta": "准备好通过我们全面的解决方案组合来改变您的企业了吗？",
+    "exploreButton": "探索我们的解决方案",
+    "consultationButton": "预约咨询",
+    "products": {
+      "erp": {
+        "title": "ERP平台",
+        "description": "全面的企业资源规划系统，具有增强的AI模块，用于顺畅的业务运营。",
+        "features": {
+          "finance": "财务和会计管理",
+          "procurement": "采购和供应商管理",
+          "inventory": "库存和仓库控制",
+          "manufacturing": "制造规划和调度",
+          "hr": "人力资源和薪资",
+          "sales": "销售和订单管理"
+        }
+      },
+      "kpi": {
+        "title": "KPI和商业智能",
+        "description": "先进的绩效管理平台，具有实时仪表板和预测分析，用于数据驱动的决策。",
+        "features": {
+          "definition": "KPI定义和监控",
+          "dashboards": "实时仪表板",
+          "benchmarking": "比较和基准测试",
+          "alerting": "自动警报",
+          "planning": "情景规划",
+          "reporting": "执行报告"
+        }
+      },
+      "supplyChain": {
+        "title": "供应链管理",
+        "description": "全面的供应链优化，包括需求预测、物流管理和实时跟踪功能。",
+        "features": {
+          "forecasting": "需求预测",
+          "suppliers": "供应商管理",
+          "transport": "运输优化",
+          "warehouse": "仓库自动化",
+          "coldChain": "冷链监控",
+          "returns": "退货处理"
+        }
+      },
+      "assetManagement": {
+        "title": "资产管理和维护",
+        "description": "全面的资产生命周期管理，具有预测性维护和现场服务优化，用于工业运营。",
+        "features": {
+          "registry": "资产注册和跟踪",
+          "maintenance": "预测性维护",
+          "workOrders": "工作订单管理",
+          "spareParts": "备件库存",
+          "safety": "安全合规",
+          "fieldService": "现场服务调度"
+        }
+      },
+      "compliance": {
+        "title": "合规和风险管理",
+        "description": "企业级的合规管理，具有法规跟踪、风险评估和自动工作流程执行。",
+        "features": {
+          "tracking": "法规跟踪",
+          "policies": "政策管理",
+          "assessment": "风险评估",
+          "dashboards": "合规仪表板",
+          "workflows": "自动工作流程",
+          "audits": "审计跟踪"
+        }
+      },
+      "hrAnalytics": {
+        "title": "人力资源和劳动力分析",
+        "description": "先进的人力资本管理，具有AI驱动的分析、绩效管理和人才优化工具。",
+        "features": {
+          "recruitment": "招聘和入职",
+          "performance": "绩效管理",
+          "learning": "学习和发展",
+          "attendance": "时间和出勤",
+          "analytics": "人才分析",
+          "planning": "劳动力规划"
+        }
+      },
+      "mes": {
+        "title": "制造执行系统",
+        "description": "完整的MES解决方案，具有生产监控、质量控制和全面追溯，用于制造卓越。",
+        "features": {
+          "control": "车间控制",
+          "monitoring": "生产监控",
+          "quality": "质量管理",
+          "bom": "BOM和版本控制",
+          "traceability": "追溯系统",
+          "reporting": "合规报告"
+        }
+      },
+      "sustainability": {
+        "title": "可持续性和ESG管理",
+        "description": "全面的平台，用于跟踪、报告和改善环境、社会和治理绩效，符合全球标准。",
+        "features": {
+          "goals": "ESG目标设定和管理",
+          "carbon": "碳足迹和排放跟踪",
+          "energy": "能源消耗分析",
+          "reporting": "ESG报告和披露管理",
+          "risk": "气候风险评估",
+          "compliance": "法规合规跟踪"
+        }
+      },
+      "cybersecurity": {
+        "title": "AI驱动的网络安全平台",
+        "description": "先进的威胁情报和自动化安全运营平台，由AI驱动，用于主动网络防御和合规。",
+        "features": {
+          "threatDetection": "AI驱动的威胁检测",
+          "incidentResponse": "自动事件响应",
+          "zeroTrust": "零信任网络访问",
+          "endpoint": "端点检测和响应",
+          "intelligence": "威胁情报和分析",
+          "compliance": "安全合规监控"
+        }
+      }
+    }
+  },
+  "competitiveAdvantage": {
+    "badge": "竞争优势",
+    "title": "什么让企业产品具有竞争力",
+    "subtitle": "在构建或提供企业产品时，请考虑这些关键特性，它们能让成功的解决方案在竞争中脱颖而出。",
+    "examplesLabel": "关键示例",
+    "cta": "准备好打造在市场上脱颖而出的企业解决方案了吗？",
+    "discussButton": "讨论策略",
+    "learnMoreButton": "了解更多",
+    "features": {
+      "verticalTemplates": {
+        "title": "预配置的垂直模板",
+        "description": "通过行业特定的模板和配置减少实施时间。",
+        "examples": "制造业、零售业、餐饮、建筑、物流、医疗保健和其他垂直解决方案。"
+      },
+      "kpiAnalytics": {
+        "title": "强大的 KPI 和分析仪表板",
+        "description": "提供强大的商业智能，具有预测分析和实时洞察。",
+        "examples": "实时仪表板、预测建模、异常检测和高管报告。"
+      },
+      "aiModules": {
+        "title": "AI 驱动模块",
+        "description": "利用人工智能自动化流程并提供智能洞察。",
+        "examples": "异常检测、需求预测、流程自动化和智能助手。"
+      },
+      "mobileAccess": {
+        "title": "移动和远程访问",
+        "description": "通过全面的移动功能和离线支持，实现随时随地的工作效率。",
+        "examples": "移动应用程序、远程工作流程、审批、离线功能和跨设备同步。"
+      },
+      "integrations": {
+        "title": "集成能力",
+        "description": "与现有系统和第三方平台无缝连接。",
+        "examples": "API、微服务、热门工具连接器和企业系统集成。"
+      },
+      "compliance": {
+        "title": "本地合规和本地化",
+        "description": "通过本地化功能和合规支持满足区域需求。",
+        "examples": "本地税务合规、薪资法规、语言支持和区域商业实践。"
+      }
+    }
   }
 }
