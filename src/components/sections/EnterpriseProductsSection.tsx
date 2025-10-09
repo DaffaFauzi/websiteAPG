@@ -472,49 +472,6 @@ const EnterpriseProductsSection: React.FC = () => {
             <div className="absolute -top-8 left-16 text-9xl text-blue-200/30 font-serif">&ldquo;</div>
             <div className="absolute -bottom-8 right-16 text-9xl text-purple-200/30 font-serif">&rdquo;</div>
 
-            {/* Content */}
-            <div className="relative px-10 md:px-14 lg:px-18 py-14 md:py-18 lg:py-22">
-              <motion.div
-                className="text-center"
-                variants={headerVariants}
-              >
-                <motion.p
-                  className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-gray-800 leading-relaxed font-semibold mb-10 md:mb-12"
-                  variants={headerVariants}
-                >
-                  {t('enterpriseProducts.cta') as string}
-                </motion.p>
-
-                {/* Premium CTA buttons */}
-                <motion.div
-                  className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8"
-                  variants={containerVariants}
-                >
-                  <motion.button
-                    className="px-8 py-4 md:px-10 md:py-5 bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 text-lg md:text-xl"
-                    whileHover={{
-                      scale: 1.05,
-                      y: -3,
-                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {t('enterpriseProducts.exploreButton') as string}
-                  </motion.button>
-                  <motion.button
-                    className="px-8 py-4 md:px-10 md:py-5 border-2 border-gray-300 text-gray-700 font-bold rounded-2xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-500 text-lg md:text-xl shadow-lg hover:shadow-xl"
-                    whileHover={{
-                      scale: 1.05,
-                      y: -3,
-                      boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.15)"
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {t('enterpriseProducts.consultationButton') as string}
-                  </motion.button>
-                </motion.div>
-              </motion.div>
-            </div>
 
             {/* Subtle animated background gradients */}
             <motion.div

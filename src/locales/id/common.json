@@ -59,16 +59,12 @@
         "visualization": "Visualisasi Data",
         "reporting": "Pelaporan Pintar"
       }
-    },
-    "subtext": "Didukung oleh kerangka kerja kode rendah dan otomasi, Quantum Officeless™ mempercepat penerapan perangkat lunak, integrasi, dan kecerdasan data untuk skala apa pun."
+    }
   },
   "enterpriseProducts": {
     "badge": "Portofolio Solusi Enterprise",
     "title": "Produk Enterprise",
     "subtitle": "Solusi perangkat lunak enterprise yang komprehensif yang dirancang untuk mentransformasi operasi bisnis Anda dengan teknologi mutakhir dan efisiensi yang tak tertandingi.",
-    "cta": "Siap mentransformasi enterprise Anda dengan portofolio solusi komprehensif kami?",
-    "exploreButton": "Jelajahi Solusi Kami",
-    "consultationButton": "Jadwalkan Konsultasi",
     "products": {
       "erp": {
         "title": "Platform ERP",
@@ -185,9 +181,6 @@
     "title": "Apa yang Membuat Produk Enterprise Bersaing",
     "subtitle": "Ketika membangun atau menawarkan produk enterprise, pertimbangkan fitur-fitur penting ini yang membedakan solusi yang sukses dari kompetisi.",
     "examplesLabel": "Contoh Utama",
-    "cta": "Siap membangun solusi enterprise yang menonjol di pasar?",
-    "discussButton": "Diskusikan Strategi",
-    "learnMoreButton": "Pelajari Lebih Lanjut",
     "features": {
       "verticalTemplates": {
         "title": "Template Vertikal Pra-Konfigurasi",
@@ -219,6 +212,64 @@
         "description": "Alamat persyaratan regional dengan fitur yang dilokalkan dan dukungan kepatuhan.",
         "examples": "Kepatuhan pajak lokal, regulasi penggajian, dukungan bahasa, dan praktik bisnis regional."
       }
+    }
+  },
+  "faq": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "subtitle": "Temukan jawaban untuk pertanyaan umum tentang layanan dan platform kami",
+    "items": [
+      {
+        "question": "Apa itu Quantum Dynamics Creations (QDC)?",
+        "answer": "QDC adalah penyedia terkemuka solusi enterprise yang didorong oleh teknologi kuantum, yang mengkhususkan diri pada platform low-code, otomasi, dan layanan transformasi digital. Kami membantu organisasi merampingkan operasi, mengintegrasikan sistem, dan berinovasi lebih cepat melalui solusi teknologi mutakhir kami."
+      },
+      {
+        "question": "Bagaimana cara kerja platform low-code Anda?",
+        "answer": "Platform Quantum Officeless kami menyediakan lingkungan pengembangan visual di mana pengguna dapat membangun aplikasi, mengotomasi alur kerja, dan mengintegrasikan sistem tanpa pengetahuan coding yang ekstensif. Ini menggabungkan antarmuka drag-and-drop dengan kemampuan otomasi yang kuat untuk mempercepat transformasi digital."
+      },
+      {
+        "question": "Industri apa saja yang Anda layani?",
+        "answer": "Kami melayani berbagai industri termasuk keuangan, kesehatan, manufaktur, ritel, logistik, dan sektor pemerintah. Solusi kami dirancang untuk dapat beradaptasi dan skalabel di berbagai domain bisnis, dengan optimasi khusus industri yang tersedia."
+      },
+      {
+        "question": "Berapa lama waktu implementasi biasanya?",
+        "answer": "Jadwal implementasi bervariasi berdasarkan kompleksitas dan cakupan proyek. Proyek otomasi sederhana dapat diselesaikan dalam 2-4 minggu, sementara transformasi enterprise yang komprehensif mungkin memerlukan 3-6 bulan. Kami menyediakan jadwal detail selama konsultasi awal kami."
+      },
+      {
+        "question": "Apakah Anda menyediakan pelatihan dan dukungan?",
+        "answer": "Ya, kami menawarkan program pelatihan komprehensif untuk tim Anda, dukungan teknis berkelanjutan, dan manajemen akun khusus. Dukungan kami mencakup pemantauan 24/7, pembaruan rutin, dan akses ke basis pengetahuan serta sumber daya komunitas kami."
+      },
+      {
+        "question": "Apa yang membuat QDC berbeda dari penyedia otomasi lainnya?",
+        "answer": "Pendekatan kami yang didorong oleh teknologi kuantum menggabungkan kemampuan AI/ML canggih dengan pengembangan low-code, keamanan tingkat enterprise, dan opsi integrasi yang mulus. Kami fokus pada solusi yang berkelanjutan dan skalabel yang tumbuh bersama bisnis Anda daripada implementasi satu kali."
+      }
+    ]
+  },
+  "footer": {
+    "description": "Mengubah perusahaan melalui inovasi quantum-driven, otomasi, dan integrasi digital yang mulus untuk lanskap bisnis modern.",
+    "contact": {
+      "addressLabel": "Alamat",
+      "address": "A-6-2, Ativo Plaza, 1, Jalan PJU 9/1, Damansara Avenue, Bandar Sri Damansara, 52200 Kuala Lumpur, Malaysia",
+      "phoneLabel": "Telepon",
+      "phone": "+62 82114929200",
+      "hoursLabel": "Jam Operasional",
+      "hours": "Opens: 9:00 AM (Friday) - Closes: 5:00 PM"
+    },
+    "whatsapp": {
+      "title": "Hubungi Kami",
+      "description": "Siap mentransformasi bisnis Anda? Mari diskusikan solusi quantum-driven Anda.",
+      "button": "Hubungi via WhatsApp"
+    },
+    "copyright": {
+      "text": "©",
+      "company": "Quantum Dynamics Creations. Seluruh hak cipta."
+    },
+    "legal": {
+      "links": [
+        "Kebijakan Privasi",
+        "Syarat Layanan",
+        "Kebijakan Cookie",
+        "Keamanan"
+      ]
     }
   }
 }

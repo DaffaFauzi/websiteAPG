@@ -59,16 +59,12 @@
         "visualization": "数据可视化",
         "reporting": "智能报告"
       }
-    },
-    "subtext": "由低代码和自动化框架驱动，Quantum Officeless™ 加速软件部署、集成和数据智能，适用于任何规模。"
+    }
   },
   "enterpriseProducts": {
     "badge": "企业解决方案组合",
     "title": "企业产品",
     "subtitle": "全面的企业软件解决方案，旨在通过先进技术和无与伦比的效率来改变您的业务运营。",
-    "cta": "准备好通过我们全面的解决方案组合来改变您的企业了吗？",
-    "exploreButton": "探索我们的解决方案",
-    "consultationButton": "预约咨询",
     "products": {
       "erp": {
         "title": "ERP平台",
@@ -185,9 +181,6 @@
     "title": "什么让企业产品具有竞争力",
     "subtitle": "在构建或提供企业产品时，请考虑这些关键特性，它们能让成功的解决方案在竞争中脱颖而出。",
     "examplesLabel": "关键示例",
-    "cta": "准备好打造在市场上脱颖而出的企业解决方案了吗？",
-    "discussButton": "讨论策略",
-    "learnMoreButton": "了解更多",
     "features": {
       "verticalTemplates": {
         "title": "预配置的垂直模板",
@@ -219,6 +212,64 @@
         "description": "通过本地化功能和合规支持满足区域需求。",
         "examples": "本地税务合规、薪资法规、语言支持和区域商业实践。"
       }
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "subtitle": "查找关于我们服务和平台的常见问题解答",
+    "items": [
+      {
+        "question": "什么是量子动力创建（QDC）？",
+        "answer": "QDC 是领先的量子驱动企业解决方案提供商，专注于低代码平台、自动化和数字化转型服务。我们通过尖端技术解决方案帮助组织简化运营、集成系统并更快地创新。"
+      },
+      {
+        "question": "您的低代码平台如何工作？",
+        "answer": "我们的 Quantum Officeless 平台提供可视化开发环境，用户可以在其中构建应用程序、自动化工作流程并集成系统，而无需广泛的编码知识。它将拖放界面与强大的自动化功能相结合，以加速数字化转型。"
+      },
+      {
+        "question": "您服务于哪些行业？",
+        "answer": "我们服务于广泛的行业，包括金融、医疗保健、制造、零售、物流和政府部门。我们的解决方案设计为可适应和扩展到各种业务领域，并提供行业特定的优化。"
+      },
+      {
+        "question": "实施通常需要多长时间？",
+        "answer": "实施时间表根据项目的复杂性和范围而有所不同。简单的自动化项目可以在 2-4 周内完成，而全面的企业转型可能需要 3-6 个月。我们在初步咨询期间提供详细的时间表。"
+      },
+      {
+        "question": "您提供培训和支持吗？",
+        "answer": "是的，我们为您的团队提供全面的培训计划、持续的技术支持和专门的账户管理。我们的支持包括 24/7 监控、定期更新以及对我们的知识库和社区资源的访问。"
+      },
+      {
+        "question": "是什么让 QDC 与其他自动化提供商不同？",
+        "answer": "我们量子驱动的方法将先进的 AI/ML 能力与低代码开发、企业级安全性和无缝集成选项相结合。我们专注于可持续、可扩展的解决方案，这些解决方案与您的业务一起成长，而不是一次性实施。"
+      }
+    ]
+  },
+  "footer": {
+    "description": "通过量子驱动的创新、自动化和无缝数字集成，为现代商业格局改造企业。",
+    "contact": {
+      "addressLabel": "地址",
+      "address": "A-6-2, Ativo Plaza, 1, Jalan PJU 9/1, Damansara Avenue, Bandar Sri Damansara, 52200 Kuala Lumpur, Malaysia",
+      "phoneLabel": "电话",
+      "phone": "+62 82114929200",
+      "hoursLabel": "营业时间",
+      "hours": "Opens: 9:00 AM (Friday) - Closes: 5:00 PM"
+    },
+    "whatsapp": {
+      "title": "联系我们",
+      "description": "准备好改变您的业务了吗？让我们讨论您的量子驱动解决方案。",
+      "button": "通过 WhatsApp 联系"
+    },
+    "copyright": {
+      "text": "©",
+      "company": "Quantum Dynamics Creations. 版权所有。"
+    },
+    "legal": {
+      "links": [
+        "隐私政策",
+        "服务条款",
+        "Cookie 政策",
+        "安全"
+      ]
     }
   }
 }

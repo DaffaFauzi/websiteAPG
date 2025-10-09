@@ -59,16 +59,12 @@
         "visualization": "Data Visualization",
         "reporting": "Smart Reporting"
       }
-    },
-    "subtext": "Powered by low-code and automation frameworks, Quantum Officeless™ accelerates software deployment, integration, and data intelligence for any scale."
+    }
   },
   "enterpriseProducts": {
     "badge": "Enterprise Solutions Portfolio",
     "title": "Enterprise Products",
     "subtitle": "Comprehensive enterprise software solutions designed to transform your business operations with cutting-edge technology and unparalleled efficiency.",
-    "cta": "Ready to transform your enterprise with our comprehensive product suite?",
-    "exploreButton": "Explore Our Solutions",
-    "consultationButton": "Schedule Consultation",
     "products": {
       "erp": {
         "title": "ERP Platform",
@@ -185,9 +181,6 @@
     "title": "What Makes Enterprise Products Competitive",
     "subtitle": "When building or offering enterprise products, consider these essential features that set successful solutions apart from the competition.",
     "examplesLabel": "Key Examples",
-    "cta": "Ready to build enterprise solutions that stand out in the market?",
-    "discussButton": "Discuss Strategy",
-    "learnMoreButton": "Learn More",
     "features": {
       "verticalTemplates": {
         "title": "Pre-configured Vertical Templates",
@@ -219,6 +212,64 @@
         "description": "Address regional requirements with localized features and compliance support.",
         "examples": "Local tax compliance, payroll regulations, language support, and regional business practices."
       }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our services and platform",
+    "items": [
+      {
+        "question": "What is Quantum Dynamics Creations (QDC)?",
+        "answer": "QDC is a leading provider of quantum-driven enterprise solutions, specializing in low-code platforms, automation, and digital transformation services. We help organizations streamline operations, integrate systems, and innovate faster through our cutting-edge technology solutions."
+      },
+      {
+        "question": "How does your low-code platform work?",
+        "answer": "Our Quantum Officeless Platform provides a visual development environment where users can build applications, automate workflows, and integrate systems without extensive coding knowledge. It combines drag-and-drop interfaces with powerful automation capabilities to accelerate digital transformation."
+      },
+      {
+        "question": "What industries do you serve?",
+        "answer": "We serve a wide range of industries including finance, healthcare, manufacturing, retail, logistics, and government sectors. Our solutions are designed to be adaptable and scalable across various business domains, with industry-specific optimizations available."
+      },
+      {
+        "question": "How long does implementation typically take?",
+        "answer": "Implementation timelines vary based on project complexity and scope. Simple automation projects can be completed in 2-4 weeks, while comprehensive enterprise transformations may take 3-6 months. We provide detailed timelines during our initial consultation."
+      },
+      {
+        "question": "Do you provide training and support?",
+        "answer": "Yes, we offer comprehensive training programs for your team, ongoing technical support, and dedicated account management. Our support includes 24/7 monitoring, regular updates, and access to our knowledge base and community resources."
+      },
+      {
+        "question": "What makes QDC different from other automation providers?",
+        "answer": "Our quantum-driven approach combines advanced AI/ML capabilities with low-code development, enterprise-grade security, and seamless integration options. We focus on sustainable, scalable solutions that grow with your business rather than one-off implementations."
+      }
+    ]
+  },
+  "footer": {
+    "description": "Transforming enterprises through quantum-driven innovation, automation, and seamless digital integration for the modern business landscape.",
+    "contact": {
+      "addressLabel": "Address",
+      "address": "A-6-2, Ativo Plaza, 1, Jalan PJU 9/1, Damansara Avenue, Bandar Sri Damansara, 52200 Kuala Lumpur, Malaysia",
+      "phoneLabel": "Phone",
+      "phone": "+62 82114929200",
+      "hoursLabel": "Operating Hours",
+      "hours": "Opens: 9:00 AM (Friday) - Closes: 5:00 PM"
+    },
+    "whatsapp": {
+      "title": "Get In Touch",
+      "description": "Ready to transform your business? Let's discuss your quantum-driven solutions.",
+      "button": "Contact via WhatsApp"
+    },
+    "copyright": {
+      "text": "©",
+      "company": "Quantum Dynamics Creations. All rights reserved."
+    },
+    "legal": {
+      "links": [
+        "Privacy Policy",
+        "Terms of Service",
+        "Cookie Policy",
+        "Security"
+      ]
     }
   }
 }

@@ -319,40 +319,6 @@ const ServicesSection: React.FC = () => {
             <div className="absolute -bottom-6 right-12 text-8xl text-purple-200/40 font-serif">&rdquo;</div>
 
             {/* Content */}
-            <div className="relative px-8 md:px-12 lg:px-16 py-12 md:py-16 lg:py-20">
-              <motion.div
-                className="text-center"
-                variants={headerVariants}
-              >
-                <motion.p
-                  className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-800 leading-relaxed font-semibold mb-6 md:mb-8"
-                  variants={headerVariants}
-                >
-                  {t('services.subtext') as string}
-                </motion.p>
-
-                {/* Call-to-action elements */}
-                <motion.div
-                  className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6"
-                  variants={containerVariants}
-                >
-                  <motion.button
-                    className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm md:text-base"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Start Your Transformation
-                  </motion.button>
-                  <motion.button
-                    className="px-6 py-3 md:px-8 md:py-4 border-2 border-gray-300 text-gray-700 font-semibold rounded-2xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 text-sm md:text-base"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Learn More
-                  </motion.button>
-                </motion.div>
-              </motion.div>
-            </div>
 
             {/* Subtle animated background patterns */}
             <motion.div

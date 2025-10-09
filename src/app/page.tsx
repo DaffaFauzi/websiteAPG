@@ -3,6 +3,8 @@ import AboutQDCSection from '@/components/sections/AboutQDCSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import EnterpriseProductsSection from '@/components/sections/EnterpriseProductsSection';
 import CompetitiveAdvantageSection from '@/components/sections/CompetitiveAdvantageSection';
+import FAQSection from '@/components/sections/FAQSection';
+import FooterSection from '@/components/sections/FooterSection';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 
 export default function Home() {
@@ -14,6 +16,8 @@ export default function Home() {
       <ServicesSection />
       <EnterpriseProductsSection />
       <CompetitiveAdvantageSection />
+      <FAQSection />
+      <FooterSection />
     </main>
   );
 }
