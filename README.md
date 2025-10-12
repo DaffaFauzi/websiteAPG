@@ -172,5 +172,3 @@ This project is proprietary software developed for Quantum Dynamics Creations (Q
 - Regions: Malaysia | Singapore | Indonesia
 
 ---
-
-**Built with ❤️ by Hernanda for Karina**
