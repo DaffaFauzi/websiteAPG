@@ -1,6 +1,5 @@
 {
   "hero": {
-    "companyTagline": "Quantum Dynamics Creations",
     "headline": {
       "text": "Memberdayakan Perusahaan dengan Transformasi Berbasis Quantum",
       "highlightWords": ["Perusahaan", "Quantum"]
@@ -16,19 +15,48 @@
   },
   "aboutQDC": {
     "title": "Tentang QDC",
+    "subtitle": "Di Mana Orang Bertemu Presisi, dan Inovasi Mendorong Pertumbuhan",
+    "description": "Di Quantum Dynamics Creations (QDC), kami mendefinisikan ulang bagaimana organisasi terhubung, berkembang, dan berkembang melalui teknologi yang memahami manusia. Lahir dari fusi sains, kreativitas, dan inovasi digital, QDC mentransformasi tantangan sumber daya manusia yang kompleks menjadi solusi cerdas yang mulus.",
+    "companyPhilosophy": "Kami percaya setiap organisasi adalah sistem hidup — didorong oleh energi manusia, disempurnakan oleh data, dan diberdayakan oleh teknologi. Melalui platform SaaS kami yang berfokus pada SDM, kami membantu perusahaan membuka potensi orang-orang mereka, menciptakan tempat kerja yang lebih gesit, transparan, dan berpusat pada manusia.",
+    "essenceTitle": "Nama Kami, Esensi Kami",
+    "essenceDescription": "Bersama-sama, elemen-elemen ini mendefinisikan siapa kami — Quantum Dynamics Creations — sebuah katalis untuk transformasi di mana orang, proses, dan kemajuan berkumpul.",
     "quantum": {
       "word": "Quantum",
-      "meaning": "Perubahan besar, presisi, inovasi."
+      "meaning": "Perubahan besar, presisi, inovasi. Kami membawa kejelasan ilmiah ke kompleksitas bisnis, mengubah data menjadi keputusan yang mendorong pertumbuhan terukur."
     },
     "dynamics": {
       "word": "Dynamics",
-      "meaning": "Energi, gerakan, adaptabilitas."
+      "meaning": "Energi, gerakan, adaptabilitas. Teknologi kami berkembang bersama organisasi Anda, memastikan Anda tetap tangguh di dunia kerja yang berubah cepat."
     },
     "creations": {
       "word": "Creations",
-      "meaning": "Realisasi ide menjadi kenyataan digital."
+      "meaning": "Realisasi ide menjadi kenyataan digital. Kami menciptakan pengalaman digital yang berarti yang mewujudkan visi Anda."
     },
-    "philosophy": "Quantum Dynamics Creations (QDC) memadukan sains, kreativitas, dan kerajinan digital untuk mentransformasi cara organisasi bekerja, berpikir, dan berkembang."
+    "philosophy": "Quantum Dynamics Creations (QDC) memadukan sains, kreativitas, dan kerajinan digital untuk mentransformasi cara organisasi bekerja, berpikir, dan berkembang.",
+    "missionTitle": "Misi Kami",
+    "mission": "Untuk memberdayakan organisasi dengan solusi digital cerdas yang berpusat pada manusia yang meningkatkan produktivitas, menginspirasi pertumbuhan, dan menumbuhkan pengalaman kerja yang bermakna.",
+    "visionTitle": "Visi Kami",
+    "vision": "Untuk menjadi kekuatan pendorong di balik evolusi kerja berikutnya — di mana teknologi memperkuat potensi manusia dan organisasi berkembang melalui koneksi, kreativitas, dan kejelasan.",
+    "valuesTitle": "Nilai Inti Kami",
+    "valuesDescription": "Prinsip-prinsip ini membimbing segala yang kami lakukan, membentuk budaya kami dan mendefinisikan komitmen kami terhadap keunggulan.",
+    "values": {
+      "innovation": {
+        "title": "Inovasi dengan Tujuan",
+        "description": "Kami berinovasi untuk menyelesaikan tantangan manusia yang nyata, menciptakan teknologi yang membuat kerja lebih bermakna dan organisasi lebih efektif."
+      },
+      "integrity": {
+        "title": "Integritas dalam Aksi",
+        "description": "Kami membangun kepercayaan melalui transparansi, keandalan, dan praktik etis yang mengutamakan kesuksesan klien kami."
+      },
+      "adaptability": {
+        "title": "Adaptabilitas",
+        "description": "Kami berkembang bersama klien kami dan dunia kerja yang berubah, memastikan solusi kami tetap relevan dan efektif."
+      },
+      "empowerment": {
+        "title": "Pemberdayaan",
+        "description": "Kami merancang teknologi yang memberdayakan baik bisnis maupun orang-orangnya, mendorong pertumbuhan, kreativitas, dan koneksi yang bermakna."
+      }
+    }
   },
   "services": {
     "title": "Layanan",
@@ -271,5 +299,14 @@
         "Keamanan"
       ]
     }
+  },
+  "navigation": {
+    "home": "Beranda",
+    "aboutUs": "Tentang Kami",
+    "products": "Produk",
+    "contact": "Kontak"
+  },
+  "breadcrumb": {
+    "home": "Beranda"
   }
 }

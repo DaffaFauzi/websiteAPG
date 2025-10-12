@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Quantum Dynamics Creations - Enterprise Digital Transformation",
   description: "Accelerate digital transformation across industries with Quantum Dynamics Creations. Low-code enterprise platform for automation, integration, and intelligent workflows.",
+  icons: {
+    icon: "/images/qdc_logo_notext.png",
+  },
 };
 
 export default function RootLayout({

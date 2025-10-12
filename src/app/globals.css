@@ -3,6 +3,28 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* New Color Palette */
+  --color-primary: #1C3748;
+  --color-primary-dark: #152A35;
+  --color-primary-light: #2A4A5A;
+
+  --color-secondary: #00A6E6;
+  --color-secondary-dark: #0086BF;
+  --color-secondary-light: #33B8E6;
+
+  --color-tertiary: #7CC244;
+  --color-tertiary-dark: #5FA035;
+  --color-tertiary-light: #8FC85A;
+
+  /* Semantic colors for UI */
+  --color-accent: var(--color-secondary);
+  --color-accent-hover: var(--color-secondary-dark);
+  --color-text-primary: var(--color-primary);
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+  --color-surface: #F9FAFB;
+  --color-surface-hover: #F3F4F6;
 }
 
 @theme inline {
@@ -16,6 +38,24 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    /* Dark mode adjustments for new palette */
+    --color-primary: #2A4A5A;
+    --color-primary-dark: #1C3748;
+    --color-primary-light: #3B5A6A;
+
+    --color-secondary: #33B8E6;
+    --color-secondary-dark: #00A6E6;
+    --color-secondary-light: #66C7E6;
+
+    --color-tertiary: #8FC85A;
+    --color-tertiary-dark: #7CC244;
+    --color-tertiary-light: #A0D06C;
+
+    --color-text-secondary: #D1D5DB;
+    --color-text-muted: #9CA3AF;
+    --color-surface: #1F2937;
+    --color-surface-hover: #374151;
   }
 }
 

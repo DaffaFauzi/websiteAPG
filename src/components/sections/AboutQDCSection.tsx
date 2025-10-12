@@ -73,19 +73,19 @@ const AboutQDCSection: React.FC = () => {
     {
       word: t('aboutQDC.quantum.word') as string,
       meaning: t('aboutQDC.quantum.meaning') as string,
-      gradient: 'from-blue-500 via-purple-500 to-indigo-600',
+      gradient: 'from-[var(--color-primary)] via-[var(--color-primary-light)] to-[var(--color-secondary)]',
       icon: '⚛️',
     },
     {
       word: t('aboutQDC.dynamics.word') as string,
       meaning: t('aboutQDC.dynamics.meaning') as string,
-      gradient: 'from-emerald-500 via-teal-500 to-cyan-600',
+      gradient: 'from-[var(--color-secondary)] via-[var(--color-secondary-light)] to-[var(--color-tertiary)]',
       icon: '🌊',
     },
     {
       word: t('aboutQDC.creations.word') as string,
       meaning: t('aboutQDC.creations.meaning') as string,
-      gradient: 'from-orange-500 via-red-500 to-pink-600',
+      gradient: 'from-[var(--color-tertiary)] via-[var(--color-tertiary-light)] to-[var(--color-primary)]',
       icon: '✨',
     },
   ];
@@ -107,14 +107,14 @@ const AboutQDCSection: React.FC = () => {
         transition={{ duration: 2, ease: "easeOut" }}
         suppressHydrationWarning={true}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1)_0%,transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(16,185,129,0.1)_0%,transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(249,115,22,0.1)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(28,55,72,0.1)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(0,166,230,0.1)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(124,194,68,0.1)_0%,transparent_50%)]" />
       </motion.div>
 
       {/* Floating accent elements */}
       <motion.div
-        className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-xl"
+        className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 rounded-full blur-xl"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.6, 0.3],
@@ -127,7 +127,7 @@ const AboutQDCSection: React.FC = () => {
         suppressHydrationWarning={true}
       />
       <motion.div
-        className="absolute bottom-20 right-10 w-16 h-16 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-full blur-xl"
+        className="absolute bottom-20 right-10 w-16 h-16 bg-gradient-to-br from-[var(--color-secondary)]/20 to-[var(--color-tertiary)]/20 rounded-full blur-xl"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.4, 0.7, 0.4],
@@ -155,7 +155,7 @@ const AboutQDCSection: React.FC = () => {
             {t('aboutQDC.title') as string}
           </motion.h2>
           <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full"
+            className="w-24 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] mx-auto rounded-full"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
@@ -226,7 +226,7 @@ const AboutQDCSection: React.FC = () => {
           suppressHydrationWarning={true}
         >
           <motion.div
-            className="relative p-8 md:p-12 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-3xl border border-gray-200/50 shadow-xl"
+            className="relative p-8 md:p-12 bg-gradient-to-r from-slate-50 via-blue-50/30 to-green-50/30 rounded-3xl border border-gray-200/50 shadow-xl"
             whileHover={{
               scale: 1.01,
               transition: { duration: 0.3 }
@@ -235,7 +235,7 @@ const AboutQDCSection: React.FC = () => {
           >
             {/* Decorative quotes */}
             <motion.div
-              className="absolute -top-4 left-8 text-6xl text-indigo-300 opacity-60"
+              className="absolute -top-4 left-8 text-6xl text-[var(--color-primary)]/60 opacity-60"
               initial={{ scale: 0, rotate: -180 }}
               whileInView={{ scale: 1, rotate: 0 }}
               viewport={{ once: true }}
@@ -244,7 +244,7 @@ const AboutQDCSection: React.FC = () => {
               &ldquo;
             </motion.div>
             <motion.div
-              className="absolute -bottom-4 right-8 text-6xl text-purple-300 opacity-60"
+              className="absolute -bottom-4 right-8 text-6xl text-[var(--color-secondary)]/60 opacity-60"
               initial={{ scale: 0, rotate: 180 }}
               whileInView={{ scale: 1, rotate: 0 }}
               viewport={{ once: true }}
@@ -268,8 +268,8 @@ const AboutQDCSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 2 }}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.3)_0%,transparent_50%)]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.3)_0%,transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(28,55,72,0.3)_0%,transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(0,166,230,0.3)_0%,transparent_50%)]" />
             </motion.div>
           </motion.div>
         </motion.div>

@@ -1,6 +1,5 @@
 {
   "hero": {
-    "companyTagline": "Quantum Dynamics Creations",
     "headline": {
       "text": "Memperkasa Perusahaan dengan Transformasi Dipacu Quantum",
       "highlightWords": ["Perusahaan", "Quantum"]
@@ -16,19 +15,48 @@
   },
   "aboutQDC": {
     "title": "Tentang QDC",
+    "subtitle": "Di Mana Orang Bertemu Ketepatan, dan Inovasi Memacu Pertumbuhan",
+    "description": "Di Quantum Dynamics Creations (QDC), kami mendefinisikan semula bagaimana organisasi berhubung, berkembang, dan makmur melalui teknologi yang memahami manusia. Lahir daripada gabungan sains, kreativiti, dan inovasi digital, QDC mengubah cabaran sumber manusia yang kompleks menjadi penyelesaian pintar yang lancar.",
+    "companyPhilosophy": "Kami percaya setiap organisasi adalah sistem hidup — didorong oleh tenaga manusia, diperhalusi oleh data, dan dikuasakan oleh teknologi. Melalui platform SaaS kami yang fokus pada HR, kami membantu syarikat membuka potensi orang mereka, mencipta tempat kerja yang lebih tangkas, telus, dan berpusatkan manusia.",
+    "essenceTitle": "Nama Kami, Esensi Kami",
+    "essenceDescription": "Bersama-sama, elemen-elemen ini mentakrifkan siapa kami — Quantum Dynamics Creations — pemangkin transformasi di mana orang, proses, dan kemajuan bertemu.",
     "quantum": {
       "word": "Quantum",
-      "meaning": "Perubahan besar, ketepatan, inovasi."
+      "meaning": "Perubahan besar, ketepatan, inovasi. Kami membawa kejelasan saintifik kepada kerumitan perniagaan, menukar data kepada keputusan yang memacu pertumbuhan yang boleh diukur."
     },
     "dynamics": {
       "word": "Dynamics",
-      "meaning": "Tenaga, pergerakan, kebolehsuaian."
+      "meaning": "Tenaga, pergerakan, kebolehsuaian. Teknologi kami berkembang bersama organisasi anda, memastikan anda kekal tahan lasak di dunia kerja yang berubah pesat."
     },
     "creations": {
       "word": "Creations",
-      "meaning": "Merealisasikan idea ke dalam realiti digital."
+      "meaning": "Merealisasikan idea ke dalam realiti digital. Kami mencipta pengalaman digital yang bermakna yang mewujudkan visi anda."
     },
-    "philosophy": "Quantum Dynamics Creations (QDC) menggabungkan sains, kreativiti, dan kraf digital untuk mentransformasi cara organisasi beroperasi, berfikir, dan berkembang."
+    "philosophy": "Quantum Dynamics Creations (QDC) menggabungkan sains, kreativiti, dan kraf digital untuk mentransformasi cara organisasi beroperasi, berfikir, dan berkembang.",
+    "missionTitle": "Misi Kami",
+    "mission": "Untuk memberdayakan organisasi dengan penyelesaian digital pintar yang berpusatkan manusia yang meningkatkan produktiviti, mengilhamkan pertumbuhan, dan menanam pengalaman tempat kerja yang bermakna.",
+    "visionTitle": "Visi Kami",
+    "vision": "Untuk menjadi kuasa pendorong di sebalik evolusi kerja seterusnya — di mana teknologi memperkuat potensi manusia dan organisasi makmur melalui sambungan, kreativiti, dan kejelasan.",
+    "valuesTitle": "Nilai Teras Kami",
+    "valuesDescription": "Prinsip-prinsip ini membimbing segala yang kami lakukan, membentuk budaya kami dan mentakrifkan komitmen kami terhadap kecemerlangan.",
+    "values": {
+      "innovation": {
+        "title": "Inovasi dengan Tujuan",
+        "description": "Kami berinovasi untuk menyelesaikan cabaran manusia yang sebenar, mencipta teknologi yang membuat kerja lebih bermakna dan organisasi lebih efektif."
+      },
+      "integrity": {
+        "title": "Integriti dalam Tindakan",
+        "description": "Kami membina kepercayaan melalui ketelusan, kebolehpercayaan, dan amalan etika yang mengutamakan kejayaan pelanggan kami."
+      },
+      "adaptability": {
+        "title": "Kebolehsuaian",
+        "description": "Kami berkembang bersama pelanggan kami dan dunia kerja yang berubah, memastikan penyelesaian kami kekal relevan dan efektif."
+      },
+      "empowerment": {
+        "title": "Pemberdayaan",
+        "description": "Kami mereka bentuk teknologi yang memberdayakan kedua-dua perniagaan dan orang mereka, memupuk pertumbuhan, kreativiti, dan sambungan yang bermakna."
+      }
+    }
   },
   "services": {
     "title": "Perkhidmatan",
@@ -243,6 +271,15 @@
         "answer": "Pendekatan kami yang didorong oleh kuantum menggabungkan keupayaan AI/ML canggih dengan pembangunan low-code, keselamatan gred perusahaan, dan pilihan penyepaduan yang lancar. Kami fokus pada penyelesaian mampan dan boleh diskalakan yang berkembang bersama perniagaan anda dan bukannya pelaksanaan satu kali."
       }
     ]
+  },
+  "navigation": {
+    "home": "Laman Utama",
+    "aboutUs": "Tentang Kami",
+    "products": "Produk",
+    "contact": "Hubungi"
+  },
+  "breadcrumb": {
+    "home": "Laman Utama"
   },
   "footer": {
     "description": "Mengubah perusahaan melalui inovasi quantum-driven, automasi, dan integrasi digital yang lancar untuk landskap perniagaan moden.",

@@ -27,7 +27,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <motion.section
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-white px-6 pt-20 pb-12 md:pt-24 md:pb-16 lg:pt-28 lg:pb-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/30 to-white px-4 sm:px-6 pt-24 pb-8 md:pt-28 md:pb-12 lg:pt-32 lg:pb-16 xl:pt-36 xl:pb-20 overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -68,24 +68,10 @@ const HeroSection: React.FC = () => {
         variants={containerVariants}
         suppressHydrationWarning={true}
       >
-        {/* Company tagline with breathing effect */}
-        <motion.div
-          className="mb-6"
-          variants={textRevealVariants}
-          suppressHydrationWarning={true}
-        >
-          <motion.span
-            className="inline-block px-4 py-2 bg-indigo-50 text-indigo-600 text-sm font-medium rounded-full border border-indigo-100"
-            variants={breatheVariants}
-            animate="breathe"
-          >
-            {t('hero.companyTagline') as string}
-          </motion.span>
-        </motion.div>
 
         {/* Main headline with word-by-word reveal */}
         <motion.h1
-          className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 md:mb-8 leading-tight"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 leading-tight"
           variants={textRevealVariants}
         >
           {headline.split(' ').map((word: string, index: number) => (
@@ -93,7 +79,7 @@ const HeroSection: React.FC = () => {
               key={index}
               className={`inline-block mr-2 ${
                 highlightWords.includes(word)
-                  ? 'text-indigo-600'
+                  ? 'text-[var(--color-secondary)]'
                   : 'text-gray-900'
               }`}
               variants={wordVariants}
@@ -110,7 +96,7 @@ const HeroSection: React.FC = () => {
 
         {/* Subheadline with smooth reveal */}
         <motion.p
-          className="text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light"
           variants={textRevealVariants}
         >
           {subheadline}
@@ -118,7 +104,7 @@ const HeroSection: React.FC = () => {
 
         {/* CTA Buttons with premium interactions */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 md:mb-12 lg:mb-16"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8 md:mb-12 lg:mb-16"
           variants={textRevealVariants}
           suppressHydrationWarning={true}
         >

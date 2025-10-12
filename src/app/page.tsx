@@ -1,3 +1,4 @@
+import NavbarSection from '@/components/sections/NavbarSection';
 import HeroSection from '@/components/sections/HeroSection';
 import AboutQDCSection from '@/components/sections/AboutQDCSection';
 import ServicesSection from '@/components/sections/ServicesSection';
@@ -5,17 +6,16 @@ import EnterpriseProductsSection from '@/components/sections/EnterpriseProductsS
 import CompetitiveAdvantageSection from '@/components/sections/CompetitiveAdvantageSection';
 import FAQSection from '@/components/sections/FAQSection';
 import FooterSection from '@/components/sections/FooterSection';
-import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 
 export default function Home() {
   return (
     <main className="min-h-screen relative">
-      <LanguageSwitcher />
+      <NavbarSection />
       <HeroSection />
-      <AboutQDCSection />
-      <ServicesSection />
-      <EnterpriseProductsSection />
-      <CompetitiveAdvantageSection />
+      {/* <AboutQDCSection /> */}
+      {/* <ServicesSection /> */}
+      {/* <EnterpriseProductsSection /> */}
+      {/* <CompetitiveAdvantageSection /> */}
       <FAQSection />
       <FooterSection />
     </main>

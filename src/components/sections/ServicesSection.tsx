@@ -78,9 +78,9 @@ const ServicesSection: React.FC = () => {
         t('services.automation.features.process') as string,
         t('services.automation.features.efficiency') as string,
       ],
-      gradient: 'from-blue-500 to-cyan-600',
-      accentColor: 'from-blue-600 to-cyan-700',
-      bgGradient: 'from-blue-50/80 to-cyan-50/80',
+      gradient: 'from-[var(--color-primary)] to-[var(--color-primary-light)]',
+      accentColor: 'from-[var(--color-primary-dark)] to-[var(--color-primary)]',
+      bgGradient: 'from-slate-50/80 to-blue-50/80',
     },
     {
       title: t('services.integration.title') as string,
@@ -91,9 +91,9 @@ const ServicesSection: React.FC = () => {
         t('services.integration.features.sync') as string,
         t('services.integration.features.harmony') as string,
       ],
-      gradient: 'from-purple-500 to-indigo-600',
-      accentColor: 'from-purple-600 to-indigo-700',
-      bgGradient: 'from-purple-50/80 to-indigo-50/80',
+      gradient: 'from-[var(--color-secondary)] to-[var(--color-secondary-light)]',
+      accentColor: 'from-[var(--color-secondary-dark)] to-[var(--color-secondary)]',
+      bgGradient: 'from-blue-50/80 to-cyan-50/80',
     },
     {
       title: t('services.analytics.title') as string,
@@ -104,9 +104,9 @@ const ServicesSection: React.FC = () => {
         t('services.analytics.features.visualization') as string,
         t('services.analytics.features.reporting') as string,
       ],
-      gradient: 'from-emerald-500 to-teal-600',
-      accentColor: 'from-emerald-600 to-teal-700',
-      bgGradient: 'from-emerald-50/80 to-teal-50/80',
+      gradient: 'from-[var(--color-tertiary)] to-[var(--color-tertiary-light)]',
+      accentColor: 'from-[var(--color-tertiary-dark)] to-[var(--color-tertiary)]',
+      bgGradient: 'from-green-50/80 to-emerald-50/80',
     },
   ];
 
@@ -185,7 +185,7 @@ const ServicesSection: React.FC = () => {
           </motion.h2>
 
           <motion.div
-            className="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 mx-auto rounded-full mb-8"
+            className="w-24 h-1.5 bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-secondary)] to-[var(--color-tertiary)] mx-auto rounded-full mb-8"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
@@ -312,11 +312,11 @@ const ServicesSection: React.FC = () => {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             {/* Background with glassmorphism */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-50/90 via-purple-50/90 to-emerald-50/90 backdrop-blur-sm rounded-4xl border border-white/50 shadow-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-50/90 via-blue-50/90 to-green-50/90 backdrop-blur-sm rounded-4xl border border-white/50 shadow-2xl" />
 
             {/* Decorative elements */}
-            <div className="absolute -top-6 left-12 text-8xl text-blue-200/40 font-serif">&ldquo;</div>
-            <div className="absolute -bottom-6 right-12 text-8xl text-purple-200/40 font-serif">&rdquo;</div>
+            <div className="absolute -top-6 left-12 text-8xl text-[var(--color-primary)]/20 font-serif">&ldquo;</div>
+            <div className="absolute -bottom-6 right-12 text-8xl text-[var(--color-secondary)]/20 font-serif">&rdquo;</div>
 
             {/* Content */}
 
@@ -328,8 +328,8 @@ const ServicesSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 2, delay: 1 }}
             >
-              <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full blur-3xl" />
-              <div className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-br from-purple-400/30 to-emerald-400/30 rounded-full blur-3xl" />
+              <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 rounded-full blur-3xl" />
+              <div className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-br from-[var(--color-secondary)]/20 to-[var(--color-tertiary)]/20 rounded-full blur-3xl" />
             </motion.div>
           </motion.div>
         </motion.div>

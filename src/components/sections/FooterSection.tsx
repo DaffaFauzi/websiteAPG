@@ -57,7 +57,7 @@ const FooterSection: React.FC = () => {
 
         {/* Floating geometric shapes */}
         <motion.div
-          className="absolute top-20 right-16 w-32 h-32 border border-indigo-300/20 rounded-full"
+          className="absolute top-20 right-16 w-32 h-32 border border-[var(--color-primary)]/20 rounded-full"
           animate={{
             rotate: [0, 360],
             scale: [1, 1.1, 1],
@@ -69,7 +69,7 @@ const FooterSection: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-32 left-20 w-24 h-24 border border-purple-300/20 rotate-45"
+          className="absolute bottom-32 left-20 w-24 h-24 border border-[var(--color-secondary)]/20 rotate-45"
           animate={{
             rotate: [45, 135, 45],
             opacity: [0.2, 0.5, 0.2],
@@ -81,7 +81,7 @@ const FooterSection: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/4 w-20 h-20 border border-emerald-300/20 rounded-full"
+          className="absolute top-1/2 left-1/4 w-20 h-20 border border-[var(--color-tertiary)]/20 rounded-full"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.1, 0.3, 0.1],
@@ -112,9 +112,11 @@ const FooterSection: React.FC = () => {
               variants={headerVariants}
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">Q</span>
-                </div>
+                <img
+                  src="/images/qdc_logo_notext.png"
+                  alt="Quantum Dynamics Creations Logo"
+                  className="w-8 h-8 object-contain"
+                />
                 <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   Quantum Dynamics Creations
                 </h3>
@@ -127,7 +129,7 @@ const FooterSection: React.FC = () => {
               {/* Contact Information */}
               <div className="space-y-3 pt-2">
                 <div className="flex items-start gap-3 text-gray-300">
-                  <svg className="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[var(--color-secondary)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
@@ -138,7 +140,7 @@ const FooterSection: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-3 text-gray-300">
-                  <svg className="w-4 h-4 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[var(--color-secondary)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   <div className="text-sm">
@@ -148,7 +150,7 @@ const FooterSection: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-3 text-gray-300">
-                  <svg className="w-4 h-4 text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-[var(--color-secondary)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <div className="text-sm">
@@ -214,7 +216,7 @@ const FooterSection: React.FC = () => {
                   <a
                     key={index}
                     href="#"
-                    className="text-gray-400 hover:text-indigo-400 transition-colors duration-300 text-sm"
+                    className="text-gray-400 hover:text-[var(--color-secondary)] transition-colors duration-300 text-sm"
                   >
                     {link}
                   </a>

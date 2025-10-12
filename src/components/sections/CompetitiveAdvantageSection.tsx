@@ -71,9 +71,9 @@ const CompetitiveAdvantageSection: React.FC = () => {
       title: t('competitiveAdvantage.features.verticalTemplates.title') as string,
       description: t('competitiveAdvantage.features.verticalTemplates.description') as string,
       icon: RectangleStackIcon,
-      gradient: 'from-blue-500 to-indigo-600',
-      bgGradient: 'from-blue-50/80 to-indigo-50/80',
-      iconColor: 'text-blue-600',
+      gradient: 'from-[var(--color-primary)] to-[var(--color-primary-light)]',
+      bgGradient: 'from-slate-50/80 to-blue-50/80',
+      iconColor: 'text-[var(--color-primary)]',
       examples: t('competitiveAdvantage.features.verticalTemplates.examples') as string,
       layout: 'icon-left',
     },
@@ -82,9 +82,9 @@ const CompetitiveAdvantageSection: React.FC = () => {
       title: t('competitiveAdvantage.features.kpiAnalytics.title') as string,
       description: t('competitiveAdvantage.features.kpiAnalytics.description') as string,
       icon: ChartBarSquareIcon,
-      gradient: 'from-emerald-500 to-teal-600',
-      bgGradient: 'from-emerald-50/80 to-teal-50/80',
-      iconColor: 'text-emerald-600',
+      gradient: 'from-[var(--color-tertiary)] to-[var(--color-tertiary-light)]',
+      bgGradient: 'from-green-50/80 to-emerald-50/80',
+      iconColor: 'text-[var(--color-tertiary)]',
       examples: t('competitiveAdvantage.features.kpiAnalytics.examples') as string,
       layout: 'icon-right',
     },
@@ -93,9 +93,9 @@ const CompetitiveAdvantageSection: React.FC = () => {
       title: t('competitiveAdvantage.features.aiModules.title') as string,
       description: t('competitiveAdvantage.features.aiModules.description') as string,
       icon: CpuChipIcon,
-      gradient: 'from-purple-500 to-violet-600',
-      bgGradient: 'from-purple-50/80 to-violet-50/80',
-      iconColor: 'text-purple-600',
+      gradient: 'from-[var(--color-secondary)] to-[var(--color-secondary-light)]',
+      bgGradient: 'from-blue-50/80 to-cyan-50/80',
+      iconColor: 'text-[var(--color-secondary)]',
       examples: t('competitiveAdvantage.features.aiModules.examples') as string,
       layout: 'icon-left',
     },
@@ -104,9 +104,9 @@ const CompetitiveAdvantageSection: React.FC = () => {
       title: t('competitiveAdvantage.features.mobileAccess.title') as string,
       description: t('competitiveAdvantage.features.mobileAccess.description') as string,
       icon: DevicePhoneMobileIcon,
-      gradient: 'from-orange-500 to-red-600',
-      bgGradient: 'from-orange-50/80 to-red-50/80',
-      iconColor: 'text-orange-600',
+      gradient: 'from-[var(--color-primary)] to-[var(--color-secondary)]',
+      bgGradient: 'from-slate-50/80 to-blue-50/80',
+      iconColor: 'text-[var(--color-primary)]',
       examples: t('competitiveAdvantage.features.mobileAccess.examples') as string,
       layout: 'icon-right',
     },
@@ -115,9 +115,9 @@ const CompetitiveAdvantageSection: React.FC = () => {
       title: t('competitiveAdvantage.features.integrations.title') as string,
       description: t('competitiveAdvantage.features.integrations.description') as string,
       icon: ArrowPathIcon,
-      gradient: 'from-cyan-500 to-blue-600',
-      bgGradient: 'from-cyan-50/80 to-blue-50/80',
-      iconColor: 'text-cyan-600',
+      gradient: 'from-[var(--color-secondary)] to-[var(--color-primary)]',
+      bgGradient: 'from-blue-50/80 to-slate-50/80',
+      iconColor: 'text-[var(--color-secondary)]',
       examples: t('competitiveAdvantage.features.integrations.examples') as string,
       layout: 'icon-left',
     },
@@ -145,7 +145,7 @@ const CompetitiveAdvantageSection: React.FC = () => {
 
         {/* Floating accent elements */}
         <motion.div
-          className="absolute top-20 right-16 w-20 h-20 border-2 border-blue-200/20 rounded-full"
+          className="absolute top-20 right-16 w-20 h-20 border-2 border-[var(--color-primary)]/20 rounded-full"
           animate={{
             rotate: [0, 180, 360],
             scale: [1, 1.1, 1],
@@ -157,7 +157,7 @@ const CompetitiveAdvantageSection: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-32 left-20 w-16 h-16 border border-purple-200/25 rounded-lg rotate-45"
+          className="absolute bottom-32 left-20 w-16 h-16 border border-[var(--color-secondary)]/25 rounded-lg rotate-45"
           animate={{
             rotate: [45, 225, 45],
             opacity: [0.3, 0.6, 0.3],
@@ -169,7 +169,7 @@ const CompetitiveAdvantageSection: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute top-1/3 left-12 w-12 h-12 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-full blur-sm"
+          className="absolute top-1/3 left-12 w-12 h-12 bg-gradient-to-br from-[var(--color-tertiary)]/20 to-[var(--color-secondary)]/20 rounded-full blur-sm"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.5, 0.2],
@@ -182,7 +182,7 @@ const CompetitiveAdvantageSection: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute top-2/3 right-24 w-8 h-8 border border-orange-200/30 rounded-full"
+          className="absolute top-2/3 right-24 w-8 h-8 border border-[var(--color-tertiary)]/30 rounded-full"
           animate={{
             rotate: [0, 360],
             scale: [1, 1.2, 1],
@@ -222,7 +222,7 @@ const CompetitiveAdvantageSection: React.FC = () => {
           </motion.h2>
 
           <motion.div
-            className="w-16 h-1 md:w-24 md:h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 mx-auto rounded-full mb-4 md:mb-6"
+            className="w-16 h-1 md:w-24 md:h-1 bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-secondary)] to-[var(--color-tertiary)] mx-auto rounded-full mb-4 md:mb-6"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}

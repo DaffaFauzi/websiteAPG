@@ -1,6 +1,5 @@
 {
   "hero": {
-    "companyTagline": "Quantum Dynamics Creations",
     "headline": {
       "text": "赋能企业实现量子驱动转型",
       "highlightWords": ["企业", "量子"]
@@ -16,19 +15,48 @@
   },
   "aboutQDC": {
     "title": "关于QDC",
+    "subtitle": "人与精准相遇、创新驱动增长的地方",
+    "description": "在Quantum Dynamics Creations (QDC)，我们重新定义了组织如何通过理解人的技术连接、成长和繁荣。从科学、创意和数字创新的融合中诞生，QDC将复杂的人力资源挑战转化为无缝智能解决方案。",
+    "companyPhilosophy": "我们相信每个组织都是一个活的系统——由人类能量驱动、由数据完善、由技术赋能。通过我们专注于人力资源的SaaS平台，我们帮助公司释放员工潜力，创造更敏捷、透明、以人为本的工作场所。",
+    "essenceTitle": "我们的名字，我们的本质",
+    "essenceDescription": "这些元素共同定义了我们是谁——Quantum Dynamics Creations——一个催化剂，在这里人、过程和进步汇聚。",
     "quantum": {
       "word": "Quantum",
-      "meaning": "重大变革、精准、创新。"
+      "meaning": "重大变革、精准、创新。我们为商业复杂性带来科学清晰度，将数据转化为驱动可衡量增长的决策。"
     },
     "dynamics": {
       "word": "Dynamics",
-      "meaning": "能量、运动、适应性。"
+      "meaning": "能量、运动、适应性。我们的技术与您的组织共同发展，确保您在快速变化的世界中保持韧性。"
     },
     "creations": {
       "word": "Creations",
-      "meaning": "将想法转化为数字现实。"
+      "meaning": "将想法转化为数字现实。我们创造有意义的数字体验，实现您的愿景。"
     },
-    "philosophy": "Quantum Dynamics Creations (QDC) 将科学、创意和数字工艺相结合，改变组织的工作、思考和发展方式。"
+    "philosophy": "Quantum Dynamics Creations (QDC) 将科学、创意和数字工艺相结合，改变组织的工作、思考和发展方式。",
+    "missionTitle": "我们的使命",
+    "mission": "通过智能、以人为本的数字解决方案赋能组织，提升生产力、激发增长并培养有意义的工作体验。",
+    "visionTitle": "我们的愿景",
+    "vision": "成为下一次工作演变的推动力——在这里，技术放大人类潜力，组织通过连接、创意和清晰度蓬勃发展。",
+    "valuesTitle": "我们的核心价值观",
+    "valuesDescription": "这些原则指导我们所做的一切，塑造我们的文化并定义我们对卓越的承诺。",
+    "values": {
+      "innovation": {
+        "title": "有目的的创新",
+        "description": "我们创新以解决真实的人类挑战，创造让工作更有意义、组织更有效的技术。"
+      },
+      "integrity": {
+        "title": "行动中的诚信",
+        "description": "我们通过透明度、可靠性和将客户成功放在首位的道德实践来建立信任。"
+      },
+      "adaptability": {
+        "title": "适应性",
+        "description": "我们与客户和不断变化的工作世界共同发展，确保我们的解决方案保持相关性和有效性。"
+      },
+      "empowerment": {
+        "title": "赋能",
+        "description": "我们设计的技术赋能企业和员工，促进增长、创意和有意义的联系。"
+      }
+    }
   },
   "services": {
     "title": "服务",
@@ -243,6 +271,15 @@
         "answer": "我们量子驱动的方法将先进的 AI/ML 能力与低代码开发、企业级安全性和无缝集成选项相结合。我们专注于可持续、可扩展的解决方案，这些解决方案与您的业务一起成长，而不是一次性实施。"
       }
     ]
+  },
+  "navigation": {
+    "home": "首页",
+    "aboutUs": "关于我们",
+    "products": "产品",
+    "contact": "联系我们"
+  },
+  "breadcrumb": {
+    "home": "首页"
   },
   "footer": {
     "description": "通过量子驱动的创新、自动化和无缝数字集成，为现代商业格局改造企业。",
