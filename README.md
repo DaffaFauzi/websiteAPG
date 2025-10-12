@@ -1,36 +1,176 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Quantum Dynamics Creations (QDC) Company Website
 
-## Getting Started
+[![Version](https://img.shields.io/badge/version-0.9-blue.svg)](https://github.com/your-repo/qdc-compro)
+[![Next.js](https://img.shields.io/badge/Next.js-15.5.4-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.1.0-blue)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0.0-blue)](https://www.typescriptlang.org/)
 
-First, run the development server:
+A modern, futuristic company profile website for **Quantum Dynamics Creations (QDC)** - an enterprise digital transformation company specializing in automation, integration, and workflow systems.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🌟 Overview
+
+**Quantum Dynamics Creations (QDC)** fuses quantum precision, dynamic adaptability, and creative innovation to help businesses evolve digitally — faster, smarter, and securely.
+
+- **Tagline:** "Start Your Digital Evolution"
+- **Mission:** Accelerate digital transformation across industries by building intelligent, integrated, and automated systems
+- **Focus:** Enterprise workflow automation, digital transformation, and innovative technology solutions
+
+## 🎨 Features
+
+### ✨ Core Website Features
+- **Single-Page Application (SPA)** with smooth scrolling navigation
+- **Responsive Design** - Mobile-first approach, fully responsive across all devices
+- **Dark Mode Theme** - Quantum-inspired aesthetics with indigo, deep violet, and neon accents
+- **Advanced Animations** - 154 lines of custom Framer Motion variants with particle effects and quantum-themed animations
+- **Multilingual Support** - 5-language localization (English, Bahasa Indonesia, Malay, Chinese, Russian)
+- **SEO Optimized** - Semantic HTML, meta tags, and Open Graph support
+
+### 🛠️ Technical Features
+- **Next.js 15** with App Router (latest stable version)
+- **React 19** with concurrent features
+- **TypeScript** for complete type safety
+- **Tailwind CSS v4** for modern styling
+- **Framer Motion** for advanced animations
+- **Custom i18n System** - Proprietary localization without external dependencies
+- **SOLID Principles** - Maintainable and scalable code architecture
+
+### 🌍 Supported Languages
+- English (en)
+- Bahasa Indonesia (id)
+- Bahasa Melayu (ms)
+- 中文 (zh)
+- Русский (ru)
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ or later
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-repo/qdc-compro.git
+   cd qdc-compro
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   # or
+   bun install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   # or
+   bun dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the website.
+
+## 📁 Project Structure
+
+```
+src/
+├── app/                    # Next.js 13+ App Router
+├── components/             # Reusable React components
+│   ├── sections/           # Page sections (Hero, About, Services, etc.)
+│   └── ui/                 # Basic UI components (Button, LanguageSwitcher)
+├── constants/              # Application constants
+├── contexts/               # React contexts (LanguageContext)
+├── lib/                    # Utilities and configurations
+│   ├── animations/         # Animation variants and helpers
+│   └── i18n.ts            # Custom internationalization system
+├── locales/               # Translation files (5 languages)
+├── types/                 # TypeScript type definitions
+└── utils/                 # Pure utility functions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Available Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Localization
 
-## Learn More
+The project includes a custom i18n system supporting 5 languages:
 
-To learn more about Next.js, take a look at the following resources:
+- **English** (en) - Default language
+- **Bahasa Indonesia** (id)
+- **Bahasa Melayu** (ms)
+- **中文** (zh)
+- **Русский** (ru)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Language preference is automatically saved to localStorage and persists across sessions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎯 Website Sections
 
-## Deploy on Vercel
+1. **Hero Section** - Dynamic headlines with quantum-themed animations
+2. **About QDC** - Company philosophy and brand essence
+3. **Services** - Quantum Officeless™ platform showcase
+4. **Industries** - Target markets and use cases
+5. **Process** - 4-step development methodology
+6. **Why Choose QDC** - Value propositions and competitive advantages
+7. **Success Stories** - Client testimonials and metrics
+8. **FAQ** - Comprehensive Q&A section
+9. **Contact** - Contact form and regional information
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Vercel (Recommended)
+The easiest way to deploy is using [Vercel Platform](https://vercel.com):
+
+1. Connect your GitHub repository to Vercel
+2. Vercel will automatically detect Next.js and configure the build settings
+3. Deploy with a single click
+
+### Other Platforms
+The project is compatible with any hosting platform that supports Next.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
+
+## 📚 Documentation
+
+- [Project Structure Guide](./PROJECT_STRUCTURE.md) - Detailed folder organization
+- [Localization Guide](./LOCALIZATION_GUIDE.md) - i18n system documentation
+- [Invoice Documentation](./INVOICE_DOCUMENTATION.md) - Project deliverables and technical specs
+- [Enterprise Products](./ENTERPRISE_PRODUCT.md) - Product development roadmap
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is proprietary software developed for Quantum Dynamics Creations (QDC).
+
+## 👥 Contact
+
+**Quantum Dynamics Creations (QDC)**
+- Website: [qdc-website.com](https://qdc-website.com) (coming soon)
+- Email: contact@qdc-website.com
+- Regions: Malaysia | Singapore | Indonesia
+
+---
+
+**Built with ❤️ by Hernanda for Karina**
