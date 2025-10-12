@@ -1,5 +1,6 @@
 import NavbarSection from '@/components/sections/NavbarSection';
 import HeroSection from '@/components/sections/HeroSection';
+import BusinessStrategySection from '@/components/sections/BusinessStrategySection';
 import AboutQDCSection from '@/components/sections/AboutQDCSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import EnterpriseProductsSection from '@/components/sections/EnterpriseProductsSection';
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="min-h-screen relative">
       <NavbarSection />
       <HeroSection />
+      <BusinessStrategySection />
       {/* <AboutQDCSection /> */}
       {/* <ServicesSection /> */}
       {/* <EnterpriseProductsSection /> */}

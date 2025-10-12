@@ -115,7 +115,11 @@ const HeroSection: React.FC = () => {
             whileHover="hover"
             whileTap="tap"
           >
-            <Button variant="primary" size="lg">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => window.open('https://wa.me/+6282114929200', '_blank')}
+            >
               {ctaText}
               <motion.svg
                 className="ml-2 w-5 h-5"
