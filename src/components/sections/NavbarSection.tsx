@@ -66,10 +66,16 @@ const NavbarSection: React.FC = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      // Don't close if clicking on the hamburger button
+      if (hamburgerButtonRef.current?.contains(event.target as Node)) {
+        return;
+      }
+
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
       }
@@ -158,6 +164,7 @@ const NavbarSection: React.FC = () => {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
+              ref={hamburgerButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[var(--color-primary)] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--color-secondary)]"
               aria-expanded="false"
@@ -188,8 +195,14 @@ const NavbarSection: React.FC = () => {
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden" ref={mobileMenuRef}>
-          <div className="px-2 pt-2 pb-3 bg-white border-t border-gray-200 shadow-lg">
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className="fixed top-16 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-40 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          <div className="md:hidden relative z-50" ref={mobileMenuRef}>
+            <div className="px-2 pt-2 pb-3 bg-white border-t border-gray-200 shadow-lg">
             {/* Navigation Items */}
             <div className="space-y-1">
               {navigationItems.map((item) => (
@@ -216,7 +229,8 @@ const NavbarSection: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </>
       )}
     </nav>
   );

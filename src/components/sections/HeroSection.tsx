@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { useTranslation } from '@/contexts/LanguageContext';
 import {
@@ -71,9 +72,31 @@ const HeroSection: React.FC = () => {
         suppressHydrationWarning={true}
       >
 
+        {/* Hero Logo/Icon */}
+        <motion.div
+          className="flex justify-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 relative z-10"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          suppressHydrationWarning={true}
+        >
+          <Image
+            src="/images/hero_section_top_image.png"
+            alt="QDC Hero Icon"
+            width={200}
+            height={200}
+            style={{
+              width: 'min(max(30vw, 7rem), 12rem)',
+              height: 'min(max(30vw, 7rem), 12rem)',
+              objectFit: 'contain'
+            }}
+            className="drop-shadow-lg"
+          />
+        </motion.div>
+
         {/* Main headline with word-by-word reveal */}
         <motion.h1
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 leading-tight"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 leading-tight relative z-20"
           variants={textRevealVariants}
         >
           {headline.split(' ').map((word: string, index: number) => (
@@ -98,7 +121,7 @@ const HeroSection: React.FC = () => {
 
         {/* Subheadline with smooth reveal */}
         <motion.p
-          className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light relative z-20"
           variants={textRevealVariants}
         >
           {subheadline}
