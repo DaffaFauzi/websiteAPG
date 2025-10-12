@@ -101,7 +101,6 @@ const NavbarSection: React.FC = () => {
     { href: '/', label: t('navigation.home') as string },
     { href: '/about', label: t('navigation.aboutUs') as string },
     { href: '/products', label: t('navigation.products') as string },
-    { href: '#contact', label: t('navigation.contact') as string },
   ];
 
   const isActiveLink = (href: string) => {

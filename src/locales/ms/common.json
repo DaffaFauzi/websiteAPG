@@ -281,6 +281,37 @@
   "breadcrumb": {
     "home": "Laman Utama"
   },
+  "products": {
+    "breadcrumb": "Produk",
+    "headline": "Teknologi yang Memahami Orang, dan Memberdayakan Organisasi untuk Berkembang",
+    "subheadline": "Di QDC, kami menggabungkan ketepatan, kecerdasan, dan empati untuk mencipta penyelesaian HR yang mengubah kerumitan menjadi kejelasan, membantu perniagaan berkembang melalui sambungan, inovasi, dan potensi manusia.",
+    "ctaButton": "Buat Perundingan",
+    "resources": {
+      "title": "Sumber QDC",
+      "description": "Alat pengurusan HR komprehensif dan analitik yang direka untuk mengoptimalkan produktiviti tenaga kerja, meningkatkan penglibatan pekerja, dan memacu kejayaan organisasi melalui wawasan berasaskan data dan automasi pintar."
+    },
+    "features": {
+      "title": "Ciri-ciri Utama",
+      "description": "Temui rangkaian lengkap alat pengurusan HR yang direka untuk menyelaraskan operasi anda dan meningkatkan produktiviti tenaga kerja.",
+      "salarySchedule": {
+        "title": "Jadual Gaji",
+        "description": "Menentukan bila dan bagaimana pekerja menerima gaji mereka (contohnya, bulanan, dua mingguan, termasuk struktur gaji dan kitaran pembayaran)."
+      },
+      "documentStorage": {
+        "title": "Penyimpanan Dokumen",
+        "description": "Sistem untuk menyimpan, mengorganisasi, dan menjamin dokumen berkaitan pekerja atau syarikat seperti kontrak dan slip gaji."
+      },
+      "attendanceTracking": {
+        "title": "Pengesanan Kehadiran",
+        "description": "Memantau kehadiran pekerja, jam kerja, cuti, dan ketiadaan."
+      },
+      "taxManagement": {
+        "title": "Pengurusan Cukai",
+        "description": "Mengendalikan pengiraan cukai pekerja, potongan, dan pelaporan kepada pihak berkuasa kerajaan."
+      },
+      "summary": "Semua ciri sistem ini direka khusus untuk menjadikan pengurusan HR lebih mudah, lebih cekap, dan diurus dari satu platform berpusat."
+    }
+  },
   "footer": {
     "description": "Mengubah perusahaan melalui inovasi quantum-driven, automasi, dan integrasi digital yang lancar untuk landskap perniagaan moden.",
     "contact": {

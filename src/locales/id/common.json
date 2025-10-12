@@ -272,6 +272,37 @@
       }
     ]
   },
+  "products": {
+    "breadcrumb": "Produk",
+    "headline": "Teknologi yang Memahami Orang, dan Memberdayakan Organisasi untuk Berkembang",
+    "subheadline": "Di QDC, kami memadukan presisi, kecerdasan, dan empati untuk menciptakan solusi HR yang mengubah kompleksitas menjadi kejelasan, membantu bisnis tumbuh melalui koneksi, inovasi, dan potensi manusia.",
+    "ctaButton": "Buat Konsultasi",
+    "resources": {
+      "title": "Sumber Daya QDC",
+      "description": "Alat manajemen HR komprehensif dan analitik yang dirancang untuk mengoptimalkan produktivitas tenaga kerja, meningkatkan keterlibatan karyawan, dan mendorong kesuksesan organisasi melalui wawasan berbasis data dan otomasi cerdas."
+    },
+    "features": {
+      "title": "Fitur Utama",
+      "description": "Temukan rangkaian lengkap alat manajemen HR yang dirancang untuk merampingkan operasi Anda dan meningkatkan produktivitas tenaga kerja.",
+      "salarySchedule": {
+        "title": "Jadwal Gaji",
+        "description": "Menentukan kapan dan bagaimana karyawan menerima gaji mereka (misalnya, bulanan, dua mingguan, termasuk struktur gaji dan siklus pembayaran)."
+      },
+      "documentStorage": {
+        "title": "Penyimpanan Dokumen",
+        "description": "Sistem untuk menyimpan, mengorganisir, dan mengamankan dokumen terkait karyawan atau perusahaan seperti kontrak dan slip gaji."
+      },
+      "attendanceTracking": {
+        "title": "Pelacakan Kehadiran",
+        "description": "Memantau kehadiran karyawan, jam kerja, cuti, dan absensi."
+      },
+      "taxManagement": {
+        "title": "Manajemen Pajak",
+        "description": "Menangani perhitungan pajak karyawan, potongan, dan pelaporan ke otoritas pemerintah."
+      },
+      "summary": "Semua fitur sistem ini sengaja dibuat untuk membuat manajemen HR lebih mudah, lebih efisien, dan dikelola dari satu platform terpusat."
+    }
+  },
   "footer": {
     "description": "Mengubah perusahaan melalui inovasi quantum-driven, otomasi, dan integrasi digital yang mulus untuk lanskap bisnis modern.",
     "contact": {

@@ -281,6 +281,37 @@
   "breadcrumb": {
     "home": "Home"
   },
+  "products": {
+    "breadcrumb": "Products",
+    "headline": "Technology that Understands People, and Empowers Organizations to Evolve",
+    "subheadline": "At QDC, we fuse precision, intelligence, and empathy to create HR solutions that transform complexity into clarity. helping businesses grow through connection, innovation, and human potential.",
+    "ctaButton": "Make a Consultation",
+    "resources": {
+      "title": "QDC Resources",
+      "description": "Comprehensive HR management tools and analytics designed to optimize workforce productivity, enhance employee engagement, and drive organizational success through data-driven insights and intelligent automation."
+    },
+    "features": {
+      "title": "Key Features",
+      "description": "Discover the comprehensive suite of HR management tools designed to streamline your operations and enhance workforce productivity.",
+      "salarySchedule": {
+        "title": "Salary Schedule",
+        "description": "Defines when and how employees receive their pay (e.g., monthly, biweekly, including salary structure and payment cycles)."
+      },
+      "documentStorage": {
+        "title": "Document Storage",
+        "description": "A system for storing, organizing, and securing employee or company-related documents such as contracts and payslips."
+      },
+      "attendanceTracking": {
+        "title": "Attendance Tracking",
+        "description": "Monitors employee presence, working hours, leave, and absences."
+      },
+      "taxManagement": {
+        "title": "Tax Management",
+        "description": "Handles employee tax calculations, deductions, and reporting to government authorities."
+      },
+      "summary": "All the system's features are intentionally built to make HR management easier, more efficient, and managed from a single centralized platform."
+    }
+  },
   "footer": {
     "description": "Transforming enterprises through quantum-driven innovation, automation, and seamless digital integration for the modern business landscape.",
     "contact": {

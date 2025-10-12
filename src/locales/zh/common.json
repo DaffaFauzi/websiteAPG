@@ -281,6 +281,37 @@
   "breadcrumb": {
     "home": "首页"
   },
+  "products": {
+    "breadcrumb": "产品",
+    "headline": "理解人的技术，并赋能组织进化",
+    "subheadline": "在 QDC，我们融合精确、智能和同理心来创造 HR 解决方案，将复杂性转化为清晰性，帮助企业通过连接、创新和人类潜力成长。",
+    "ctaButton": "咨询",
+    "resources": {
+      "title": "QDC 资源",
+      "description": "全面的 HR 管理工具和分析，旨在优化劳动力生产力、增强员工参与度，并通过数据驱动的洞察和智能自动化推动组织成功。"
+    },
+    "features": {
+      "title": "主要功能",
+      "description": "探索全面的 HR 管理工具套件，旨在简化您的运营并增强劳动力生产力。",
+      "salarySchedule": {
+        "title": "薪资安排",
+        "description": "定义员工何时以及如何领取薪资（例如，每月、双周，包括薪资结构和支付周期）。"
+      },
+      "documentStorage": {
+        "title": "文档存储",
+        "description": "用于存储、组织和保护员工或公司相关文档（如合同和工资单）的系统。"
+      },
+      "attendanceTracking": {
+        "title": "考勤跟踪",
+        "description": "监控员工出勤、工作时间、休假和缺勤。"
+      },
+      "taxManagement": {
+        "title": "税务管理",
+        "description": "处理员工税务计算、扣除和向政府当局报告。"
+      },
+      "summary": "所有系统功能都是有意构建的，使 HR 管理更容易、更高效，并从单一集中平台进行管理。"
+    }
+  },
   "footer": {
     "description": "通过量子驱动的创新、自动化和无缝数字集成，为现代商业格局改造企业。",
     "contact": {

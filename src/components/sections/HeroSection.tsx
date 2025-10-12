@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button';
 import { useTranslation } from '@/contexts/LanguageContext';
 import {
@@ -17,6 +18,7 @@ import {
 
 const HeroSection: React.FC = () => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const headlineData = t('hero.headline') as { text: string; highlightWords: string[] };
   const headline = headlineData.text;
@@ -139,7 +141,11 @@ const HeroSection: React.FC = () => {
             whileHover="hover"
             whileTap="tap"
           >
-            <Button variant="outline" size="lg">
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => router.push('/about')}
+            >
               {learnMoreText}
               <motion.svg
                 className="ml-2 w-5 h-5"
