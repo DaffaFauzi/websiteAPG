@@ -150,14 +150,14 @@ const FAQSection: React.FC = () => {
           suppressHydrationWarning={true}
         >
           <motion.div
-            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full mb-6 shadow-lg"
+            className="flex justify-center mb-6"
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             suppressHydrationWarning={true}
           >
-            <QuestionMarkCircleIcon className="w-8 h-8 text-white" />
+            <QuestionMarkCircleIcon className="w-12 h-12 text-[var(--color-tertiary)]" />
           </motion.div>
 
           <motion.h2
@@ -175,7 +175,7 @@ const FAQSection: React.FC = () => {
           </motion.p>
 
           <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full"
+            className="w-24 h-1 bg-[var(--color-tertiary)] mx-auto rounded-full"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}

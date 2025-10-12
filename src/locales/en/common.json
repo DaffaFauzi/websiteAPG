@@ -272,6 +272,50 @@
       }
     ]
   },
+  "businessStrategy": {
+    "badge": "Our Strategic Approach",
+    "title": "Building Tomorrow's",
+    "titleHighlight": "Digital Workforce Solutions",
+    "subtitle": "As a forward-thinking startup, we're strategically positioning ourselves in the global digital transformation landscape.",
+    "whyChooseUs": {
+      "badge": "Why Choose Us",
+      "title": "Your Partner in",
+      "titleHighlight": "Digital Excellence",
+      "subtitle": "We combine cutting-edge technology with deep industry expertise to deliver solutions that drive real business results.",
+      "features": {
+        "innovation": {
+          "title": "Innovation First",
+          "description": "Leveraging the latest technologies to deliver forward-thinking solutions that keep you ahead of the competition."
+        },
+        "results": {
+          "title": "Proven Results",
+          "description": "Track record of successful implementations and satisfied clients across diverse industries and business sizes."
+        },
+        "support": {
+          "title": "24/7 Support",
+          "description": "Dedicated support team available around the clock to ensure your business operations run smoothly."
+        },
+        "costEffective": {
+          "title": "Cost Effective",
+          "description": "Competitive pricing with flexible solutions that deliver maximum value for your investment."
+        }
+      }
+    },
+    "focusAreas": {
+      "hrPlatform": {
+        "title": "Comprehensive HR Management Platform",
+        "description": "QDC Resource serves as our flagship solution, designed to revolutionize workforce management for modern businesses through innovative technology and streamlined processes."
+      },
+      "webServices": {
+        "title": "Advanced Web Services",
+        "description": "We provide comprehensive web development and digital solutions, following proven industry models to deliver exceptional results."
+      },
+      "marketPosition": {
+        "title": "Strategic Market Position",
+        "description": "Our commitment is to become the preferred provider of digital workforce solutions, serving an expanding client base across the global business landscape."
+      }
+    }
+  },
   "navigation": {
     "home": "Home",
     "aboutUs": "About Us",

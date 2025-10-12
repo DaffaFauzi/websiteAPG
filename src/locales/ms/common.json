@@ -339,5 +339,49 @@
         "Keselamatan"
       ]
     }
+  },
+  "businessStrategy": {
+    "badge": "Pendekatan Strategik Kami",
+    "title": "Membina",
+    "titleHighlight": "Penyelesaian Tenaga Kerja Digital Masa Depan",
+    "subtitle": "Sebagai permulaan berfikir maju, kami meletakkan diri secara strategik di landskap transformasi digital global.",
+    "whyChooseUs": {
+      "badge": "Mengapa Pilih Kami",
+      "title": "Rakan Kongsi Anda dalam",
+      "titleHighlight": "Kecemerlangan Digital",
+      "subtitle": "Kami menggabungkan teknologi canggih dengan kepakaran industri mendalam untuk memberikan penyelesaian yang memacu keputusan perniagaan sebenar.",
+      "features": {
+        "innovation": {
+          "title": "Inovasi Terlebih Dahulu",
+          "description": "Menggunakan teknologi terkini untuk memberikan penyelesaian berfikiran maju yang menjadikan anda mendahului persaingan."
+        },
+        "results": {
+          "title": "Keputusan Terbukti",
+          "description": "Rekod prestasi pelaksanaan yang berjaya dan pelanggan yang berpuas hati merentasi pelbagai industri dan saiz perniagaan."
+        },
+        "support": {
+          "title": "Sokongan 24/7",
+          "description": "Pasukan sokongan khusus tersedia 24 jam untuk memastikan operasi perniagaan anda berjalan lancar."
+        },
+        "costEffective": {
+          "title": "Berpatutan",
+          "description": "Harga kompetitif dengan penyelesaian fleksibel yang memberikan nilai maksimum untuk pelaburan anda."
+        }
+      }
+    },
+    "focusAreas": {
+      "hrPlatform": {
+        "title": "Platform Pengurusan HR Komprehensif",
+        "description": "QDC Resource berfungsi sebagai penyelesaian andalan kami, direka untuk merevolusikan pengurusan tenaga kerja untuk perniagaan moden melalui teknologi inovatif dan proses yang diperkemas."
+      },
+      "webServices": {
+        "title": "Perkhidmatan Web Lanjutan",
+        "description": "Kami menyediakan pembangunan web komprehensif dan penyelesaian digital, mengikuti model industri terbukti untuk memberikan keputusan luar biasa."
+      },
+      "marketPosition": {
+        "title": "Kedudukan Pasaran Strategik",
+        "description": "Komitmen kami adalah menjadi pembekal pilihan penyelesaian tenaga kerja digital, melayani pangkalan pelanggan yang berkembang di landskap perniagaan global."
+      }
+    }
   }
 }

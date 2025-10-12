@@ -337,6 +337,50 @@
     "products": "Produk",
     "contact": "Kontak"
   },
+  "businessStrategy": {
+    "badge": "Pendekatan Strategis Kami",
+    "title": "Membangun",
+    "titleHighlight": "Solusi Tenaga Kerja Digital Masa Depan",
+    "subtitle": "Sebagai startup berpikir maju, kami memposisikan diri secara strategis di lanskap transformasi digital global.",
+    "whyChooseUs": {
+      "badge": "Mengapa Memilih Kami",
+      "title": "Mitra Anda dalam",
+      "titleHighlight": "Kecemerlangan Digital",
+      "subtitle": "Kami menggabungkan teknologi mutakhir dengan keahlian industri mendalam untuk memberikan solusi yang mendorong hasil bisnis nyata.",
+      "features": {
+        "innovation": {
+          "title": "Inovasi Pertama",
+          "description": "Menggunakan teknologi terbaru untuk memberikan solusi berpikir maju yang membuat Anda tetap unggul dari persaingan."
+        },
+        "results": {
+          "title": "Hasil Terbukti",
+          "description": "Rekam jejak implementasi yang berhasil dan klien yang puas di berbagai industri dan ukuran bisnis."
+        },
+        "support": {
+          "title": "Dukungan 24/7",
+          "description": "Tim dukungan khusus tersedia 24 jam untuk memastikan operasi bisnis Anda berjalan lancar."
+        },
+        "costEffective": {
+          "title": "Efektif Biaya",
+          "description": "Harga kompetitif dengan solusi fleksibel yang memberikan nilai maksimal untuk investasi Anda."
+        }
+      }
+    },
+    "focusAreas": {
+      "hrPlatform": {
+        "title": "Platform Manajemen HR Komprehensif",
+        "description": "QDC Resource berfungsi sebagai solusi andalan kami, dirancang untuk merevolusi manajemen tenaga kerja untuk bisnis modern melalui teknologi inovatif dan proses yang disederhanakan."
+      },
+      "webServices": {
+        "title": "Layanan Web Canggih",
+        "description": "Kami menyediakan pengembangan web komprehensif dan solusi digital, mengikuti model industri terbukti untuk memberikan hasil luar biasa."
+      },
+      "marketPosition": {
+        "title": "Posisi Pasar Strategis",
+        "description": "Komitmen kami adalah menjadi penyedia solusi tenaga kerja digital pilihan, melayani basis klien yang berkembang di lanskap bisnis global."
+      }
+    }
+  },
   "breadcrumb": {
     "home": "Beranda"
   }

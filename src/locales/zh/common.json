@@ -339,5 +339,49 @@
         "安全"
       ]
     }
+  },
+  "businessStrategy": {
+    "badge": "我们的战略方法",
+    "title": "构建",
+    "titleHighlight": "未来的数字劳动力解决方案",
+    "subtitle": "作为一家前瞻性的初创公司，我们在全球数字转型格局中战略性地定位自己。",
+    "whyChooseUs": {
+      "badge": "为什么选择我们",
+      "title": "您在",
+      "titleHighlight": "数字卓越方面的合作伙伴",
+      "subtitle": "我们将尖端技术和深厚的行业专业知识相结合，为您提供推动实际业务成果的解决方案。",
+      "features": {
+        "innovation": {
+          "title": "创新第一",
+          "description": "利用最新技术提供前瞻性解决方案，让您在竞争中保持领先地位。"
+        },
+        "results": {
+          "title": "经过验证的结果",
+          "description": "成功的实施记录和在各种行业和业务规模中满意的客户。"
+        },
+        "support": {
+          "title": "24/7 支持",
+          "description": "专门的支持团队全天候可用，确保您的业务运营顺利进行。"
+        },
+        "costEffective": {
+          "title": "成本效益",
+          "description": "具有竞争力的定价和灵活的解决方案，为您的投资提供最大价值。"
+        }
+      }
+    },
+    "focusAreas": {
+      "hrPlatform": {
+        "title": "综合人力资源管理平台",
+        "description": "QDC Resource 作为我们的旗舰解决方案，旨在通过创新技术和简化的流程为现代企业彻底改变劳动力管理。"
+      },
+      "webServices": {
+        "title": "先进的网络服务",
+        "description": "我们提供全面的网络开发和数字解决方案，遵循经过验证的行业模式，以提供卓越的结果。"
+      },
+      "marketPosition": {
+        "title": "战略市场定位",
+        "description": "我们的承诺是成为首选的数字劳动力解决方案提供商，为全球商业格局中不断增长的客户群提供服务。"
+      }
+    }
   }
 }
