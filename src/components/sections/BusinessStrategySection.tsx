@@ -94,31 +94,6 @@ const BusinessStrategySection: React.FC = () => {
             </p>
           </motion.div>
         </div>
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] rounded-2xl p-4 md:p-8 text-white mx-4"
-        >
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">
-            Join Our Growth Journey
-          </h3>
-          <p className="text-base md:text-lg opacity-90 mb-6 max-w-2xl mx-auto">
-            Be part of the global digital transformation revolution. Partner with us as we build the future of workforce management.
-          </p>
-          <button
-            onClick={() => window.open('https://wa.me/+6282114929200', '_blank')}
-            className="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-white text-[var(--color-primary)] font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm md:text-base"
-          >
-            Start a Conversation
-            <svg className="ml-2 w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
-        </motion.div>
       </div>
     </section>
   );
