@@ -1,0 +1,211 @@
+'use client';
+
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+type ChatMessage = {
+  role: 'user' | 'assistant';
+  content: string;
+};
+
+const ASSISTANT_NAME_ENV = process.env.NEXT_PUBLIC_AI_ASSISTANT_NAME;
+
+export default function AIAssistant() {
+  const { language, t } = useLanguage();
+  const assistantName = ASSISTANT_NAME_ENV ?? t('ai.name');
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
+    {
+      role: 'assistant',
+      content: t('ai.greeting'),
+    },
+  ]);
+
+  const listRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const messagesRef = useRef<ChatMessage[]>(messages);
+
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
+
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length !== 1 || prev[0]?.role !== 'assistant') return prev;
+      return [
+        {
+          role: 'assistant',
+          content: t('ai.greeting'),
+        },
+      ];
+    });
+  }, [language, t]);
+
+  useEffect(() => {
+    if (!open) return;
+    const id = window.setTimeout(() => inputRef.current?.focus(), 0);
+    return () => window.clearTimeout(id);
+  }, [open]);
+
+  useEffect(() => {
+    listRef.current?.scrollTo({ top: listRef.current.scrollHeight });
+  }, [messages.length, open]);
+
+  const quickPrompts = useMemo(() => {
+    return [
+      t('ai.suggestion.1'),
+      t('ai.suggestion.2'),
+      t('ai.suggestion.3'),
+    ];
+  }, [t]);
+
+  const send = async (text: string) => {
+    const trimmed = text.trim();
+    if (!trimmed || loading) return;
+
+    const nextMessages: ChatMessage[] = [...messagesRef.current, { role: 'user', content: trimmed }];
+    setMessages(nextMessages);
+    setInput('');
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/assistant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          language,
+          messages: nextMessages.map((m) => ({
+            role: m.role,
+            content: m.content,
+          })),
+        }),
+      });
+
+      const data = (await res.json().catch(() => null)) as { reply?: string; error?: string } | null;
+      const reply = data?.reply?.trim();
+      if (!res.ok || !reply) {
+        throw new Error(data?.error ?? 'AI request failed');
+      }
+
+      setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: t('ai.error'),
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="fixed bottom-5 right-5 z-[60]">
+      {open ? (
+        <div className="w-[340px] max-w-[calc(100vw-40px)] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white">
+            <div className="min-w-0">
+              <div className="text-sm font-extrabold text-slate-950 truncate">{assistantName}</div>
+              <div className="text-[11px] text-slate-500 truncate">
+                {t('ai.subtitle')}
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="h-8 w-8 rounded-xl hover:bg-slate-100 text-slate-700"
+              aria-label={t('ai.aria.close')}
+            >
+              ✕
+            </button>
+          </div>
+
+          <div ref={listRef} className="max-h-[380px] overflow-auto px-4 py-3 space-y-3 bg-white">
+            {messages.map((m, idx) => (
+              <div key={idx} className={m.role === 'user' ? 'flex justify-end' : 'flex justify-start'}>
+                <div
+                  className={
+                    m.role === 'user'
+                      ? 'max-w-[85%] rounded-2xl rounded-br-md bg-slate-900 text-white px-3 py-2 text-sm leading-relaxed'
+                      : 'max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-900 px-3 py-2 text-sm leading-relaxed'
+                  }
+                >
+                  {m.content}
+                </div>
+              </div>
+            ))}
+
+            {loading ? (
+              <div className="flex justify-start">
+                <div className="max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-700 px-3 py-2 text-sm">
+                  {t('ai.typing')}
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          <div className="px-4 pb-3 pt-2 border-t border-slate-200 bg-white">
+            <div className="flex flex-wrap gap-2 mb-2">
+              {quickPrompts.map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => send(p)}
+                  className="text-[11px] px-3 py-1 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700"
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+
+            <form
+              className="flex gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                void send(input);
+              }}
+            >
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder={t('ai.placeholder')}
+                className="flex-1 h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/20 focus:border-[var(--color-secondary)]"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="h-10 px-4 rounded-xl bg-[var(--color-secondary)] text-white font-bold disabled:opacity-60"
+              >
+                {t('ai.send')}
+              </button>
+            </form>
+          </div>
+        </div>
+      ) : null}
+
+      {!open ? (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="h-12 px-4 rounded-2xl bg-[var(--color-secondary)] text-white font-extrabold shadow-xl inline-flex items-center gap-2"
+          aria-label={t('ai.aria.open')}
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="h-5 w-5 shrink-0 text-white"
+            fill="currentColor"
+          >
+            <path d="M11 3a1 1 0 0 1 2 0v2h2.5A3.5 3.5 0 0 1 21 8.5v8A4.5 4.5 0 0 1 16.5 21h-9A4.5 4.5 0 0 1 3 16.5v-8A3.5 3.5 0 0 1 6.5 5H11V3zm-2.25 8.25a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zm6.5 0a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zM8.75 16a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5z" />
+          </svg>
+          {t('ai.button')}
+        </button>
+      ) : null}
+    </div>
+  );
+}

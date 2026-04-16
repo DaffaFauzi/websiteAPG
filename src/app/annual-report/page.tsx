@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function AboutPage() {
+export default function AnnualReportPage() {
   const router = useRouter();
 
   useEffect(() => {

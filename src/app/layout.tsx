@@ -1,23 +1,52 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "../contexts/LanguageContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import NavbarSection from "@/components/sections/NavbarSection";
+import AIAssistant from "@/components/ui/AIAssistant";
+import PageTransition from "@/components/ui/PageTransition";
+import CinematicIntroGate from "@/components/ui/CinematicIntroGate";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ardanaperkasagroup.com";
 
 export const metadata: Metadata = {
-  title: "Quantum Dynamics Creations - Enterprise Digital Transformation",
-  description: "Accelerate digital transformation across industries with Quantum Dynamics Creations. Low-code enterprise platform for automation, integration, and intelligent workflows.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Ardana Perkasa Group (APG)",
+    template: "%s | Ardana Perkasa Group",
+  },
+  description:
+    "Ardana Perkasa Group (APG) adalah holding company yang membangun ekosistem bisnis lintas sektor dengan tata kelola kuat, eksekusi disiplin, dan strategi berkelanjutan.",
+  keywords: [
+    "Ardana Perkasa Group",
+    "APG",
+    "holding company",
+    "tata kelola",
+    "portfolio management",
+    "risk & governance",
+    "konsultasi",
+    "enterprise",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: "Ardana Perkasa Group",
+    title: "Ardana Perkasa Group (APG)",
+    description:
+      "Holding company yang membangun ekosistem lintas sektor dengan standar enterprise.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ardana Perkasa Group (APG)",
+    description:
+      "Holding company yang membangun ekosistem lintas sektor dengan standar enterprise.",
+  },
   icons: {
-    icon: "/images/qdc_logo_notext.png",
+    icon: "/favicon.ico",
   },
 };
 
@@ -27,13 +56,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
         suppressHydrationWarning={true}
       >
         <LanguageProvider>
-          {children}
+          <CinematicIntroGate>
+            <NavbarSection />
+            <AIAssistant />
+            <PageTransition>{children}</PageTransition>
+          </CinematicIntroGate>
         </LanguageProvider>
       </body>
     </html>
