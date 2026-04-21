@@ -8,7 +8,8 @@
   --text-primary: #333333;
   --text-secondary: #666666;
   
-  --section-padding: 80px;
+  --section-padding: 64px;
+  --section-padding-mobile: 40px;
 
   --background: var(--bg-primary);
   --foreground: var(--text-primary);
@@ -41,7 +42,7 @@
 
 @media (max-width: 768px) {
   :root {
-    --section-padding: 48px;
+    --section-padding: var(--section-padding-mobile);
   }
 }
 

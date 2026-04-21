@@ -173,7 +173,7 @@ export default function CareerClient() {
       </InnerPageHero>
 
       {/* Search & Filter Bar */}
-      <section id="jobs-listing" className="sticky top-16 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 py-4 shadow-sm">
+      <section id="jobs-listing" className="sticky top-16 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 py-3 shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             <div className="relative w-full lg:max-w-md">
@@ -214,7 +214,7 @@ export default function CareerClient() {
       </section>
 
       {/* Company Tabs */}
-      <section className="py-8 bg-white">
+      <section className="pt-6 pb-2 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto pb-4 gap-2 no-scrollbar">
             {companies.map(company => (
@@ -235,10 +235,10 @@ export default function CareerClient() {
       </section>
 
       {/* Job Listing Grid */}
-      <section className="py-16 md:py-24">
+      <section className="pt-6 pb-12 md:pt-8 md:pb-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {filteredJobs.length > 0 ? (
-            <div className="grid gap-6">
+            <div className="grid gap-3">
               {filteredJobs.map((job, idx) => (
                 <motion.div
                   key={job.id}
@@ -247,45 +247,45 @@ export default function CareerClient() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
                   whileHover={{ y: -4 }}
-                  className="group relative rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  className="group relative rounded-2xl border border-slate-200 bg-white p-6 md:px-8 md:py-6 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1 h-full bg-[#0A66C2] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
                   
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       <div className="flex items-center gap-3">
-                        <span className="text-xs font-bold text-[#0A66C2] uppercase tracking-widest bg-[#0A66C2]/10 px-3 py-1 rounded-full">
+                        <span className="text-[10px] font-bold text-[#0A66C2] uppercase tracking-widest bg-[#0A66C2]/10 px-2.5 py-1 rounded-full">
                           {job.company}
                         </span>
-                        <span className="text-xs font-medium text-slate-400 flex items-center gap-1">
+                        <span className="text-[10px] font-medium text-slate-400 flex items-center gap-1">
                           📍 {job.location}
                         </span>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-slate-950 group-hover:text-[#0A66C2] transition-colors">
+                      <h3 className="text-xl font-bold text-slate-950 group-hover:text-[#0A66C2] transition-colors">
                         {job.title}
                       </h3>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-[10px] font-bold uppercase tracking-wider">
+                        <span className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[9px] font-bold uppercase tracking-wider">
                           {job.type}
                         </span>
                         {job.tags.map(tag => (
-                          <span key={tag} className="px-2 py-1 bg-slate-50 text-slate-500 rounded text-[10px] font-medium border border-slate-100">
+                          <span key={tag} className="px-2 py-0.5 bg-slate-50 text-slate-500 rounded text-[9px] font-medium border border-slate-100">
                             #{tag}
                           </span>
                         ))}
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 shrink-0">
                       <Button 
                         variant="outline" 
                         size="sm"
                         onClick={() => setSelectedJob(job)}
-                        className="group-hover:bg-slate-50"
+                        className="group-hover:bg-slate-50 text-xs py-2"
                       >
                         {t('career.job.detail')}
                       </Button>
-                      <Button size="sm">
+                      <Button size="sm" className="text-xs py-2">
                         {t('career.job.apply')} →
                       </Button>
                     </div>

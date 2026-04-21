@@ -58,7 +58,7 @@ const StructureClient = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="mb-8 mt-12 w-full text-center relative"
+                  className="mb-6 mt-10 w-full text-center relative"
                 >
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 inline-block bg-white px-6 relative z-10">
                     {section.category}
@@ -66,7 +66,7 @@ const StructureClient = () => {
                   <div className="absolute left-0 right-0 top-1/2 h-px bg-gray-200 -z-0" />
                 </motion.div>
 
-                <div className="flex flex-wrap justify-center gap-8 md:gap-12 relative">
+                <div className="flex flex-wrap justify-center gap-6 md:gap-10 relative">
                   {section.members.map((member, mIdx) => (
                     <motion.div
                       key={member.name}

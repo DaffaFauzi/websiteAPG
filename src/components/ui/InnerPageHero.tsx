@@ -12,7 +12,7 @@ interface InnerPageHeroProps {
 
 const InnerPageHero: React.FC<InnerPageHeroProps> = ({ tag, title, description, children }) => {
   return (
-    <header className="relative min-h-[60vh] md:min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-[#0B7BE6] via-[#0A66C2] to-[#07337A] py-20 md:py-0">
+    <header className="relative min-h-[65vh] md:min-h-[75vh] flex items-center overflow-hidden bg-gradient-to-br from-[#0B7BE6] via-[#0A66C2] to-[#07337A] pt-32 pb-20 md:pt-24 md:pb-0">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-[0.10]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:56px_56px]" />

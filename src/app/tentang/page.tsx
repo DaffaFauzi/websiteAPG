@@ -51,7 +51,7 @@ const TentangPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-8">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-4">
                 {t('tentang.hero.title')}
               </h2>
               <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6">{t('tentang.hero.p1')}</p>
@@ -102,10 +102,10 @@ const TentangPage = () => {
               viewport={{ once: true }}
               className="order-1 lg:order-2"
             >
-              <div className="inline-flex items-center rounded-full bg-[#0A66C2]/10 text-[#0A66C2] px-4 py-2 text-xs font-extrabold tracking-[0.2em] uppercase mb-6">
+              <div className="inline-flex items-center rounded-full bg-[#0A66C2]/10 text-[#0A66C2] px-4 py-2 text-[10px] font-extrabold tracking-[0.2em] uppercase mb-4">
                 {t('tentang.visi.badge')}
               </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
                 {t('tentang.visi.title')}
               </h2>
               <p className="text-base md:text-lg text-gray-600 leading-relaxed">
@@ -125,14 +125,14 @@ const TentangPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center rounded-full bg-[#0A66C2]/10 text-[#0A66C2] px-4 py-2 text-xs font-extrabold tracking-[0.2em] uppercase mb-6">
+              <div className="inline-flex items-center rounded-full bg-[#0A66C2]/10 text-[#0A66C2] px-4 py-2 text-[10px] font-extrabold tracking-[0.2em] uppercase mb-4">
                 {t('tentang.misi.badge')}
               </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">
                 {t('tentang.misi.title')}
               </h2>
               
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {misiList.map((misi, index) => (
                   <div key={index} className="flex gap-4">
                     <div className="flex-shrink-0 font-bold text-gray-900 text-lg mt-1">
@@ -170,8 +170,8 @@ const TentangPage = () => {
       {/* 4. Gallery Section */}
       <section id="gallery" className="section-padding bg-[var(--bg-secondary)] scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center rounded-full bg-[#0A66C2]/10 text-[#0A66C2] px-4 py-2 text-xs font-extrabold tracking-[0.2em] uppercase mb-6">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center rounded-full bg-[#0A66C2]/10 text-[#0A66C2] px-4 py-2 text-[10px] font-extrabold tracking-[0.2em] uppercase mb-4">
               {t('tentang.gallery.badge')}
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">

@@ -69,10 +69,10 @@ export default function ContactClient() {
             </div>
 
             <div className="rounded-[2.5rem] bg-white border border-slate-200 p-8 lg:p-10 shadow-[0_14px_40px_rgba(15,23,42,0.06)]">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('contact.form.title')}</h2>
-              <p className="text-gray-600 mb-8">{t('contact.form.desc')}</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('contact.form.title')}</h2>
+              <p className="text-gray-600 mb-6">{t('contact.form.desc')}</p>
 
-              <form className="space-y-5">
+              <form className="space-y-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">{t('contact.form.name')}</label>
                   <input
@@ -93,7 +93,7 @@ export default function ContactClient() {
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">{t('contact.form.message')}</label>
                   <textarea
-                    rows={5}
+                    rows={4}
                     className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
                     placeholder={t('contact.form.message.placeholder')}
                   />
@@ -101,7 +101,7 @@ export default function ContactClient() {
 
                 <button
                   type="button"
-                  className="w-full rounded-full bg-[#0A66C2] text-white font-extrabold py-3 hover:bg-[#0959A9] transition-colors shadow-[0_18px_55px_rgba(10,102,194,0.22)] hover:shadow-[0_26px_80px_rgba(10,102,194,0.28)]"
+                  className="w-full rounded-full bg-[#0A66C2] text-white font-extrabold py-3 hover:bg-[#0959A9] transition-colors shadow-[0_18px_55px_rgba(10,102,194,0.22)] hover:shadow-[0_26px_80px_rgba(10,102,194,0.28)] mt-4"
                 >
                   {t('contact.form.submit')}
                 </button>
