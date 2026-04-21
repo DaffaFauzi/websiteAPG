@@ -6,9 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Button from '@/components/ui/Button';
 import NavbarSection from '@/components/sections/NavbarSection';
 import FooterSection from '@/components/sections/FooterSection';
-import GallerySection from '@/components/sections/GallerySection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
-import FinalCTASection from '@/components/sections/FinalCTASection';
 
 interface Job {
   id: string;
@@ -356,12 +354,6 @@ export default function CareerClient() {
 
       {/* Why Join Us */}
       <WhyChooseUsSection />
-
-      {/* Life at APG */}
-      <GallerySection />
-
-      {/* Final CTA */}
-      <FinalCTASection />
 
       {/* Job Detail Modal */}
       <AnimatePresence>
