@@ -63,7 +63,7 @@ body {
 }
 
 .scroll-section {
-  will-change: transform, opacity;
+  /* will-change removed: creating 11 GPU layers simultaneously is expensive */
 }
 
 @keyframes marquee {
