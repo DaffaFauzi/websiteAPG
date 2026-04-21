@@ -54,6 +54,7 @@ const NavbarSection: React.FC = () => {
     { href: '/tentang', label: t('nav.about') },
     { href: '/struktur', label: t('nav.structure') },
     { href: '/subsidiaries', label: t('nav.subsidiaries') },
+    { href: '/karir', label: t('career.nav') },
     { href: '/kontak', label: t('nav.contact') },
   ];
 
