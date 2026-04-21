@@ -162,65 +162,28 @@ export default function CareerClient() {
       <NavbarSection />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-950 pt-32 pb-24 md:pt-48 md:pb-36 text-white">
-        <div className="pointer-events-none absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:56px_56px]" />
+      <header className="section-padding relative overflow-hidden bg-gradient-to-br from-[#0B7BE6] via-[#0A66C2] to-[#07337A]">
+        <div className="absolute inset-0 opacity-[0.10]">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:56px_56px]" />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(10,102,194,0.3),transparent_50%),radial-gradient(circle_at_bottom_right,rgba(0,128,128,0.2),transparent_55%)]" />
-        
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <p className="text-xs tracking-[0.22em] text-[#38BDF8] font-extrabold uppercase mb-4">
-                {t('career.hero.tag')}
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
-                {t('career.hero.title')}
-              </h1>
-              <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-lg leading-relaxed">
-                {t('career.hero.subtitle')}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button onClick={() => document.getElementById('jobs-listing')?.scrollIntoView({ behavior: 'smooth' })}>
-                  {t('career.hero.cta.open')}
-                </Button>
-                <Button variant="outline" className="text-white border-white/20 hover:bg-white/10">
-                  {t('career.hero.cta.companies')}
-                </Button>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="hidden lg:block"
-            >
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-tr from-slate-900 via-transparent to-slate-900 z-10 opacity-40" />
-                <img 
-                  src="/images/hero_section_top_image.png" 
-                  alt="Career at APG"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 z-20">
-                  <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-full bg-[#0A66C2] flex items-center justify-center text-xl">🚀</div>
-                    <div>
-                      <p className="text-sm font-bold">15+ Subsidiaries</p>
-                      <p className="text-xs text-slate-300">Across Finance, Tech, and Sports</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.26),transparent_48%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_58%)]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <p className="text-xs tracking-[0.2em] text-white/80 font-extrabold uppercase mb-4">
+              {t('career.hero.tag')}
+            </p>
+            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
+              {t('career.hero.title')}
+            </h1>
+            <p className="mt-6 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
+              {t('career.hero.subtitle')}
+            </p>
+          </motion.div>
         </div>
-      </section>
+      </header>
 
       {/* Search & Filter Bar */}
       <section id="jobs-listing" className="sticky top-16 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 py-4 shadow-sm">
