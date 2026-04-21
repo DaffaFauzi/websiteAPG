@@ -106,7 +106,15 @@ export default function CinematicIntroGate({ children }: Props) {
         ) : null}
       </AnimatePresence>
 
-      {phase === 'content' ? children : null}
+      <div
+        aria-hidden={phase === 'intro'}
+        style={{
+          visibility: phase === 'intro' ? 'hidden' : 'visible',
+          pointerEvents: phase === 'intro' ? 'none' : 'auto',
+        }}
+      >
+        {children}
+      </div>
     </>
   );
 }

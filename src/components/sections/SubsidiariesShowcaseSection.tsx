@@ -119,7 +119,7 @@ const SubsidiariesShowcaseSection = () => {
                       src={s.logoSrc}
                       alt={`${s.name} logo`}
                       fill
-                      priority
+                      priority={index === 0}
                       sizes="(min-width: 1024px) 14vw, (min-width: 768px) 26vw, 42vw"
                       onLoad={() => setLoaded((prev) => ({ ...prev, [s.slug]: true }))}
                       className={[
