@@ -7,6 +7,8 @@ import Button from '@/components/ui/Button';
 import NavbarSection from '@/components/sections/NavbarSection';
 import FooterSection from '@/components/sections/FooterSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
+import InnerPageHero from '@/components/ui/InnerPageHero';
+import { CareerVisual } from '@/components/ui/HeroVisuals';
 
 interface Job {
   id: string;
@@ -162,28 +164,13 @@ export default function CareerClient() {
       <NavbarSection />
 
       {/* Hero Section */}
-      <header className="section-padding relative overflow-hidden bg-gradient-to-br from-[#0B7BE6] via-[#0A66C2] to-[#07337A]">
-        <div className="absolute inset-0 opacity-[0.10]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:56px_56px]" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.26),transparent_48%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_58%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <p className="text-xs tracking-[0.2em] text-white/80 font-extrabold uppercase mb-4">
-              {t('career.hero.tag')}
-            </p>
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
-              {t('career.hero.title')}
-            </h1>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              {t('career.hero.subtitle')}
-            </p>
-          </motion.div>
-        </div>
-      </header>
+      <InnerPageHero
+        tag={t('career.hero.tag')}
+        title={t('career.hero.title')}
+        description={t('career.hero.subtitle')}
+      >
+        <CareerVisual />
+      </InnerPageHero>
 
       {/* Search & Filter Bar */}
       <section id="jobs-listing" className="sticky top-16 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 py-4 shadow-sm">

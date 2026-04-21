@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import FooterSection from '@/components/sections/FooterSection';
 import FallbackImage from '@/components/ui/FallbackImage';
 import { useLanguage } from '@/contexts/LanguageContext';
+import InnerPageHero from '@/components/ui/InnerPageHero';
+import { AboutVisual } from '@/components/ui/HeroVisuals';
 
 const TentangPage = () => {
   const { t } = useLanguage();
@@ -32,25 +34,13 @@ const TentangPage = () => {
 
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      <header className="section-padding relative overflow-hidden bg-gradient-to-br from-[#0B7BE6] via-[#0A66C2] to-[#07337A]">
-        <div className="absolute inset-0 opacity-[0.10]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:56px_56px]" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.26),transparent_48%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_58%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="text-xs tracking-[0.2em] text-white/80 font-extrabold uppercase mb-4">
-              {t('tentang.hero.badge')}
-            </p>
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
-              {t('nav.about')}
-            </h1>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              {t('about.preview.desc')}
-            </p>
-          </motion.div>
-        </div>
-      </header>
+      <InnerPageHero
+        tag={t('tentang.hero.badge')}
+        title={t('nav.about')}
+        description={t('about.preview.desc')}
+      >
+        <AboutVisual />
+      </InnerPageHero>
 
       <section className="section-padding bg-[var(--bg-primary)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

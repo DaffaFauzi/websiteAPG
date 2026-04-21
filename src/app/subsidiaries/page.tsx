@@ -6,6 +6,8 @@ import LogoBadge from '@/components/ui/LogoBadge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Image from 'next/image';
 import FallbackImage from '@/components/ui/FallbackImage';
+import InnerPageHero from '@/components/ui/InnerPageHero';
+import { SubsidiariesVisual } from '@/components/ui/HeroVisuals';
 
 const subsidiaries = [
   {
@@ -114,21 +116,13 @@ export default function SubsidiariesPage() {
   const { language, t } = useLanguage();
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      <header className="section-padding relative overflow-hidden bg-gradient-to-br from-[#0B7BE6] via-[#0A66C2] to-[#07337A]">
-        <div className="absolute inset-0 opacity-[0.10]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:56px_56px]" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.26),transparent_48%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_58%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-xs tracking-[0.2em] text-white/80 font-extrabold uppercase mb-4">{t('nav.subsidiaries')}</p>
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">{t('subsidiaries.title')}</h1>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed">
-              {t('subsidiaries.desc')}
-            </p>
-          </div>
-        </div>
-      </header>
+      <InnerPageHero
+        tag={t('nav.subsidiaries')}
+        title={t('subsidiaries.title')}
+        description={t('subsidiaries.desc')}
+      >
+        <SubsidiariesVisual />
+      </InnerPageHero>
 
       <section id="portfolio" className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import FooterSection from '@/components/sections/FooterSection';
 import { useLanguage } from '@/contexts/LanguageContext';
+import InnerPageHero from '@/components/ui/InnerPageHero';
+import { StructureVisual } from '@/components/ui/HeroVisuals';
 
 const managementData = [
   {
@@ -38,29 +40,13 @@ const StructureClient = () => {
   const { t } = useLanguage();
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      {/* Header Section (Dark Aksen) */}
-      <header className="section-padding relative overflow-hidden bg-gradient-to-br from-[#0B7BE6] via-[#0A66C2] to-[#07337A]">
-        <div className="absolute inset-0 opacity-[0.10]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:56px_56px]" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.26),transparent_48%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_58%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <p className="text-xs tracking-[0.2em] text-white/80 font-extrabold uppercase mb-4">
-              {t('struktur.tag')}
-            </p>
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
-              {t('struktur.title')}
-            </h1>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-              {t('struktur.desc')}
-            </p>
-          </motion.div>
-        </div>
-      </header>
+      <InnerPageHero
+        tag={t('struktur.tag')}
+        title={t('struktur.title')}
+        description={t('struktur.desc')}
+      >
+        <StructureVisual />
+      </InnerPageHero>
 
       {/* Management Hierarchical Section */}
       <section className="section-padding bg-white">

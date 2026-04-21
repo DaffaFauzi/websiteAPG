@@ -3,29 +3,21 @@
 import { MapPinIcon, EnvelopeIcon, PhoneIcon, ClockIcon } from '@heroicons/react/24/outline';
 import FooterSection from '@/components/sections/FooterSection';
 import { useLanguage } from '@/contexts/LanguageContext';
+import InnerPageHero from '@/components/ui/InnerPageHero';
+import { ContactVisual } from '@/components/ui/HeroVisuals';
 
 export default function ContactClient() {
   const { t } = useLanguage();
 
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      <header className="section-padding relative overflow-hidden bg-gradient-to-br from-[#0B7BE6] via-[#0A66C2] to-[#07337A]">
-        <div className="absolute inset-0 opacity-[0.10]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:56px_56px]" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.26),transparent_48%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_58%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-xs tracking-[0.2em] text-white/80 font-extrabold uppercase mb-4">
-              {t('contact.tag')}
-            </p>
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white">
-              {t('contact.title')}
-            </h1>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed">{t('contact.desc')}</p>
-          </div>
-        </div>
-      </header>
+      <InnerPageHero
+        tag={t('contact.tag')}
+        title={t('contact.title')}
+        description={t('contact.desc')}
+      >
+        <ContactVisual />
+      </InnerPageHero>
 
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
