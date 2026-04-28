@@ -10,25 +10,20 @@ const LoadingOverlay = () => {
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
       <div className="relative flex flex-col items-center">
-        {/* Animated Background Glow */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: [0.2, 0.5, 0.2], scale: [1, 1.2, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 -z-10 h-32 w-32 rounded-full bg-[var(--color-primary)] blur-[60px]"
-        />
+        <div className="absolute inset-0 -z-10 h-32 w-32 rounded-full bg-[radial-gradient(circle_at_center,rgba(10,102,194,0.22),transparent_60%)]" />
         
         {/* Logo Container */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="relative h-20 w-20 overflow-hidden rounded-2xl border border-white/10 bg-white p-2 shadow-2xl"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative h-20 w-20 overflow-hidden rounded-2xl border border-white/14 bg-white p-2 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.30)]"
         >
           <Image
             src="/images/apgg.png"
             alt={t('brand.logoAlt')}
             fill
+            sizes="80px"
             className="object-contain p-1"
             priority
           />
@@ -38,25 +33,25 @@ const LoadingOverlay = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.4, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 flex flex-col items-center"
         >
-          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[var(--color-secondary)]">
+          <span className="text-[0.625rem] font-extrabold uppercase tracking-[0.24em] text-[var(--color-secondary)]">
             {t('brand.name')}
           </span>
           
           {/* Progress Bar Line */}
-          <div className="mt-4 h-[2px] w-24 overflow-hidden rounded-full bg-white/5">
+          <div className="mt-4 h-[0.125rem] w-24 overflow-hidden rounded-full bg-white/10">
             <motion.div
               animate={{ 
-                x: [-100, 100],
+                x: ['-100%', '100%'],
               }}
               transition={{ 
-                duration: 1.5, 
+                duration: 1.6, 
                 repeat: Infinity, 
-                ease: "easeInOut" 
+                ease: [0.22, 1, 0.36, 1],
               }}
-              className="h-full w-full bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent"
+              className="h-full w-full bg-gradient-to-r from-transparent via-[#0A66C2] to-transparent"
             />
           </div>
         </motion.div>

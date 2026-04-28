@@ -14,23 +14,23 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black transform hover:scale-[1.02] active:scale-[0.99]';
+    'inline-flex min-h-12 min-w-0 items-center justify-center font-extrabold leading-none rounded-full truncate transition-[transform,background-color,border-color,box-shadow,color] duration-200 apg-ease focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white';
 
   const variantClasses = {
     primary:
-      'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white focus:ring-[var(--color-secondary)] shadow-lg shadow-black/30 hover:shadow-black/50 hover:brightness-110 transform hover:scale-[1.02]',
+      'bg-[#0A66C2] text-white focus:ring-[#0A66C2] shadow-[0_0.75rem_1.75rem_rgba(10,102,194,0.18)] hover:bg-[#0959A9] hover:shadow-[0_1rem_2.25rem_rgba(10,102,194,0.22)] hover:-translate-y-[1px] active:translate-y-0',
     secondary:
-      'bg-[var(--color-secondary)] hover:bg-[var(--color-secondary-dark)] text-white focus:ring-[var(--color-secondary)] shadow-lg shadow-black/30 hover:shadow-black/50 transform hover:scale-[1.02]',
+      'bg-[#0B7BE6] text-white focus:ring-[#0B7BE6] shadow-[0_0.75rem_1.75rem_rgba(11,123,230,0.16)] hover:bg-[#0A66C2] hover:shadow-[0_1rem_2.25rem_rgba(11,123,230,0.20)] hover:-translate-y-[1px] active:translate-y-0',
     outline:
-      'border border-[var(--color-border-strong)] bg-white/0 hover:bg-white/5 text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-secondary)] focus:ring-[var(--color-secondary)]',
+      'border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 hover:border-slate-300 focus:ring-[#0A66C2] hover:-translate-y-[1px] active:translate-y-0',
     link:
-      'bg-transparent text-[var(--color-primary)] hover:text-[var(--color-secondary)] underline underline-offset-4 decoration-[var(--color-primary)] hover:decoration-[var(--color-secondary)] focus:ring-[var(--color-secondary)]',
+      'bg-transparent text-[#0A66C2] hover:text-[#0959A9] underline underline-offset-4 decoration-[#0A66C2] hover:decoration-[#0959A9] focus:ring-[#0A66C2]',
   };
 
   const sizeClasses = {
-    sm: 'px-3 py-2 text-xs md:px-4 md:py-2 md:text-sm',
-    md: 'px-4 py-2.5 text-sm md:px-6 md:py-3 md:text-base',
-    lg: 'px-6 py-3 text-base md:px-8 md:py-4 md:text-lg',
+    sm: 'px-4 py-2 text-xs md:text-sm',
+    md: 'px-6 py-2 text-sm md:text-base',
+    lg: 'min-h-14 px-8 py-4 text-base md:text-lg',
   };
 
   const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;

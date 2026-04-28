@@ -19,11 +19,11 @@ export default function ContactClient() {
         <ContactVisual />
       </InnerPageHero>
 
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-[var(--bg-primary)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             <div className="space-y-8">
-              <div className="rounded-[2.5rem] overflow-hidden shadow-[0_22px_70px_rgba(15,23,42,0.10)] border border-slate-200 bg-white h-[400px]">
+              <div className="rounded-3xl overflow-hidden shadow-[var(--shadow-card)] border border-slate-200 bg-white h-[25rem]">
                 <iframe
                   title={t('contact.map.title')}
                   className="w-full h-full border-0"
@@ -34,74 +34,74 @@ export default function ContactClient() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_22px_70px_rgba(15,23,42,0.10)] transition-all duration-300">
+                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-[var(--shadow-card)] hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] transition-[transform,box-shadow,border-color] duration-250 apg-ease">
                   <div className="w-12 h-12 rounded-2xl bg-[#0A66C2]/10 text-[#0A66C2] flex items-center justify-center mb-4">
                     <MapPinIcon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-2">{t('contact.card.address.title')}</h3>
-                  <p className="text-sm text-gray-600">{t('contact.card.address.value')}</p>
+                  <h3 className="font-extrabold text-slate-950 mb-2 truncate">{t('contact.card.address.title')}</h3>
+                  <p className="text-sm text-slate-700">{t('contact.card.address.value')}</p>
                 </div>
 
-                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_22px_70px_rgba(15,23,42,0.10)] transition-all duration-300">
+                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-[var(--shadow-card)] hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] transition-[transform,box-shadow,border-color] duration-250 apg-ease">
                   <div className="w-12 h-12 rounded-2xl bg-[#0A66C2]/10 text-[#0A66C2] flex items-center justify-center mb-4">
                     <EnvelopeIcon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-2">{t('contact.card.email.title')}</h3>
-                  <p className="text-sm text-gray-600">{t('contact.card.email.value')}</p>
+                  <h3 className="font-extrabold text-slate-950 mb-2 truncate">{t('contact.card.email.title')}</h3>
+                  <p className="text-sm text-slate-700">{t('contact.card.email.value')}</p>
                 </div>
 
-                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_22px_70px_rgba(15,23,42,0.10)] transition-all duration-300">
+                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-[var(--shadow-card)] hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] transition-[transform,box-shadow,border-color] duration-250 apg-ease">
                   <div className="w-12 h-12 rounded-2xl bg-[#0A66C2]/10 text-[#0A66C2] flex items-center justify-center mb-4">
                     <PhoneIcon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-2">{t('contact.card.phone.title')}</h3>
-                  <p className="text-sm text-gray-600">{t('contact.card.phone.value')}</p>
+                  <h3 className="font-extrabold text-slate-950 mb-2 truncate">{t('contact.card.phone.title')}</h3>
+                  <p className="text-sm text-slate-700">{t('contact.card.phone.value')}</p>
                 </div>
 
-                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:-translate-y-1 hover:shadow-[0_22px_70px_rgba(15,23,42,0.10)] transition-all duration-300">
+                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-[var(--shadow-card)] hover:-translate-y-1 hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] transition-[transform,box-shadow,border-color] duration-250 apg-ease">
                   <div className="w-12 h-12 rounded-2xl bg-[#0A66C2]/10 text-[#0A66C2] flex items-center justify-center mb-4">
                     <ClockIcon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-2">{t('contact.card.hours.title')}</h3>
-                  <p className="text-sm text-gray-600">{t('contact.card.hours.value')}</p>
+                  <h3 className="font-extrabold text-slate-950 mb-2 truncate">{t('contact.card.hours.title')}</h3>
+                  <p className="text-sm text-slate-700">{t('contact.card.hours.value')}</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[2.5rem] bg-white border border-slate-200 p-8 lg:p-10 shadow-[0_14px_40px_rgba(15,23,42,0.06)]">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('contact.form.title')}</h2>
-              <p className="text-gray-600 mb-6">{t('contact.form.desc')}</p>
+            <div className="rounded-3xl bg-white border border-slate-200 p-8 lg:p-10 shadow-[var(--shadow-card)]">
+              <h2 className="text-2xl font-extrabold text-slate-950 mb-4">{t('contact.form.title')}</h2>
+              <p className="text-slate-700 mb-6">{t('contact.form.desc')}</p>
 
               <form className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">{t('contact.form.name')}</label>
+                  <label className="block text-sm font-semibold text-slate-950 mb-2">{t('contact.form.name')}</label>
                   <input
-                    className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
                     placeholder={t('contact.form.name.placeholder')}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">{t('contact.form.email')}</label>
+                  <label className="block text-sm font-semibold text-slate-950 mb-2">{t('contact.form.email')}</label>
                   <input
                     type="email"
-                    className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
                     placeholder={t('contact.form.email.placeholder')}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">{t('contact.form.message')}</label>
+                  <label className="block text-sm font-semibold text-slate-950 mb-2">{t('contact.form.message')}</label>
                   <textarea
                     rows={4}
-                    className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
                     placeholder={t('contact.form.message.placeholder')}
                   />
                 </div>
 
                 <button
                   type="button"
-                  className="w-full rounded-full bg-[#0A66C2] text-white font-extrabold py-3 hover:bg-[#0959A9] transition-colors shadow-[0_18px_55px_rgba(10,102,194,0.22)] hover:shadow-[0_26px_80px_rgba(10,102,194,0.28)] mt-4"
+                  className="apg-btn w-full min-h-12 rounded-full bg-[#0A66C2] text-white font-extrabold py-3 hover:bg-[#0959A9] shadow-[0_0.875rem_2.5rem_rgba(10,102,194,0.18)] mt-4 truncate"
                 >
                   {t('contact.form.submit')}
                 </button>

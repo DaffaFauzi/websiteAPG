@@ -13,6 +13,7 @@ const ASSISTANT_NAME_ENV = process.env.NEXT_PUBLIC_AI_ASSISTANT_NAME;
 export default function AIAssistant() {
   const { language, t } = useLanguage();
   const assistantName = ASSISTANT_NAME_ENV ?? t('ai.name');
+  const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,21 +28,36 @@ export default function AIAssistant() {
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = useRef<ChatMessage[]>(messages);
 
+  const displayMessages = useMemo(() => {
+    if (messages.length !== 1 || messages[0]?.role !== 'assistant') return messages;
+    return [
+      {
+        role: 'assistant' as const,
+        content: t('ai.greeting'),
+      },
+    ];
+  }, [messages, t]);
+
   useEffect(() => {
     messagesRef.current = messages;
   }, [messages]);
 
   useEffect(() => {
-    setMessages((prev) => {
-      if (prev.length !== 1 || prev[0]?.role !== 'assistant') return prev;
-      return [
-        {
-          role: 'assistant',
-          content: t('ai.greeting'),
-        },
-      ];
-    });
-  }, [language, t]);
+    const w = window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number };
+    const cancel = window as unknown as { cancelIdleCallback?: (id: number) => void };
+    const id =
+      typeof w.requestIdleCallback === 'function'
+        ? w.requestIdleCallback(() => setReady(true), { timeout: 1500 })
+        : window.setTimeout(() => setReady(true), 600);
+
+    return () => {
+      if (typeof w.requestIdleCallback === 'function' && typeof cancel.cancelIdleCallback === 'function') {
+        cancel.cancelIdleCallback(id as number);
+      } else {
+        window.clearTimeout(id as number);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -103,29 +119,31 @@ export default function AIAssistant() {
     }
   };
 
+  if (!ready) return null;
+
   return (
     <div className="fixed bottom-5 right-5 z-[60]">
       {open ? (
-        <div className="w-[340px] max-w-[calc(100vw-40px)] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden">
+        <div className="w-[21.25rem] max-w-[calc(100vw-2.5rem)] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white">
             <div className="min-w-0">
               <div className="text-sm font-extrabold text-slate-950 truncate">{assistantName}</div>
-              <div className="text-[11px] text-slate-500 truncate">
+              <div className="text-[0.6875rem] text-slate-600 truncate">
                 {t('ai.subtitle')}
               </div>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="h-8 w-8 rounded-xl hover:bg-slate-100 text-slate-700"
+              className="min-h-12 min-w-12 rounded-xl hover:bg-slate-100 text-slate-700"
               aria-label={t('ai.aria.close')}
             >
               ✕
             </button>
           </div>
 
-          <div ref={listRef} className="max-h-[380px] overflow-auto px-4 py-3 space-y-3 bg-white">
-            {messages.map((m, idx) => (
+          <div ref={listRef} className="max-h-[23.75rem] overflow-auto px-4 py-3 space-y-3 bg-white">
+            {displayMessages.map((m, idx) => (
               <div key={idx} className={m.role === 'user' ? 'flex justify-end' : 'flex justify-start'}>
                 <div
                   className={
@@ -155,7 +173,7 @@ export default function AIAssistant() {
                   key={p}
                   type="button"
                   onClick={() => send(p)}
-                  className="text-[11px] px-3 py-1 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700"
+                  className="min-h-12 text-[0.6875rem] px-3 py-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 truncate max-w-full"
                 >
                   {p}
                 </button>
@@ -174,12 +192,12 @@ export default function AIAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={t('ai.placeholder')}
-                className="flex-1 h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/20 focus:border-[var(--color-secondary)]"
+                className="flex-1 min-h-12 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-950 outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/20 focus:border-[var(--color-secondary)]"
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="h-10 px-4 rounded-xl bg-[var(--color-secondary)] text-white font-bold disabled:opacity-60"
+                className="min-h-12 px-4 rounded-xl bg-[var(--color-secondary)] text-white font-extrabold disabled:opacity-60 truncate"
               >
                 {t('ai.send')}
               </button>

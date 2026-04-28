@@ -5,7 +5,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import NavbarSection from "@/components/sections/NavbarSection";
 import AIAssistant from "@/components/ui/AIAssistant";
 import PageTransition from "@/components/ui/PageTransition";
-import CinematicIntroGate from "@/components/ui/CinematicIntroGate";
+import SplashScreen from "@/components/ui/SplashScreen";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -62,11 +62,11 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <LanguageProvider>
-          <CinematicIntroGate>
+          <SplashScreen>
             <NavbarSection />
             <AIAssistant />
             <PageTransition>{children}</PageTransition>
-          </CinematicIntroGate>
+          </SplashScreen>
         </LanguageProvider>
       </body>
     </html>

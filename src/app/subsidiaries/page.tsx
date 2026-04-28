@@ -124,7 +124,7 @@ export default function SubsidiariesPage() {
         <SubsidiariesVisual />
       </InnerPageHero>
 
-      <section id="portfolio" className="section-padding bg-white">
+      <section id="portfolio" className="section-padding bg-[var(--bg-primary)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {subsidiaries.map((s, idx) => {
@@ -134,7 +134,7 @@ export default function SubsidiariesPage() {
               return (
                 <article
                   key={s.slug}
-                  className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:shadow-[0_22px_70px_rgba(15,23,42,0.10)] hover:-translate-y-1 transition-all duration-300"
+                  className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[var(--shadow-card)] hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-[transform,box-shadow,border-color] duration-250 apg-ease"
                 >
                   <div className="overflow-hidden flex flex-col h-full">
                     <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
@@ -143,12 +143,12 @@ export default function SubsidiariesPage() {
                         fallbackSrc="/images/presentation-placeholder.svg"
                         alt={`${s.name} background`}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                        sizes="(max-width: 48rem) 100vw, (max-width: 75rem) 50vw, 33vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#07337A]/80 via-[#0A66C2]/35 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-slate-950/55 via-slate-950/25 to-transparent" />
                       <div className="absolute inset-0 flex items-center justify-center p-6">
-                        <div className="rounded-2xl bg-white/92 backdrop-blur px-4 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.22)]">
+                        <div className="rounded-2xl bg-white/95 px-4 py-3 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.18)]">
                           <Image
                             src={s.logoSrc}
                             alt={`${s.name} logo`}
@@ -159,14 +159,12 @@ export default function SubsidiariesPage() {
                           />
                         </div>
                       </div>
-                      <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-white/18 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-white/12 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                     
                     <div className="p-6 flex flex-col flex-grow">
                       <div className="mb-5 flex items-start justify-between gap-4">
                         <div className="min-w-0">
-                          <p className="text-[10px] tracking-[0.2em] text-[#0A66C2] font-extrabold uppercase mb-2">
+                          <p className="text-[0.625rem] tracking-[0.18em] text-[#0A66C2] font-extrabold uppercase mb-2 truncate">
                             {language === 'id' ? s.sector.id : s.sector.en}
                           </p>
                           <h2 className="text-lg font-extrabold text-slate-950 line-clamp-1">{s.name}</h2>
@@ -175,18 +173,18 @@ export default function SubsidiariesPage() {
                           name={s.name}
                           src={s.logoSrc}
                           size={46}
-                          className="bg-white border-slate-200 shadow-[0_10px_25px_rgba(15,23,42,0.08)]"
+                          className="bg-white border-slate-200"
                         />
                       </div>
                       
-                      <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow">
+                      <p className="text-sm text-slate-700 leading-relaxed mb-6 flex-grow">
                         {shortDesc}
                       </p>
 
                       <div className="mt-auto">
                         <Link
                           href={`/subsidiaries/${s.slug}`}
-                          className="inline-flex items-center justify-center w-full rounded-full bg-[#0A66C2] text-white font-extrabold px-6 py-3 transition-all duration-200 shadow-[0_18px_55px_rgba(10,102,194,0.25)] hover:bg-[#0959A9] hover:shadow-[0_26px_80px_rgba(10,102,194,0.30)]"
+                          className="apg-btn inline-flex items-center justify-center w-full min-h-12 rounded-full bg-[#0A66C2] text-white font-extrabold px-6 py-3 shadow-[0_0.875rem_2.5rem_rgba(10,102,194,0.18)] hover:bg-[#0959A9] truncate whitespace-nowrap"
                           aria-label={`${t('subsidiaries.card.cta')} ${s.name}`}
                         >
                           {t('subsidiaries.card.cta')}

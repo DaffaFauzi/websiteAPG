@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Button from '@/components/ui/Button';
@@ -160,7 +160,7 @@ export default function CareerClient() {
   }, [search, selectedCompany, selectedLocation, selectedCategory]);
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <NavbarSection />
 
       {/* Hero Section */}
@@ -173,7 +173,7 @@ export default function CareerClient() {
       </InnerPageHero>
 
       {/* Search & Filter Bar */}
-      <section id="jobs-listing" className="sticky top-16 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 py-3 shadow-sm">
+      <section id="jobs-listing" className="sticky top-16 z-40 bg-white border-b border-slate-200 py-3">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             <div className="relative w-full lg:max-w-md">
@@ -183,27 +183,27 @@ export default function CareerClient() {
                 placeholder={t('career.search.placeholder')}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66C2] transition-all bg-white text-slate-900"
+                className="w-full min-h-12 pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/20 focus:border-[#0A66C2] transition-colors bg-white text-slate-950"
               />
             </div>
             
             <div className="flex flex-wrap gap-3 w-full lg:w-auto">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('career.filter.location')}:</span>
+                <span className="max-w-40 text-xs font-bold text-slate-500 uppercase tracking-wider truncate whitespace-nowrap">{t('career.filter.location')}:</span>
                 <select 
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66C2] text-slate-900"
+                  className="min-h-12 px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/20 focus:border-[#0A66C2] text-slate-950"
                 >
                   {locations.map(loc => <option key={loc} value={loc}>{loc === 'All' ? t('career.filter.all') : loc}</option>)}
                 </select>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('career.filter.category')}:</span>
+                <span className="max-w-40 text-xs font-bold text-slate-500 uppercase tracking-wider truncate whitespace-nowrap">{t('career.filter.category')}:</span>
                 <select 
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66C2] text-slate-900"
+                  className="min-h-12 px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/20 focus:border-[#0A66C2] text-slate-950"
                 >
                   {categories.map(cat => <option key={cat} value={cat}>{cat === 'All' ? t('career.filter.all') : cat}</option>)}
                 </select>
@@ -214,17 +214,17 @@ export default function CareerClient() {
       </section>
 
       {/* Company Tabs */}
-      <section className="pt-6 pb-2 bg-white">
+      <section className="pt-6 pb-2 bg-[var(--bg-primary)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto pb-4 gap-2 no-scrollbar">
             {companies.map(company => (
               <button
                 key={company}
                 onClick={() => setSelectedCompany(company)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${
+                className={`min-h-12 px-4 sm:px-6 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${
                   selectedCompany === company 
-                  ? 'bg-[#0A66C2] text-white shadow-md' 
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'apg-btn bg-[#0A66C2] text-white shadow-[0_0.875rem_2.5rem_rgba(10,102,194,0.18)]' 
+                  : 'apg-btn bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 {company === 'All' ? t('career.filter.all') : company}
@@ -245,31 +245,31 @@ export default function CareerClient() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.05 }}
+                  transition={{ delay: idx * 0.05, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -4 }}
-                  className="group relative rounded-2xl border border-slate-200 bg-white p-6 md:px-8 md:py-6 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  className="group relative rounded-2xl border border-slate-200 bg-white p-6 md:px-8 md:py-6 shadow-[var(--shadow-card)] hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] transition-[transform,box-shadow,border-color] duration-250 apg-ease overflow-hidden"
                 >
-                  <div className="absolute top-0 left-0 w-1 h-full bg-[#0A66C2] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
+                  <div className="absolute top-0 left-0 w-1 h-full bg-[#0A66C2] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-250 apg-ease origin-top" />
                   
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div className="space-y-2">
                       <div className="flex items-center gap-3">
-                        <span className="text-[10px] font-bold text-[#0A66C2] uppercase tracking-widest bg-[#0A66C2]/10 px-2.5 py-1 rounded-full">
+                        <span className="max-w-56 text-[0.625rem] font-bold text-[#0A66C2] uppercase tracking-widest bg-[#0A66C2]/10 px-2.5 py-1 rounded-full truncate whitespace-nowrap">
                           {job.company}
                         </span>
-                        <span className="text-[10px] font-medium text-slate-400 flex items-center gap-1">
+                        <span className="text-[0.625rem] font-medium text-slate-400 flex items-center gap-1 whitespace-nowrap">
                           📍 {job.location}
                         </span>
                       </div>
-                      <h3 className="text-xl font-bold text-slate-950 group-hover:text-[#0A66C2] transition-colors">
+                      <h3 className="text-xl font-extrabold text-slate-950 group-hover:text-[#0A66C2] transition-colors duration-200 apg-ease line-clamp-2 min-h-[3.25rem]">
                         {job.title}
                       </h3>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[9px] font-bold uppercase tracking-wider">
+                        <span className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[0.5625rem] font-bold uppercase tracking-wider">
                           {job.type}
                         </span>
                         {job.tags.map(tag => (
-                          <span key={tag} className="px-2 py-0.5 bg-slate-50 text-slate-500 rounded text-[9px] font-medium border border-slate-100">
+                          <span key={tag} className="px-2 py-0.5 bg-slate-50 text-slate-500 rounded text-[0.5625rem] font-medium border border-slate-100">
                             #{tag}
                           </span>
                         ))}
@@ -281,7 +281,7 @@ export default function CareerClient() {
                         variant="outline" 
                         size="sm"
                         onClick={() => setSelectedJob(job)}
-                        className="group-hover:bg-slate-50 text-xs py-2"
+                        className="group-hover:bg-slate-50 !text-slate-700 hover:!text-slate-900 hover:bg-slate-100 !border-slate-200 hover:!border-slate-300 text-xs py-2"
                       >
                         {t('career.job.detail')}
                       </Button>
@@ -314,17 +314,18 @@ export default function CareerClient() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedJob(null)}
-              className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-slate-950/60"
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: '1.25rem' }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 no-scrollbar"
+              exit={{ opacity: 0, scale: 0.95, y: '1.25rem' }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-[0_1.375rem_4.375rem_rgba(15,23,42,0.18)] p-8 md:p-12 no-scrollbar"
             >
               <button 
                 onClick={() => setSelectedJob(null)}
-                className="absolute top-6 right-6 h-10 w-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors"
+                className="absolute top-6 right-6 h-12 w-12 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors"
               >
                 ✕
               </button>
@@ -351,7 +352,7 @@ export default function CareerClient() {
                   <div className="space-y-4">
                     <h4 className="text-lg font-bold text-slate-950 flex items-center gap-2">
                       <span className="h-6 w-1 bg-[#0A66C2] rounded-full" />
-                      Responsibilities
+                      {t('career.modal.responsibilities')}
                     </h4>
                     <ul className="space-y-3">
                       {selectedJob.responsibilities.map((item, idx) => (
@@ -364,13 +365,13 @@ export default function CareerClient() {
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-bold text-slate-950 flex items-center gap-2">
-                      <span className="h-6 w-1 bg-teal-500 rounded-full" />
-                      Requirements
+                      <span className="h-6 w-1 bg-[#0B7BE6] rounded-full" />
+                      {t('career.modal.requirements')}
                     </h4>
                     <ul className="space-y-3">
                       {selectedJob.requirements.map((item, idx) => (
                         <li key={idx} className="flex gap-3 text-slate-600 text-sm">
-                          <span className="text-teal-500 mt-1">✔</span>
+                          <span className="text-[#0B7BE6] mt-1">✔</span>
                           {item}
                         </li>
                       ))}
@@ -383,7 +384,7 @@ export default function CareerClient() {
                     {t('career.job.apply')}
                   </Button>
                   <Button variant="outline" onClick={() => setSelectedJob(null)} className="w-full sm:w-auto">
-                    Close
+                    {t('career.modal.close')}
                   </Button>
                 </div>
               </div>

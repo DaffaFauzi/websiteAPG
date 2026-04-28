@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: 'https',
@@ -10,12 +11,6 @@ const nextConfig: NextConfig = {
     ],
   },
   turbopack: {},
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
 };
 
 export default nextConfig;

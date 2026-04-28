@@ -23,16 +23,17 @@ export default function LogoBadge({ name, src, size = 48, className }: LogoBadge
 
   const showImage = Boolean(src) && !hasError;
   const label = useMemo(() => initials(name), [name]);
+  const sizeRem = `${size / 16}rem`;
 
   return (
     <div
       className={[
-        'rounded-xl border border-[var(--color-border)] bg-black/25 flex items-center justify-center overflow-hidden',
+        'rounded-2xl border border-slate-200 bg-white flex items-center justify-center overflow-hidden',
         className,
       ]
         .filter(Boolean)
         .join(' ')}
-      style={{ width: size, height: size }}
+      style={{ width: sizeRem, height: sizeRem }}
     >
       {showImage ? (
         <Image
@@ -40,12 +41,16 @@ export default function LogoBadge({ name, src, size = 48, className }: LogoBadge
           alt={`${name} logo`}
           width={size}
           height={size}
+          sizes={`${size}px`}
           className="h-full w-full object-contain p-2"
+          onLoad={(e) => {
+            if (e.currentTarget.naturalWidth === 0) setHasError(true);
+          }}
           onError={() => setHasError(true)}
           priority={false}
         />
       ) : (
-        <span className="text-sm font-semibold text-white">{label}</span>
+        <span className="text-xs font-extrabold text-slate-950">{label}</span>
       )}
     </div>
   );

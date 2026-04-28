@@ -10,7 +10,7 @@
     "dev:clean": "npm run clean && next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -29,6 +29,9 @@
     "@types/react-dom": "^19.2.0",
     "eslint": "^9",
     "eslint-config-next": "^16.2.4",
+    "eslint-plugin-next": "^0.0.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

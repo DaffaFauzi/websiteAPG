@@ -45,7 +45,7 @@ const BusinessFocusSection = () => {
     <section className="section-padding bg-[var(--bg-secondary)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.2em] text-slate-600 uppercase font-bold mb-4">
+          <p className="text-xs tracking-[0.18em] text-slate-700 uppercase font-extrabold mb-4">
             {t('focus.tag')}
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-950 mb-2">
@@ -64,15 +64,15 @@ const BusinessFocusSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="p-8 rounded-3xl bg-white border border-slate-200 shadow-[0_14px_40px_rgba(15,23,42,0.06)] hover:shadow-[0_22px_70px_rgba(15,23,42,0.10)] transition-all duration-300 group"
+              transition={{ delay: index * 0.05, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -4 }}
+              className="p-8 rounded-3xl bg-white border border-slate-200 shadow-[var(--shadow-card)] hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] transition-[transform,box-shadow,border-color] duration-250 apg-ease group"
             >
-              <div className="w-12 h-12 rounded-xl bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--accent)] mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--accent)] mb-6">
                 <item.icon className="h-6 w-6" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-950 mb-3">{item.title}</h3>
-              <p className="text-slate-600 leading-relaxed text-sm">{item.description}</p>
+              <p className="text-slate-700 leading-relaxed text-sm">{item.description}</p>
             </motion.div>
           ))}
         </div>

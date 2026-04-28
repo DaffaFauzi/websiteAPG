@@ -122,6 +122,9 @@ const translations: Record<Language, Record<string, string>> = {
     'career.cta.apply': 'Lamar Sekarang',
     'career.cta.contact': 'Hubungi HR',
     'career.empty': 'Tidak ada lowongan yang ditemukan.',
+    'career.modal.responsibilities': 'Tanggung Jawab',
+    'career.modal.requirements': 'Kualifikasi',
+    'career.modal.close': 'Tutup',
 
     // Metrics
     'metrics.subsidiaries': 'Anak Perusahaan',
@@ -380,6 +383,7 @@ const translations: Record<Language, Record<string, string>> = {
     'struktur.desc': 'Dipimpin oleh jajaran profesional berpengalaman untuk mengorkestrasi sinergi lintas sektor.',
     'struktur.komisaris': 'Dewan Komisaris',
     'struktur.direksi': 'Dewan Direksi',
+    'struktur.divisi': 'Kepala Divisi',
     'struktur.cta.title': 'Ingin Bergabung dalam Ekosistem Kami?',
     'struktur.cta.desc': 'Kami selalu terbuka untuk kolaborasi strategis dan talenta profesional.',
     'struktur.cta.view': 'LIHAT PROFIL LENGKAP',
@@ -553,6 +557,9 @@ const translations: Record<Language, Record<string, string>> = {
     'career.cta.apply': 'Apply Now',
     'career.cta.contact': 'Contact HR',
     'career.empty': 'No job openings found.',
+    'career.modal.responsibilities': 'Responsibilities',
+    'career.modal.requirements': 'Requirements',
+    'career.modal.close': 'Close',
 
     // Metrics
     'metrics.subsidiaries': 'Subsidiaries',
@@ -811,6 +818,7 @@ const translations: Record<Language, Record<string, string>> = {
     'struktur.desc': 'Led by experienced professionals to orchestrate cross-sector synergy.',
     'struktur.komisaris': 'Board of Commissioners',
     'struktur.direksi': 'Board of Directors',
+    'struktur.divisi': 'Division Heads',
     'struktur.cta.title': 'Want to Join Our Ecosystem?',
     'struktur.cta.desc': 'We are always open to strategic collaboration and professional talent.',
     'struktur.cta.view': 'VIEW FULL PROFILE',
@@ -883,7 +891,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     const savedLang = localStorage.getItem('app-language') as Language | null;
     if (savedLang === 'id' || savedLang === 'en') {
-      setLanguageState(savedLang);
+      const id = window.setTimeout(() => setLanguageState(savedLang), 0);
+      return () => window.clearTimeout(id);
     }
   }, []);
 

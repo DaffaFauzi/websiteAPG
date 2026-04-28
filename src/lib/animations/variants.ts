@@ -7,8 +7,9 @@ export const containerVariants: Variants = {
     opacity: 1,
     transition: {
       duration: 0.6,
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.08,
+      delayChildren: 0.12,
     },
   },
 };
@@ -17,16 +18,16 @@ export const containerVariants: Variants = {
 export const textRevealVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 50,
-    scale: 0.95,
+    y: 24,
+    scale: 0.98,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for premium feel
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -35,17 +36,15 @@ export const textRevealVariants: Variants = {
 export const wordVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 20,
-    rotateX: -90,
+    y: 14,
   },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    rotateX: 0,
     transition: {
       duration: 0.6,
-      delay: i * 0.1,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      delay: i * 0.06,
+      ease: [0.22, 1, 0.36, 1],
     },
   }),
 };
@@ -54,27 +53,25 @@ export const wordVariants: Variants = {
 export const buttonVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 30,
-    scale: 0.8,
+    y: 20,
   },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.22, 1, 0.36, 1],
     },
   },
   hover: {
-    scale: 1.05,
+    y: -1,
     transition: {
-      duration: 0.2,
-      ease: "easeOut",
+      duration: 0.18,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
   tap: {
-    scale: 0.95,
+    y: 0,
     transition: {
       duration: 0.1,
     },
@@ -85,16 +82,12 @@ export const buttonVariants: Variants = {
 export const particleVariants: Variants = {
   initial: {
     opacity: 0,
-    scale: 0,
   },
   animate: {
-    opacity: [0, 1, 0.5, 1],
-    scale: [0, 1.2, 0.8, 1],
+    opacity: 1,
     transition: {
-      duration: 3,
-      repeat: Infinity,
-      repeatType: "reverse" as const,
-      ease: "easeInOut",
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -102,12 +95,10 @@ export const particleVariants: Variants = {
 // Background pattern animation
 export const backgroundVariants: Variants = {
   animate: {
-    backgroundPosition: ["0% 0%", "100% 100%"],
+    backgroundPosition: "0% 0%",
     transition: {
-      duration: 20,
-      repeat: Infinity,
-      repeatType: "reverse" as const,
-      ease: "linear",
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -124,6 +115,7 @@ export const trustIndicatorVariants: Variants = {
     transition: {
       duration: 0.5,
       staggerChildren: 0.1,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -131,12 +123,11 @@ export const trustIndicatorVariants: Variants = {
 // Pulse animation for accent elements
 export const pulseVariants: Variants = {
   pulse: {
-    scale: [1, 1.05, 1],
-    opacity: [1, 0.8, 1],
+    scale: 1,
+    opacity: 1,
     transition: {
-      duration: 2,
-      repeat: Infinity,
-      ease: "easeInOut",
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -144,11 +135,10 @@ export const pulseVariants: Variants = {
 // Breathing effect for subtle elements
 export const breatheVariants: Variants = {
   breathe: {
-    scale: [1, 1.02, 1],
+    scale: 1,
     transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut",
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };

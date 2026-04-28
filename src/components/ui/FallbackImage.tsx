@@ -1,7 +1,7 @@
 'use client';
 
 import Image, { type ImageProps } from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type Props = Omit<ImageProps, 'src'> & {
   src: string;
@@ -9,11 +9,8 @@ type Props = Omit<ImageProps, 'src'> & {
 };
 
 export default function FallbackImage({ src, fallbackSrc, alt = '', onError, ...rest }: Props) {
-  const [currentSrc, setCurrentSrc] = useState(src);
-
-  useEffect(() => {
-    setCurrentSrc(src);
-  }, [src]);
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const currentSrc = failedSrc === src ? fallbackSrc : src;
 
   return (
     <Image
@@ -21,7 +18,7 @@ export default function FallbackImage({ src, fallbackSrc, alt = '', onError, ...
       src={currentSrc}
       alt={alt}
       onError={(e) => {
-        if (currentSrc !== fallbackSrc) setCurrentSrc(fallbackSrc);
+        if (failedSrc !== src) setFailedSrc(src);
         onError?.(e);
       }}
     />
