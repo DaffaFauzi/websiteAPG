@@ -37,13 +37,13 @@ const IntroSection: React.FC = () => {
   const rotateY = useTransform(sTiltX, [-1, 1], [-0.8, 0.8]);
 
   return (
-    <section className="apg-section-divider relative overflow-hidden bg-gradient-to-br from-[#0A66C2] via-[#0A66C2] to-[#07337A] text-white">
+    <section className="apg-section-divider relative overflow-hidden bg-gradient-to-br from-[#0A66C2] via-[#0A66C2] to-[#041E4A] text-white shadow-[inset_0_-20px_50px_rgba(0,0,0,0.1)]">
       {/* Refined Background Elements */}
       <motion.div
         style={{ y: yBackground }}
-        className="pointer-events-none absolute inset-0 opacity-[0.55]"
+        className="pointer-events-none absolute inset-0 opacity-[0.65]"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,255,255,0.12),transparent_70%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.25),transparent_66%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,255,255,0.15),transparent_70%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.4),transparent_66%)]" />
       </motion.div>
       
       {/* Subtle Glow Behind Hero */}
@@ -53,42 +53,42 @@ const IntroSection: React.FC = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_0.0625rem,transparent_0.0625rem),linear-gradient(to_bottom,rgba(255,255,255,0.55)_0.0625rem,transparent_0.0625rem)] bg-[size:4.5rem_4.5rem]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pt-24 pb-12 sm:px-6 lg:px-8">
-        <div className="grid gap-12 xl:grid-cols-2 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-5 lg:px-8 pt-16 pb-20 sm:pt-28 sm:pb-24">
+        <div className="grid gap-8 xl:gap-12 xl:grid-cols-2 items-center text-center xl:text-left">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-7"
+            className="space-y-6 sm:space-y-7 flex flex-col items-center xl:items-start"
           >
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/80">
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-white/80">
               <span className="font-semibold">{t('intro.badge')}</span>
             </div>
 
-            <h1 className="max-w-3xl text-4xl font-extrabold tracking-[-0.02em] text-white leading-[1.04] sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-[-0.02em] text-white leading-[1.2] sm:leading-[1.1] mx-auto xl:mx-0 drop-shadow-md">
               {t('intro.title.part1')}{' '}
-              <span className="text-white">{t('intro.title.highlight')}</span>{' '}
+              <span className="text-white drop-shadow-lg">{t('intro.title.highlight')}</span>{' '}
               {t('intro.title.part2')}
             </h1>
 
-            <p className="max-w-2xl text-base leading-7 text-white/80 sm:text-lg">
+            <p className="max-w-prose text-sm leading-relaxed sm:leading-7 text-white/95 font-medium sm:text-lg mx-auto xl:mx-0 drop-shadow-sm">
               {t('intro.desc')}
             </p>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row w-full sm:w-auto">
               <Button
-                variant="primary"
+                variant="white"
                 size="lg"
                 onClick={() => router.push('/subsidiaries')}
-                className="apg-btn rounded-full shadow-lg shadow-black/10"
+                className="w-full sm:w-auto"
               >
                 {t('intro.cta.primary')}
               </Button>
               <Button
-                variant="outline"
+                variant="white-outline"
                 size="lg"
                 onClick={() => router.push('/annual-report')}
-                className="apg-btn rounded-full border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white hover:-translate-y-[1px] active:translate-y-0"
+                className="w-full sm:w-auto"
               >
                 {t('intro.cta.secondary')}
               </Button>
@@ -99,7 +99,7 @@ const IntroSection: React.FC = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="relative flex justify-center items-end h-[22.5rem] sm:h-[28.75rem] xl:h-[38.75rem]"
+            className="relative flex justify-center items-end h-[18.75rem] sm:h-[28.75rem] xl:h-[38.75rem]"
           >
             <motion.div
               className="relative w-full h-full"
@@ -125,13 +125,13 @@ const IntroSection: React.FC = () => {
               {/* Refined Lighting & Integration Elements */}
               <div className="pointer-events-none absolute inset-0 -z-10">
                 {/* Core radial highlight behind character */}
-                <div className="absolute left-1/2 top-[56%] h-[24rem] w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.18),transparent_65%)]" />
+                <div className="absolute left-1/2 top-[56%] h-[15rem] sm:h-[24rem] w-[15rem] sm:w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.18),transparent_65%)]" />
                 
                 {/* Soft ambient glow for integration */}
-                <div className="absolute left-1/2 top-[60%] h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(11,123,230,0.15),transparent_70%)] blur-[40px]" />
+                <div className="absolute left-1/2 top-[60%] h-[20rem] sm:h-[30rem] w-[20rem] sm:w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(11,123,230,0.15),transparent_70%)] blur-[40px]" />
                 
                 {/* Contact shadow below character */}
-                <div className="absolute left-1/2 bottom-0 h-12 w-[24rem] -translate-x-1/2 rounded-[100%] bg-black/35 blur-[24px]" />
+                <div className="absolute left-1/2 bottom-0 h-8 sm:h-12 w-[15rem] sm:w-[24rem] -translate-x-1/2 rounded-[100%] bg-black/35 blur-[24px]" />
               </div>
 
               <motion.div
@@ -173,146 +173,156 @@ const IntroSection: React.FC = () => {
               </motion.div>
             </motion.div>
 
-            {/* Floating Cards with Premium Animation & Depth - Auto-float + Mouse Parallax */}
-            <motion.div
-              initial={{ opacity: 0, x: -20, y: 10 }}
-              animate={{ 
-                opacity: 1, 
-                x: 0, 
-                y: reduceMotion ? 0 : [0, -10, 0]
-              }}
-              transition={{ 
-                delay: 0.3, 
-                duration: 0.8, 
-                ease: [0.22, 1, 0.36, 1],
-                y: {
-                  duration: 5.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }
-              }}
-              className="absolute left-0 top-6 rounded-2xl border border-white/16 bg-white/10 backdrop-blur-md px-4 py-3 shadow-[0_20px_40px_rgba(0,0,0,0.25)] sm:left-4 sm:top-10 z-20"
-              style={{
-                y: useTransform(sMoveY, [-1, 1], [-15, 15]),
-                x: useTransform(sMoveX, [-1, 1], [-12, 12]),
-              }}
-            >
+              {/* Floating Cards - Premium Astra-Level Redesign */}
               <motion.div
-                animate={reduceMotion ? undefined : { 
-                  y: [0, -8, 0], 
-                  rotate: [0, -1.5, 0],
-                  scale: [1, 1.02, 1]
+                initial={{ opacity: 0, x: -20, y: 10 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: 0, 
+                  y: reduceMotion ? 0 : [0, -10, 0]
                 }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : {
-                        duration: 5.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }
-                }
+                transition={{ 
+                  delay: 0.3, 
+                  duration: 0.8, 
+                  ease: [0.22, 1, 0.36, 1],
+                  y: {
+                    duration: 5.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }
+                }}
+                className="hidden lg:flex flex-col justify-center absolute left-0 top-6 rounded-2xl border border-white/30 bg-white/10 backdrop-blur-xl px-5 py-4 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] sm:left-4 sm:top-10 z-20"
+                style={{
+                  y: useTransform(sMoveY, [-1, 1], [-15, 15]),
+                  x: useTransform(sMoveX, [-1, 1], [-12, 12]),
+                }}
               >
-                <div className="text-[10px] tracking-[0.2em] text-white/70 uppercase font-black">{t('hero.card.projects.label')}</div>
-                <div className="mt-1 text-2xl font-black text-white">{t('hero.card.projects.value')}</div>
+                <motion.div
+                  animate={reduceMotion ? undefined : { 
+                    y: [0, -8, 0], 
+                  }}
+                  transition={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          duration: 5.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }
+                  }
+                >
+                  <div className="flex items-center gap-3 mb-1">
+                    <div className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
+                    <div className="text-[10px] tracking-[0.2em] text-white/80 uppercase font-bold">{t('hero.card.projects.label')}</div>
+                  </div>
+                  <div className="text-3xl font-black text-white tracking-tight">{t('hero.card.projects.value')}</div>
+                </motion.div>
               </motion.div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20, y: 10 }}
-              animate={{ 
-                opacity: 1, 
-                x: 0, 
-                y: reduceMotion ? 0 : [0, 12, 0]
-              }}
-              transition={{ 
-                delay: 0.4, 
-                duration: 0.8, 
-                ease: [0.22, 1, 0.36, 1],
-                y: {
-                  duration: 6.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.8
-                }
-              }}
-              className="absolute right-0 top-20 rounded-2xl border border-white/16 bg-white/10 backdrop-blur-md px-4 py-3 shadow-[0_20px_40px_rgba(0,0,0,0.25)] sm:right-4 sm:top-28 z-20"
-              style={{
-                y: useTransform(sMoveY, [-1, 1], [15, -15]),
-                x: useTransform(sMoveX, [-1, 1], [12, -12]),
-              }}
-            >
               <motion.div
-                animate={reduceMotion ? undefined : { 
-                  y: [0, -10, 0], 
-                  rotate: [0, 1.8, 0],
-                  scale: [1, 1.03, 1]
+                initial={{ opacity: 0, x: 20, y: 10 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: 0, 
+                  y: reduceMotion ? 0 : [0, 12, 0]
                 }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : {
-                        duration: 6.8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 0.5
-                      }
-                }
+                transition={{ 
+                  delay: 0.4, 
+                  duration: 0.8, 
+                  ease: [0.22, 1, 0.36, 1],
+                  y: {
+                    duration: 6.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.8
+                  }
+                }}
+                className="hidden lg:flex flex-col justify-center absolute right-0 top-20 rounded-2xl border border-white/30 bg-white/10 backdrop-blur-xl px-5 py-4 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] sm:right-4 sm:top-28 z-20"
+                style={{
+                  y: useTransform(sMoveY, [-1, 1], [15, -15]),
+                  x: useTransform(sMoveX, [-1, 1], [12, -12]),
+                }}
               >
-                <div className="text-[10px] tracking-[0.2em] text-white/70 uppercase font-black">{t('hero.card.partners.label')}</div>
-                <div className="mt-1 text-2xl font-black text-white">{t('hero.card.partners.value')}</div>
+                <motion.div
+                  animate={reduceMotion ? undefined : { 
+                    y: [0, -10, 0], 
+                  }}
+                  transition={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          duration: 6.8,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.5
+                        }
+                  }
+                >
+                  <div className="flex items-center gap-3 mb-1">
+                    <div className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                    <div className="text-[10px] tracking-[0.2em] text-white/80 uppercase font-bold">{t('hero.card.partners.label')}</div>
+                  </div>
+                  <div className="text-3xl font-black text-white tracking-tight">{t('hero.card.partners.value')}</div>
+                </motion.div>
               </motion.div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ 
-                opacity: 1, 
-                y: 0,
-                x: reduceMotion ? 0 : [0, 5, 0]
-              }}
-              transition={{ 
-                delay: 0.5, 
-                duration: 0.8, 
-                ease: [0.22, 1, 0.36, 1],
-                x: {
-                  duration: 7.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1.2
-                }
-              }}
-              className="absolute left-8 bottom-4 rounded-2xl border border-white/16 bg-white/10 backdrop-blur-md px-4 py-3 shadow-[0_20px_40px_rgba(0,0,0,0.25)] sm:left-14 sm:bottom-8 z-20"
-              style={{
-                y: useTransform(sMoveY, [-1, 1], [-8, 8]),
-                x: useTransform(sMoveX, [-1, 1], [10, -10]),
-              }}
-            >
               <motion.div
-                animate={reduceMotion ? undefined : { 
-                  y: [0, -6, 0], 
-                  rotate: [0, -1.2, 0],
-                  scale: [1, 1.02, 1]
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0,
+                  x: reduceMotion ? 0 : [0, 5, 0]
                 }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : {
-                        duration: 7.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 1
-                      }
-                }
+                transition={{ 
+                  delay: 0.5, 
+                  duration: 0.8, 
+                  ease: [0.22, 1, 0.36, 1],
+                  x: {
+                    duration: 7.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1.2
+                  }
+                }}
+                className="hidden lg:flex flex-col justify-center absolute left-8 bottom-4 rounded-2xl border border-white/30 bg-white/10 backdrop-blur-xl px-5 py-4 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] sm:left-14 sm:bottom-8 z-20"
+                style={{
+                  y: useTransform(sMoveY, [-1, 1], [-8, 8]),
+                  x: useTransform(sMoveX, [-1, 1], [10, -10]),
+                }}
               >
-                <div className="text-[10px] tracking-[0.2em] text-white/70 uppercase font-black">{t('hero.card.industries.label')}</div>
-                <div className="mt-1 text-2xl font-black text-white">{t('hero.card.industries.value')}</div>
+                <motion.div
+                  animate={reduceMotion ? undefined : { 
+                    y: [0, -6, 0], 
+                  }}
+                  transition={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          duration: 7.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 1
+                        }
+                  }
+                >
+                  <div className="flex items-center gap-3 mb-1">
+                    <div className="h-2 w-2 rounded-full bg-indigo-400 shadow-[0_0_8px_rgba(129,140,248,0.8)]" />
+                    <div className="text-[10px] tracking-[0.2em] text-white/80 uppercase font-bold">{t('hero.card.industries.label')}</div>
+                  </div>
+                  <div className="text-3xl font-black text-white tracking-tight">{t('hero.card.industries.value')}</div>
+                </motion.div>
               </motion.div>
-            </motion.div>
           </motion.div>
         </div>
 
-        <div className="mt-10" />
+        <div className="mt-16 sm:mt-24 pb-8 sm:pb-12 lg:pb-16" />
+      </div>
+
+      {/* Sweeping Premium Corporate Curve Masking */}
+      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden pointer-events-none leading-[0]">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto text-slate-50 relative z-30" preserveAspectRatio="none">
+          <path d="M0,120 L1440,120 L1440,60 C1200,10 960,-10 720,20 C480,50 240,90 0,60 L0,120 Z" fill="currentColor" />
+        </svg>
       </div>
     </section>
   );

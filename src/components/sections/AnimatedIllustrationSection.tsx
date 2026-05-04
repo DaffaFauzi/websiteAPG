@@ -7,18 +7,18 @@ const AnimatedIllustrationSection: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+    <section className="relative overflow-hidden py-12 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
+        <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
             <div className="max-w-xl space-y-4">
-              <p className="text-base font-semibold uppercase tracking-[0.18em] text-[var(--color-secondary)]">
+              <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-[#0A66C2]">
                 {t('illustration.tag')}
               </p>
-              <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
                 {t('illustration.title')}
               </h2>
-              <p className="text-[var(--color-text-secondary)] leading-8">
+              <p className="text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed sm:leading-7 max-w-prose">
                 {t('illustration.desc')}
               </p>
             </div>

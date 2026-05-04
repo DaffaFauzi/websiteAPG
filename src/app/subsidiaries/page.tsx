@@ -1,11 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import FooterSection from '@/components/sections/FooterSection';
 import LogoBadge from '@/components/ui/LogoBadge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Image from 'next/image';
-import FallbackImage from '@/components/ui/FallbackImage';
 import InnerPageHero from '@/components/ui/InnerPageHero';
 import { SubsidiariesVisual } from '@/components/ui/HeroVisuals';
 
@@ -115,7 +115,7 @@ const subsidiaries = [
 export default function SubsidiariesPage() {
   const { language, t } = useLanguage();
   return (
-    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <main className="min-h-screen bg-slate-50 text-slate-950">
       <InnerPageHero
         tag={t('nav.subsidiaries')}
         title={t('subsidiaries.title')}
@@ -124,78 +124,103 @@ export default function SubsidiariesPage() {
         <SubsidiariesVisual />
       </InnerPageHero>
 
-      <section id="portfolio" className="section-padding bg-[var(--bg-primary)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {/* Strategic Ecosystem Platform */}
+      <section id="portfolio" className="py-16 sm:py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {subsidiaries.map((s, idx) => {
               const description = language === 'id' ? s.description.id : s.description.en;
               const shortDesc = description.length > 90 ? description.substring(0, 90) + '...' : description;
               
               return (
-                <article
+                <Link
+                  href={`/subsidiaries/${s.slug}`}
                   key={s.slug}
-                  className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[var(--shadow-card)] hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-[transform,box-shadow,border-color] duration-250 apg-ease"
+                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-sm hover:shadow-lg hover:border-[#0A66C2]/20 transition-all duration-300 ease-out active:scale-[0.98]"
                 >
-                  <div className="overflow-hidden flex flex-col h-full">
-                    <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
-                      <FallbackImage
-                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
-                        fallbackSrc="/images/presentation-placeholder.svg"
-                        alt={`${s.name} background`}
-                        fill
-                        className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                        sizes="(max-width: 48rem) 100vw, (max-width: 75rem) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-slate-950/55 via-slate-950/25 to-transparent" />
-                      <div className="absolute inset-0 flex items-center justify-center p-6">
-                        <div className="rounded-2xl bg-white/95 px-4 py-3 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.18)]">
-                          <Image
-                            src={s.logoSrc}
-                            alt={`${s.name} logo`}
-                            width={180}
-                            height={72}
-                            className="h-10 w-auto object-contain"
-                            priority={idx < 3}
-                          />
-                        </div>
-                      </div>
-                    </div>
+                  {/* Logo Zone — Clean white canvas, no overlay, no plate */}
+                  <div className="relative flex items-center justify-center w-full h-44 sm:h-48 bg-white border-b border-slate-100 overflow-hidden px-8 py-6">
+                    {/* Subtle top-corner APG tint — purely decorative, not a box */}
+                    <div className="absolute top-0 right-0 w-24 h-24 rounded-bl-[4rem] bg-gradient-to-bl from-[#0A66C2]/5 to-transparent pointer-events-none" />
                     
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="mb-5 flex items-start justify-between gap-4">
-                        <div className="min-w-0">
-                          <p className="text-[0.625rem] tracking-[0.18em] text-[#0A66C2] font-extrabold uppercase mb-2 truncate">
-                            {language === 'id' ? s.sector.id : s.sector.en}
-                          </p>
-                          <h2 className="text-lg font-extrabold text-slate-950 line-clamp-1">{s.name}</h2>
-                        </div>
-                        <LogoBadge
-                          name={s.name}
-                          src={s.logoSrc}
-                          size={46}
-                          className="bg-white border-slate-200"
-                        />
-                      </div>
-                      
-                      <p className="text-sm text-slate-700 leading-relaxed mb-6 flex-grow">
-                        {shortDesc}
-                      </p>
+                    <div className="relative w-full h-full max-w-[12rem] mx-auto">
+                      <Image
+                        src={s.logoSrc}
+                        alt={`${s.name} logo`}
+                        fill
+                        className="object-contain transition-transform duration-300 ease-out group-hover:scale-[1.05]"
+                        sizes="(max-width: 48rem) 50vw, (max-width: 75rem) 33vw, 200px"
+                        priority={idx < 3}
+                      />
+                    </div>
 
-                      <div className="mt-auto">
-                        <Link
-                          href={`/subsidiaries/${s.slug}`}
-                          className="apg-btn inline-flex items-center justify-center w-full min-h-12 rounded-full bg-[#0A66C2] text-white font-extrabold px-6 py-3 shadow-[0_0.875rem_2.5rem_rgba(10,102,194,0.18)] hover:bg-[#0959A9] truncate whitespace-nowrap"
-                          aria-label={`${t('subsidiaries.card.cta')} ${s.name}`}
-                        >
-                          {t('subsidiaries.card.cta')}
-                        </Link>
-                      </div>
+                    {/* Sector badge — top left */}
+                    <div className="absolute top-3 left-3">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-100 text-[9px] font-extrabold tracking-[0.18em] text-slate-500 uppercase">
+                        {language === 'id' ? s.sector.id : s.sector.en}
+                      </span>
                     </div>
                   </div>
-                </article>
+
+                  {/* Content Body */}
+                  <div className="p-6 sm:p-7 flex flex-col flex-grow">
+                    {/* Hover accent bar */}
+                    <div className="absolute top-0 left-6 right-6 h-px bg-[#0A66C2] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 ease-out origin-left" />
+
+                    <h2 className="text-base sm:text-lg font-extrabold text-[#041a40] leading-tight mb-2 group-hover:text-[#0A66C2] transition-colors duration-300">
+                      {s.name}
+                    </h2>
+
+                    <p className="text-sm text-slate-500 font-medium leading-relaxed mb-5 flex-grow">
+                      {shortDesc}
+                    </p>
+
+                    <div className="mt-auto flex items-center text-sm font-bold text-[#0A66C2] group-hover:text-[#041a40] transition-colors duration-300">
+                      {t('subsidiaries.card.cta')}
+                      <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Corporate Access CTA */}
+      <section className="relative overflow-hidden py-16 sm:py-24 bg-white text-slate-950">
+        <div className="max-w-5xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="relative rounded-[2.5rem] overflow-hidden bg-slate-50 text-[#041a40] border border-slate-200 p-10 sm:p-14 lg:p-20 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+          >
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-[#0A66C2] text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-8 shadow-sm">
+                Ecosystem Synergies
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 leading-tight tracking-tight">
+                Ingin berkolaborasi dengan ekosistem kami?
+              </h2>
+              <p className="text-base sm:text-lg text-slate-600 mb-10 leading-relaxed font-medium">
+                Kami selalu terbuka untuk peluang strategis lintas sektor. Temukan sinergi bersama Ardana Perkasa Group.
+              </p>
+              <Link
+                href="/kontak"
+                className="inline-flex min-h-[3.5rem] items-center justify-center rounded-full bg-[#0A66C2] px-8 sm:px-10 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 truncate whitespace-nowrap"
+              >
+                Jelajahi Peluang
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 

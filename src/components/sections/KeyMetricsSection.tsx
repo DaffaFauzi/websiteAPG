@@ -41,44 +41,150 @@ const KeyMetricsSection: React.FC = () => {
   ];
 
   return (
-    <section className="apg-section-divider relative pt-20 pb-24 overflow-hidden bg-gradient-to-br from-[#0A66C2] via-[#0A66C2] to-[#07337A]">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_60%)]" />
-        <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_0.0625rem,transparent_0.0625rem),linear-gradient(to_bottom,rgba(255,255,255,0.55)_0.0625rem,transparent_0.0625rem)] bg-[size:4.5rem_4.5rem]" />
+    <section className="apg-section-divider relative py-16 sm:py-20 lg:py-20 bg-slate-950 overflow-hidden shadow-[inset_0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(10,102,194,0.15),transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(7,51,122,0.2),transparent_50%)]" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start lg:items-center">
-          <div className="max-w-2xl">
-            <p className="text-xs tracking-[0.18em] text-white/75 uppercase font-extrabold mb-4">{t('metrics.tag')}</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-[-0.02em] text-white leading-[1.06]">{t('metrics.title')}</h2>
-            <p className="mt-5 text-lg text-white/80">{t('metrics.desc')}</p>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-          {metrics.map((item, index) => (
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-20 items-center">
+          
+          {/* Left: Enterprise Expansion & Progress */}
+          <div className="space-y-8">
             <motion.div
-              key={item.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.06, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -4 }}
-              className="group"
+              transition={{ duration: 0.6 }}
             >
-              <div className="rounded-3xl bg-white/96 border border-white/26 p-7 h-full shadow-[var(--shadow-card)] group-hover:border-white/34 group-hover:shadow-[var(--shadow-card-hover)] transition-[transform,box-shadow,border-color] duration-250 apg-ease">
-                  <div className="flex items-center justify-between">
-                    <div className="h-12 w-12 rounded-2xl bg-slate-950 text-white flex items-center justify-center shadow-[0_0.875rem_2.5rem_rgba(2,6,23,0.20)] transition-shadow duration-250 apg-ease">
-                      <item.icon className="h-6 w-6" />
-                    </div>
-                    <div className="min-w-0 text-xs tracking-[0.16em] uppercase text-slate-700 font-extrabold truncate">{item.label}</div>
-                  </div>
-                  <div className="mt-8 text-5xl font-extrabold text-slate-950">
-                    <AnimatedNumber value={item.value} format={item.suffix ? 'suffix' : 'number'} suffix={item.suffix} />
-                  </div>
-                  <div className="mt-3 text-sm text-slate-700">{t('metrics.caption')}</div>
+              <p className="text-[10px] sm:text-xs tracking-[0.2em] text-[#38bdf8] font-extrabold uppercase mb-4 drop-shadow-sm">{t('metrics.tag')}</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight drop-shadow-md">{t('metrics.title')}</h2>
+              <p className="mt-6 text-slate-300 font-medium text-base sm:text-lg leading-relaxed max-w-lg drop-shadow-sm">{t('metrics.desc')}</p>
+            </motion.div>
+
+            {/* Progress Bars / Growth Indicator */}
+            <div className="space-y-6 pt-4 max-w-md">
+              <div className="space-y-2.5">
+                <div className="flex justify-between text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider">
+                  <span>Ecosystem Expansion</span>
+                  <span className="text-[#0A66C2]">92%</span>
+                </div>
+                <div className="h-1.5 w-full bg-slate-800/80 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: 0 }} 
+                    whileInView={{ width: '92%' }} 
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                    className="h-full bg-gradient-to-r from-[#0A66C2] to-[#38bdf8] rounded-full"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2.5">
+                <div className="flex justify-between text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider">
+                  <span>Partner Integration</span>
+                  <span className="text-[#0A66C2]">85%</span>
+                </div>
+                <div className="h-1.5 w-full bg-slate-800/80 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: 0 }} 
+                    whileInView={{ width: '85%' }} 
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
+                    className="h-full bg-gradient-to-r from-[#0A66C2] to-[#38bdf8] rounded-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Featured Metrics Dashboard */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            
+            {/* Top Left: Subsidiaries */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="col-span-2 sm:col-span-1 rounded-3xl bg-slate-900/90 border border-slate-700/50 backdrop-blur-sm p-6 sm:p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:bg-slate-800 hover:border-slate-600 transition-all duration-300 flex flex-col justify-between min-h-[14rem] hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="h-12 w-12 rounded-2xl bg-slate-800 text-white flex items-center justify-center">
+                  {React.createElement(metrics[0].icon, { className: "h-6 w-6" })}
+                </div>
+                <div className="text-[10px] sm:text-xs tracking-[0.16em] uppercase text-slate-400 font-extrabold">{metrics[0].label}</div>
+              </div>
+              <div>
+                <div className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+                  <AnimatedNumber value={metrics[0].value} format={metrics[0].suffix ? 'suffix' : 'number'} suffix={metrics[0].suffix} />
+                </div>
               </div>
             </motion.div>
-          ))}
+
+            {/* Top Right: Partners (Accent Block) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="col-span-2 sm:col-span-1 rounded-3xl bg-gradient-to-br from-[#0A66C2] to-[#041E4A] border border-[#38bdf8]/30 p-6 sm:p-8 shadow-[0_0_50px_rgba(10,102,194,0.4)] hover:shadow-[0_0_70px_rgba(10,102,194,0.6)] transition-all duration-300 flex flex-col justify-between min-h-[14rem] sm:mt-8 hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="h-12 w-12 rounded-2xl bg-white/10 text-white flex items-center justify-center backdrop-blur-md">
+                  {React.createElement(metrics[1].icon, { className: "h-6 w-6" })}
+                </div>
+                <div className="text-[10px] sm:text-xs tracking-[0.16em] uppercase text-white/70 font-extrabold">{metrics[1].label}</div>
+              </div>
+              <div>
+                <div className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+                  <AnimatedNumber value={metrics[1].value} format={metrics[1].suffix ? 'suffix' : 'number'} suffix={metrics[1].suffix} />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Bottom Left: Projects */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="col-span-2 sm:col-span-1 rounded-3xl bg-slate-900/90 border border-slate-700/50 backdrop-blur-sm p-6 sm:p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:bg-slate-800 hover:border-slate-600 transition-all duration-300 flex flex-col justify-between min-h-[14rem] hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="h-12 w-12 rounded-2xl bg-slate-800 text-white flex items-center justify-center">
+                  {React.createElement(metrics[2].icon, { className: "h-6 w-6" })}
+                </div>
+                <div className="text-[10px] sm:text-xs tracking-[0.16em] uppercase text-slate-400 font-extrabold">{metrics[2].label}</div>
+              </div>
+              <div>
+                <div className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+                  <AnimatedNumber value={metrics[2].value} format={metrics[2].suffix ? 'suffix' : 'number'} suffix={metrics[2].suffix} />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Bottom Right: Sectors */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="col-span-2 sm:col-span-1 rounded-3xl bg-slate-900/90 border border-slate-700/50 backdrop-blur-sm p-6 sm:p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:bg-slate-800 hover:border-slate-600 transition-all duration-300 flex flex-col justify-between min-h-[14rem] sm:mt-8 hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="h-12 w-12 rounded-2xl bg-slate-800 text-white flex items-center justify-center">
+                  {React.createElement(metrics[3].icon, { className: "h-6 w-6" })}
+                </div>
+                <div className="text-[10px] sm:text-xs tracking-[0.16em] uppercase text-slate-400 font-extrabold">{metrics[3].label}</div>
+              </div>
+              <div>
+                <div className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+                  <AnimatedNumber value={metrics[3].value} format={metrics[3].suffix ? 'suffix' : 'number'} suffix={metrics[3].suffix} />
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </div>

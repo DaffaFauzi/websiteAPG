@@ -17,36 +17,68 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ardanaperkasagroup.
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Ardana Perkasa Group (APG)",
+    default: "Ardana Perkasa Group (APG) - National Holding Company",
     template: "%s | Ardana Perkasa Group",
   },
   description:
-    "Ardana Perkasa Group (APG) adalah holding company yang membangun ekosistem bisnis lintas sektor dengan tata kelola kuat, eksekusi disiplin, dan strategi berkelanjutan.",
+    "Ardana Perkasa Group (APG) adalah holding company berskala nasional yang membangun ekosistem bisnis lintas sektor dengan standar tata kelola enterprise yang kuat, eksekusi disiplin, dan strategi berkelanjutan.",
   keywords: [
     "Ardana Perkasa Group",
     "APG",
-    "holding company",
+    "holding company indonesia",
     "tata kelola",
     "portfolio management",
     "risk & governance",
-    "konsultasi",
-    "enterprise",
+    "konsultasi manajemen",
+    "enterprise solutions",
   ],
+  authors: [{ name: "Ardana Perkasa Group" }],
+  creator: "Ardana Perkasa Group",
+  publisher: "Ardana Perkasa Group",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     type: "website",
+    locale: "id_ID",
+    url: siteUrl,
     siteName: "Ardana Perkasa Group",
-    title: "Ardana Perkasa Group (APG)",
+    title: "Ardana Perkasa Group (APG) - National Holding Company",
     description:
-      "Holding company yang membangun ekosistem lintas sektor dengan standar enterprise.",
+      "Holding company yang membangun ekosistem bisnis lintas sektor dengan standar enterprise dan strategi berkelanjutan.",
+    images: [
+      {
+        url: "/images/og-apg-fallback.jpg", // The temporary enterprise-safe APG branded fallback
+        width: 1200,
+        height: 630,
+        alt: "Ardana Perkasa Group - National Holding Company",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ardana Perkasa Group (APG)",
+    title: "Ardana Perkasa Group (APG) - National Holding Company",
     description:
-      "Holding company yang membangun ekosistem lintas sektor dengan standar enterprise.",
+      "Holding company yang membangun ekosistem bisnis lintas sektor dengan standar enterprise dan strategi berkelanjutan.",
+    images: ["/images/og-apg-fallback.jpg"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png" }
+    ],
   },
 };
 

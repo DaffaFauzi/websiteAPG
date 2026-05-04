@@ -7,18 +7,18 @@ const SUBSIDIARY_LOGOS = ['🏦', '🛡️', '⚙️', '🏅', '⚖️', '💡']
 
 // --- About Visual ---
 export const AboutVisual = () => (
-  <div className="relative h-full w-full flex items-center justify-center">
+  <div className="relative h-full w-full flex items-center justify-center scale-75 sm:scale-90 lg:scale-100">
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.14),transparent_62%)]" />
     
     <motion.div
       initial={{ opacity: 0, y: 16, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="h-48 w-48 rounded-3xl border border-white/16 bg-white/8 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.28)] relative z-10"
+      className="h-32 w-32 sm:h-48 sm:w-48 rounded-3xl border border-white/16 bg-white/8 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.28)] relative z-10"
     />
     
-    <div className="absolute top-1/4 right-1/4 h-28 w-28 rounded-full border border-white/12 bg-white/6" />
-    <div className="absolute bottom-1/4 left-1/4 h-24 w-24 rounded-3xl border border-white/12 bg-white/6" />
+    <div className="absolute top-1/4 right-1/4 h-20 w-20 sm:h-28 sm:w-28 rounded-full border border-white/12 bg-white/6" />
+    <div className="absolute bottom-1/4 left-1/4 h-16 w-16 sm:h-24 sm:w-24 rounded-3xl border border-white/12 bg-white/6" />
   </div>
 );
 
@@ -32,7 +32,7 @@ export const StructureVisual = () => {
   ];
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-full w-full scale-75 sm:scale-90 lg:scale-100">
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
         {/* Connection Lines */}
         <line 
@@ -69,13 +69,13 @@ export const StructureVisual = () => {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/16 bg-white/8 p-4 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.28)] z-10"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/16 bg-white/8 p-3 sm:p-4 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.28)] z-10 min-w-[160px] sm:min-w-0"
       >
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-full bg-blue-500/20 flex items-center justify-center text-xl">👑</div>
+          <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-blue-500/20 flex items-center justify-center text-lg sm:text-xl">👑</div>
           <div className="text-left">
-            <div className="text-[0.625rem] font-bold text-white/65 uppercase tracking-[0.18em]">Governance</div>
-            <div className="text-sm font-bold text-white">Board of Directors</div>
+            <div className="text-[0.5rem] sm:text-[0.625rem] font-bold text-white/65 uppercase tracking-[0.18em]">Governance</div>
+            <div className="text-xs sm:text-sm font-bold text-white">Board of Directors</div>
           </div>
         </div>
       </motion.div>
@@ -86,8 +86,8 @@ export const StructureVisual = () => {
 // --- Subsidiaries Visual ---
 export const SubsidiariesVisual = () => {
   return (
-    <div className="relative h-full w-full flex items-center justify-center">
-      <div className="grid grid-cols-3 gap-6">
+    <div className="relative h-full w-full flex items-center justify-center scale-75 sm:scale-90 lg:scale-100">
+      <div className="grid grid-cols-3 gap-4 sm:gap-6">
         {SUBSIDIARY_LOGOS.map((logo, idx) => (
           <motion.div
             key={idx}
@@ -95,7 +95,8 @@ export const SubsidiariesVisual = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: idx * 0.06 }}
             whileHover={{ y: -2, scale: 1.02, rotate: 2 }}
-            className="h-20 w-20 rounded-2xl border border-white/16 bg-white/8 flex items-center justify-center text-3xl shadow-[0_1rem_3rem_rgba(0,0,0,0.20)] cursor-pointer"
+            whileTap={{ scale: 0.95 }}
+            className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl border border-white/16 bg-white/8 flex items-center justify-center text-2xl sm:text-3xl shadow-[0_1rem_3rem_rgba(0,0,0,0.20)] cursor-pointer transition-transform"
           >
             {logo}
           </motion.div>
@@ -117,19 +118,19 @@ export const CareerVisual = () => {
   ];
 
   return (
-    <div className="relative h-full w-full flex items-center justify-center">
+    <div className="relative h-full w-full flex items-center justify-center scale-75 sm:scale-90 lg:scale-100">
       {stats.map((stat, idx) => (
         <motion.div
           key={idx}
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: idx * 0.08 }}
-          className={`absolute rounded-3xl border border-white/16 bg-white/8 p-6 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.28)] z-10
-            ${idx === 0 ? 'top-10 left-10' : idx === 1 ? 'bottom-20 right-10' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'}
+          className={`absolute rounded-3xl border border-white/16 bg-white/8 p-4 sm:p-6 shadow-[0_1.25rem_3.75rem_rgba(0,0,0,0.28)] z-10
+            ${idx === 0 ? 'top-0 left-0 sm:top-10 sm:left-10' : idx === 1 ? 'bottom-10 right-0 sm:bottom-20 sm:right-10' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'}
           `}
         >
-          <div className="text-3xl font-extrabold text-white mb-1">{stat.value}</div>
-          <div className="text-[0.625rem] font-bold text-white/60 uppercase tracking-[0.18em]">{stat.label}</div>
+          <div className="text-2xl sm:text-3xl font-extrabold text-white mb-1">{stat.value}</div>
+          <div className="text-[0.5rem] sm:text-[0.625rem] font-bold text-white/60 uppercase tracking-[0.18em]">{stat.label}</div>
         </motion.div>
       ))}
     </div>
@@ -138,7 +139,7 @@ export const CareerVisual = () => {
 
 // --- Contact Visual ---
 export const ContactVisual = () => (
-  <div className="relative h-full w-full flex items-center justify-center">
+  <div className="relative h-full w-full flex items-center justify-center scale-75 sm:scale-90 lg:scale-100">
     {/* Abstract Map Grid */}
     <div className="absolute inset-0 opacity-[0.12] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0.0625rem,transparent_0.0625rem)] bg-[size:2.25rem_2.25rem]" />
     
@@ -147,14 +148,14 @@ export const ContactVisual = () => (
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="relative rounded-3xl border border-white/16 bg-white/8 p-6 shadow-[0_1.5rem_5.5rem_rgba(0,0,0,0.32)] z-10 flex flex-col items-center"
+      className="relative rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-6 sm:p-8 shadow-[0_24px_48px_rgba(0,0,0,0.3)] z-10 flex flex-col items-center"
     >
-      <div className="h-16 w-16 rounded-full bg-blue-500/20 flex items-center justify-center text-4xl mb-4 relative">
-        📍
+      <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-blue-500/20 flex items-center justify-center text-4xl sm:text-5xl mb-5 relative shadow-[inset_0_0_20px_rgba(59,130,246,0.3)] border border-blue-400/30">
+        <span className="drop-shadow-lg">📍</span>
       </div>
       <div className="text-center">
-        <div className="text-sm font-bold text-white">Headquarters</div>
-        <div className="text-[0.625rem] text-white/60">Jakarta, Indonesia</div>
+        <div className="text-sm sm:text-base font-extrabold text-white tracking-wide">Headquarters</div>
+        <div className="text-xs sm:text-sm font-semibold text-white/60 mt-1 uppercase tracking-widest">Jakarta, Indonesia</div>
       </div>
     </motion.div>
   </div>

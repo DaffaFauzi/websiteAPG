@@ -11,23 +11,6 @@ import FinalCTASection from '@/components/sections/FinalCTASection';
 import GallerySection from '@/components/sections/GallerySection';
 import FooterSection from '@/components/sections/FooterSection';
 
-export const metadata: Metadata = {
-  title: 'Beranda',
-  description:
-    'Ardana Perkasa Group (APG) adalah holding company yang membangun ekosistem bisnis lintas sektor dengan tata kelola kuat, eksekusi disiplin, dan strategi berkelanjutan.',
-  keywords: [
-    'Ardana Perkasa Group',
-    'APG',
-    'holding company',
-    'ekosistem lintas sektor',
-    'enterprise governance',
-  ],
-  openGraph: {
-    title: 'Ardana Perkasa Group (APG)',
-    description: 'Holding company yang membangun ekosistem lintas sektor dengan standar enterprise.',
-    url: '/',
-  },
-};
 
 export default function Home() {
   return (

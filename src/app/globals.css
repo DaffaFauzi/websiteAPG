@@ -40,10 +40,21 @@
   --shadow-card-hover: 0 1.25rem 3.125rem rgba(15, 23, 42, 0.12);
   --shadow-elevated: 0 2.25rem 7.5rem rgba(2, 6, 23, 0.20);
 
+  /* Mobile Optimization Constants */
+  --mobile-px: 1rem; /* px-4 */
+  --mobile-py: 3rem; /* py-12 */
+  --tablet-px: 1.25rem; /* px-5 */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.875rem !important; line-height: 2.25rem !important; } /* text-3xl */
+  h2 { font-size: 1.5rem !important; line-height: 2rem !important; }    /* text-2xl */
+  h3 { font-size: 1.25rem !important; line-height: 1.75rem !important; } /* text-xl */
+  p { font-size: 0.875rem !important; line-height: 1.25rem !important; }  /* text-sm */
 }
 
 @media (max-width: 48rem) {
@@ -54,6 +65,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -61,6 +73,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 @keyframes marquee {
@@ -161,6 +175,31 @@ body {
       rgba(243, 248, 255, 0.14) 75%,
       rgba(243, 248, 255, 0.22) 100%
     );
+  }
+
+  /* Mobile Performance Optimizations */
+  @media (max-width: 1024px) {
+    .animate-float, 
+    .animate-slow-spin, 
+    .animate-pulse-soft {
+      animation-duration: 0s !important;
+      animation: none !important;
+    }
+    
+    .backdrop-blur-xl,
+    .backdrop-blur-2xl {
+      backdrop-filter: blur(8px) !important; /* Reduce blur intensity */
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float, 
+    .animate-slow-spin, 
+    .animate-pulse-soft,
+    .marquee {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 
   .animate-slow-spin {

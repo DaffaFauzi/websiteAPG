@@ -35,7 +35,7 @@ const managementData = [
 const StructureClient = () => {
   const { t } = useLanguage();
   return (
-    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <main className="min-h-screen bg-slate-50 text-slate-950">
       <InnerPageHero
         tag={t('struktur.tag')}
         title={t('struktur.title')}
@@ -44,59 +44,77 @@ const StructureClient = () => {
         <StructureVisual />
       </InnerPageHero>
 
-      {/* Management Hierarchical Section */}
-      <section className="section-padding bg-[var(--bg-primary)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Institutional Governance Architecture */}
+      <section className="apg-section-divider py-16 sm:py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10">
           <div className="flex flex-col items-center">
             {managementData.map((section, sIdx) => (
               <React.Fragment key={section.categoryKey}>
+                {/* Category Header */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                  className="mb-6 mt-10 w-full text-center relative"
+                  className="mb-10 sm:mb-12 mt-12 w-full text-center relative flex justify-center items-center"
                 >
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 inline-block bg-[var(--bg-primary)] px-6 relative z-10">
+                  <div className="absolute left-0 right-0 h-px bg-slate-200" />
+                  <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#041a40] uppercase bg-slate-50 px-8 relative z-10">
                     {t(section.categoryKey)}
                   </h2>
-                  <div className="absolute left-0 right-0 top-1/2 h-px bg-slate-200 -z-0" />
                 </motion.div>
 
-                <div className="flex flex-wrap justify-center gap-6 md:gap-10 relative">
+                {/* Governance Plates */}
+                <div className="flex flex-wrap justify-center items-stretch gap-6 sm:gap-8 lg:gap-10 relative">
                   {section.members.map((member, mIdx) => (
                     <motion.div
                       key={member.name}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: mIdx * 0.08, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                      className="flex flex-col items-center group"
+                      transition={{ delay: mIdx * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                      className="group relative w-full sm:w-[18rem] md:w-[20rem]"
                     >
-                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mb-6 bg-slate-200 border-4 border-white shadow-[var(--shadow-card)] group-hover:-translate-y-1 transition-[transform,box-shadow] duration-250 apg-ease relative z-10">
-                        <Image
-                          src={member.photo}
-                          alt={member.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="text-center px-5 py-4 bg-white rounded-3xl shadow-[var(--shadow-card)] w-64 group-hover:-translate-y-1 transition-[transform,box-shadow,border-color] duration-250 apg-ease border border-slate-200 relative z-10">
-                        <h3 className="text-lg md:text-xl font-extrabold text-slate-950 mb-1">{member.name}</h3>
-                        <p className="text-[#0A66C2] font-semibold text-sm">{member.role}</p>
+                      <div className="rounded-[2rem] bg-white border border-slate-100 overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:border-slate-200 transition-all duration-500 flex flex-col h-full">
+                        {/* Portrait */}
+                        <div className="relative h-[18rem] w-full bg-[#0A66C2]/5 overflow-hidden">
+                          <Image
+                            src={member.photo}
+                            alt={member.name}
+                            fill
+                            className="object-cover object-top transition-all duration-700 group-hover:scale-105"
+                            sizes="(max-width: 640px) 100vw, 320px"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#041a40]/60 via-transparent to-transparent opacity-60" />
+                        </div>
+                        
+                        {/* Info Plate */}
+                        <div className="p-6 relative bg-white flex flex-col justify-center text-center">
+                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#0A66C2] rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <h3 className="text-lg font-black text-[#041a40] mb-1 group-hover:text-[#0A66C2] transition-colors duration-300">
+                            {member.name}
+                          </h3>
+                          <p className="text-xs font-bold tracking-widest text-[#0A66C2]/80 uppercase">
+                            {member.role}
+                          </p>
+                        </div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
 
-                {/* Vertical Connector Line */}
+                {/* Vertical Connector */}
                 {sIdx < managementData.length - 1 && (
                   <motion.div 
                     initial={{ height: 0 }}
-                    whileInView={{ height: '3.75rem' }}
+                    whileInView={{ height: '4rem' }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-0.5 bg-[#0A66C2]/60 mt-8"
+                    className="w-[2px] bg-slate-200 mt-10"
                   />
                 )}
               </React.Fragment>
@@ -105,26 +123,36 @@ const StructureClient = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding relative overflow-hidden bg-[#0A66C2] text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_60%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_68%)]" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      {/* Deep Institutional CTA */}
+      <section className="relative overflow-hidden py-16 sm:py-24 lg:py-32 bg-slate-50 text-slate-950">
+        <div className="max-w-5xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#07337A] to-[#041a40] text-white p-10 sm:p-14 lg:p-20 shadow-[0_30px_60px_rgba(4,26,64,0.4)]"
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-6">{t('struktur.cta.title')}</h2>
-            <p className="text-lg text-white/80 mb-10">
-              {t('struktur.cta.desc')}
-            </p>
-            <Link 
-              href="/kontak"
-              className="apg-btn inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-sm font-extrabold text-slate-950 shadow-[0_0.875rem_2.5rem_rgba(0,0,0,0.18)] hover:bg-white/95 truncate whitespace-nowrap"
-            >
-              {t('common.contact_us')}
-            </Link>
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem]" />
+            <div className="absolute left-1/2 -top-24 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_top,rgba(10,102,194,0.4),transparent_60%)] blur-2xl pointer-events-none" />
+            
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-8 backdrop-blur-md">
+                Governance Inquiry
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 leading-tight drop-shadow-md">
+                {t('struktur.cta.title')}
+              </h2>
+              <p className="text-base sm:text-lg text-white/80 mb-10 leading-relaxed font-medium">
+                {t('struktur.cta.desc')}
+              </p>
+              <Link
+                href="/kontak"
+                className="inline-flex min-h-[3.5rem] items-center justify-center rounded-full bg-white px-8 sm:px-10 py-3 text-sm font-extrabold text-[#041a40] shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 truncate whitespace-nowrap"
+              >
+                {t('common.contact_us')}
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

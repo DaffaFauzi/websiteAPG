@@ -42,22 +42,22 @@ const BusinessFocusSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-[var(--bg-secondary)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.18em] text-slate-700 uppercase font-extrabold mb-4">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[var(--bg-secondary)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
+        <div className="text-center mb-10 sm:mb-14">
+          <p className="text-[10px] sm:text-xs tracking-[0.18em] text-[#0A66C2] font-extrabold uppercase mb-3 sm:mb-4">
             {t('focus.tag')}
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-950 mb-2">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-extrabold text-slate-950 mb-2 leading-tight">
             {t('focus.title.part1')}
           </h2>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[var(--accent)] mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-extrabold text-[#0A66C2] mb-4 sm:mb-6 leading-tight drop-shadow-sm">
             {t('focus.title.part2')}
           </h2>
-          <div className="h-1.5 w-20 bg-[var(--accent)] mx-auto rounded-full" />
+          <div className="h-1 w-16 bg-[#0A66C2] mx-auto rounded-full shadow-[0_2px_10px_rgba(10,102,194,0.4)]" />
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
           {focusItems.map((item, index) => (
             <motion.div
               key={index}
@@ -65,14 +65,14 @@ const BusinessFocusSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -4 }}
-              className="p-8 rounded-3xl bg-white border border-slate-200 shadow-[var(--shadow-card)] hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] transition-[transform,box-shadow,border-color] duration-250 apg-ease group"
+              whileHover={{ y: -6 }}
+              className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/80 shadow-[0_15px_40px_-12px_rgba(0,0,0,0.08)] hover:border-slate-300 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] active:scale-95 transition-all duration-300 apg-ease group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--accent)] mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-[#0A66C2] mb-6 shadow-sm group-hover:bg-[#0A66C2] group-hover:text-white transition-colors duration-300">
                 <item.icon className="h-6 w-6" />
               </div>
               <h3 className="text-lg font-extrabold text-slate-950 mb-3">{item.title}</h3>
-              <p className="text-slate-700 leading-relaxed text-sm">{item.description}</p>
+              <p className="text-slate-700 font-medium leading-relaxed text-sm max-w-prose">{item.description}</p>
             </motion.div>
           ))}
         </div>

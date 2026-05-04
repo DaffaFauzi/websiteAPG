@@ -135,7 +135,7 @@ export default function AIAssistant() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="min-h-12 min-w-12 rounded-xl hover:bg-slate-100 text-slate-700"
+              className="min-h-12 min-w-12 rounded-xl hover:bg-slate-100 text-slate-700 active:scale-95 transition-transform"
               aria-label={t('ai.aria.close')}
             >
               ✕
@@ -148,8 +148,8 @@ export default function AIAssistant() {
                 <div
                   className={
                     m.role === 'user'
-                      ? 'max-w-[85%] rounded-2xl rounded-br-md bg-slate-900 text-white px-3 py-2 text-sm leading-relaxed'
-                      : 'max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-900 px-3 py-2 text-sm leading-relaxed'
+                      ? 'max-w-[85%] rounded-2xl rounded-br-md bg-slate-900 text-white px-4 py-2 text-sm leading-relaxed'
+                      : 'max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-900 px-4 py-2 text-sm leading-relaxed'
                   }
                 >
                   {m.content}
@@ -159,7 +159,7 @@ export default function AIAssistant() {
 
             {loading ? (
               <div className="flex justify-start">
-                <div className="max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-700 px-3 py-2 text-sm">
+                <div className="max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-700 px-4 py-2 text-sm">
                   {t('ai.typing')}
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function AIAssistant() {
                   key={p}
                   type="button"
                   onClick={() => send(p)}
-                  className="min-h-12 text-[0.6875rem] px-3 py-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 truncate max-w-full"
+                  className="min-h-12 text-[0.6875rem] px-4 py-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 truncate max-w-full active:scale-95 transition-transform"
                 >
                   {p}
                 </button>
@@ -192,12 +192,12 @@ export default function AIAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={t('ai.placeholder')}
-                className="flex-1 min-h-12 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-950 outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/20 focus:border-[var(--color-secondary)]"
+                className="flex-1 min-h-12 rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-950 outline-none focus:ring-2 focus:ring-[#0A66C2]/20 focus:border-[#0A66C2]"
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="min-h-12 px-4 rounded-xl bg-[var(--color-secondary)] text-white font-extrabold disabled:opacity-60 truncate"
+                className="min-h-12 px-6 rounded-xl bg-[#0A66C2] text-white font-extrabold disabled:opacity-60 truncate active:scale-95 transition-transform"
               >
                 {t('ai.send')}
               </button>
@@ -210,7 +210,7 @@ export default function AIAssistant() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="h-12 px-4 rounded-2xl bg-[var(--color-secondary)] text-white font-extrabold shadow-xl inline-flex items-center gap-2"
+          className="h-12 px-6 rounded-2xl bg-[#0A66C2] text-white font-extrabold shadow-xl inline-flex items-center gap-2 active:scale-95 transition-transform"
           aria-label={t('ai.aria.open')}
         >
           <svg

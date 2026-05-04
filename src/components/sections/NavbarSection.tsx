@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const NavbarSection: React.FC = () => {
@@ -14,37 +14,40 @@ const NavbarSection: React.FC = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Close mobile menu when clicking outside
+  // Scroll state for sticky logic
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // ... (keep existing mobile menu logic)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Don't close if clicking on the hamburger button
-      if (hamburgerButtonRef.current?.contains(event.target as Node)) {
-        return;
-      }
-
+      if (hamburgerButtonRef.current?.contains(event.target as Node)) return;
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     const id = window.setTimeout(() => setIsMobileMenuOpen(false), 0);
     return () => window.clearTimeout(id);
   }, [pathname]);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -60,83 +63,83 @@ const NavbarSection: React.FC = () => {
   ];
 
   const isActiveLink = (href: string) => {
-    if (href === '/') {
-      return pathname === '/';
-    }
+    if (href === '/') return pathname === '/';
     return pathname?.startsWith(href);
   };
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 bg-white text-slate-900"
-      style={{ color: '#0f172a' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200/50 shadow-[0_4px_20px_rgb(0,0,0,0.03)]'
+          : 'bg-white border-b border-slate-100'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20 md:h-24'}`}>
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center space-x-3" style={{ color: 'inherit' }}>
-              <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-slate-200 bg-white p-1">
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="relative h-10 w-10 sm:h-12 sm:w-12 overflow-hidden rounded-xl bg-white shadow-sm border border-slate-100 group-hover:shadow-md transition-all duration-300">
                 <Image
                   src="/images/apgg.png"
                   alt={t('brand.logoAlt')}
                   fill
-                  sizes="40px"
-                  className="object-contain p-0.5"
+                  sizes="(max-width: 640px) 40px, 48px"
+                  className="object-contain p-1"
                 />
               </div>
-              <div className="leading-tight">
-                <span
-                  className="block text-sm md:text-base font-extrabold text-slate-950 tracking-tight"
-                  style={{ color: '#020617' }}
-                >
+              <div className="leading-tight flex flex-col justify-center">
+                <span className="block text-sm sm:text-lg font-black text-[#041a40] tracking-tight group-hover:text-[#0A66C2] transition-colors duration-300">
                   {t('brand.name')}
+                </span>
+                <span className="text-[0.6rem] sm:text-xs font-bold text-slate-400 uppercase tracking-widest hidden sm:block">
+                  Holding Company
                 </span>
               </div>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navigationItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 title={item.label}
-                className={`relative min-h-11 min-w-24 max-w-44 px-4 py-2 text-sm font-semibold transition-colors duration-200 apg-ease rounded-xl border truncate whitespace-nowrap ${
+                className={`relative py-2 text-sm font-bold transition-all duration-300 ${
                   isActiveLink(item.href)
-                    ? 'text-[#0A66C2] bg-white border-slate-200 after:absolute after:left-3 after:right-3 after:bottom-[0.35rem] after:h-[0.125rem] after:rounded-full after:bg-[#0A66C2]'
-                    : 'text-slate-900 border-transparent hover:text-[#0A66C2] hover:bg-slate-50 hover:border-slate-200'
+                    ? 'text-[#0A66C2]'
+                    : 'text-slate-600 hover:text-[#041a40]'
                 }`}
               >
                 {item.label}
+                {isActiveLink(item.href) && (
+                  <motion.div
+                    layoutId="desktopNavIndicator"
+                    className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[#0A66C2] rounded-t-full"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <div className={`absolute -bottom-[1px] left-1/2 right-1/2 h-[2px] bg-[#041a40] rounded-t-full transition-all duration-300 ${isActiveLink(item.href) ? 'hidden' : 'hover:left-0 hover:right-0 opacity-0 hover:opacity-100'}`} />
               </Link>
             ))}
 
             {/* Language Switcher */}
-            <div className="ml-4 relative flex items-center rounded-full border border-slate-200 bg-white p-1 apg-ease">
-              <span
-                aria-hidden="true"
-                className={[
-                  'absolute inset-y-1 left-1 w-10 rounded-full bg-[#0A66C2] transition-transform duration-250 apg-ease',
-                  language === 'en' ? 'translate-x-[2.75rem]' : 'translate-x-0',
-                ].join(' ')}
-              />
+            <div className="ml-4 flex items-center gap-1 bg-slate-50 p-1 rounded-full border border-slate-200/60">
               <button
                 onClick={() => setLanguage('id')}
-                className={[
-                  'relative z-10 w-10 px-0 py-2 text-xs font-extrabold transition-colors duration-200 apg-ease rounded-full',
-                  language === 'id' ? 'text-white' : 'text-slate-600 hover:text-slate-900',
-                ].join(' ')}
+                className={`px-3 py-1.5 text-xs font-black rounded-full transition-all duration-300 ${
+                  language === 'id' ? 'bg-white text-[#0A66C2] shadow-sm' : 'text-slate-500 hover:text-slate-800'
+                }`}
               >
                 ID
               </button>
               <button
                 onClick={() => setLanguage('en')}
-                className={[
-                  'relative z-10 w-10 px-0 py-2 text-xs font-extrabold transition-colors duration-200 apg-ease rounded-full',
-                  language === 'en' ? 'text-white' : 'text-slate-600 hover:text-slate-900',
-                ].join(' ')}
+                className={`px-3 py-1.5 text-xs font-black rounded-full transition-all duration-300 ${
+                  language === 'en' ? 'bg-white text-[#0A66C2] shadow-sm' : 'text-slate-500 hover:text-slate-800'
+                }`}
               >
                 EN
               </button>
@@ -144,30 +147,39 @@ const NavbarSection: React.FC = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center">
             <button
               ref={hamburgerButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center min-h-12 min-w-12 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors duration-200 apg-ease focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0A66C2]"
-              aria-expanded="false"
+              className="relative z-[60] flex items-center justify-center h-11 w-11 sm:h-12 sm:w-12 rounded-full text-slate-700 hover:bg-slate-50 active:scale-90 transition-all duration-200"
+              aria-label={isMobileMenuOpen ? t('nav.menu.close') : t('nav.menu.open')}
             >
-              <span className="sr-only">{t('nav.menu.open')}</span>
-              {/* Hamburger icon */}
-              <div className="relative w-6 h-6">
-                <span
-                  className={`absolute block h-0.5 w-6 bg-current transform transition-all duration-400 apg-ease ${
-                    isMobileMenuOpen ? 'rotate-45 top-2.5' : 'top-1'
-                  }`}
+              <div className="flex flex-col gap-1.5 items-center justify-center">
+                <motion.span
+                  animate={{
+                    rotate: isMobileMenuOpen ? 45 : 0,
+                    y: isMobileMenuOpen ? 8 : 0,
+                    width: isMobileMenuOpen ? 24 : 24
+                  }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="block h-0.5 bg-slate-900 rounded-full origin-center"
                 />
-                <span
-                  className={`absolute block h-0.5 w-6 bg-current transform transition-all duration-400 apg-ease top-2.5 ${
-                    isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
-                  }`}
+                <motion.span
+                  animate={{
+                    opacity: isMobileMenuOpen ? 0 : 1,
+                    x: isMobileMenuOpen ? 20 : 0
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="block h-0.5 w-6 bg-slate-900 rounded-full"
                 />
-                <span
-                  className={`absolute block h-0.5 w-6 bg-current transform transition-all duration-400 apg-ease ${
-                    isMobileMenuOpen ? '-rotate-45 top-2.5' : 'top-4'
-                  }`}
+                <motion.span
+                  animate={{
+                    rotate: isMobileMenuOpen ? -45 : 0,
+                    y: isMobileMenuOpen ? -8 : 0,
+                    width: isMobileMenuOpen ? 24 : 24
+                  }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="block h-0.5 bg-slate-900 rounded-full origin-center"
                 />
               </div>
             </button>
@@ -175,70 +187,98 @@ const NavbarSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
-      {isMobileMenuOpen && (
-        <>
-          {/* Backdrop overlay */}
-          <div
-            className="fixed top-16 left-0 right-0 bottom-0 bg-black/25 z-40 lg:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          <div className="lg:hidden relative z-50" ref={mobileMenuRef}>
-            <div className="mx-4 mt-4 px-3 py-3 bg-white border border-slate-200 rounded-2xl shadow-[0_1rem_2.5rem_rgba(2,6,23,0.10)]">
-            {/* Navigation Items */}
-            <div className="space-y-1">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  title={item.label}
-                  className={`relative block min-h-12 px-3 py-3 text-base font-semibold rounded-xl transition-colors duration-200 apg-ease border truncate whitespace-nowrap ${
-                    isActiveLink(item.href)
-                      ? 'text-[#0A66C2] bg-white border-slate-200 after:absolute after:left-4 after:right-4 after:bottom-[0.75rem] after:h-[0.125rem] after:rounded-full after:bg-[#0A66C2]'
-                      : 'text-slate-700 border-transparent hover:text-slate-900 hover:bg-slate-50 hover:border-slate-200'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+      {/* Mobile Navigation Menu Redesign */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 lg:hidden"
+          >
+            {/* Backdrop with blur */}
+            <div 
+              className="absolute inset-0 bg-white/95 backdrop-blur-xl"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
 
-              {/* Mobile Language Switcher */}
-              <div className="mt-6 flex items-center justify-between px-4 py-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <span className="text-sm font-extrabold text-slate-700 uppercase tracking-[0.18em]">{t('nav.language')}</span>
-                <div className="relative flex rounded-full border border-slate-200 bg-white p-1 apg-ease">
-                  <span
-                    aria-hidden="true"
-                    className={[
-                      'absolute inset-y-1 left-1 w-12 rounded-full bg-[#0A66C2] transition-transform duration-250 apg-ease',
-                      language === 'en' ? 'translate-x-[3.25rem]' : 'translate-x-0',
-                    ].join(' ')}
-                  />
-                  <button
-                    onClick={() => setLanguage('id')}
-                    className={[
-                      'relative z-10 w-12 min-h-12 px-0 py-2 text-sm font-extrabold rounded-full transition-colors duration-200 apg-ease',
-                      language === 'id' ? 'text-white' : 'text-slate-600',
-                    ].join(' ')}
+            <div className="relative h-full flex flex-col pt-24 pb-12 px-5 sm:px-6 overflow-y-auto">
+              <nav className="flex flex-col space-y-2">
+                {navigationItems.map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ 
+                      delay: index * 0.08, 
+                      duration: 0.5, 
+                      ease: [0.22, 1, 0.36, 1] 
+                    }}
                   >
-                    ID
-                  </button>
-                  <button
-                    onClick={() => setLanguage('en')}
-                    className={[
-                      'relative z-10 w-12 min-h-12 px-0 py-2 text-sm font-extrabold rounded-full transition-colors duration-200 apg-ease',
-                      language === 'en' ? 'text-white' : 'text-slate-600',
-                    ].join(' ')}
-                  >
-                    EN
-                  </button>
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`group relative block py-4 text-2xl sm:text-3xl font-bold transition-all duration-300 leading-tight ${
+                        isActiveLink(item.href)
+                          ? 'text-[#0A66C2] translate-x-2'
+                          : 'text-slate-900 hover:text-[#0A66C2] active:scale-[0.98]'
+                      }`}
+                    >
+                      <span className="relative z-10 flex items-center">
+                        {item.label}
+                        {isActiveLink(item.href) && (
+                          <motion.span 
+                            layoutId="activeTabMobile"
+                            className="ml-4 h-2 w-2 rounded-full bg-[#0A66C2]" 
+                          />
+                        )}
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ delay: navigationItems.length * 0.08 + 0.1, duration: 0.5 }}
+                className="mt-auto pt-10"
+              >
+                <div className="flex items-center justify-between p-5 sm:p-6 rounded-3xl bg-slate-50 border border-slate-100">
+                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">
+                    {t('nav.language')}
+                  </span>
+                  <div className="flex bg-white rounded-full p-1 border border-slate-200 shadow-sm">
+                    <button
+                      onClick={() => setLanguage('id')}
+                      className={`px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 active:scale-95 ${
+                        language === 'id' 
+                          ? 'bg-[#0A66C2] text-white shadow-lg shadow-blue-200' 
+                          : 'text-slate-600 active:bg-slate-50'
+                      }`}
+                    >
+                      ID
+                    </button>
+                    <button
+                      onClick={() => setLanguage('en')}
+                      className={`px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 active:scale-95 ${
+                        language === 'en' 
+                          ? 'bg-[#0A66C2] text-white shadow-lg shadow-blue-200' 
+                          : 'text-slate-600 active:bg-slate-50'
+                      }`}
+                    >
+                      EN
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
-          </div>
-        </>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

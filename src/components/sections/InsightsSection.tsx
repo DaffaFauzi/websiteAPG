@@ -20,53 +20,127 @@ export default function InsightsSection() {
     { title: t('insights.3.title'), excerpt: t('insights.3.excerpt'), tag: t('insights.3.tag'), href: '#' },
   ];
 
-  return (
-    <section className="apg-section-divider relative py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between mb-14">
-          <div className="max-w-2xl">
-            <p className="text-xs tracking-[0.18em] text-[#0A66C2] uppercase font-extrabold mb-4">{t('insights.tag')}</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-950">{t('insights.title')}</h2>
-            <p className="mt-5 text-lg text-slate-700">{t('insights.desc')}</p>
-          </div>
-          <Link href="#" className="apg-btn inline-flex items-center justify-center gap-3 min-h-12 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-extrabold text-slate-950 shadow-[var(--shadow-card)] hover:border-slate-300 hover:bg-slate-50 hover:-translate-y-[1px] active:translate-y-0 truncate whitespace-nowrap">
-            {t('insights.cta')}
-            <span className="text-lg">→</span>
-          </Link>
-        </div>
+  const featured = items[0];
+  const listItems = items.slice(1);
 
-        <div className="grid gap-6">
-          {items.map((item, idx) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: '1.125rem' }}
+  return (
+    <section className="apg-section-divider relative py-16 sm:py-20 lg:py-20 bg-white overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative">
+        <div className="flex flex-col gap-6 sm:gap-8 sm:flex-row sm:items-end sm:justify-between mb-16 sm:mb-20">
+          <div className="max-w-2xl text-center sm:text-left">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.06, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -4 }}
-              className="group"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-6 shadow-sm"
             >
-              <Link
-                href={item.href}
-                className="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[var(--shadow-card)] transition-[transform,box-shadow,border-color] duration-250 apg-ease hover:border-slate-300 hover:shadow-[var(--shadow-card-hover)] sm:flex-row"
-              >
-                <div className="relative h-44 w-full bg-[#0A66C2] sm:h-auto sm:w-72">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.16),transparent_58%)]" />
-                  <div className="absolute left-5 top-5 inline-flex max-w-[calc(100%-2.5rem)] rounded-full bg-white/14 px-3 py-1 text-[0.625rem] tracking-[0.18em] uppercase text-white/90 font-extrabold truncate">
-                    {item.tag}
-                  </div>
-                </div>
-                <div className="flex-1 p-7">
-                  <div className="text-xl font-extrabold text-slate-950 leading-snug line-clamp-2 min-h-[2.75rem]">{item.title}</div>
-                  <p className="mt-3 text-sm text-slate-700 leading-6 line-clamp-2 min-h-[3rem]">{item.excerpt}</p>
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-[#0A66C2]">
-                    {t('insights.readMore')}
-                    <span className="transition-transform duration-250 group-hover:translate-x-1">→</span>
-                  </div>
-                </div>
-              </Link>
+              <span className="text-[#0A66C2]">📰</span> Corporate Newsroom
             </motion.div>
-          ))}
+            <motion.h2 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 leading-tight tracking-tight"
+            >
+              {t('insights.title')}
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-prose mx-auto sm:mx-0"
+            >
+              {t('insights.desc')}
+            </motion.p>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            <Link href="#" className="inline-flex items-center justify-center gap-3 bg-white text-slate-950 font-extrabold px-8 py-3.5 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:bg-slate-50 transition-all hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] hover:-translate-y-1 active:translate-y-0 active:scale-95 group border border-slate-200 w-full sm:w-auto">
+              {t('insights.cta')}
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Magazine Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12">
+          
+          {/* Featured Article */}
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-7 group"
+          >
+            <Link href={featured.href} className="block h-full relative rounded-[2rem] overflow-hidden bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 border border-slate-100 group-hover:border-slate-200">
+              <div className="relative h-64 sm:h-80 md:h-96 w-full bg-[#0A66C2] overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)] mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                <div className="absolute top-6 left-6 inline-flex rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-[0.625rem] sm:text-xs tracking-[0.2em] uppercase text-white font-extrabold shadow-sm">
+                  {featured.tag}
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-10 text-white transform transition-transform duration-500 group-hover:-translate-y-2">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight mb-4 tracking-tight drop-shadow-md">
+                  {featured.title}
+                </h3>
+                <p className="text-white/80 line-clamp-2 text-sm sm:text-base leading-relaxed mb-6 font-medium max-w-2xl">
+                  {featured.excerpt}
+                </p>
+                <div className="inline-flex items-center gap-2 text-sm font-extrabold text-white">
+                  {t('insights.readMore')}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* Staked Articles */}
+          <div className="lg:col-span-5 flex flex-col gap-6 sm:gap-8">
+            {listItems.map((item, idx) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + idx * 0.1, duration: 0.6 }}
+                className="group flex-1"
+              >
+                <Link href={item.href} className="flex flex-col sm:flex-row h-full rounded-[2rem] sm:rounded-3xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-[0_16px_32px_rgb(0,0,0,0.06)] border border-slate-100 hover:border-slate-200 transition-all duration-500 overflow-hidden">
+                  <div className="relative h-40 sm:h-full sm:w-48 bg-slate-100 overflow-hidden shrink-0">
+                    <div className="absolute inset-0 bg-[#07337A]/5 group-hover:bg-[#07337A]/10 transition-colors duration-500" />
+                    <div className="absolute top-4 left-4 inline-flex rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[0.625rem] tracking-[0.15em] uppercase text-[#07337A] font-extrabold shadow-sm">
+                      {item.tag}
+                    </div>
+                  </div>
+                  <div className="p-6 flex flex-col justify-center flex-1">
+                    <h4 className="text-lg sm:text-xl font-extrabold text-slate-950 mb-3 leading-snug group-hover:text-[#0A66C2] transition-colors duration-300 tracking-tight">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                      {item.excerpt}
+                    </p>
+                    <div className="inline-flex items-center gap-2 text-xs font-extrabold text-[#0A66C2]">
+                      {t('insights.readMore')}
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+          
         </div>
       </div>
     </section>
