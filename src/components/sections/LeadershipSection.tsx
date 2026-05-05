@@ -41,14 +41,14 @@ export default function LeadershipSection() {
   ];
 
   return (
-    <section className="apg-section-divider relative py-16 sm:py-20 lg:py-24 bg-slate-50 overflow-hidden">
+    <section className="apg-section-divider relative py-12 sm:py-20 lg:py-24 bg-slate-50 overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:24px_24px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative">
-        <div className="text-center mb-16 sm:mb-20 px-4">
+        <div className="text-center mb-10 sm:mb-20 px-4">
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export default function LeadershipSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 leading-tight tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-950 leading-tight tracking-tight max-w-[280px] sm:max-w-none mx-auto"
           >
             {t('leadership.title')}
           </motion.h2>
@@ -71,7 +71,7 @@ export default function LeadershipSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-base sm:text-lg text-slate-700 font-medium max-w-2xl mx-auto leading-relaxed"
+            className="mt-4 sm:mt-6 text-sm sm:text-lg text-slate-700 font-medium max-w-[320px] sm:max-w-2xl mx-auto leading-relaxed"
           >
             {t('leadership.desc')}
           </motion.p>
@@ -84,11 +84,11 @@ export default function LeadershipSection() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: idx * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="group relative h-full"
             >
-              <div className="rounded-3xl bg-slate-50 border border-slate-200/80 overflow-hidden shadow-[0_15px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] hover:border-slate-300 transition-all duration-500 apg-ease h-full flex flex-col hover:-translate-y-1">
-                <div className="relative h-64 sm:h-72 w-full bg-[#0A66C2]/5 overflow-hidden">
+              <div className="rounded-2xl sm:rounded-3xl bg-slate-50 border border-slate-200/50 sm:border-slate-200/80 overflow-hidden shadow-sm sm:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.05)] sm:hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] sm:hover:border-slate-300 transition-all duration-300 apg-ease h-full flex flex-col sm:hover:-translate-y-1 active:scale-[0.98]">
+                <div className="relative h-56 sm:h-72 w-full bg-[#0A66C2]/5 overflow-hidden">
                   <Image 
                     src={p.image} 
                     alt={p.name} 
@@ -99,9 +99,9 @@ export default function LeadershipSection() {
                   {/* Subtle inner shadow overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#041a40]/60 via-transparent to-transparent opacity-60" />
                 </div>
-                <div className="p-6 sm:p-8 flex-grow flex flex-col justify-center text-center relative bg-white">
+                <div className="p-6 flex-grow flex flex-col justify-center text-center relative bg-white">
                   {/* Small decorative line */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#0A66C2] rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#0A66C2] rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   <div className="text-lg font-black text-[#041a40] truncate mb-2 group-hover:text-[#0A66C2] transition-colors duration-300">{p.name}</div>
                   <div className="text-xs sm:text-sm font-semibold text-[#0A66C2]/80 tracking-wide uppercase line-clamp-2">{p.role}</div>

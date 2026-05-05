@@ -24,7 +24,7 @@ export default function InsightsSection() {
   const listItems = items.slice(1);
 
   return (
-    <section className="apg-section-divider relative py-16 sm:py-20 lg:py-20 bg-white overflow-hidden">
+    <section className="apg-section-divider relative py-12 sm:py-20 lg:py-20 bg-white overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
@@ -36,7 +36,7 @@ export default function InsightsSection() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-6 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-6 shadow-sm"
             >
               <span className="text-[#0A66C2]">📰</span> Corporate Newsroom
             </motion.div>
@@ -45,7 +45,7 @@ export default function InsightsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 leading-tight tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-950 leading-tight tracking-tight max-w-[280px] sm:max-w-none mx-auto sm:mx-0"
             >
               {t('insights.title')}
             </motion.h2>
@@ -54,7 +54,7 @@ export default function InsightsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-prose mx-auto sm:mx-0"
+              className="mt-4 sm:mt-6 text-sm sm:text-lg text-slate-600 leading-relaxed max-w-[320px] sm:max-w-prose mx-auto sm:mx-0"
             >
               {t('insights.desc')}
             </motion.p>
@@ -64,10 +64,11 @@ export default function InsightsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
+            className="mt-4 sm:mt-0"
           >
-            <Link href="#" className="inline-flex items-center justify-center gap-3 bg-white text-slate-950 font-extrabold px-8 py-3.5 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:bg-slate-50 transition-all hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] hover:-translate-y-1 active:translate-y-0 active:scale-95 group border border-slate-200 w-full sm:w-auto">
+            <Link href="#" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-slate-950 font-bold px-8 py-3.5 rounded-full shadow-sm sm:shadow-[0_8px_20px_rgba(0,0,0,0.04)] sm:hover:bg-slate-50 transition-all sm:hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] sm:hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] group border border-slate-200 min-h-[3rem]">
               {t('insights.cta')}
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              <span className="transition-transform duration-300 sm:group-hover:translate-x-1">→</span>
             </Link>
           </motion.div>
         </div>
@@ -83,24 +84,24 @@ export default function InsightsSection() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-7 group"
           >
-            <Link href={featured.href} className="block h-full relative rounded-[2rem] overflow-hidden bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 border border-slate-100 group-hover:border-slate-200">
+            <Link href={featured.href} className="block h-full relative rounded-2xl sm:rounded-[2rem] overflow-hidden bg-white shadow-sm sm:shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300 border border-slate-100 sm:group-hover:border-slate-200 active:scale-[0.98]">
               <div className="relative h-64 sm:h-80 md:h-96 w-full bg-[#0A66C2] overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)] mix-blend-overlay" />
+                <div className="hidden sm:block absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)] mix-blend-overlay" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-                <div className="absolute top-6 left-6 inline-flex rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-[0.625rem] sm:text-xs tracking-[0.2em] uppercase text-white font-extrabold shadow-sm">
+                <div className="absolute top-6 left-6 inline-flex rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-[0.625rem] sm:text-xs tracking-[0.2em] uppercase text-white font-bold shadow-sm">
                   {featured.tag}
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-10 text-white transform transition-transform duration-500 group-hover:-translate-y-2">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight mb-4 tracking-tight drop-shadow-md">
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-10 text-white transform transition-transform duration-300 sm:group-hover:-translate-y-2">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4 tracking-tight drop-shadow-md">
                   {featured.title}
                 </h3>
                 <p className="text-white/80 line-clamp-2 text-sm sm:text-base leading-relaxed mb-6 font-medium max-w-2xl">
                   {featured.excerpt}
                 </p>
-                <div className="inline-flex items-center gap-2 text-sm font-extrabold text-white">
+                <div className="inline-flex items-center gap-2 text-sm font-bold text-white">
                   {t('insights.readMore')}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  <span className="transition-transform duration-300 sm:group-hover:translate-x-1">→</span>
                 </div>
               </div>
             </Link>
@@ -117,23 +118,23 @@ export default function InsightsSection() {
                 transition={{ delay: 0.2 + idx * 0.1, duration: 0.6 }}
                 className="group flex-1"
               >
-                <Link href={item.href} className="flex flex-col sm:flex-row h-full rounded-[2rem] sm:rounded-3xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-[0_16px_32px_rgb(0,0,0,0.06)] border border-slate-100 hover:border-slate-200 transition-all duration-500 overflow-hidden">
+                <Link href={item.href} className="flex flex-col sm:flex-row h-full rounded-2xl sm:rounded-3xl bg-white shadow-sm sm:shadow-[0_8px_30px_rgb(0,0,0,0.03)] sm:hover:shadow-[0_16px_32px_rgb(0,0,0,0.06)] border border-slate-100 sm:hover:border-slate-200 transition-all duration-300 overflow-hidden active:scale-[0.98]">
                   <div className="relative h-40 sm:h-full sm:w-48 bg-slate-100 overflow-hidden shrink-0">
-                    <div className="absolute inset-0 bg-[#07337A]/5 group-hover:bg-[#07337A]/10 transition-colors duration-500" />
-                    <div className="absolute top-4 left-4 inline-flex rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[0.625rem] tracking-[0.15em] uppercase text-[#07337A] font-extrabold shadow-sm">
+                    <div className="hidden sm:block absolute inset-0 bg-[#07337A]/5 group-hover:bg-[#07337A]/10 transition-colors duration-500" />
+                    <div className="absolute top-4 left-4 inline-flex rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[0.625rem] tracking-[0.15em] uppercase text-[#07337A] font-bold shadow-sm">
                       {item.tag}
                     </div>
                   </div>
                   <div className="p-6 flex flex-col justify-center flex-1">
-                    <h4 className="text-lg sm:text-xl font-extrabold text-slate-950 mb-3 leading-snug group-hover:text-[#0A66C2] transition-colors duration-300 tracking-tight">
+                    <h4 className="text-lg sm:text-xl font-bold text-slate-950 mb-3 leading-snug sm:group-hover:text-[#0A66C2] transition-colors duration-300 tracking-tight">
                       {item.title}
                     </h4>
                     <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed mb-4">
                       {item.excerpt}
                     </p>
-                    <div className="inline-flex items-center gap-2 text-xs font-extrabold text-[#0A66C2]">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0A66C2]">
                       {t('insights.readMore')}
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      <span className="transition-transform duration-300 sm:group-hover:translate-x-1">→</span>
                     </div>
                   </div>
                 </Link>

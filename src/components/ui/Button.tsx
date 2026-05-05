@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    'inline-flex min-h-12 min-w-0 items-center justify-center font-extrabold leading-none rounded-full truncate transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white active:scale-[0.98]';
+    'inline-flex min-h-12 min-w-0 items-center justify-center font-bold leading-none rounded-full truncate transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white active:scale-[0.98]';
 
   const variantClasses = {
     primary:

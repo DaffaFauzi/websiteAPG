@@ -1,4 +1,6 @@
-import { NextResponse } from 'next/server';
+// Force Refresh - Ardana Assistant API
+import { NextResponse } from "next/server";
+import { knowledge, KnowledgeItem } from '@/lib/knowledge';
 
 type ChatMessage = {
   role: 'system' | 'user' | 'assistant';
@@ -6,7 +8,8 @@ type ChatMessage = {
 };
 
 type RequestBody = {
-  messages: ChatMessage[];
+  messages?: ChatMessage[];
+  message?: string; // Flexible for simple string input
   language?: 'id' | 'en';
 };
 
@@ -18,54 +21,44 @@ const normalizeProvider = (value: string | undefined) => {
   return 'openai';
 };
 
-const buildFallbackReply = (args: {
-  language: 'id' | 'en';
-  assistantName: string;
-  messages: ChatMessage[];
-  reason: 'no_key' | 'provider_error' | 'empty';
-}) => {
-  const lastUser = [...args.messages].reverse().find((m) => m.role === 'user')?.content?.trim() ?? '';
-  const text = lastUser.toLowerCase();
+/**
+ * Simple keyword-based search for RAG context
+ */
+function searchRelevantKnowledge(query: string): KnowledgeItem[] {
+  const q = query.toLowerCase();
+  return knowledge
+    .map(item => {
+      let score = 0;
+      // Exact match in title
+      if (item.title.toLowerCase().includes(q)) score += 10;
+      // Match in keywords
+      item.keywords.forEach(kw => {
+        if (q.includes(kw.toLowerCase())) score += 5;
+      });
+      // Content match
+      if (item.content.toLowerCase().includes(q)) score += 2;
+      return { item, score };
+    })
+    .filter(res => res.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(res => res.item);
+}
 
-  if (args.language === 'en') {
-    if (!lastUser) {
-      return `Hi! I’m ${args.assistantName}. What would you like to talk about today? 🙂`;
-    }
+/**
+ * GET Handler to prevent 405 errors and provide status check
+ */
+export async function GET() {
+  return NextResponse.json({
+    status: "ok",
+    message: "Ardana Assistant API is running and ready for RAG operations.",
+    timestamp: new Date().toISOString()
+  });
+}
 
-    if (/(^|\s)(hi|hello|hey|hai)\b/.test(text)) {
-      return `Hi! I’m ${args.assistantName}. How can I help you today? 🙂`;
-    }
-
-    if (/(help|can you help|could you help|assist)/.test(text)) {
-      return `Absolutely — tell me what you’re trying to do, and what you’ve tried so far. 🙂`;
-    }
-
-    if (args.reason === 'no_key') {
-      return `I can still chat, but the full AI service isn’t configured on this server yet. Please set AI_API_KEY to enable full answers. Meanwhile, what topic should we start with (APG, writing, learning, or brainstorming)? 🙂`;
-    }
-
-    return `Sorry — I couldn’t reach the AI service just now. Please try again. If you tell me your goal and context, I can still help with a quick plan or draft. 🙂`;
-  }
-
-  if (!lastUser) {
-    return `Hai! Aku ${args.assistantName}. Mau ngobrolin apa hari ini? 🙂`;
-  }
-
-  if (/(^|\s)(hai|halo|hello|hi)\b/.test(text)) {
-    return `Halo! Aku ${args.assistantName}. Ada yang bisa aku bantu? 🙂`;
-  }
-
-  if (/(bisa bantu|tolong|help|bantuan)/.test(text)) {
-    return `Bisa banget 🙂 Ceritain kamu lagi butuh bantuan apa, dan sejauh ini sudah coba apa?`;
-  }
-
-  if (args.reason === 'no_key') {
-    return `Aku bisa ngobrol, tapi layanan AI penuh belum dikonfigurasi di server ini. Pasang AI_API_KEY dulu biar jawaban lengkap bisa jalan. Sambil itu, kamu mau bahas topik apa dulu (APG, nulis, belajar, atau brainstorming)? 🙂`;
-  }
-
-  return `Maaf — aku lagi nggak bisa akses layanan AI sekarang. Coba kirim lagi ya. Kalau kamu jelasin tujuan dan konteksnya, aku bisa bantu bikin langkah-langkah atau draft cepat. 🙂`;
-};
-
+/**
+ * POST Handler for AI Chat
+ */
 export async function POST(req: Request) {
   let body: RequestBody;
   try {
@@ -74,38 +67,86 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 });
   }
 
-  const userMessages = Array.isArray(body.messages) ? body.messages : [];
+  // Support both 'messages' array and single 'message' string
+  let userMessages: ChatMessage[] = [];
+  if (Array.isArray(body.messages)) {
+    userMessages = body.messages;
+  } else if (typeof body.message === 'string' && body.message.trim()) {
+    userMessages = [{ role: 'user', content: body.message.trim() }];
+  }
+
+  if (userMessages.length === 0) {
+    return NextResponse.json({ error: 'No messages provided.' }, { status: 400 });
+  }
+
   const language = body.language === 'en' ? 'en' : 'id';
   const assistantName = getEnv('AI_ASSISTANT_NAME') ?? 'Ardana Assistant 🤖';
   const apiKey = getEnv('AI_API_KEY') ?? getEnv('OPENAI_API_KEY');
   const provider = normalizeProvider(getEnv('AI_PROVIDER'));
+  const model = getEnv('AI_MODEL') || (provider === 'gemini' ? 'gemini-1.5-flash' : 'gpt-4o-mini');
 
-  if (!apiKey) {
-    return NextResponse.json({
-      reply: buildFallbackReply({ language, assistantName, messages: userMessages, reason: 'no_key' }),
-    });
+  // === AI DEBUG LOGS ===
+  console.log("=== ARDANA AI ASSISTANT DEBUG ===");
+  console.log("STATUS: Validating Environment Configuration...");
+  console.log("API KEY EXISTS:", !!apiKey);
+  console.log("PROVIDER:", provider);
+  console.log("MODEL:", model);
+  console.log("ASSISTANT NAME:", assistantName);
+  console.log("LANGUAGE:", language);
+  console.log("===================================");
+
+  // --- HARD ERROR IF NO API KEY (No Silent Fallback) ---
+  if (!apiKey || apiKey === "your_api_key_here") {
+    console.error("[Assistant API] ERROR: AI_API_KEY is missing or using placeholder.");
+    return NextResponse.json(
+      { 
+        error: "AI_API_KEY tidak ditemukan. Pastikan file .env.local sudah dibuat, key sudah diisi, dan server sudah direstart (npm run dev)." 
+      }, 
+      { status: 500 }
+    );
   }
 
-  const systemPrompt =
-    language === 'en'
-      ? [
-          `You are ${assistantName} — a friendly, helpful AI chat assistant.`,
-          'You can answer questions about anything (not just this website), including general knowledge, brainstorming, writing, and learning.',
-          'Be concise but warm. Use occasional emojis. Ask a short follow-up question when helpful.',
-          'If you are unsure or information may be outdated, say so and provide safe guidance.',
-        ].join('\n')
-      : [
-          `Kamu adalah ${assistantName} — asisten AI yang ramah dan membantu.`,
-          'Kamu boleh menjawab pertanyaan apa pun (bukan hanya tentang website ini), termasuk pengetahuan umum, brainstorming, menulis, dan belajar.',
-          'Jawab singkat tapi hangat. Pakai emoticon secukupnya. Kalau perlu, tanyakan 1 pertanyaan lanjutan yang singkat.',
-          'Kalau kamu tidak yakin atau informasinya bisa berubah, bilang apa adanya dan berikan arahan yang aman.',
-        ].join('\n');
+  // --- RAG LOGIC ---
+  const lastMessage = userMessages[userMessages.length - 1]?.content ?? '';
+  const relevantDocs = searchRelevantKnowledge(lastMessage);
+  
+  console.log(`[Assistant API] RAG Context found: ${relevantDocs.length} docs for query: "${lastMessage}"`);
 
+  const context = relevantDocs.length > 0 
+    ? relevantDocs.map(d => `[Source: ${d.title}]\n${d.content}`).join('\n\n')
+    : "No specific local context found. Use general knowledge about Ardana Perkasa Group (APG) as a national holding company in Indonesia.";
+
+  const systemPrompt = language === 'en'
+    ? [
+        `You are ${assistantName} — the official digital assistant for Ardana Perkasa Group (APG).`,
+        'CONTEXT FROM WEBSITE:',
+        context,
+        '',
+        'INSTRUCTIONS:',
+        '1. Answer accurately based on the context provided above.',
+        '2. If the context doesn\'t contain the answer, answer based on general professional knowledge about APG or redirect to info@ardanaperkasagroup.id.',
+        '3. Be professional, warm, and concise. Use occasional emojis.',
+        '4. Scope: Focus on APG holding, subsidiaries (BPR, DWP, Proteksi Plus, etc.), and corporate information.',
+        '5. Max 3-4 sentences.'
+      ].join('\n')
+    : [
+        `Kamu adalah ${assistantName} — asisten digital resmi dari Ardana Perkasa Group (APG).`,
+        'KONTEKS DARI WEBSITE:',
+        context,
+        '',
+        'INSTRUKSI:',
+        '1. Jawab dengan akurat berdasarkan konteks di atas.',
+        '2. Jika konteks tidak cukup, jawab berdasarkan pengetahuan umum profesional tentang APG atau arahkan ke info@ardanaperkasagroup.id.',
+        '3. Bersikap profesional, ramah, dan ringkas. Gunakan emoji secukupnya.',
+        '4. Scope: Fokus pada APG holding, anak perusahaan (BPR, DWP, Proteksi Plus, dsb), dan informasi korporat.',
+        '5. Maksimal 3-4 kalimat.'
+      ].join('\n');
+
+  // --- PROVIDER: GEMINI ---
   if (provider === 'gemini') {
-    const model = getEnv('AI_MODEL') ?? 'gemini-1.5-flash';
     const contents = userMessages
       .filter((m) => m.role === 'user' || m.role === 'assistant')
-      .slice(-30)
+      .slice(-10) // Safety limit
       .map((m) => ({
         role: m.role === 'assistant' ? 'model' : 'user',
         parts: [{ text: m.content }],
@@ -119,69 +160,56 @@ export async function POST(req: Request) {
       contents,
       generationConfig: {
         temperature: 0.7,
+        maxOutputTokens: 500,
       },
     };
 
-    let upstream: Response;
     try {
-      upstream = await fetch(
+      const upstream = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`,
         {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-        },
+        }
       );
-    } catch {
-      return NextResponse.json({
-        reply: buildFallbackReply({
-          language,
-          assistantName,
-          messages: userMessages,
-          reason: 'provider_error',
-        }),
+
+      if (!upstream.ok) {
+        const errorText = await upstream.text();
+        console.error(`[Assistant API] Gemini Error (${upstream.status}):`, errorText);
+        throw new Error(`Gemini Provider Error: ${upstream.status}`);
+      }
+
+      const data = await upstream.json();
+      const reply = data?.candidates?.[0]?.content?.parts?.map((p: any) => p.text ?? '').join('').trim();
+      
+      if (reply) return NextResponse.json({ 
+        reply,
+        debug: { hasApiKey: !!apiKey, provider, model }
+      });
+      throw new Error("Empty reply from Gemini");
+
+    } catch (err) {
+      console.error("[Assistant API] Gemini Fetch Exception:", err);
+      return NextResponse.json({ 
+        reply: relevantDocs.length > 0 
+          ? relevantDocs.map(d => d.content).join("\n\n")
+          : (language === 'en' ? "I'm having trouble connecting to my brain, but APG is a national holding company." : "Maaf, koneksi saya terganggu, tapi APG adalah holding company nasional.")
       });
     }
-
-    if (!upstream.ok) {
-      return NextResponse.json({
-        reply: buildFallbackReply({
-          language,
-          assistantName,
-          messages: userMessages,
-          reason: 'provider_error',
-        }),
-      });
-    }
-
-    const data = (await upstream.json().catch(() => null)) as
-      | { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> }
-      | null;
-
-    const reply = data?.candidates?.[0]?.content?.parts?.map((p) => p.text ?? '').join('').trim();
-    if (!reply) {
-      return NextResponse.json({
-        reply: buildFallbackReply({ language, assistantName, messages: userMessages, reason: 'empty' }),
-      });
-    }
-
-    return NextResponse.json({ reply });
   }
 
+  // --- PROVIDER: OPENAI (DEFAULT) ---
   const apiBase = (getEnv('AI_API_BASE') ?? 'https://api.openai.com/v1').replace(/\/$/, '');
-  const model = getEnv('AI_MODEL') ?? 'gpt-4o-mini';
-
   const payload = {
     model,
-    messages: [{ role: 'system', content: systemPrompt }, ...userMessages].slice(-30),
+    messages: [{ role: 'system', content: systemPrompt }, ...userMessages].slice(-15),
     temperature: 0.7,
+    max_tokens: 500,
   };
 
-  let upstream: Response;
   try {
-    upstream = await fetch(`${apiBase}/chat/completions`, {
+    const upstream = await fetch(`${apiBase}/chat/completions`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -189,38 +217,28 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify(payload),
     });
-  } catch {
-    return NextResponse.json({
-      reply: buildFallbackReply({
-        language,
-        assistantName,
-        messages: userMessages,
-        reason: 'provider_error',
-      }),
+
+    if (!upstream.ok) {
+      const errorText = await upstream.text();
+      console.error(`[Assistant API] OpenAI Error (${upstream.status}):`, errorText);
+      throw new Error(`OpenAI Provider Error: ${upstream.status}`);
+    }
+
+    const data = await upstream.json();
+    const reply = data?.choices?.[0]?.message?.content?.trim();
+
+    if (reply) return NextResponse.json({ 
+      reply,
+      debug: { hasApiKey: !!apiKey, provider, model }
+    });
+    throw new Error("Empty reply from OpenAI");
+
+  } catch (err) {
+    console.error("[Assistant API] OpenAI Fetch Exception:", err);
+    return NextResponse.json({ 
+      reply: relevantDocs.length > 0 
+        ? relevantDocs.map(d => d.content).join("\n\n")
+        : (language === 'en' ? "I'm having trouble connecting to my brain, but APG is a national holding company." : "Maaf, koneksi saya terganggu, tapi APG adalah holding company nasional.")
     });
   }
-
-  if (!upstream.ok) {
-    return NextResponse.json({
-      reply: buildFallbackReply({
-        language,
-        assistantName,
-        messages: userMessages,
-        reason: 'provider_error',
-      }),
-    });
-  }
-
-  const data = (await upstream.json().catch(() => null)) as
-    | { choices?: Array<{ message?: { content?: string } }> }
-    | null;
-
-  const reply = data?.choices?.[0]?.message?.content?.trim();
-  if (!reply) {
-    return NextResponse.json({
-      reply: buildFallbackReply({ language, assistantName, messages: userMessages, reason: 'empty' }),
-    });
-  }
-
-  return NextResponse.json({ reply });
 }

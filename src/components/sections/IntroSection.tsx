@@ -46,41 +46,41 @@ const IntroSection: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,255,255,0.15),transparent_70%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.4),transparent_66%)]" />
       </motion.div>
       
-      {/* Subtle Glow Behind Hero */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(11,123,230,0.25),transparent_70%)] blur-[80px]" />
+      {/* Subtle Glow Behind Hero - Hidden on mobile for performance */}
+      <div className="hidden sm:block pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(11,123,230,0.25),transparent_70%)] blur-[80px]" />
 
-      <div className="pointer-events-none absolute inset-0 opacity-[0.05]">
+      <div className="hidden sm:block pointer-events-none absolute inset-0 opacity-[0.05]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_0.0625rem,transparent_0.0625rem),linear-gradient(to_bottom,rgba(255,255,255,0.55)_0.0625rem,transparent_0.0625rem)] bg-[size:4.5rem_4.5rem]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-5 lg:px-8 pt-16 pb-20 sm:pt-28 sm:pb-24">
-        <div className="grid gap-8 xl:gap-12 xl:grid-cols-2 items-center text-center xl:text-left">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-5 lg:px-8 pt-24 pb-8 sm:pt-32 sm:pb-32">
+        <div className="grid gap-6 sm:gap-8 xl:gap-12 xl:grid-cols-2 items-center text-center xl:text-left">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-6 sm:space-y-7 flex flex-col items-center xl:items-start"
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-6 sm:space-y-8 flex flex-col items-center xl:items-start"
           >
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-white/80">
-              <span className="font-semibold">{t('intro.badge')}</span>
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[10px] sm:text-xs uppercase tracking-[0.25em] text-white/90">
+              <span className="font-bold">{t('intro.badge')}</span>
             </div>
 
-            <h1 className="max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-[-0.02em] text-white leading-[1.2] sm:leading-[1.1] mx-auto xl:mx-0 drop-shadow-md">
+            <h1 className="max-w-[300px] sm:max-w-3xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-tight text-white leading-snug sm:leading-[1.1] mx-auto xl:mx-0 drop-shadow-md">
               {t('intro.title.part1')}{' '}
               <span className="text-white drop-shadow-lg">{t('intro.title.highlight')}</span>{' '}
               {t('intro.title.part2')}
             </h1>
 
-            <p className="max-w-prose text-sm leading-relaxed sm:leading-7 text-white/95 font-medium sm:text-lg mx-auto xl:mx-0 drop-shadow-sm">
+            <p className="max-w-[320px] sm:max-w-prose text-sm leading-normal sm:leading-7 text-white/95 font-medium sm:text-lg mx-auto xl:mx-0 drop-shadow-sm">
               {t('intro.desc')}
             </p>
 
-            <div className="flex flex-col gap-3 sm:flex-row w-full sm:w-auto">
+            <div className="flex flex-col gap-4 sm:flex-row w-full sm:w-auto mt-6">
               <Button
                 variant="white"
                 size="lg"
                 onClick={() => router.push('/subsidiaries')}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto min-h-[3rem] shadow-[0_8px_20px_rgba(255,255,255,0.15)]"
               >
                 {t('intro.cta.primary')}
               </Button>
@@ -88,7 +88,7 @@ const IntroSection: React.FC = () => {
                 variant="white-outline"
                 size="lg"
                 onClick={() => router.push('/annual-report')}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto min-h-[3rem] bg-black/10 sm:bg-transparent border-white/30 sm:border-white/50 text-white shadow-sm"
               >
                 {t('intro.cta.secondary')}
               </Button>
@@ -98,8 +98,8 @@ const IntroSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="relative flex justify-center items-end h-[18.75rem] sm:h-[28.75rem] xl:h-[38.75rem]"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="relative flex justify-center items-end h-[14rem] sm:h-[28.75rem] xl:h-[38.75rem] mt-8 sm:mt-0"
           >
             <motion.div
               className="relative w-full h-full"
@@ -127,11 +127,11 @@ const IntroSection: React.FC = () => {
                 {/* Core radial highlight behind character */}
                 <div className="absolute left-1/2 top-[56%] h-[15rem] sm:h-[24rem] w-[15rem] sm:w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.18),transparent_65%)]" />
                 
-                {/* Soft ambient glow for integration */}
-                <div className="absolute left-1/2 top-[60%] h-[20rem] sm:h-[30rem] w-[20rem] sm:w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(11,123,230,0.15),transparent_70%)] blur-[40px]" />
+                {/* Soft ambient glow for integration - Hidden on mobile */}
+                <div className="hidden sm:block absolute left-1/2 top-[60%] h-[20rem] sm:h-[30rem] w-[20rem] sm:w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(11,123,230,0.15),transparent_70%)] blur-[40px]" />
                 
                 {/* Contact shadow below character */}
-                <div className="absolute left-1/2 bottom-0 h-8 sm:h-12 w-[15rem] sm:w-[24rem] -translate-x-1/2 rounded-[100%] bg-black/35 blur-[24px]" />
+                <div className="absolute left-1/2 bottom-0 h-4 sm:h-12 w-[12rem] sm:w-[24rem] -translate-x-1/2 rounded-[100%] bg-black/40 sm:bg-black/35 blur-[16px] sm:blur-[24px]" />
               </div>
 
               <motion.div
@@ -168,8 +168,8 @@ const IntroSection: React.FC = () => {
                   />
                 </div>
 
-                {/* Internal lighting refinement */}
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(11,123,230,0.12),transparent_60%)] mix-blend-overlay" />
+                {/* Internal lighting refinement - Hidden on mobile */}
+                <div className="hidden sm:block pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(11,123,230,0.12),transparent_60%)] mix-blend-overlay" />
               </motion.div>
             </motion.div>
 

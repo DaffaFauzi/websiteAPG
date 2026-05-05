@@ -42,14 +42,34 @@ const NavbarSection: React.FC = () => {
     return () => window.clearTimeout(id);
   }, [pathname]);
 
+  // Robust body scroll lock — fixes iOS Safari bounce-scroll bug
   useEffect(() => {
     if (isMobileMenuOpen) {
+      // Save current scroll position, then fix body in place
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      // Restore scroll position on close
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
 
@@ -68,13 +88,14 @@ const NavbarSection: React.FC = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200/50 shadow-[0_4px_20px_rgb(0,0,0,0.03)]'
-          : 'bg-white border-b border-slate-100'
-      }`}
-    >
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/50 shadow-[0_4px_20px_rgb(0,0,0,0.03)]'
+            : 'bg-white border-b border-slate-100'
+        }`}
+      >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20 md:h-24'}`}>
           {/* Logo */}
@@ -186,100 +207,119 @@ const NavbarSection: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Navigation Menu Redesign */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 lg:hidden"
-          >
-            {/* Backdrop with blur */}
-            <div 
-              className="absolute inset-0 bg-white/95 backdrop-blur-xl"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-
-            <div className="relative h-full flex flex-col pt-24 pb-12 px-5 sm:px-6 overflow-y-auto">
-              <nav className="flex flex-col space-y-2">
-                {navigationItems.map((item, index) => (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ 
-                      delay: index * 0.08, 
-                      duration: 0.5, 
-                      ease: [0.22, 1, 0.36, 1] 
-                    }}
-                  >
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`group relative block py-4 text-2xl sm:text-3xl font-bold transition-all duration-300 leading-tight ${
-                        isActiveLink(item.href)
-                          ? 'text-[#0A66C2] translate-x-2'
-                          : 'text-slate-900 hover:text-[#0A66C2] active:scale-[0.98]'
-                      }`}
-                    >
-                      <span className="relative z-10 flex items-center">
-                        {item.label}
-                        {isActiveLink(item.href) && (
-                          <motion.span 
-                            layoutId="activeTabMobile"
-                            className="ml-4 h-2 w-2 rounded-full bg-[#0A66C2]" 
-                          />
-                        )}
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ delay: navigationItems.length * 0.08 + 0.1, duration: 0.5 }}
-                className="mt-auto pt-10"
-              >
-                <div className="flex items-center justify-between p-5 sm:p-6 rounded-3xl bg-slate-50 border border-slate-100">
-                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                    {t('nav.language')}
-                  </span>
-                  <div className="flex bg-white rounded-full p-1 border border-slate-200 shadow-sm">
-                    <button
-                      onClick={() => setLanguage('id')}
-                      className={`px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 active:scale-95 ${
-                        language === 'id' 
-                          ? 'bg-[#0A66C2] text-white shadow-lg shadow-blue-200' 
-                          : 'text-slate-600 active:bg-slate-50'
-                      }`}
-                    >
-                      ID
-                    </button>
-                    <button
-                      onClick={() => setLanguage('en')}
-                      className={`px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 active:scale-95 ${
-                        language === 'en' 
-                          ? 'bg-[#0A66C2] text-white shadow-lg shadow-blue-200' 
-                          : 'text-slate-600 active:bg-slate-50'
-                      }`}
-                    >
-                      EN
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
+
+    {/* Mobile Navigation Menu — rendered OUTSIDE <nav> to avoid backdrop-filter stacking context bug */}
+    <AnimatePresence>
+      {isMobileMenuOpen && (
+        <motion.div
+          ref={mobileMenuRef}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="fixed inset-0 z-[55] lg:hidden"
+        >
+          {/* Solid white background — full viewport, tap to close */}
+          <div 
+            className="absolute inset-0 bg-white"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+
+          {/* Safe-area aware content container — handles iOS notch & home indicator */}
+          <div
+            className="relative h-full flex flex-col overflow-y-auto overscroll-contain"
+            style={{
+              paddingTop: 'max(6rem, calc(4rem + env(safe-area-inset-top)))',
+              paddingBottom: 'max(3rem, calc(2rem + env(safe-area-inset-bottom)))',
+              paddingLeft: 'max(1.25rem, calc(1rem + env(safe-area-inset-left)))',
+              paddingRight: 'max(1.25rem, calc(1rem + env(safe-area-inset-right)))',
+            }}>
+            <nav className="flex flex-col space-y-2">
+              {navigationItems.map((item, index) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ 
+                    delay: index * 0.04, 
+                    duration: 0.3, 
+                    ease: [0.16, 1, 0.3, 1] 
+                  }}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`group relative block py-4 text-2xl sm:text-3xl font-bold transition-all duration-300 leading-tight ${
+                      isActiveLink(item.href)
+                        ? 'text-[#0A66C2] translate-x-2'
+                        : 'text-slate-900 hover:text-[#0A66C2] active:scale-[0.98]'
+                    }`}
+                  >
+                    <span className="relative z-10 flex items-center">
+                      {item.label}
+                      {isActiveLink(item.href) && (
+                        <motion.span 
+                          layoutId="activeTabMobile"
+                          className="ml-4 h-2 w-2 rounded-full bg-[#0A66C2]" 
+                        />
+                      )}
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: navigationItems.length * 0.04 + 0.08, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-auto pt-8 pb-4 flex flex-col gap-4"
+            >
+              <Link
+                href="/kontak"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center bg-[#0A66C2] text-white font-bold py-4 rounded-full min-h-[3rem] active:scale-[0.98] transition-transform duration-200 shadow-md"
+              >
+                {t('nav.contact')}
+              </Link>
+              
+              <div className="flex items-center justify-between p-5 sm:p-6 rounded-3xl bg-slate-50 border border-slate-100">
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">
+                  {t('nav.language')}
+                </span>
+                <div className="flex bg-white rounded-full p-1 border border-slate-200 shadow-sm">
+                  <button
+                    onClick={() => setLanguage('id')}
+                    className={`px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 active:scale-95 ${
+                      language === 'id' 
+                        ? 'bg-[#0A66C2] text-white shadow-lg shadow-blue-200' 
+                        : 'text-slate-600 active:bg-slate-50'
+                    }`}
+                  >
+                    ID
+                  </button>
+                  <button
+                    onClick={() => setLanguage('en')}
+                    className={`px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 active:scale-95 ${
+                      language === 'en' 
+                        ? 'bg-[#0A66C2] text-white shadow-lg shadow-blue-200' 
+                        : 'text-slate-600 active:bg-slate-50'
+                    }`}
+                  >
+                    EN
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 };
 

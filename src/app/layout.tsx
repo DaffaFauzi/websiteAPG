@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -6,6 +6,7 @@ import NavbarSection from "@/components/sections/NavbarSection";
 import AIAssistant from "@/components/ui/AIAssistant";
 import PageTransition from "@/components/ui/PageTransition";
 import SplashScreen from "@/components/ui/SplashScreen";
+import JsonLd from "@/components/seo/JsonLd";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,8 +15,18 @@ const inter = Inter({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ardanaperkasagroup.com";
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: './',
+  },
   title: {
     default: "Ardana Perkasa Group (APG) - National Holding Company",
     template: "%s | Ardana Perkasa Group",
@@ -93,6 +104,7 @@ export default function RootLayout({
         className={`${inter.variable} antialiased`}
         suppressHydrationWarning={true}
       >
+        <JsonLd />
         <LanguageProvider>
           <SplashScreen>
             <NavbarSection />

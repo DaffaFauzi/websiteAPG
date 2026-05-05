@@ -48,10 +48,14 @@ const TentangPage = () => {
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0,
+                transitionEnd: { transform: 'none' }
+              }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:col-span-5 lg:sticky lg:top-32"
+              className="lg:col-span-5 lg:sticky lg:top-32 z-10"
             >
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-slate-500 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-6">
                 Corporate Narrative
@@ -99,10 +103,14 @@ const TentangPage = () => {
             {/* Vision */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0,
+                transitionEnd: { transform: 'none' }
+              }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="relative lg:sticky lg:top-32"
+              className="relative lg:sticky lg:top-32 z-10"
             >
               <div className="absolute -left-6 -top-6 text-9xl text-slate-200/50 font-serif leading-none select-none">&ldquo;</div>
               <div className="relative z-10">

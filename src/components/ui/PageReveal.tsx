@@ -20,8 +20,11 @@ export default function PageReveal({ children, reveal, animate, disabled }: Prop
       initial={false}
       animate={reveal ? 'visible' : 'hidden'}
       variants={{
-        hidden: { opacity: 0, y: '0.5rem' },
-        visible: { opacity: 1, y: '0rem' },
+        hidden: { opacity: 0 },
+        visible: { 
+          opacity: 1,
+          transitionEnd: { transform: 'none' }
+        },
       }}
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       style={disabled ? { pointerEvents: 'none' } : undefined}

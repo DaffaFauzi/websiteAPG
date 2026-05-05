@@ -21,19 +21,19 @@ export default function WhyChooseUsSection() {
   ];
 
   return (
-    <section className="apg-section-divider relative py-20 sm:py-24 lg:py-24 bg-white overflow-hidden">
+    <section className="apg-section-divider relative py-12 sm:py-24 lg:py-32 bg-white overflow-hidden">
       {/* Premium ambient background elements */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative">
-        <div className="text-center mb-16 sm:mb-24 px-4">
+        <div className="text-center mb-12 sm:mb-24 px-2">
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[10px] sm:text-xs tracking-[0.2em] text-[#0A66C2] uppercase font-extrabold mb-4"
+            className="text-[10px] sm:text-xs tracking-[0.2em] text-[#0A66C2] uppercase font-bold mb-3"
           >
             {t('why.tag')}
           </motion.p>
@@ -42,7 +42,7 @@ export default function WhyChooseUsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight"
+            className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-950 tracking-tight leading-snug max-w-[260px] sm:max-w-none mx-auto"
           >
             {t('why.title')}
           </motion.h2>
@@ -51,32 +51,30 @@ export default function WhyChooseUsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-base sm:text-lg text-slate-700 font-medium max-w-2xl mx-auto leading-relaxed"
+            className="mt-3 sm:mt-6 text-sm sm:text-lg text-slate-600 font-medium max-w-[320px] sm:max-w-2xl mx-auto leading-relaxed"
           >
             {t('why.desc')}
           </motion.p>
         </div>
 
         <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 items-start">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-10 items-start">
             {pillars.map((item, idx) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className={`group relative flex flex-col items-center text-center p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:bg-white hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:border-slate-300 transition-all duration-500 apg-ease hover:-translate-y-1 ${idx % 2 === 1 ? 'lg:mt-8' : ''}`}
+                transition={{ delay: idx * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className={`group flex sm:flex-col items-start sm:items-center sm:text-center gap-4 sm:gap-0 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-slate-50 border border-slate-100 sm:border-slate-200/80 shadow-none sm:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.05)] sm:hover:bg-white sm:hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] sm:hover:border-slate-200 transition-all duration-300 active:scale-[0.98] sm:hover:-translate-y-1 ${idx % 2 === 1 ? 'lg:mt-8' : ''}`}
               >
-                <div className="relative mb-8 h-16 w-16 rounded-2xl bg-white shadow-sm border border-slate-100 text-[#0A66C2] flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:bg-[#0A66C2] group-hover:text-white z-10">
-                  <item.icon className="h-8 w-8" />
-                  {/* Subtle glow underneath icon on hover */}
-                  <div className="absolute inset-0 rounded-2xl bg-[#0A66C2] opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500" />
+                <div className="relative shrink-0 h-11 w-11 sm:h-16 sm:w-16 rounded-xl sm:rounded-2xl bg-white border border-slate-100 text-[#0A66C2] flex items-center justify-center sm:mb-6 sm:shadow-sm transition-all duration-300 sm:group-hover:bg-[#0A66C2] sm:group-hover:text-white sm:group-hover:scale-105">
+                  <item.icon className="h-5 w-5 sm:h-7 sm:w-7" />
                 </div>
-                
-                <h3 className="text-xl font-extrabold text-slate-950 mb-4">{item.title}</h3>
-                <p className="text-sm sm:text-base font-medium leading-relaxed text-slate-700">{item.desc}</p>
-                
+                <div>
+                  <h3 className="text-base sm:text-xl font-semibold sm:font-bold text-slate-900 mb-1 sm:mb-3 leading-snug">{item.title}</h3>
+                  <p className="text-sm text-slate-500 sm:text-slate-700 sm:font-medium leading-relaxed">{item.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>

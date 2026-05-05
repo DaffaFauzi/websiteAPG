@@ -66,18 +66,18 @@ const SubsidiariesShowcaseSection = () => {
   const highlightSubsidiaries = subsidiariesData.slice(0, 6);
 
   return (
-    <section className="apg-section-divider relative py-20 sm:py-28 lg:py-32 bg-white overflow-hidden">
+    <section className="apg-section-divider relative py-12 sm:py-28 lg:py-32 bg-white overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative">
-        <div className="text-center mb-16 sm:mb-20">
+        <div className="text-center mb-10 sm:mb-20">
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-6 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-4 sm:mb-6 shadow-sm"
           >
             <div className="h-1.5 w-1.5 rounded-full bg-[#0A66C2] animate-pulse" />
             Institutional Network
@@ -87,7 +87,7 @@ const SubsidiariesShowcaseSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 mb-6 leading-tight tracking-tight"
+            className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-950 mb-4 sm:mb-6 leading-snug tracking-tight max-w-[260px] sm:max-w-none mx-auto"
           >
             {t('subsidiaries.title')}
           </motion.h2>
@@ -96,13 +96,13 @@ const SubsidiariesShowcaseSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-lg text-slate-600 max-w-[320px] sm:max-w-2xl mx-auto leading-relaxed"
           >
             {t('subsidiaries.desc')}
           </motion.p>
         </div>
 
-        <div className="relative bg-white rounded-3xl p-4 sm:p-8 lg:p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-200/60 transition-shadow duration-500 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.12)]">
+        <div className="relative bg-white rounded-2xl sm:rounded-3xl p-2 sm:p-8 lg:p-12 shadow-sm sm:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-200/60 transition-shadow duration-300 sm:hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.12)]">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-0">
             {highlightSubsidiaries.map((s, index) => (
               <motion.div
@@ -115,7 +115,7 @@ const SubsidiariesShowcaseSection = () => {
               >
                 <Link 
                   href={`/subsidiaries/${s.slug}`}
-                  className="relative flex flex-col h-full p-8 sm:p-12 items-center justify-center transition-all duration-500 hover:bg-slate-50 focus:outline-none"
+                  className="relative flex flex-col h-full p-6 sm:p-12 items-center justify-center transition-all duration-300 active:bg-slate-50 sm:hover:bg-slate-50 focus:outline-none"
                 >
                   <span className="sr-only">{s.name}</span>
                   <div className="relative w-full h-full max-w-[8rem] sm:max-w-[10rem] aspect-[3/2] transition-transform duration-500 group-hover:scale-105">
@@ -143,10 +143,10 @@ const SubsidiariesShowcaseSection = () => {
         >
           <Link 
             href="/subsidiaries" 
-            className="inline-flex min-h-[3.5rem] items-center justify-center gap-3 bg-[#0A66C2] text-white font-extrabold px-8 py-4 rounded-full shadow-md shadow-[#0A66C2]/20 hover:bg-[#0959A9] transition-all duration-300 ease-out hover:shadow-lg hover:shadow-[#0A66C2]/30 hover:-translate-y-[2px] active:translate-y-0 active:scale-[0.98] group"
+            className="w-full sm:w-auto inline-flex min-h-[3.5rem] items-center justify-center gap-3 bg-[#0A66C2] text-white font-extrabold px-8 py-4 rounded-full shadow-sm sm:shadow-md sm:shadow-[#0A66C2]/20 sm:hover:bg-[#0959A9] transition-all duration-300 ease-out sm:hover:shadow-lg sm:hover:shadow-[#0A66C2]/30 sm:hover:-translate-y-[2px] active:translate-y-0 active:scale-[0.98] group"
           >
             {t('subsidiaries.cta')}
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            <span className="transition-transform duration-300 sm:group-hover:translate-x-1">→</span>
           </Link>
         </motion.div>
       </div>

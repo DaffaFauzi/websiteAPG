@@ -70,12 +70,10 @@ export default function AIAssistant() {
   }, [messages.length, open]);
 
   const quickPrompts = useMemo(() => {
-    return [
-      t('ai.suggestion.1'),
-      t('ai.suggestion.2'),
-      t('ai.suggestion.3'),
-    ];
-  }, [t]);
+    return language === 'en' 
+      ? ['Who is APG?', 'List subsidiaries', 'How to contact APG?']
+      : ['Siapa itu APG?', 'Daftar anak perusahaan', 'Cara hubungi APG?'];
+  }, [language]);
 
   const send = async (text: string) => {
     const trimmed = text.trim();
@@ -85,6 +83,11 @@ export default function AIAssistant() {
     setMessages(nextMessages);
     setInput('');
     setLoading(true);
+
+    // Immediate scroll to bottom after user message
+    setTimeout(() => {
+      listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' });
+    }, 100);
 
     try {
       const res = await fetch('/api/assistant', {
@@ -116,6 +119,10 @@ export default function AIAssistant() {
       ]);
     } finally {
       setLoading(false);
+      // Final scroll to bottom after AI reply
+      setTimeout(() => {
+        listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' });
+      }, 100);
     }
   };
 
@@ -124,8 +131,8 @@ export default function AIAssistant() {
   return (
     <div className="fixed bottom-5 right-5 z-[60]">
       {open ? (
-        <div className="w-[21.25rem] max-w-[calc(100vw-2.5rem)] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white">
+        <div className="w-[21.25rem] max-w-[calc(100vw-2.5rem)] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden flex flex-col">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white shrink-0">
             <div className="min-w-0">
               <div className="text-sm font-extrabold text-slate-950 truncate">{assistantName}</div>
               <div className="text-[0.6875rem] text-slate-600 truncate">
@@ -135,21 +142,23 @@ export default function AIAssistant() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="min-h-12 min-w-12 rounded-xl hover:bg-slate-100 text-slate-700 active:scale-95 transition-transform"
+              className="h-10 w-10 rounded-xl hover:bg-slate-100 text-slate-700 flex items-center justify-center active:scale-95 transition-transform"
               aria-label={t('ai.aria.close')}
             >
-              ✕
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
           </div>
 
-          <div ref={listRef} className="max-h-[23.75rem] overflow-auto px-4 py-3 space-y-3 bg-white">
+          <div ref={listRef} className="h-[23.75rem] overflow-auto px-4 py-4 space-y-4 bg-white scroll-smooth">
             {displayMessages.map((m, idx) => (
               <div key={idx} className={m.role === 'user' ? 'flex justify-end' : 'flex justify-start'}>
                 <div
                   className={
                     m.role === 'user'
-                      ? 'max-w-[85%] rounded-2xl rounded-br-md bg-slate-900 text-white px-4 py-2 text-sm leading-relaxed'
-                      : 'max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-900 px-4 py-2 text-sm leading-relaxed'
+                      ? 'max-w-[85%] rounded-2xl rounded-br-md bg-slate-900 text-white px-4 py-2.5 text-sm leading-relaxed shadow-sm'
+                      : 'max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-900 px-4 py-2.5 text-sm leading-relaxed'
                   }
                 >
                   {m.content}
@@ -159,21 +168,25 @@ export default function AIAssistant() {
 
             {loading ? (
               <div className="flex justify-start">
-                <div className="max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-700 px-4 py-2 text-sm">
-                  {t('ai.typing')}
+                <div className="max-w-[85%] rounded-2xl rounded-bl-md bg-slate-100 text-slate-700 px-4 py-3 text-sm">
+                  <div className="flex gap-1">
+                    <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                    <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                    <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+                  </div>
                 </div>
               </div>
             ) : null}
           </div>
 
-          <div className="px-4 pb-3 pt-2 border-t border-slate-200 bg-white">
-            <div className="flex flex-wrap gap-2 mb-2">
+          <div className="px-4 pb-4 pt-3 border-t border-slate-200 bg-white shrink-0">
+            <div className="flex flex-wrap gap-2 mb-3">
               {quickPrompts.map((p) => (
                 <button
                   key={p}
                   type="button"
                   onClick={() => send(p)}
-                  className="min-h-12 text-[0.6875rem] px-4 py-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 truncate max-w-full active:scale-95 transition-transform"
+                  className="text-[0.6875rem] px-3 py-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 text-slate-700 transition-all active:scale-95 whitespace-nowrap"
                 >
                   {p}
                 </button>

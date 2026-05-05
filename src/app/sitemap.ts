@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ardanaperkasagroup.com';
-
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ardanaperkasagroup.com';
+
+  // Define your static routes
   const routes = [
     '',
     '/tentang',
@@ -10,34 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/subsidiaries',
     '/karir',
     '/kontak',
-  ].map((route) => ({
-    url: `${siteUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }));
-
-  // Add specific subsidiary routes dynamically if needed
-  // This is a static representation of known dynamic routes for the sitemap
-  const subsidiarySlugs = [
-    'bpr',
-    'dwp',
-    'sipbro',
-    'pln',
-    'qjamin',
-    'proteksi',
-    'pataka',
-    'prada-bc',
-    'lps',
-    'caraka-mulia'
   ];
 
-  const subsidiaryRoutes = subsidiarySlugs.map((slug) => ({
-    url: `${siteUrl}/subsidiaries/${slug}`,
+  return routes.map((route) => ({
+    url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    changeFrequency: route === '' ? 'daily' : 'monthly',
+    priority: route === '' ? 1 : 0.8,
   }));
-
-  return [...routes, ...subsidiaryRoutes];
 }

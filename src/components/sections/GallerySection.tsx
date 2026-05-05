@@ -31,20 +31,20 @@ const GallerySection = () => {
   ];
 
   return (
-    <section className="apg-section-divider relative py-20 sm:py-24 lg:pt-28 lg:pb-32 bg-slate-950 overflow-hidden">
+    <section className="apg-section-divider relative py-12 sm:py-24 lg:pt-28 lg:pb-32 bg-slate-950 overflow-hidden">
       {/* Premium dark corporate background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(10,102,194,0.15),transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.03),transparent_40%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 sm:mb-16 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-8 sm:mb-16 gap-5">
           <div className="max-w-2xl">
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/80 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-6 backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/80 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-3 sm:mb-6 backdrop-blur-md"
             >
               <div className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
               Corporate Documentation
@@ -54,7 +54,7 @@ const GallerySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight"
+              className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-snug max-w-[260px] sm:max-w-none"
             >
               {t('gallery.title')}
             </motion.h2>
@@ -65,12 +65,13 @@ const GallerySection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
+            className="w-full md:w-auto"
           >
             <a
               href="/tentang#gallery"
-              className="inline-flex items-center justify-center gap-3 rounded-full bg-[#0A66C2] px-8 py-3.5 w-full sm:w-auto text-sm font-extrabold text-white shadow-[0_8px_20px_rgba(10,102,194,0.4)] hover:bg-[#3b82f6] hover:shadow-[0_12px_24px_rgba(59,130,246,0.5)] transition-all hover:-translate-y-1 active:scale-95 group border border-blue-400/30"
+              className="min-h-[3rem] inline-flex items-center justify-center gap-3 rounded-full bg-[#0A66C2] px-8 py-3 w-full md:w-auto text-sm font-bold text-white shadow-sm sm:shadow-[0_8px_20px_rgba(10,102,194,0.4)] sm:hover:bg-[#3b82f6] sm:hover:shadow-[0_12px_24px_rgba(59,130,246,0.5)] transition-all sm:hover:-translate-y-1 active:scale-[0.98] group border border-blue-400/20"
             >
-              <PhotoIcon className="h-5 w-5" />
+              <PhotoIcon className="h-4 w-4 sm:h-5 sm:w-5" />
               <span>{t('gallery.cta')}</span>
             </a>
           </motion.div>
@@ -84,8 +85,8 @@ const GallerySection = () => {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className={`relative overflow-hidden rounded-[2rem] bg-slate-800 shadow-xl group cursor-pointer border border-white/10 hover:border-white/20 transition-all duration-500 ${img.className}`}
+              transition={{ delay: index * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative overflow-hidden rounded-2xl sm:rounded-[2rem] bg-slate-800 shadow-md sm:shadow-xl group cursor-pointer border border-white/10 hover:border-white/20 transition-all duration-300 ${img.className}`}
             >
               <Image
                 src={img.src}
@@ -96,10 +97,10 @@ const GallerySection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-[#041a40]/90 via-[#041a40]/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
               
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
-                <div className="inline-flex px-3 py-1 mb-3 rounded-full bg-white/20 backdrop-blur-md text-[0.625rem] font-extrabold tracking-widest uppercase text-white shadow-sm border border-white/20">
+                <div className="inline-flex px-3 py-1 mb-3 rounded-full bg-white/20 backdrop-blur-md text-[0.625rem] font-bold tracking-widest uppercase text-white shadow-sm border border-white/20">
                   {img.category}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-md">
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight drop-shadow-md">
                   {img.title}
                 </h3>
               </div>
