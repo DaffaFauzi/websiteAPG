@@ -10,6 +10,7 @@ import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import InnerPageHero from '@/components/ui/InnerPageHero';
 import { CareerVisual } from '@/components/ui/HeroVisuals';
 
+// --- Types ---
 interface Job {
   id: string;
   title: string;
@@ -23,144 +24,274 @@ interface Job {
   responsibilities: string[];
 }
 
-const jobsData: Job[] = [
+// --- Mock Data ---
+const getJobsData = (t: any): Job[] => [
   {
     id: '1',
-    title: 'Software Engineer (Frontend)',
+    title: 'Software Engineer',
     company: 'APG Digital',
     location: 'Jakarta',
-    type: 'Full-time',
+    type: t('career.job.type.full_time'),
     category: 'Tech',
     tags: ['React', 'Next.js', 'TypeScript'],
-    description: 'We are looking for a Software Engineer to join our growing tech team and build modern web applications for our digital ecosystem.',
-    requirements: [
-      '3+ years of experience with React/Next.js',
-      'Proficiency in TypeScript and modern CSS (Tailwind)',
-      'Experience with state management and API integration',
-      'Strong problem-solving skills and attention to detail',
-    ],
-    responsibilities: [
-      'Develop and maintain high-quality web applications',
-      'Collaborate with designers and backend engineers',
-      'Optimize applications for performance and scalability',
-      'Participate in code reviews and technical discussions',
-    ],
+    description: t('career.job.1.desc'),
+    requirements: [t('career.job.1.req.1'), t('career.job.1.req.2')],
+    responsibilities: [t('career.job.1.resp.1'), t('career.job.1.resp.2')],
   },
   {
     id: '2',
-    title: 'Finance Analyst',
+    title: 'Marketing Officer',
     company: 'BPR Bonding',
     location: 'Bandung',
-    type: 'Full-time',
+    type: t('career.job.type.full_time'),
     category: 'Finance',
-    tags: ['Accounting', 'Financial Modeling', 'Reporting'],
-    description: 'BPR Bonding is seeking a Finance Analyst to support our financial reporting and strategic planning processes.',
-    requirements: [
-      'Bachelor degree in Accounting or Finance',
-      'Minimum 2 years of experience in financial analysis',
-      'Proficiency in financial modeling and reporting tools',
-      'Excellent analytical and communication skills',
-    ],
-    responsibilities: [
-      'Prepare monthly and quarterly financial reports',
-      'Analyze financial performance and trends',
-      'Support the budgeting and forecasting process',
-      'Assist in internal and external audits',
-    ],
+    tags: ['Marketing', 'Strategy'],
+    description: t('career.job.2.desc'),
+    requirements: [t('career.job.2.req.1')],
+    responsibilities: [t('career.job.2.resp.1')],
   },
   {
     id: '3',
-    title: 'Insurance Specialist',
+    title: 'Finance Staff',
     company: 'DWP Insurance',
     location: 'Surabaya',
-    type: 'Full-time',
-    category: 'Insurance',
-    tags: ['Claims', 'Risk Assessment', 'Client Relations'],
-    description: 'Join DWP Insurance as an Insurance Specialist to manage client claims and provide expert advice on risk management.',
-    requirements: [
-      'Strong knowledge of insurance products and regulations',
-      'Minimum 3 years of experience in the insurance industry',
-      'Ability to build and maintain client relationships',
-      'Professional certification in insurance (AAIK/AIIS) is a plus',
-    ],
-    responsibilities: [
-      'Process insurance claims accurately and efficiently',
-      'Perform risk assessments for potential clients',
-      'Advise clients on coverage options and risk mitigation',
-      'Monitor market trends and competitor activities',
-    ],
-  },
-  {
-    id: '4',
-    title: 'Sports Event Coordinator',
-    company: 'Pataka Consultant',
-    location: 'Jakarta',
-    type: 'Contract',
-    category: 'Operations',
-    tags: ['Event Planning', 'Logistics', 'Marketing'],
-    description: 'Pataka Consultant is looking for an energetic Event Coordinator to manage sports events and community activations.',
-    requirements: [
-      'Experience in event planning and execution',
-      'Strong organizational and multitasking skills',
-      'Passion for sports and community development',
-      'Excellent interpersonal and negotiation skills',
-    ],
-    responsibilities: [
-      'Plan and execute sports events and community programs',
-      'Manage event logistics, vendors, and budgets',
-      'Coordinate with marketing for event promotion',
-      'Ensure high participant satisfaction and event safety',
-    ],
-  },
-  {
-    id: '5',
-    title: 'Consultant (Strategy & Operations)',
-    company: 'PLN Consultant',
-    location: 'Jakarta',
-    type: 'Full-time',
-    category: 'Consulting',
-    tags: ['Business Strategy', 'Operational Excellence', 'PMO'],
-    description: 'Join PLN Consultant to help our clients optimize their business operations and achieve strategic growth.',
-    requirements: [
-      'Strong analytical and problem-solving framework',
-      'Experience in business consulting or operational management',
-      'Ability to lead projects and manage multiple stakeholders',
-      'Excellent presentation and communication skills',
-    ],
-    responsibilities: [
-      'Develop business strategies and operational improvement plans',
-      'Manage project timelines and deliverables',
-      'Conduct market research and competitive analysis',
-      'Facilitate workshops and client meetings',
-    ],
+    type: t('career.job.type.full_time'),
+    category: 'Finance',
+    tags: ['Finance', 'Accounting'],
+    description: t('career.job.3.desc'),
+    requirements: [t('career.job.3.req.1')],
+    responsibilities: [t('career.job.3.resp.1')],
   },
 ];
 
-const companies = ['All', 'APG Digital', 'BPR Bonding', 'DWP Insurance', 'Pataka Consultant', 'PLN Consultant'];
-const locations = ['All', 'Jakarta', 'Bandung', 'Surabaya'];
-const categories = ['All', 'Tech', 'Finance', 'Insurance', 'Operations', 'Consulting'];
+// --- Internal Components ---
+
+const CareerIntroSection = ({ t, isTriggered }: { t: any; isTriggered: boolean }) => (
+  <section className={`transition-all duration-700 ${isTriggered ? 'py-8' : 'py-16'} bg-white`}>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <motion.div
+        layout
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h2 className={`font-black text-[#041a40] tracking-tight transition-all duration-700 ${isTriggered ? 'text-xl sm:text-2xl mb-3' : 'text-2xl sm:text-3xl lg:text-4xl mb-5'}`}>
+          {isTriggered ? t('career.intro.headline') : t('career.search.guidance.title')}
+        </h2>
+        <p className={`text-slate-500 max-w-xl mx-auto font-medium leading-relaxed transition-all duration-700 ${isTriggered ? 'text-xs sm:text-sm' : 'text-base sm:text-lg'}`}>
+          {isTriggered ? t('career.intro.subtext') : t('career.search.guidance.desc')}
+        </p>
+      </motion.div>
+    </div>
+  </section>
+);
+
+const CareerSearchBar = ({ 
+  t, 
+  search, 
+  setSearch, 
+  onSearchTrigger,
+  isTriggered
+}: { 
+  t: any; 
+  search: string; 
+  setSearch: (v: string) => void; 
+  onSearchTrigger: (val?: string) => void;
+  isTriggered: boolean;
+}) => {
+  const suggestedKeywords = [
+    { key: 'it', label: t('career.keywords.it') },
+    { key: 'finance', label: t('career.keywords.finance') },
+    { key: 'marketing', label: t('career.keywords.marketing') },
+    { key: 'operasional', label: t('career.keywords.operasional') },
+  ];
+
+  return (
+    <div className={`max-w-3xl mx-auto px-4 transition-all duration-700 ${isTriggered ? 'py-4 sticky top-20 z-40' : 'relative z-20 mb-16'}`}>
+      <motion.div 
+        layout
+        className={`bg-white rounded-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] p-1.5 border border-slate-100 transition-all duration-300 flex items-center focus-within:border-[#0A66C2] focus-within:shadow-[0_10px_40px_-10px_rgba(10,102,194,0.15)]`}
+      >
+        <div className="relative flex-1 flex items-center">
+          <span className="pl-5 text-slate-400">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </span>
+          <input 
+            type="text" 
+            placeholder={t('career.search.placeholder')}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && onSearchTrigger()}
+            className="w-full h-11 sm:h-13 pl-3 pr-4 rounded-full bg-transparent text-slate-900 font-bold outline-none text-sm sm:text-base placeholder:text-slate-400/70"
+          />
+        </div>
+        <Button 
+          onClick={() => onSearchTrigger()}
+          className="h-11 sm:h-13 px-6 sm:px-10 rounded-full bg-[#0A66C2] text-white font-bold shadow-md hover:bg-[#0855A1] transition-all"
+        >
+          {t('career.search.button')}
+        </Button>
+      </motion.div>
+      
+      <AnimatePresence>
+        {!isTriggered && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="mt-6 text-center"
+          >
+            <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-3">
+              {t('career.search.suggested')}
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {suggestedKeywords.map((kw) => (
+                <button
+                  key={kw.key}
+                  onClick={() => onSearchTrigger(kw.label)}
+                  className="px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-slate-500 text-[11px] font-black hover:bg-slate-100 hover:text-[#0A66C2] transition-all"
+                >
+                  {kw.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const JobCard = ({ job, t, onDetail }: { job: Job; t: any; onDetail: (j: Job) => void }) => (
+  <motion.div
+    layout
+    initial={{ opacity: 0, y: 15 }}
+    animate={{ opacity: 1, y: 0 }}
+    whileHover={{ y: -4 }}
+    className="group relative rounded-2xl border border-slate-100 bg-white p-6 sm:p-8 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_40px_-10px_rgba(10,102,194,0.1)] hover:border-[#0A66C2]/15 transition-all duration-500"
+  >
+    <div className="flex flex-col gap-5">
+      {/* Header Info */}
+      <div className="flex items-center gap-4">
+        <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-[#0A66C2]/20 transition-all">
+          <svg className="w-6 h-6 text-[#0A66C2]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        <div className="space-y-0.5">
+          <div className="flex items-center gap-2 text-xs font-bold text-slate-400">
+            <span className="font-black text-[#041a40] uppercase tracking-wide">{job.company}</span>
+            <span>•</span>
+            <span>{job.location}</span>
+          </div>
+          <h3 className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-[#0A66C2] transition-colors duration-300 tracking-tight">
+            {job.title}
+          </h3>
+        </div>
+      </div>
+
+      {/* Badge */}
+      <div>
+        <span className="inline-flex px-3 py-1 bg-slate-50 rounded-lg text-[10px] font-black text-slate-500 uppercase tracking-widest border border-slate-100">
+          {job.type}
+        </span>
+      </div>
+
+      {/* Actions */}
+      <div className="flex items-center gap-3 pt-3 border-t border-slate-50">
+        <Button 
+          variant="outline" 
+          onClick={() => onDetail(job)}
+          className="flex-1 h-11 rounded-xl border-slate-200 text-slate-600 font-bold text-xs hover:bg-slate-50 hover:text-[#0A66C2]"
+        >
+          {t('career.job.cta.detail')}
+        </Button>
+        <Button 
+          className="flex-1 h-11 rounded-xl bg-[#0A66C2] text-white font-bold text-xs shadow-md shadow-blue-500/10 hover:bg-[#0855A1] active:scale-95 transition-all"
+        >
+          {t('career.job.cta.apply')}
+        </Button>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const EmptyState = ({ t, search, onReset }: { t: any; search: string; onReset: () => void }) => (
+  <motion.div 
+    initial={{ opacity: 0, scale: 0.98 }}
+    animate={{ opacity: 1, scale: 1 }}
+    className="text-center py-20 px-6"
+  >
+    <div className="w-20 h-20 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-slate-100 shadow-sm">
+      <svg className="w-8 h-8 text-slate-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+    <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-3 tracking-tight">{t('career.job_not_found')}</h3>
+    <p className="text-slate-400 font-medium mb-10 max-w-sm mx-auto text-sm sm:text-base leading-relaxed">
+      {t('career.empty.message')} <span className="text-slate-900 font-black italic">"{search}"</span>. {t('career.search.try_other')}
+    </p>
+    <Button 
+      variant="outline" 
+      onClick={onReset} 
+      className="rounded-full px-8 h-12 font-bold text-sm border-slate-200 hover:bg-slate-50 transition-all"
+    >
+      {t('career.reset_filter')}
+    </Button>
+  </motion.div>
+);
+
+// --- Main Page Client ---
 
 export default function CareerClient() {
   const { t } = useLanguage();
+  const jobsData = useMemo(() => getJobsData(t), [t]);
+  
   const [search, setSearch] = useState('');
-  const [selectedCompany, setSelectedCompany] = useState('All');
-  const [selectedLocation, setSelectedLocation] = useState('All');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isTriggered, setIsTriggered] = useState(false);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
   const filteredJobs = useMemo(() => {
-    return jobsData.filter((job) => {
-      const matchesSearch = job.title.toLowerCase().includes(search.toLowerCase()) || 
-                           job.company.toLowerCase().includes(search.toLowerCase());
-      const matchesCompany = selectedCompany === 'All' || job.company === selectedCompany;
-      const matchesLocation = selectedLocation === 'All' || job.location === selectedLocation;
-      const matchesCategory = selectedCategory === 'All' || job.category === selectedCategory;
-      return matchesSearch && matchesCompany && matchesLocation && matchesCategory;
-    });
-  }, [search, selectedCompany, selectedLocation, selectedCategory]);
+    if (!search) return jobsData;
+    return jobsData.filter((job) => 
+      job.title.toLowerCase().includes(search.toLowerCase()) || 
+      job.company.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [search, jobsData]);
+
+  const handleSearchTrigger = (val?: string) => {
+    const finalSearch = val || search;
+    if (val) setSearch(val);
+    
+    setIsTriggered(true);
+    // Smooth scroll to results
+    setTimeout(() => {
+      const el = document.getElementById('results-label');
+      if (el) {
+        const offset = 120;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = el.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
+
+  const handleReset = () => {
+    setSearch('');
+    setIsTriggered(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-950">
+    <main className="min-h-screen bg-white text-slate-950">
       <NavbarSection />
 
       {/* Hero Section */}
@@ -168,171 +299,93 @@ export default function CareerClient() {
         tag={t('career.hero.tag')}
         title={t('career.hero.title')}
         description={t('career.hero.subtitle')}
+        size={isTriggered ? 'compact' : 'default'}
       >
         <CareerVisual />
       </InnerPageHero>
 
-      {/* Search & Filter Bar */}
-      <section id="jobs-listing" className="sticky top-[4.5rem] md:top-16 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 py-4 shadow-sm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-            <div className="relative w-full lg:max-w-md">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </span>
-              <input 
-                type="text" 
-                placeholder={t('career.search.placeholder')}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full min-h-[3.25rem] pl-12 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/20 focus:border-[#0A66C2] transition-colors bg-white/90 text-slate-950 text-sm font-medium shadow-inner"
+      <div className="max-w-6xl mx-auto">
+        <AnimatePresence mode="wait">
+          {!isTriggered ? (
+            <motion.div
+              key="initial-state"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <CareerIntroSection t={t} isTriggered={false} />
+              
+              <CareerSearchBar 
+                t={t} 
+                search={search} 
+                setSearch={setSearch} 
+                onSearchTrigger={handleSearchTrigger} 
+                isTriggered={false}
               />
-            </div>
-            
-            <div className="flex flex-wrap gap-3 w-full lg:w-auto">
-              <div className="flex-1 sm:flex-initial flex items-center gap-3">
-                <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest truncate whitespace-nowrap">{t('career.filter.location')}</span>
-                <select 
-                  value={selectedLocation}
-                  onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="flex-1 sm:flex-initial min-h-[3.25rem] px-4 py-2 rounded-xl border border-slate-200 bg-white/90 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/20 focus:border-[#0A66C2] text-slate-950 shadow-sm"
-                >
-                  {locations.map(loc => <option key={loc} value={loc}>{loc === 'All' ? t('career.filter.all') : loc}</option>)}
-                </select>
-              </div>
-              <div className="flex-1 sm:flex-initial flex items-center gap-3">
-                <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest truncate whitespace-nowrap">{t('career.filter.category')}</span>
-                <select 
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="flex-1 sm:flex-initial min-h-[3.25rem] px-4 py-2 rounded-xl border border-slate-200 bg-white/90 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/20 focus:border-[#0A66C2] text-slate-950 shadow-sm"
-                >
-                  {categories.map(cat => <option key={cat} value={cat}>{cat === 'All' ? t('career.filter.all') : cat}</option>)}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Company Tabs */}
-      <section className="pt-8 pb-4 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
-          <div className="flex overflow-x-auto pb-4 gap-3 no-scrollbar">
-            {companies.map(company => (
-              <button
-                key={company}
-                onClick={() => setSelectedCompany(company)}
-                className={`min-h-[2.75rem] px-5 sm:px-8 py-2 rounded-full text-xs font-extrabold tracking-wide uppercase transition-all whitespace-nowrap ${
-                  selectedCompany === company 
-                  ? 'bg-[#041a40] text-white shadow-[0_8px_20px_rgba(4,26,64,0.15)]' 
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900 active:scale-95 shadow-sm'
-                }`}
-              >
-                {company === 'All' ? t('career.filter.all') : company}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+              <WhyChooseUsSection />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="result-state"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <CareerIntroSection t={t} isTriggered={true} />
+              <CareerSearchBar 
+                t={t} 
+                search={search} 
+                setSearch={setSearch} 
+                onSearchTrigger={handleSearchTrigger} 
+                isTriggered={true}
+              />
 
-      {/* Job Listing Grid */}
-      <section className="pt-4 pb-16 md:pt-6 md:pb-24 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
-          {filteredJobs.length > 0 ? (
-            <div className="grid gap-4 sm:gap-6">
-              {filteredJobs.map((job, idx) => (
-                <motion.div
-                  key={job.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: Math.min(idx * 0.05, 0.5), duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:border-slate-300 transition-all duration-500 overflow-hidden"
-                >
-                  {/* Subtle top indicator */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0A66C2] to-[#041a40] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-                    <div className="space-y-4 flex-1">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <span className="text-[10px] font-black text-[#0A66C2] uppercase tracking-widest bg-blue-50 border border-blue-100 px-3 py-1 rounded-md">
-                          {job.company}
-                        </span>
-                        <span className="text-[11px] font-bold text-slate-500 flex items-center gap-1.5 bg-slate-50 border border-slate-100 px-3 py-1 rounded-md">
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              {/* Results Section */}
+              <section id="results" className="py-16">
+                <div className="px-4 sm:px-6 lg:px-8">
+                  {filteredJobs.length > 0 ? (
+                    <div className="space-y-10">
+                      {/* Results Header */}
+                      <div id="results-label" className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-50 pb-8">
+                        <div>
+                          <h3 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight leading-none">
+                            {t('career.search.results_for')}{' '}
+                            <span className="text-[#0A66C2]">"{search || t('career.all_jobs')}"</span>
+                          </h3>
+                          <p className="mt-3 text-xs font-black text-slate-400 uppercase tracking-widest">
+                            {filteredJobs.length} {filteredJobs.length === 1 ? t('career.jobs_found_single') : t('career.jobs_found_plural')}
+                          </p>
+                        </div>
+                        <button 
+                          onClick={handleReset} 
+                          className="px-5 py-2 rounded-xl bg-slate-50 text-[11px] font-black text-slate-500 hover:bg-slate-100 hover:text-slate-900 flex items-center gap-2 group transition-all"
+                        >
+                          <svg className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                           </svg>
-                          {job.location}
-                        </span>
+                          {t('career.reset_filter')}
+                        </button>
                       </div>
-                      
-                      <div>
-                        <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0A66C2] transition-colors duration-300 leading-tight">
-                          {job.title}
-                        </h3>
-                      </div>
-                      
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded text-[10px] font-bold uppercase tracking-wider">
-                          {job.type}
-                        </span>
-                        {job.tags.map(tag => (
-                          <span key={tag} className="px-2.5 py-1 bg-white text-slate-500 rounded text-[10px] font-bold uppercase tracking-wider border border-slate-200">
-                            #{tag}
-                          </span>
+
+                      {/* Job Cards Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {filteredJobs.map((job) => (
+                          <JobCard key={job.id} job={job} t={t} onDetail={setSelectedJob} />
                         ))}
                       </div>
                     </div>
-                    
-                    <div className="flex items-center gap-4 shrink-0 mt-2 md:mt-0">
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => setSelectedJob(job)}
-                        className="bg-white hover:bg-slate-50 !border-slate-200 hover:!border-[#0A66C2] hover:!text-[#0A66C2] transition-colors shadow-sm"
-                      >
-                        {t('career.job.detail')}
-                      </Button>
-                      <Button size="sm" className="shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30">
-                        {t('career.job.apply')} →
-                      </Button>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-24 bg-white rounded-3xl border border-slate-200 shadow-sm">
-              <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-slate-100">
-                <svg className="w-8 h-8 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Posisi tidak ditemukan</h3>
-              <p className="text-slate-500 font-medium">{t('career.empty')}</p>
-              <Button 
-                variant="outline" 
-                className="mt-6"
-                onClick={() => {
-                  setSearch('');
-                  setSelectedCompany('All');
-                  setSelectedLocation('All');
-                  setSelectedCategory('All');
-                }}
-              >
-                Reset Filter
-              </Button>
-            </div>
+                  ) : (
+                    <EmptyState t={t} search={search} onReset={handleReset} />
+                  )}
+                </div>
+              </section>
+            </motion.div>
           )}
-        </div>
-      </section>
-
-      {/* Why Join Us */}
-      <WhyChooseUsSection />
+        </AnimatePresence>
+      </div>
 
       {/* Job Detail Modal */}
       <AnimatePresence>
@@ -346,86 +399,83 @@ export default function CareerClient() {
               className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.98, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-[2.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.2)] p-6 sm:p-10 md:p-14 no-scrollbar"
+              exit={{ opacity: 0, scale: 0.98, y: 20 }}
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-[2rem] shadow-2xl p-8 sm:p-12 no-scrollbar border border-slate-100"
             >
               <button 
                 onClick={() => setSelectedJob(null)}
-                className="absolute top-6 right-6 sm:top-8 sm:right-8 h-12 w-12 flex items-center justify-center rounded-full bg-slate-50 border border-slate-200 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                className="absolute top-6 right-6 h-10 w-10 flex items-center justify-center rounded-full bg-slate-50 text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-all"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
               
               <div className="space-y-10">
                 <div>
-                  <div className="flex flex-wrap items-center gap-3 mb-6">
-                    <span className="text-[10px] font-black text-[#0A66C2] uppercase tracking-widest bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-md">
-                      {selectedJob.company}
-                    </span>
-                    <span className="text-[11px] font-bold text-slate-500 flex items-center gap-1.5 bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-md">
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <span className="text-[10px] font-black text-[#0A66C2] uppercase tracking-[0.2em] bg-[#0A66C2]/5 px-4 py-1.5 rounded-full mb-6 inline-block">
+                    {selectedJob.company}
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-black text-slate-950 mb-6 tracking-tight leading-tight">{selectedJob.title}</h2>
+                  <div className="flex flex-wrap gap-4 mb-8">
+                    <div className="flex items-center gap-2.5 text-slate-500 font-bold text-sm bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
+                      <svg className="w-4 h-4 text-[#0A66C2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                       {selectedJob.location}
-                    </span>
-                    <span className="text-[11px] font-bold text-slate-500 bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-md">
+                    </div>
+                    <div className="flex items-center gap-2.5 text-slate-500 font-bold text-sm bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
+                      <svg className="w-4 h-4 text-[#0A66C2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
                       {selectedJob.type}
-                    </span>
+                    </div>
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-extrabold text-slate-950 mb-6 leading-tight tracking-tight">
-                    {selectedJob.title}
-                  </h2>
-                  <p className="text-slate-600 leading-relaxed text-lg font-medium max-w-3xl">
-                    {selectedJob.description}
-                  </p>
+                  <p className="text-lg text-slate-600 font-medium leading-relaxed">{selectedJob.description}</p>
                 </div>
 
-                <div className="grid gap-10 md:grid-cols-2">
-                  <div className="space-y-5 bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-100">
-                    <h4 className="text-xl font-extrabold text-[#041a40] flex items-center gap-3">
-                      <div className="h-8 w-1.5 bg-[#0A66C2] rounded-full" />
+                <div className="grid md:grid-cols-2 gap-12 sm:gap-16">
+                  <div className="space-y-6">
+                    <h4 className="text-base font-black text-[#041a40] uppercase tracking-widest flex items-center gap-3">
+                      <span className="w-10 h-[2.5px] bg-[#0A66C2]" />
                       {t('career.modal.responsibilities')}
                     </h4>
                     <ul className="space-y-4">
-                      {selectedJob.responsibilities.map((item, idx) => (
-                        <li key={idx} className="flex gap-4 text-slate-700 text-base font-medium">
-                          <svg className="w-5 h-5 text-[#0A66C2] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="leading-relaxed">{item}</span>
+                      {selectedJob.responsibilities.map((r, i) => (
+                        <li key={i} className="text-base text-slate-500 flex gap-4 leading-relaxed">
+                          <span className="text-[#0A66C2] font-black shrink-0">•</span> 
+                          <span className="font-medium">{r}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="space-y-5 bg-blue-50/50 rounded-3xl p-6 sm:p-8 border border-blue-100/50">
-                    <h4 className="text-xl font-extrabold text-[#041a40] flex items-center gap-3">
-                      <div className="h-8 w-1.5 bg-[#0B7BE6] rounded-full" />
+                  <div className="space-y-6">
+                    <h4 className="text-base font-black text-[#041a40] uppercase tracking-widest flex items-center gap-3">
+                      <span className="w-10 h-[2.5px] bg-[#0A66C2]" />
                       {t('career.modal.requirements')}
                     </h4>
                     <ul className="space-y-4">
-                      {selectedJob.requirements.map((item, idx) => (
-                        <li key={idx} className="flex gap-4 text-slate-700 text-base font-medium">
-                          <svg className="w-5 h-5 text-[#0B7BE6] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span className="leading-relaxed">{item}</span>
+                      {selectedJob.requirements.map((r, i) => (
+                        <li key={i} className="text-base text-slate-500 flex gap-4 leading-relaxed">
+                          <span className="text-[#0A66C2] font-black shrink-0">•</span> 
+                          <span className="font-medium">{r}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
 
-                <div className="pt-8 flex flex-col sm:flex-row gap-4">
-                  <Button className="w-full sm:w-auto px-12 py-4 text-base shadow-xl shadow-blue-500/20">
-                    {t('career.job.apply')}
+                <div className="pt-10 flex flex-col sm:flex-row gap-4 border-t border-slate-50">
+                  <Button className="flex-[2] h-14 rounded-2xl bg-[#0A66C2] text-white font-black text-base shadow-xl shadow-blue-500/10 hover:bg-[#0855A1] active:scale-95 transition-all">
+                    {t('career.job.cta.apply')}
                   </Button>
-                  <Button variant="outline" onClick={() => setSelectedJob(null)} className="w-full sm:w-auto px-12 py-4 text-base bg-slate-50 border-slate-200">
+                  <Button 
+                    variant="outline" 
+                    className="flex-1 h-14 rounded-2xl border-slate-100 text-slate-400 font-bold text-base hover:bg-slate-50 hover:text-slate-700 transition-all" 
+                    onClick={() => setSelectedJob(null)}
+                  >
                     {t('career.modal.close')}
                   </Button>
                 </div>

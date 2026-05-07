@@ -12,7 +12,7 @@ const TrustSection = () => {
   const partnerLogos = [
     '/images/apgg.png',
     '/images/bpr.png',
-    '/images/caraka.png',
+    '/images/caraqu.png',
     '/images/dwp.png',
     '/images/lps.png',
     '/images/pataka.png',

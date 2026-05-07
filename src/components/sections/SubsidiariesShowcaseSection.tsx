@@ -18,7 +18,7 @@ const subsidiariesData = [
     logoSrc: '/images/dwp.png',
   },
   {
-    name: 'PT. Sipbro',
+    name: 'SIP BRO',
     slug: 'sipbro',
     logoSrc: '/images/sipbro.png',
   },
@@ -33,29 +33,19 @@ const subsidiariesData = [
     logoSrc: '/images/qjamin.png',
   },
   {
-    name: 'PT. Proteksi',
-    slug: 'proteksi',
-    logoSrc: '/images/proteksi.png',
-  },
-  {
-    name: 'PT. Pataka',
-    slug: 'pataka',
-    logoSrc: '/images/pataka.png',
-  },
-  {
     name: 'Prada Badminton Club',
     slug: 'prada-bc',
     logoSrc: '/images/prada.png',
   },
   {
-    name: 'PT. Lintas Perkasa Solutions',
+    name: 'LPS Insurance Consultant',
     slug: 'lps',
     logoSrc: '/images/lps.png',
   },
   {
-    name: 'PT. Caraka Mulia',
+    name: 'Caraka Mulia',
     slug: 'caraka-mulia',
-    logoSrc: '/images/caraka.png',
+    logoSrc: '/images/caraqu.png',
   },
 ];
 
@@ -66,41 +56,42 @@ const SubsidiariesShowcaseSection = () => {
   const highlightSubsidiaries = subsidiariesData.slice(0, 6);
 
   return (
-    <section className="apg-section-divider relative py-12 sm:py-28 lg:py-32 bg-white overflow-hidden">
+    <section className="apg-section-divider relative py-16 lg:py-24 bg-white overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative">
-        <div className="text-center mb-10 sm:mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-4 sm:mb-6 shadow-sm"
-          >
-            <div className="h-1.5 w-1.5 rounded-full bg-[#0A66C2] animate-pulse" />
-            Institutional Network
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-950 mb-4 sm:mb-6 leading-snug tracking-tight max-w-[260px] sm:max-w-none mx-auto"
-          >
-            {t('subsidiaries.title')}
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-sm sm:text-lg text-slate-600 max-w-[320px] sm:max-w-2xl mx-auto leading-relaxed"
-          >
-            {t('subsidiaries.desc')}
-          </motion.p>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Premium Header Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden bg-gradient-to-br from-[#0A66C2] via-[#0A66C2] to-[#041E4A] p-8 sm:p-14 lg:p-20 mb-12 sm:mb-16 shadow-[0_30px_60px_-15px_rgba(10,102,194,0.2)] border border-white/10"
+        >
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_60%)]" />
+          </div>
+
+          <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center">
+            <div className="text-[10px] sm:text-xs font-black tracking-[0.25em] uppercase text-white/70 mb-8 flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-white/30" />
+              {t('subsidiaries.tag')}
+              <span className="w-8 h-[1px] bg-white/30" />
+            </div>
+            
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-8 tracking-tight">
+              {t('subsidiaries.title')}
+            </h2>
+
+            <div className="h-0.5 w-24 bg-white/20 mb-8 rounded-full" />
+            
+            <p className="text-lg text-white/80 font-medium leading-relaxed max-w-2xl">
+              {t('subsidiaries.desc')}
+            </p>
+          </div>
+        </motion.div>
 
         <div className="relative bg-white rounded-2xl sm:rounded-3xl p-2 sm:p-8 lg:p-12 shadow-sm sm:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-200/60 transition-shadow duration-300 sm:hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.12)]">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-0">
@@ -118,14 +109,30 @@ const SubsidiariesShowcaseSection = () => {
                   className="relative flex flex-col h-full p-6 sm:p-12 items-center justify-center transition-all duration-300 active:bg-slate-50 sm:hover:bg-slate-50 focus:outline-none"
                 >
                   <span className="sr-only">{s.name}</span>
-                  <div className="relative w-full h-full max-w-[8rem] sm:max-w-[10rem] aspect-[3/2] transition-transform duration-500 group-hover:scale-105">
+                  <div
+                    className={[
+                      'relative w-full h-[4.5rem] sm:h-[5rem] max-w-[13rem] transition-transform duration-500 group-hover:scale-105 transform-gpu',
+                      s.slug === 'prada-bc' ? 'scale-[0.9]' : '',
+                      s.slug === 'dwp' ? 'scale-[0.9]' : '',
+                      s.slug === 'bpr' ? 'scale-[0.92]' : '',
+                      s.slug === 'sipbro' ? 'scale-[1.05]' : '',
+                      s.slug === 'qjamin' ? 'scale-[1.04]' : '',
+                      s.slug === 'lps' ? 'scale-[1.12]' : '',
+                      s.slug === 'caraka-mulia' ? 'scale-[1.1]' : '',
+                    ].join(' ')}
+                  >
                     <Image
                       src={s.logoSrc}
                       alt={`${s.name} logo`}
                       fill
-                      sizes="(min-width: 64rem) 14vw, (min-width: 48rem) 26vw, 42vw"
-                      onLoad={() => setLoaded((prev) => ({ ...prev, [s.slug]: true }))}
-                      className={`object-contain transition-all duration-500 drop-shadow-sm ${loaded[s.slug] ? 'opacity-100 group-hover:scale-105 group-hover:-translate-y-1 group-hover:drop-shadow-md' : 'opacity-0'}`}
+                      className={[
+                        'object-contain transition-all duration-500 transform group-hover:scale-110',
+                        s.slug === 'prada-bc' ? 'filter brightness-105 contrast-125' : '',
+                        s.slug === 'caraka-mulia' ? 'filter brightness-110 contrast-150 saturate-110' : '',
+                        loaded[s.slug] ? 'opacity-100 scale-100' : 'opacity-0 scale-95 blur-sm',
+                      ].join(' ')}
+                      onLoad={() => setLoaded(prev => ({ ...prev, [s.slug]: true }))}
+                      sizes="(max-width: 640px) 120px, 160px"
                     />
                   </div>
                 </Link>

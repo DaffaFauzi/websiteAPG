@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import FooterSection from '@/components/sections/FooterSection';
 import FallbackImage from '@/components/ui/FallbackImage';
 import { useLanguage } from '@/contexts/LanguageContext';
-import InnerPageHero from '@/components/ui/InnerPageHero';
-import { AboutVisual } from '@/components/ui/HeroVisuals';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const TentangPage = () => {
   const { t } = useLanguage();
@@ -20,45 +20,96 @@ const TentangPage = () => {
   ];
 
   const galleryImages = [
-    'https://images.unsplash.com/photo-1522071823991-b9671f9d7f1f?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&q=80&w=800',
+    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1600',
+    'https://images.unsplash.com/photo-1522071823991-b9671f9d7f1f?auto=format&fit=crop&q=80&w=1600',
+    'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1600',
+    'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1600',
+    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1600',
+    'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1600',
   ];
 
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      <InnerPageHero
-        tag={t('tentang.hero.badge')}
-        title={t('nav.about')}
-        description={t('about.preview.desc')}
-      >
-        <AboutVisual />
-      </InnerPageHero>
+      <section className="apg-section-divider bg-slate-50 pt-8 pb-8 sm:pt-10 sm:pb-10">
+        <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
+          <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] bg-[#0A66C2] text-white shadow-[0_30px_90px_rgba(2,6,23,0.18)]">
+            <div className="absolute inset-0">
+              <FallbackImage
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2200"
+                fallbackSrc="/images/presentation-placeholder.svg"
+                alt="APG Headquarters"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0A66C2]/92 via-[#0A66C2]/70 to-[#0A66C2]/30" />
+              <div className="absolute inset-0 opacity-[0.10]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(4,26,64,0.45),transparent_60%)]" />
+              </div>
+            </div>
 
-      {/* 1. Corporate Identity Overview */}
-      <section className="apg-section-divider py-16 sm:py-24 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
+            <div className="relative z-10 px-7 sm:px-10 lg:px-14 pt-10 sm:pt-12 pb-12 sm:pb-14">
+              <div className="flex items-center justify-between gap-4">
+                <div className="inline-flex items-center gap-3 rounded-full bg-white/10 border border-white/15 px-4 py-2 backdrop-blur-md">
+                  <div className="relative h-5 w-16">
+                    <Image
+                      src="/images/apgg.png"
+                      alt={t('brand.logoAlt')}
+                      fill
+                      sizes="64px"
+                      className="object-contain [filter:brightness(0)_invert(1)]"
+                      priority
+                    />
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-black tracking-[0.2em] uppercase text-white/90">
+                    {t('tentang.hero.badge')}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-end">
+                <div>
+                  <h1 className="text-4xl sm:text-6xl lg:text-[4.25rem] font-black tracking-tight leading-[1.03] drop-shadow-sm">
+                    {t('nav.about')}
+                  </h1>
+                  <p className="mt-6 text-sm sm:text-base text-white/90 leading-relaxed max-w-prose font-medium">
+                    {t('about.preview.desc')}
+                  </p>
+                </div>
+
+                <div className="hidden lg:block">
+                  <div className="relative h-[18rem] w-full overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 backdrop-blur-md">
+                    <FallbackImage
+                      src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1600"
+                      fallbackSrc="/images/presentation-placeholder.svg"
+                      alt="Corporate skyline"
+                      fill
+                      className="object-cover opacity-85"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[#041a40]/40 to-transparent" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="apg-section-divider py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ 
-                opacity: 1, 
+              whileInView={{
+                opacity: 1,
                 y: 0,
-                transitionEnd: { transform: 'none' }
+                transitionEnd: { transform: 'none' },
               }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-5 lg:sticky lg:top-32 z-10"
             >
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-slate-500 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-6">
-                Corporate Narrative
+                {t('tentang.corporate_narrative')}
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#041a40] leading-tight tracking-tight">
                 {t('tentang.hero.title')}
@@ -78,7 +129,7 @@ const TentangPage = () => {
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                 {t('tentang.hero.p2')}
               </p>
-              <div className="relative rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] h-[20rem] sm:h-[28rem] mt-12 border border-slate-100">
+              <div className="relative rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] h-[20rem] sm:h-[28rem] mt-10 border border-slate-100">
                 <FallbackImage
                   src="https://images.unsplash.com/photo-1522071823991-b9671f9d7f1f?auto=format&fit=crop&q=80&w=1200"
                   fallbackSrc="/images/presentation-placeholder.svg"
@@ -92,27 +143,27 @@ const TentangPage = () => {
         </div>
       </section>
 
-      {/* 2. Strategic Vision & Mission */}
-      <section className="apg-section-divider py-16 sm:py-24 lg:py-32 bg-slate-50 relative">
+      <section className="apg-section-divider py-16 lg:py-24 bg-slate-50 relative">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            {/* Vision */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ 
-                opacity: 1, 
+              whileInView={{
+                opacity: 1,
                 y: 0,
-                transitionEnd: { transform: 'none' }
+                transitionEnd: { transform: 'none' },
               }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="relative lg:sticky lg:top-32 z-10"
             >
-              <div className="absolute -left-6 -top-6 text-9xl text-slate-200/50 font-serif leading-none select-none">&ldquo;</div>
+              <div className="absolute -left-6 -top-6 text-9xl text-slate-200/50 font-serif leading-none select-none">
+                &ldquo;
+              </div>
               <div className="relative z-10">
                 <div className="text-[10px] sm:text-xs font-black text-[#0A66C2] tracking-[0.2em] uppercase mb-6">
                   {t('tentang.visi.badge')}
@@ -126,7 +177,6 @@ const TentangPage = () => {
               </div>
             </motion.div>
 
-            {/* Mission */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -139,7 +189,7 @@ const TentangPage = () => {
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#041a40] leading-snug mb-8">
                 {t('tentang.misi.title')}
               </h3>
-              
+
               <div className="space-y-6">
                 {misiList.map((misi, index) => (
                   <div key={index} className="flex gap-5 group">
@@ -160,49 +210,38 @@ const TentangPage = () => {
         </div>
       </section>
 
-      {/* 3. Premium Documentation Gallery */}
-      <section id="gallery" className="apg-section-divider py-16 sm:py-24 lg:py-32 bg-slate-950 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(10,102,194,0.15),transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(7,51,122,0.2),transparent_50%)]" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10">
-          <div className="text-center mb-16 lg:mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-300 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-6 backdrop-blur-md">
-              {t('tentang.gallery.badge')}
+      <section id="gallery" className="apg-section-divider py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between gap-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase">
+                {t('tentang.gallery.badge')}
+              </div>
+              <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-tight text-[#041a40]">
+                {t('tentang.gallery.title')}
+              </h2>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">
-              {t('tentang.gallery.title')}
-            </h2>
           </div>
 
-          {/* Masonry Layout for Gallery */}
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {galleryImages.slice(0, 7).map((src, index) => (
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {galleryImages.map((src, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
+                key={src}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: (index % 3) * 0.1, duration: 0.7 }}
-                className="relative rounded-3xl overflow-hidden border border-white/10 break-inside-avoid group cursor-pointer"
+                transition={{ delay: index * 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="relative overflow-hidden rounded-3xl border border-slate-100 bg-slate-50"
               >
-                <div className={`relative ${index % 3 === 0 ? 'aspect-square' : index % 2 === 0 ? 'aspect-[4/5]' : 'aspect-[3/2]'}`}>
+                <div className="relative aspect-[4/3]">
                   <FallbackImage
                     src={src}
                     fallbackSrc="/images/presentation-placeholder.svg"
-                    alt={`Documentation ${index + 1}`}
+                    alt={`APG gallery ${index + 1}`}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#041a40]/90 via-[#041a40]/20 to-transparent opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 text-white">
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                      </svg>
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#0A66C2]/10 to-transparent" />
                 </div>
               </motion.div>
             ))}
@@ -210,86 +249,72 @@ const TentangPage = () => {
         </div>
       </section>
 
-      {/* 4. Deep Institutional Contact Access */}
-      <section className="relative overflow-hidden py-16 sm:py-24 lg:py-32 bg-slate-50 text-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10">
+      <section className="apg-section-divider py-16 lg:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#07337A] to-[#041a40] text-white p-10 sm:p-14 lg:p-20 shadow-[0_30px_60px_rgba(4,26,64,0.4)]"
+            className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] bg-gradient-to-br from-[#07337A] to-[#041a40] text-white p-10 sm:p-14 lg:p-16 shadow-[0_30px_60px_rgba(4,26,64,0.35)]"
           >
-            {/* Ambient patterns */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem]" />
-            <div className="absolute right-0 top-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(10,102,194,0.3),transparent_70%)] blur-2xl" />
-            
-            <div className="relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-20 items-center">
+            <div className="absolute inset-0 pointer-events-none opacity-[0.18]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.16),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(10,102,194,0.28),transparent_65%)]" />
+            </div>
+
+            <div className="relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-14 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-8 backdrop-blur-md">
-                  Corporate Access Gateway
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-6 backdrop-blur-md">
+                  {t('common.contact_us')}
                 </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight drop-shadow-md mb-12">
+                <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-[1.08]">
                   {t('tentang.contact.title')}
                 </h2>
-                
-                <div className="space-y-8">
-                  <div className="flex gap-4 items-start">
-                    <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
+                <p className="mt-4 text-white/80 leading-relaxed max-w-prose">
+                  {t('contact.desc')}
+                </p>
+
+                <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href="/kontak"
+                    className="inline-flex items-center justify-center rounded-full bg-white text-[#041a40] px-8 py-4 font-black shadow-xl active:scale-[0.98] transition-transform"
+                  >
+                    {t('common.contact_us')}
+                    <span className="ml-3">→</span>
+                  </Link>
+                  <Link
+                    href="#gallery"
+                    className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-8 py-4 font-black text-white/90 hover:bg-white/10 active:scale-[0.98] transition-transform"
+                  >
+                    {t('gallery.cta')}
+                  </Link>
+                </div>
+              </div>
+
+              <div className="hidden lg:block">
+                <div className="rounded-[2rem] border border-white/15 bg-white/6 backdrop-blur-md p-8">
+                  <div className="text-[10px] font-black tracking-[0.25em] uppercase text-white/70">
+                    {t('tentang.contact.address.label')}
+                  </div>
+                  <div className="mt-2 text-white font-extrabold leading-snug">
+                    {t('tentang.contact.address.value')}
+                  </div>
+                  <div className="mt-6 h-px w-full bg-white/15" />
+                  <div className="mt-6 grid gap-4 text-white/90 font-bold">
+                    <div>
+                      <div className="text-[10px] font-black tracking-[0.25em] uppercase text-white/70">
+                        {t('tentang.contact.email.label')}
+                      </div>
+                      <div className="mt-1">{t('tentang.contact.email.value')}</div>
                     </div>
                     <div>
-                      <h3 className="font-extrabold text-white/60 mb-1 text-[10px] sm:text-xs uppercase tracking-[0.2em]">{t('tentang.contact.address.label')}</h3>
-                      <p className="text-white text-base sm:text-lg font-medium leading-relaxed max-w-sm">
-                        {t('tentang.contact.address.value')}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <div className="flex gap-4 items-start">
-                      <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 mt-1">
-                        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
+                      <div className="text-[10px] font-black tracking-[0.25em] uppercase text-white/70">
+                        {t('tentang.contact.phone.label')}
                       </div>
-                      <div>
-                        <h3 className="font-extrabold text-white/60 mb-1 text-[10px] sm:text-xs uppercase tracking-[0.2em]">{t('tentang.contact.email.label')}</h3>
-                        <p className="text-white font-medium">
-                          {t('tentang.contact.email.value')}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex gap-4 items-start">
-                      <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 mt-1">
-                        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-extrabold text-white/60 mb-1 text-[10px] sm:text-xs uppercase tracking-[0.2em]">{t('tentang.contact.phone.label')}</h3>
-                        <p className="text-white font-medium">
-                          {t('tentang.contact.phone.value')}
-                        </p>
-                      </div>
+                      <div className="mt-1">{t('tentang.contact.phone.value')}</div>
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="hidden lg:block relative h-full min-h-[300px]">
-                 <div className="absolute inset-0 bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2rem] p-8 flex flex-col justify-center">
-                    <div className="text-white text-center">
-                       <svg className="w-16 h-16 mx-auto mb-6 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                       </svg>
-                       <div className="text-xl font-bold tracking-tight mb-2">Pusat Informasi APG</div>
-                       <p className="text-sm text-white/70">Tim kami siap melayani berbagai kebutuhan strategis, investasi, dan pertanyaan seputar portofolio holding.</p>
-                    </div>
-                 </div>
               </div>
             </div>
           </motion.div>

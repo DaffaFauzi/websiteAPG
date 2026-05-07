@@ -76,10 +76,10 @@ export const knowledge: KnowledgeItem[] = [
     category: 'contact',
     title: 'Informasi Kontak & Lokasi APG',
     content: `
-      Alamat Kantor Pusat: The Mansion Bougenville, Office Tower Fontana, Unit BF 32 B1 & B2, Jl. Trembesi Blok D Pademangan Timur, Kec. Pademangan, Jakarta Utara.
-      Telepon: 021 3893 0088
+      Alamat Kantor Pusat: Office Tower Fontana, The Mansion Bougenville, Lt. 51 unit BF 51 A1, Jl. Trembesi Blok D Pademangan Timur, Kec. Pademangan, Jakarta Utara, Jl. Trembesi Blok D Pademangan Timur, Kec. Pademangan, Jakarta Utara.
+      Telepon: +62 81288885132
       Email: info@ardanaperkasagroup.id
-      Jam Operasional: Senin - Jumat, 09.00 - 17.00 WIB.
+      Jam Operasional: Senin - Jumat, 08.00- 17.00 WIB.
     `,
     keywords: ['alamat', 'lokasi', 'kantor', 'nomor telepon', 'email', 'hubungi', 'jakarta utara']
   },

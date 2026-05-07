@@ -27,12 +27,6 @@ const KeyMetricsSection: React.FC = () => {
       icon: UserGroupIcon,
     },
     {
-      label: t('metrics.projects'),
-      value: 500,
-      suffix: '+',
-      icon: BriefcaseIcon,
-    },
-    {
       label: t('metrics.sectors'),
       value: 10,
       suffix: '',
@@ -97,9 +91,8 @@ const KeyMetricsSection: React.FC = () => {
               </div>
             </div>
           </div>
-
           {/* Right: Featured Metrics Dashboard */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-6 order-1 lg:order-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 order-1 lg:order-2">
             
             {/* Top Left: Subsidiaries */}
             <motion.div
@@ -107,7 +100,7 @@ const KeyMetricsSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="col-span-2 sm:col-span-1 rounded-2xl sm:rounded-3xl bg-slate-900 sm:bg-slate-900/90 border border-slate-800 sm:border-slate-700/50 sm:backdrop-blur-sm p-5 sm:p-8 shadow-sm sm:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] sm:hover:bg-slate-800 sm:hover:border-slate-600 transition-all duration-300 flex flex-col justify-between min-h-[12rem] sm:min-h-[14rem] active:scale-[0.98] sm:hover:-translate-y-1"
+              className="rounded-2xl sm:rounded-3xl bg-slate-900 sm:bg-slate-900/90 border border-slate-800 sm:border-slate-700/50 sm:backdrop-blur-sm p-5 sm:p-8 shadow-sm sm:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] sm:hover:bg-slate-800 sm:hover:border-slate-600 transition-all duration-300 flex flex-col justify-between min-h-[12rem] sm:min-h-[14rem] active:scale-[0.98] sm:hover:-translate-y-1"
             >
               <div className="flex items-center justify-between mb-6">
                 <div className="h-12 w-12 rounded-2xl bg-slate-800 text-white flex items-center justify-center">
@@ -128,7 +121,7 @@ const KeyMetricsSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="col-span-2 sm:col-span-1 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#0A66C2] to-[#041E4A] border border-[#38bdf8]/30 p-5 sm:p-8 shadow-sm sm:shadow-[0_0_50px_rgba(10,102,194,0.4)] sm:hover:shadow-[0_0_70px_rgba(10,102,194,0.6)] transition-all duration-300 flex flex-col justify-between min-h-[12rem] sm:min-h-[14rem] sm:mt-8 active:scale-[0.98] sm:hover:-translate-y-1"
+              className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#0A66C2] to-[#041E4A] border border-[#38bdf8]/30 p-5 sm:p-8 shadow-sm sm:shadow-[0_0_50px_rgba(10,102,194,0.4)] sm:hover:shadow-[0_0_70px_rgba(10,102,194,0.6)] transition-all duration-300 flex flex-col justify-between min-h-[12rem] sm:min-h-[14rem] active:scale-[0.98] sm:hover:-translate-y-1"
             >
               <div className="flex items-center justify-between mb-6">
                 <div className="h-12 w-12 rounded-2xl bg-white/10 text-white flex items-center justify-center backdrop-blur-md">
@@ -143,48 +136,27 @@ const KeyMetricsSection: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Bottom Left: Projects */}
+            {/* Bottom: Sectors (Wide on sm) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="col-span-2 sm:col-span-1 rounded-2xl sm:rounded-3xl bg-slate-900 sm:bg-slate-900/90 border border-slate-800 sm:border-slate-700/50 sm:backdrop-blur-sm p-5 sm:p-8 shadow-sm sm:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] sm:hover:bg-slate-800 sm:hover:border-slate-600 transition-all duration-300 flex flex-col justify-between min-h-[12rem] sm:min-h-[14rem] active:scale-[0.98] sm:hover:-translate-y-1"
+              className="sm:col-span-2 rounded-2xl sm:rounded-3xl bg-slate-900 sm:bg-slate-900/90 border border-slate-800 sm:border-slate-700/50 sm:backdrop-blur-sm p-5 sm:p-8 shadow-sm sm:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] sm:hover:bg-slate-800 sm:hover:border-slate-600 transition-all duration-300 flex flex-col justify-between min-h-[10rem] sm:min-h-[12rem] active:scale-[0.98] sm:hover:-translate-y-1"
             >
-              <div className="flex items-center justify-between mb-6">
-                <div className="h-12 w-12 rounded-2xl bg-slate-800 text-white flex items-center justify-center">
-                  {React.createElement(metrics[2].icon, { className: "h-6 w-6" })}
+              <div className="flex items-center justify-between mb-4">
+                <div className="h-10 w-10 rounded-xl bg-slate-800 text-white flex items-center justify-center">
+                  {React.createElement(metrics[2].icon, { className: "h-5 w-5" })}
                 </div>
-                <div className="text-[10px] sm:text-xs tracking-[0.16em] uppercase text-slate-400 font-extrabold">{metrics[2].label}</div>
+                <div className="text-[10px] tracking-[0.16em] uppercase text-slate-400 font-extrabold">{metrics[2].label}</div>
               </div>
-              <div>
+              <div className="flex items-baseline gap-4">
                 <div className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
                   <AnimatedNumber value={metrics[2].value} format={metrics[2].suffix ? 'suffix' : 'number'} suffix={metrics[2].suffix} />
                 </div>
+                <div className="text-sm text-slate-500 font-medium tracking-wide uppercase">Core Business Domains</div>
               </div>
             </motion.div>
-
-            {/* Bottom Right: Sectors */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              className="col-span-2 sm:col-span-1 rounded-2xl sm:rounded-3xl bg-slate-900 sm:bg-slate-900/90 border border-slate-800 sm:border-slate-700/50 sm:backdrop-blur-sm p-5 sm:p-8 shadow-sm sm:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] sm:hover:bg-slate-800 sm:hover:border-slate-600 transition-all duration-300 flex flex-col justify-between min-h-[12rem] sm:min-h-[14rem] sm:mt-8 active:scale-[0.98] sm:hover:-translate-y-1"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <div className="h-12 w-12 rounded-2xl bg-slate-800 text-white flex items-center justify-center">
-                  {React.createElement(metrics[3].icon, { className: "h-6 w-6" })}
-                </div>
-                <div className="text-[10px] sm:text-xs tracking-[0.16em] uppercase text-slate-400 font-extrabold">{metrics[3].label}</div>
-              </div>
-              <div>
-                <div className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-                  <AnimatedNumber value={metrics[3].value} format={metrics[3].suffix ? 'suffix' : 'number'} suffix={metrics[3].suffix} />
-                </div>
-              </div>
-            </motion.div>
-
           </div>
         </div>
       </div>

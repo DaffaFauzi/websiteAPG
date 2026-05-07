@@ -2,62 +2,78 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const AboutPreviewSection = () => {
   const { t } = useLanguage();
+  const summaryMetrics = [
+    { value: t('overview.highlight.1.value'), label: t('overview.highlight.1.label') },
+    { value: t('overview.highlight.2.value'), label: t('overview.highlight.2.label') },
+  ];
+
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden bg-[#0A66C2]">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_60%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_68%)]" />
+    <section className="apg-section-divider relative py-16 lg:py-24 overflow-hidden bg-white text-slate-950">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.7)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.7)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(10,102,194,0.10),transparent_55%),radial-gradient(circle_at_80%_70%,rgba(7,51,122,0.10),transparent_60%)]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: '-1.875rem' }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center lg:text-left flex flex-col items-center lg:items-start"
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-left"
           >
-            <div className="inline-flex items-center rounded-full border border-white/16 bg-white/10 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-extrabold tracking-[0.18em] uppercase text-white/85 mb-5 sm:mb-6">
-              {t('about.preview.tag')}
+            <div className="inline-flex items-center gap-3 rounded-full bg-[#0A66C2]/5 border border-[#0A66C2]/10 px-4 py-2">
+              <span className="text-[10px] sm:text-xs font-black tracking-[0.2em] uppercase text-[#0A66C2]">
+                {t('overview.tag')}
+              </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.2] sm:leading-[1.1] mb-5 sm:mb-6">
+
+            <h2 className="mt-7 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.03]">
               {t('about.preview.title')}
             </h2>
-            <p className="text-sm sm:text-base text-white/80 leading-relaxed mb-8 sm:mb-10 max-w-prose">
+
+            <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed max-w-prose font-medium">
               {t('about.preview.desc')}
             </p>
-            <Link 
-              href="/tentang" 
-              className="apg-btn inline-flex items-center justify-center gap-3 min-h-12 w-full sm:w-auto rounded-full bg-white px-8 py-4 text-sm font-extrabold text-slate-950 shadow-[0_1.125rem_3.125rem_rgba(0,0,0,0.16)] hover:bg-white/95 active:scale-95 transition-all duration-200 group truncate whitespace-nowrap"
-            >
-              {t('about.preview.cta')}
-              <span className="text-xl group-hover:translate-x-1 transition-transform duration-200 apg-ease">→</span>
-            </Link>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: '1.875rem' }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
-            <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-white/6 shadow-[0_1.875rem_7.5rem_rgba(0,0,0,0.22)]">
-              <Image
-                src="/images/hero_section_top_image.png"
-                alt={t('about.preview.imageAlt')}
-                width={600}
-                height={600}
-                className="w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--background)]/40 to-transparent pointer-events-none" />
+            <div className="mt-8">
+              <Link
+                href="/tentang"
+                className="inline-flex items-center justify-center rounded-full bg-[#0A66C2] text-white px-8 py-4 font-black shadow-xl shadow-blue-500/25 active:scale-[0.98] transition-transform"
+              >
+                {t('about.preview.cta')}
+                <span className="ml-3">→</span>
+              </Link>
             </div>
           </motion.div>
+
+          <div className="grid gap-4">
+            {summaryMetrics.map((m, idx) => (
+              <motion.div
+                key={m.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: idx * 0.08 }}
+                className="rounded-[2rem] bg-white text-[#041a40] shadow-[0_22px_50px_-22px_rgba(2,6,23,0.18)] border border-slate-200 px-8 py-7"
+              >
+                <div className="text-3xl sm:text-4xl font-black tracking-tight text-[#0A66C2] leading-none">
+                  {m.value}
+                </div>
+                <div className="mt-3 text-sm sm:text-base font-black text-slate-900">
+                  {m.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

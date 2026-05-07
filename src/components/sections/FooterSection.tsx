@@ -45,198 +45,104 @@ const dividerVariants = {
 
 const FooterSection: React.FC = () => {
   const { t } = useLanguage();
-  const currentYear = new Date().getFullYear();
+
+  const socialItems = [
+    {
+      label: t('footer.social.instagram'),
+      href: 'https://www.instagram.com/ardanaperkasagroup?igsh=Y3FnNW91MjIxMzE4',
+      path: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z',
+      viewBox: '0 0 24 24',
+    },
+    {
+      label: t('footer.social.facebook'),
+      href: 'https://www.facebook.com/share/1GBTguH4gV/?mibextid=wwXIfr',
+      path: 'M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.5A3.5 3.5 0 0 1 14.25 6h2.25v3h-2.25a1 1 0 0 0-1 1V12h3.25l-.5 3h-2.75v7A10 10 0 0 0 22 12Z',
+      viewBox: '0 0 24 24',
+    },
+    {
+      label: t('footer.social.linkedin'),
+      href: 'https://www.linkedin.com/in/ardana-perkasa-group-a3aa78390/',
+      path: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 2a2 2 0 11-2 2 2 2 0 012-2z',
+      viewBox: '0 0 24 24',
+    },
+  ];
+
+  const copyright = t('footer.copyright')
+    .replace('{year}', String(new Date().getFullYear()))
+    .replace('{brand}', t('cinema.brand'));
 
   return (
-    <footer className="relative bg-[#020617] overflow-hidden">
-      {/* Premium ambient grid & glow */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-        <div className="absolute top-0 left-1/4 w-1/2 h-full bg-[radial-gradient(circle_at_top_center,rgba(10,102,194,0.15),transparent_70%)] blur-3xl pointer-events-none" />
-      </div>
+    <footer className="bg-white pt-10 sm:pt-12 lg:pt-14 pb-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pb-0">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-120px" }} variants={containerVariants}>
+          <motion.div
+            variants={headerVariants}
+            className="relative overflow-hidden rounded-[2.75rem] sm:rounded-[3.75rem] bg-[#0A66C2] text-white shadow-[0_30px_80px_rgba(2,6,23,0.18)]"
+          >
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-0 opacity-[0.16] bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.22),transparent_55%),radial-gradient(circle_at_75%_70%,rgba(4,26,64,0.38),transparent_60%)]" />
+              <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+              <div className="absolute inset-0 opacity-[0.55] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08),transparent_65%)]" />
+            </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
-        <motion.div
-          className="py-16 sm:py-20 lg:py-24"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
-          {/* Top section with company info and links */}
-          <div className="grid lg:grid-cols-[1.5fr_2.5fr] gap-12 lg:gap-16 mb-16 md:mb-20">
-            {/* Company info */}
-            <motion.div
-              className="space-y-8"
-              variants={headerVariants}
-            >
-              <div className="flex items-center gap-4">
-                <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl border border-white/10 bg-white p-2 overflow-hidden shadow-lg">
+            <div className="relative z-10 grid lg:grid-cols-[0.95fr_1.05fr] gap-8 sm:gap-10 lg:gap-14 items-center px-8 py-10 sm:px-12 sm:py-14 lg:px-14 lg:py-16">
+              <div className="relative flex justify-center lg:justify-start">
+                <div className="relative w-full max-w-[18rem] sm:max-w-[22rem] lg:max-w-[24rem] aspect-[4/5] lg:-ml-10 lg:-mb-10">
                   <Image
-                    src="/images/apgg.png"
-                    alt={t('brand.logoAlt')}
+                    src="/images/hero_section_top_image.png"
+                    alt=""
                     fill
-                    sizes="56px"
-                    className="object-contain p-1"
+                    sizes="(max-width: 640px) 70vw, 420px"
+                    className="object-contain object-left-bottom"
+                    priority={false}
                   />
                 </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                    {t('brand.name')}
-                  </h3>
-                  <div className="text-[#0A66C2] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mt-0.5">Holding Company</div>
-                </div>
               </div>
 
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-sm">
-                {t('footer.tagline')}
-              </p>
-
-              {/* Contact Information */}
-              <div className="space-y-5 pt-2">
-                <div className="flex items-start gap-4 text-slate-400">
-                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full bg-white/5 border border-white/10">
-                    <svg className="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div className="text-sm pt-1">
-                    <div className="font-extrabold text-slate-200 text-[10px] uppercase tracking-widest mb-1.5">{t('footer.location.label')}</div>
-                    <div className="text-slate-400 leading-relaxed max-w-[16rem]">{t('footer.location.value')}</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 text-slate-400">
-                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full bg-white/5 border border-white/10">
-                    <svg className="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-extrabold text-slate-200 text-[10px] uppercase tracking-widest mb-1">{t('footer.phone.label')}</div>
-                    <div className="text-slate-400">{t('footer.phone.value')}</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4 text-slate-400">
-                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full bg-white/5 border border-white/10">
-                    <svg className="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-extrabold text-slate-200 text-[10px] uppercase tracking-widest mb-1">{t('footer.email.label')}</div>
-                    <div className="text-slate-400">{t('footer.email.value')}</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Quick links, Governance, and Social */}
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-3 gap-10 lg:gap-8 pt-4 lg:pt-0"
-              variants={headerVariants}
-            >
-              {/* Core Navigation */}
-              <div>
-                <h4 className="text-base font-extrabold text-white mb-8 uppercase tracking-[0.2em] text-[10px] sm:text-xs">Corporate</h4>
-                <div className="flex flex-col gap-4 text-sm font-medium">
-                  {[
-                    { href: '/', label: t('nav.home') },
-                    { href: '/tentang', label: t('nav.about') },
-                    { href: '/struktur', label: t('nav.structure') },
-                    { href: '/subsidiaries', label: t('nav.subsidiaries') },
-                    { href: '/kontak', label: t('nav.contact') },
-                  ].map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="text-slate-400 hover:text-white transition-all duration-300 inline-block w-fit relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] after:bg-[#0A66C2] hover:after:w-full after:transition-all after:duration-300"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Governance */}
-              <div>
-                <h4 className="text-base font-extrabold text-white mb-8 uppercase tracking-[0.2em] text-[10px] sm:text-xs">Governance</h4>
-                <div className="flex flex-col gap-4 text-sm font-medium">
-                  {[
-                    { href: '#', label: 'Board of Directors' },
-                    { href: '#', label: 'Corporate Guidelines' },
-                    { href: '#', label: 'Sustainability Report' },
-                    { href: '#', label: 'Investor Relations' },
-                    { href: '#', label: 'Code of Conduct' },
-                  ].map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="text-slate-400 hover:text-white transition-all duration-300 inline-block w-fit relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] after:bg-[#0A66C2] hover:after:w-full after:transition-all after:duration-300"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Social Media */}
-              <div className="col-span-2 md:col-span-1">
-                <h4 className="text-base font-extrabold text-white mb-8 uppercase tracking-[0.2em] text-[10px] sm:text-xs">Connect</h4>
-                <div className="flex flex-col gap-4 text-sm font-medium">
-                  {[
-                    { href: '#', label: 'LinkedIn', icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 2a2 2 0 11-2 2 2 2 0 012-2z' },
-                    { href: '#', label: 'Instagram', icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z' },
-                  ].map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="flex items-center gap-3 text-slate-400 hover:text-[#0A66C2] transition-colors duration-300 group"
-                    >
-                      <svg className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
-                        <path d={item.icon} />
-                      </svg>
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Divider and copyright */}
-          <motion.div
-            className="pt-8 border-t border-white/10"
-            variants={dividerVariants}
-          >
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              {/* Copyright */}
-              <motion.div
-                className="text-center md:text-left"
-                variants={headerVariants}
-              >
-                <p className="text-slate-500 text-[11px] sm:text-xs tracking-wide font-medium">
-                  {t('footer.copyright').replace('{year}', String(currentYear)).replace('{brand}', t('brand.name'))}
+              <div className="text-center lg:text-left">
+                <h2 className="text-4xl sm:text-6xl font-black tracking-tight leading-[1.02] max-w-[14ch] mx-auto lg:mx-0">
+                  {t('footer.cta.title')}
+                </h2>
+                <p className="mt-4 text-sm sm:text-base text-white/90 leading-relaxed max-w-prose mx-auto lg:mx-0">
+                  {t('footer.cta.desc')}
                 </p>
-              </motion.div>
 
-              <motion.div className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-3" variants={headerVariants}>
-                {[
-                  { href: '#', label: t('footer.legal.privacy') },
-                  { href: '#', label: t('footer.legal.terms') },
-                  { href: '#', label: t('footer.legal.security') },
-                ].map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="text-slate-500 hover:text-white transition-colors duration-200 apg-ease text-[11px] sm:text-xs tracking-wide font-medium"
+                <div className="mt-7 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                    {socialItems.map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={item.label}
+                        className="h-11 w-11 rounded-full bg-white text-[#0A66C2] grid place-items-center shadow-[0_10px_24px_rgba(2,6,23,0.14)] active:scale-[0.98] transition-transform"
+                      >
+                        <svg className="w-5 h-5 fill-current" viewBox={item.viewBox}>
+                          <path d={item.path} />
+                        </svg>
+                      </a>
+                    ))}
+                  </div>
+
+                  <Link
+                    href="/kontak"
+                    className="inline-flex min-h-12 items-center justify-center rounded-full bg-white text-[#041a40] px-7 py-3 text-sm font-extrabold shadow-[0_18px_40px_rgba(2,6,23,0.18)] active:scale-[0.98] transition-transform"
                   >
-                    {item.label}
-                  </a>
-                ))}
-              </motion.div>
+                    {t('common.contact_us')} <span className="ml-3 text-base">›</span>
+                  </Link>
+                </div>
+
+                <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-white/90 text-xs font-bold">
+                  <a href="#" className="hover:text-white transition-colors">{t('footer.legal.privacy')}</a>
+                  <span className="opacity-70">•</span>
+                  <a href="#" className="hover:text-white transition-colors">{t('footer.legal.terms')}</a>
+                </div>
+
+                <div className="mt-6 text-white/75 text-xs font-medium">
+                  {copyright}
+                </div>
+              </div>
             </div>
           </motion.div>
         </motion.div>

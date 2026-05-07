@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const SUBSIDIARY_LOGOS = ['🏦', '🛡️', '⚙️', '🏅', '⚖️', '💡'];
 
@@ -24,6 +25,7 @@ export const AboutVisual = () => (
 
 // --- Structure Visual ---
 export const StructureVisual = () => {
+  const { t } = useLanguage();
   const nodes = [
     { x: '50%', y: '20%' }, // Top
     { x: '30%', y: '50%' }, // Mid Left
@@ -74,8 +76,8 @@ export const StructureVisual = () => {
         <div className="flex items-center gap-3">
           <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-blue-500/20 flex items-center justify-center text-lg sm:text-xl">👑</div>
           <div className="text-left">
-            <div className="text-[0.5rem] sm:text-[0.625rem] font-bold text-white/65 uppercase tracking-[0.18em]">Governance</div>
-            <div className="text-xs sm:text-sm font-bold text-white">Board of Directors</div>
+            <div className="text-[0.5rem] sm:text-[0.625rem] font-bold text-white/65 uppercase tracking-[0.18em]">{t('visual.governance')}</div>
+            <div className="text-xs sm:text-sm font-bold text-white">{t('visual.board_directors')}</div>
           </div>
         </div>
       </motion.div>
@@ -111,10 +113,11 @@ export const SubsidiariesVisual = () => {
 
 // --- Career Visual ---
 export const CareerVisual = () => {
+  const { t } = useLanguage();
   const stats = [
-    { label: 'Projects', value: '500+', color: 'blue' },
-    { label: 'Companies', value: '15+', color: 'teal' },
-    { label: 'Sectors', value: '10+', color: 'indigo' },
+    { label: t('visual.ecosystem'), value: t('visual.high_growth'), color: 'blue' },
+    { label: t('visual.companies'), value: '15+', color: 'teal' },
+    { label: t('visual.sectors'), value: '10+', color: 'indigo' },
   ];
 
   return (
@@ -138,25 +141,28 @@ export const CareerVisual = () => {
 };
 
 // --- Contact Visual ---
-export const ContactVisual = () => (
-  <div className="relative h-full w-full flex items-center justify-center scale-75 sm:scale-90 lg:scale-100">
-    {/* Abstract Map Grid */}
-    <div className="absolute inset-0 opacity-[0.12] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0.0625rem,transparent_0.0625rem)] bg-[size:2.25rem_2.25rem]" />
-    
-    {/* Central Pin Card */}
-    <motion.div
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="relative rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-6 sm:p-8 shadow-[0_24px_48px_rgba(0,0,0,0.3)] z-10 flex flex-col items-center"
-    >
-      <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-blue-500/20 flex items-center justify-center text-4xl sm:text-5xl mb-5 relative shadow-[inset_0_0_20px_rgba(59,130,246,0.3)] border border-blue-400/30">
-        <span className="drop-shadow-lg">📍</span>
-      </div>
-      <div className="text-center">
-        <div className="text-sm sm:text-base font-extrabold text-white tracking-wide">Headquarters</div>
-        <div className="text-xs sm:text-sm font-semibold text-white/60 mt-1 uppercase tracking-widest">Jakarta, Indonesia</div>
-      </div>
-    </motion.div>
-  </div>
-);
+export const ContactVisual = () => {
+  const { t } = useLanguage();
+  return (
+    <div className="relative h-full w-full flex items-center justify-center scale-75 sm:scale-90 lg:scale-100">
+      {/* Abstract Map Grid */}
+      <div className="absolute inset-0 opacity-[0.12] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0.0625rem,transparent_0.0625rem)] bg-[size:2.25rem_2.25rem]" />
+      
+      {/* Central Pin Card */}
+      <motion.div
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="relative rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl p-6 sm:p-8 shadow-[0_24px_48px_rgba(0,0,0,0.3)] z-10 flex flex-col items-center"
+      >
+        <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-blue-500/20 flex items-center justify-center text-4xl sm:text-5xl mb-5 relative shadow-[inset_0_0_20px_rgba(59,130,246,0.3)] border border-blue-400/30">
+          <span className="drop-shadow-lg">📍</span>
+        </div>
+        <div className="text-center">
+          <div className="text-sm sm:text-base font-extrabold text-white tracking-wide">{t('visual.headquarters')}</div>
+          <div className="text-xs sm:text-sm font-semibold text-white/60 mt-1 uppercase tracking-widest">{t('visual.jakarta_indonesia')}</div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};

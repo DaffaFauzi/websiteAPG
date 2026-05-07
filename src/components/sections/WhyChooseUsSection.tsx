@@ -21,41 +21,43 @@ export default function WhyChooseUsSection() {
   ];
 
   return (
-    <section className="apg-section-divider relative py-12 sm:py-24 lg:py-32 bg-white overflow-hidden">
+    <section className="apg-section-divider relative py-16 lg:py-24 bg-white overflow-hidden">
       {/* Premium ambient background elements */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative">
-        <div className="text-center mb-12 sm:mb-24 px-2">
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[10px] sm:text-xs tracking-[0.2em] text-[#0A66C2] uppercase font-bold mb-3"
-          >
-            {t('why.tag')}
-          </motion.p>
-          <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-950 tracking-tight leading-snug max-w-[260px] sm:max-w-none mx-auto"
-          >
-            {t('why.title')}
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-3 sm:mt-6 text-sm sm:text-lg text-slate-600 font-medium max-w-[320px] sm:max-w-2xl mx-auto leading-relaxed"
-          >
-            {t('why.desc')}
-          </motion.p>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Premium Header Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden bg-gradient-to-br from-[#0A66C2] via-[#0A66C2] to-[#041E4A] p-8 sm:p-14 lg:p-20 mb-12 sm:mb-16 shadow-[0_30px_60px_-15px_rgba(10,102,194,0.2)] border border-white/10"
+        >
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.1),transparent_60%)]" />
+          </div>
+
+          <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center">
+            <div className="text-[10px] sm:text-xs font-black tracking-[0.25em] uppercase text-white/70 mb-8 flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-white/30" />
+              {t('why.tag')}
+              <span className="w-8 h-[1px] bg-white/30" />
+            </div>
+            
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-8 tracking-tight">
+              {t('why.title')}
+            </h2>
+
+            <div className="h-0.5 w-24 bg-white/20 mb-8 rounded-full" />
+            
+            <p className="text-lg text-white/80 font-medium leading-relaxed max-w-2xl">
+              {t('why.desc')}
+            </p>
+          </div>
+        </motion.div>
 
         <div className="relative">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-10 items-start">

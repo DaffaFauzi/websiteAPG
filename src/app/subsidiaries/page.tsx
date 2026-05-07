@@ -3,176 +3,160 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import FooterSection from '@/components/sections/FooterSection';
-import LogoBadge from '@/components/ui/LogoBadge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Image from 'next/image';
-import InnerPageHero from '@/components/ui/InnerPageHero';
-import { SubsidiariesVisual } from '@/components/ui/HeroVisuals';
-
-const subsidiaries = [
-  {
-    name: 'PT. Buana Perkasa Rajanegara',
-    slug: 'bpr',
-    sector: { id: 'Keuangan', en: 'Finance' },
-    description: {
-      id: 'Layanan finansial yang fokus pada kedekatan layanan dan disiplin tata kelola.',
-      en: 'Financial services focusing on service proximity and governance discipline.'
-    },
-    logoSrc: '/images/bpr.png',
-  },
-  {
-    name: 'PT. Dwi Kusuma Perkasa',
-    slug: 'dwp',
-    sector: { id: 'Olahraga', en: 'Sports' },
-    description: {
-      id: 'Aktivasi brand, event, dan kolaborasi untuk penguatan ekosistem olahraga.',
-      en: 'Brand activation, events, and collaboration to strengthen the sports ecosystem.'
-    },
-    logoSrc: '/images/dwp.png',
-  },
-  {
-    name: 'PT. SipBro Delapan Perkasa',
-    slug: 'sipbro',
-    sector: { id: 'Solusi', en: 'Solutions' },
-    description: {
-      id: 'Solusi operasional dan sistem pendukung untuk meningkatkan efisiensi layanan.',
-      en: 'Operational solutions and support systems to improve service efficiency.'
-    },
-    logoSrc: '/images/sipbro.png',
-  },
-  {
-    name: 'PT. Perkasa Lintas Nasional',
-    slug: 'pln',
-    sector: { id: 'Solusi', en: 'Solutions' },
-    description: {
-      id: 'Enablement solusi lintas fungsi untuk mendukung pertumbuhan portofolio enterprise.',
-      en: 'Cross-functional solution enablement to support enterprise portfolio growth.'
-    },
-    logoSrc: '/images/pln.png',
-  },
-  {
-    name: 'PT. khalifah Jamin Perkasa',
-    slug: 'qjamin',
-    sector: { id: 'Risiko & Assurance', en: 'Risk & Assurance' },
-    description: {
-      id: 'Assurance dan dukungan governance untuk menjaga kualitas eksekusi portofolio.',
-      en: 'Assurance and governance support to maintain portfolio execution quality.'
-    },
-    logoSrc: '/images/qjamin.png',
-  },
-  {
-    name: 'PT. Proteksi Perkasa Solutions',
-    slug: 'proteksi',
-    sector: { id: 'Asuransi', en: 'Insurance' },
-    description: {
-      id: 'Layanan proteksi yang memperkuat ketahanan finansial dan operasional ekosistem.',
-      en: 'Protection services that strengthen the financial and operational resilience of the ecosystem.'
-    },
-    logoSrc: '/images/proteksi.png',
-  },
-  {
-    name: 'PT. Pataka Perkasa Konsultan',
-    slug: 'pataka',
-    sector: { id: 'Olahraga', en: 'Sports' },
-    description: {
-      id: 'Inisiatif pengembangan komunitas dan ekosistem olahraga yang berkelanjutan.',
-      en: 'Community development initiatives and sustainable sports ecosystems.'
-    },
-    logoSrc: '/images/pataka.png',
-  },
-  {
-    name: 'Prada Badminton Club',
-    slug: 'prada-bc',
-    sector: { id: 'Keuangan', en: 'Finance' },
-    description: {
-      id: 'Layanan keuangan dan dukungan eksekusi portofolio dengan standar enterprise.',
-      en: 'Financial services and portfolio execution support with enterprise standards.'
-    },
-    logoSrc: '/images/prada.png',
-  },
-  {
-    name: 'PT. Lintas Perkasa Solutions',
-    slug: 'lps',
-    sector: { id: 'Tata Kelola', en: 'Governance' },
-    description: {
-      id: 'Kapabilitas tata kelola dan standardisasi kontrol untuk konsistensi operasional.',
-      en: 'Governance capabilities and control standardization for operational consistency.'
-    },
-    logoSrc: '/images/lps.png',
-  },
-  {
-    name: 'PT. Caraka Mulia',
-    slug: 'caraka-mulia',
-    sector: { id: 'Asuransi', en: 'Insurance' },
-    description: {
-      id: 'Solusi proteksi dan manajemen risiko untuk ketahanan ekosistem.',
-      en: 'Protection and risk management solutions for ecosystem resilience.'
-    },
-    logoSrc: '/images/caraka.png',
-  },
-];
+import NavbarSection from '@/components/sections/NavbarSection';
+import FallbackImage from '@/components/ui/FallbackImage';
+import { subsidiariesData } from './subsidiariesData';
 
 export default function SubsidiariesPage() {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
+
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
-      <InnerPageHero
-        tag={t('nav.subsidiaries')}
-        title={t('subsidiaries.title')}
-        description={t('subsidiaries.desc')}
-      >
-        <SubsidiariesVisual />
-      </InnerPageHero>
+      <NavbarSection />
 
-      {/* Strategic Ecosystem Platform */}
-      <section id="portfolio" className="py-16 sm:py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+      <section className="apg-section-divider bg-slate-50 pt-8 pb-8 sm:pt-10 sm:pb-10">
+        <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
+          <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] bg-[#0A66C2] text-white shadow-[0_30px_90px_rgba(2,6,23,0.18)]">
+            <div className="absolute inset-0">
+              <FallbackImage
+                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=2200"
+                fallbackSrc="/images/presentation-placeholder.svg"
+                alt="Subsidiaries ecosystem"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0A66C2]/92 via-[#0A66C2]/70 to-[#0A66C2]/30" />
+              <div className="absolute inset-0 opacity-[0.10]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(4,26,64,0.45),transparent_60%)]" />
+              </div>
+            </div>
+
+            <div className="relative z-10 px-7 sm:px-10 lg:px-14 pt-10 sm:pt-12 pb-12 sm:pb-14">
+              <div className="flex items-center justify-between gap-4">
+                <div className="inline-flex items-center gap-3 rounded-full bg-white/10 border border-white/15 px-4 py-2 backdrop-blur-md">
+                  <div className="relative h-5 w-16">
+                    <Image
+                      src="/images/apgg.png"
+                      alt={t('brand.logoAlt')}
+                      fill
+                      sizes="64px"
+                      className="object-contain [filter:brightness(0)_invert(1)]"
+                      priority
+                    />
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-black tracking-[0.2em] uppercase text-white/90">
+                    {t('nav.subsidiaries')}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-end">
+                <div>
+                  <h1 className="text-4xl sm:text-6xl lg:text-[4.25rem] font-black tracking-tight leading-[1.03] drop-shadow-sm">
+                    {t('subsidiaries.title')}
+                  </h1>
+                  <p className="mt-6 text-sm sm:text-base text-white/90 leading-relaxed max-w-prose font-medium">
+                    {t('subsidiaries.desc')}
+                  </p>
+                </div>
+
+                <div className="hidden lg:block">
+                  <div className="relative h-[18rem] w-full overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 backdrop-blur-md">
+                    <FallbackImage
+                      src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1600"
+                      fallbackSrc="/images/presentation-placeholder.svg"
+                      alt="Ecosystem collaboration"
+                      fill
+                      className="object-cover opacity-85"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[#041a40]/40 to-transparent" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" className="apg-section-divider py-16 lg:py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {subsidiaries.map((s, idx) => {
-              const description = language === 'id' ? s.description.id : s.description.en;
+          <div className="flex items-end justify-between gap-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-500 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase">
+                {t('subsidiaries.card.label')}
+              </div>
+              <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-tight text-[#041a40]">
+                {t('subsidiaries.title')}
+              </h2>
+              <p className="mt-4 text-slate-600 leading-relaxed max-w-2xl font-medium">
+                {t('subsidiaries.desc')}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {subsidiariesData.map((s, idx) => {
+              const description = t(s.descKey);
               const shortDesc = description.length > 90 ? description.substring(0, 90) + '...' : description;
-              
+              const sectorLabel = s.categoryLabelKey ? t(s.categoryLabelKey) : t(s.sectorKey);
+
               return (
                 <Link
                   href={`/subsidiaries/${s.slug}`}
                   key={s.slug}
                   className="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-sm hover:shadow-lg hover:border-[#0A66C2]/20 transition-all duration-300 ease-out active:scale-[0.98]"
                 >
-                  {/* Logo Zone — Clean white canvas, no overlay, no plate */}
-                  <div className="relative flex items-center justify-center w-full h-44 sm:h-48 bg-white border-b border-slate-100 overflow-hidden px-8 py-6">
-                    {/* Subtle top-corner APG tint — purely decorative, not a box */}
-                    <div className="absolute top-0 right-0 w-24 h-24 rounded-bl-[4rem] bg-gradient-to-bl from-[#0A66C2]/5 to-transparent pointer-events-none" />
-                    
-                    <div className="relative w-full h-full max-w-[12rem] mx-auto">
-                      <Image
-                        src={s.logoSrc}
-                        alt={`${s.name} logo`}
-                        fill
-                        className="object-contain transition-transform duration-300 ease-out group-hover:scale-[1.05]"
-                        sizes="(max-width: 48rem) 50vw, (max-width: 75rem) 33vw, 200px"
-                        priority={idx < 3}
-                      />
+                  <div className="relative flex items-center justify-center w-full h-44 sm:h-48 bg-white border-b border-slate-100 overflow-hidden px-8 pt-10 pb-6">
+                    <div
+                      className={[
+                        'relative w-full h-[5rem] sm:h-[5.5rem] max-w-[13rem] mx-auto transform-gpu',
+                        s.slug === 'prada-bc' ? 'scale-[0.9]' : '',
+                        s.slug === 'dwp' ? 'scale-[0.9]' : '',
+                        s.slug === 'bpr' ? 'scale-[0.92]' : '',
+                        s.slug === 'sipbro' ? 'scale-[1.05]' : '',
+                        s.slug === 'qjamin' ? 'scale-[1.04]' : '',
+                        s.slug === 'lps' ? 'scale-[1.12]' : '',
+                        s.slug === 'caraka-mulia' ? 'scale-[1.1]' : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                    >
+                      {s.logoSrc ? (
+                        <Image
+                          src={s.logoSrc}
+                          alt={`${s.displayName} logo`}
+                          fill
+                          className={[
+                            'object-contain transition-transform duration-300 ease-out group-hover:scale-[1.05]',
+                            s.slug === 'prada-bc' ? 'filter brightness-105 contrast-125' : '',
+                            s.slug === 'caraka-mulia' ? 'filter brightness-110 contrast-150 saturate-110' : '',
+                          ]
+                            .filter(Boolean)
+                            .join(' ')}
+                          sizes="(max-width: 48rem) 50vw, (max-width: 75rem) 33vw, 200px"
+                          priority={idx < 3}
+                        />
+                      ) : null}
                     </div>
 
-                    {/* Sector badge — top left */}
                     <div className="absolute top-3 left-3">
-                      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-100 text-[9px] font-extrabold tracking-[0.18em] text-slate-500 uppercase">
-                        {language === 'id' ? s.sector.id : s.sector.en}
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-100 text-[9px] font-extrabold tracking-[0.18em] text-slate-500 uppercase relative z-10">
+                        {sectorLabel}
                       </span>
                     </div>
                   </div>
 
-                  {/* Content Body */}
                   <div className="p-6 sm:p-7 flex flex-col flex-grow">
-                    {/* Hover accent bar */}
                     <div className="absolute top-0 left-6 right-6 h-px bg-[#0A66C2] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 ease-out origin-left" />
 
                     <h2 className="text-base sm:text-lg font-extrabold text-[#041a40] leading-tight mb-2 group-hover:text-[#0A66C2] transition-colors duration-300">
-                      {s.name}
+                      {s.legalName}
                     </h2>
 
                     <p className="text-sm text-slate-500 font-medium leading-relaxed mb-5 flex-grow">
@@ -194,7 +178,7 @@ export default function SubsidiariesPage() {
       </section>
 
       {/* Corporate Access CTA */}
-      <section className="relative overflow-hidden py-16 sm:py-24 bg-white text-slate-950">
+      <section className="apg-section-divider relative overflow-hidden py-16 lg:py-24 bg-white text-slate-950">
         <div className="max-w-5xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

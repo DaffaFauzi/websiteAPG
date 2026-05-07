@@ -12,7 +12,7 @@ export default function TestimoniClient() {
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_60%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_68%)]" />
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-xs tracking-[0.18em] text-white/75 font-extrabold uppercase">{t('testimoni.tag')}</p>
             <h1 className="mt-4 text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-[-0.02em] leading-tight">
@@ -26,7 +26,7 @@ export default function TestimoniClient() {
       </header>
 
       <section className="pb-12 sm:pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 lg:p-10 text-center shadow-[var(--shadow-card)]">
             <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed max-w-prose mx-auto">
               {t('testimoni.placeholder.quote')}

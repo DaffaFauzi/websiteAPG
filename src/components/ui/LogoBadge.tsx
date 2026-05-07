@@ -42,7 +42,13 @@ export default function LogoBadge({ name, src, size = 48, className }: LogoBadge
           width={size}
           height={size}
           sizes={`${size}px`}
-          className="h-full w-full object-contain p-2"
+          className={[
+            'h-full w-full object-contain p-2',
+            src?.includes('/images/prada.png') ? 'filter brightness-105 contrast-125' : '',
+            src?.includes('/images/caraqu.png') ? 'filter brightness-110 contrast-150 saturate-110' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
           onLoad={(e) => {
             if (e.currentTarget.naturalWidth === 0) setHasError(true);
           }}

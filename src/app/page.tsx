@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import IntroSection from '@/components/sections/IntroSection';
-import HeroSection from '@/components/sections/HeroSection';
+import AboutPreviewSection from '@/components/sections/AboutPreviewSection';
 import KeyMetricsSection from '@/components/sections/KeyMetricsSection';
 import EcosystemSnapshotSection from '@/components/sections/EcosystemSnapshotSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
@@ -18,35 +18,25 @@ export default function Home() {
       <div className="scroll-section" data-scroll-section>
         <IntroSection />
       </div>
-      <div className="scroll-section" data-scroll-section>
-        <HeroSection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <KeyMetricsSection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <EcosystemSnapshotSection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <WhyChooseUsSection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <SubsidiariesShowcaseSection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <LeadershipSection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <InsightsSection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <GallerySection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <FinalCTASection />
-      </div>
-      <div className="scroll-section" data-scroll-section>
-        <FooterSection />
+      <div className="relative rounded-t-[2.5rem] sm:rounded-t-[3.5rem] bg-slate-50 overflow-hidden">
+        <div className="scroll-section" data-scroll-section>
+          <AboutPreviewSection />
+        </div>
+        <div className="scroll-section" data-scroll-section>
+          <WhyChooseUsSection />
+        </div>
+        <div className="scroll-section" data-scroll-section>
+          <SubsidiariesShowcaseSection />
+        </div>
+        <div className="scroll-section" data-scroll-section>
+          <LeadershipSection />
+        </div>
+        <div className="scroll-section" data-scroll-section>
+          <FinalCTASection />
+        </div>
+        <div className="scroll-section" data-scroll-section>
+          <FooterSection />
+        </div>
       </div>
     </main>
   );
