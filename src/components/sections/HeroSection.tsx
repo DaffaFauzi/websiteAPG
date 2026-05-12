@@ -5,12 +5,6 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import {
-  LightBulbIcon,
-  ShieldCheckIcon,
-  ArrowTrendingUpIcon,
-  GlobeAltIcon,
-} from '@heroicons/react/24/outline';
 
 const HeroSection: React.FC = () => {
   const { t } = useLanguage();

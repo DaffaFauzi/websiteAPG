@@ -2,28 +2,23 @@
 
 import FooterSection from '@/components/sections/FooterSection';
 import { useLanguage } from '@/contexts/LanguageContext';
+import PageHero from '@/components/ui/PageHero';
 
 export default function TestimoniClient() {
   const { t } = useLanguage();
 
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      <header className="relative overflow-hidden pt-16 sm:pt-24 pb-8 sm:pb-12 bg-[#0A66C2] text-white">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_60%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_68%)]" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs tracking-[0.18em] text-white/75 font-extrabold uppercase">{t('testimoni.tag')}</p>
-            <h1 className="mt-4 text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-[-0.02em] leading-tight">
-              {t('testimoni.title')}
-            </h1>
-            <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed max-w-prose">
-              {t('testimoni.desc')}
-            </p>
-          </div>
-        </div>
-      </header>
+      <PageHero
+        tag={t('testimoni.tag')}
+        title={t('testimoni.title')}
+        description={t('testimoni.desc')}
+        breadcrumbs={[
+          { label: t('nav.home'), href: '/' },
+          { label: t('nav.testimonials') },
+        ]}
+        imageAlt={t('testimoni.title')}
+      />
 
       <section className="pb-12 sm:pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

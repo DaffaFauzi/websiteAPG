@@ -5,43 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.12,
-    },
-  },
-};
-
-const headerVariants = {
-  hidden: { opacity: 0, y: '-1.25rem' },
-  visible: {
-    opacity: 1,
-    y: '0rem',
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1] as any,
-    },
-  },
-};
-
-
-const dividerVariants = {
-  hidden: { scaleX: 0 },
-  visible: {
-    scaleX: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as any,
-    },
-  },
-};
-/* eslint-enable @typescript-eslint/no-explicit-any */
+import { apgSystem } from '@ds/apg-system';
 
 const FooterSection: React.FC = () => {
   const { t } = useLanguage();
@@ -72,79 +36,87 @@ const FooterSection: React.FC = () => {
     .replace('{brand}', t('cinema.brand'));
 
   return (
-    <footer className="bg-white pt-10 sm:pt-12 lg:pt-14 pb-0">
-      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 pb-0">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-120px" }} variants={containerVariants}>
-          <motion.div
-            variants={headerVariants}
-            className="relative overflow-hidden rounded-[2.75rem] sm:rounded-[3.75rem] bg-[#0A66C2] text-white shadow-[0_30px_80px_rgba(2,6,23,0.18)]"
-          >
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute inset-0 opacity-[0.16] bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.22),transparent_55%),radial-gradient(circle_at_75%_70%,rgba(4,26,64,0.38),transparent_60%)]" />
-              <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-              <div className="absolute inset-0 opacity-[0.55] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08),transparent_65%)]" />
-            </div>
+    <footer
+      className={[
+        'relative overflow-hidden pb-0 pt-10',
+        'rounded-tl-[clamp(56px,8vw,180px)] rounded-tr-[clamp(56px,8vw,180px)]',
+        apgSystem.surfaces.primaryGradient,
+        'text-white',
+      ].join(' ')}
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <div className={`absolute inset-0 opacity-[0.22] ${apgSystem.surfaces.primaryGradientOverlay}`} />
+        <div className={`absolute inset-0 opacity-[0.06] ${apgSystem.surfaces.gridOverlay}`} />
+        <div className="absolute inset-0 opacity-[0.45] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.08),transparent_65%)]" />
+      </div>
 
-            <div className="relative z-10 grid lg:grid-cols-[0.95fr_1.05fr] gap-8 sm:gap-10 lg:gap-14 items-center px-8 py-10 sm:px-12 sm:py-14 lg:px-14 lg:py-16">
-              <div className="relative flex justify-center lg:justify-start">
-                <div className="relative w-full max-w-[18rem] sm:max-w-[22rem] lg:max-w-[24rem] aspect-[4/5] lg:-ml-10 lg:-mb-10">
-                  <Image
-                    src="/images/hero_section_top_image.png"
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 70vw, 420px"
-                    className="object-contain object-left-bottom"
-                    priority={false}
-                  />
-                </div>
-              </div>
-
-              <div className="text-center lg:text-left">
-                <h2 className="text-4xl sm:text-6xl font-black tracking-tight leading-[1.02] max-w-[14ch] mx-auto lg:mx-0">
-                  {t('footer.cta.title')}
-                </h2>
-                <p className="mt-4 text-sm sm:text-base text-white/90 leading-relaxed max-w-prose mx-auto lg:mx-0">
-                  {t('footer.cta.desc')}
-                </p>
-
-                <div className="mt-7 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                    {socialItems.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={item.label}
-                        className="h-11 w-11 rounded-full bg-white text-[#0A66C2] grid place-items-center shadow-[0_10px_24px_rgba(2,6,23,0.14)] active:scale-[0.98] transition-transform"
-                      >
-                        <svg className="w-5 h-5 fill-current" viewBox={item.viewBox}>
-                          <path d={item.path} />
-                        </svg>
-                      </a>
-                    ))}
-                  </div>
-
-                  <Link
-                    href="/kontak"
-                    className="inline-flex min-h-12 items-center justify-center rounded-full bg-white text-[#041a40] px-7 py-3 text-sm font-extrabold shadow-[0_18px_40px_rgba(2,6,23,0.18)] active:scale-[0.98] transition-transform"
-                  >
-                    {t('common.contact_us')} <span className="ml-3 text-base">›</span>
-                  </Link>
-                </div>
-
-                <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-white/90 text-xs font-bold">
-                  <a href="#" className="hover:text-white transition-colors">{t('footer.legal.privacy')}</a>
-                  <span className="opacity-70">•</span>
-                  <a href="#" className="hover:text-white transition-colors">{t('footer.legal.terms')}</a>
-                </div>
-
-                <div className="mt-6 text-white/75 text-xs font-medium">
-                  {copyright}
-                </div>
-              </div>
+      <div className={`relative z-10 ${apgSystem.spacing.container} pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16`}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-10 lg:gap-12 items-center"
+        >
+          <motion.div {...apgSystem.motion.itemDelay(0.35)} className="relative flex justify-center lg:justify-start">
+            <div className="relative w-full max-w-[16rem] sm:max-w-[18rem] lg:max-w-[20rem] h-[15rem] sm:h-[16.5rem] lg:h-[18rem] lg:-ml-4">
+              <Image
+                src="/images/hero_section_top_image.png"
+                alt=""
+                fill
+                sizes="(max-width: 640px) 70vw, 420px"
+                className="object-contain object-left-bottom"
+                priority={false}
+              />
             </div>
           </motion.div>
+
+          <div className="text-center lg:text-left">
+            <motion.h2 {...apgSystem.motion.itemDelay(0.1)} className="text-3xl md:text-4xl font-extrabold tracking-tight leading-[1.15] max-w-[28ch] mx-auto lg:mx-0">
+              {t('footer.cta.title')}
+            </motion.h2>
+            <motion.p {...apgSystem.motion.itemDelay(0.2)} className="mt-4 text-base sm:text-lg text-white/85 leading-relaxed max-w-prose mx-auto lg:mx-0">
+              {t('footer.cta.desc')}
+            </motion.p>
+
+            <div className="mt-7 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <motion.div {...apgSystem.motion.itemDelay(0.3)} className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                {socialItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.label}
+                    className={`h-11 w-11 rounded-full bg-white text-[var(--color-primary)] grid place-items-center shadow-sm transition-all duration-200 hover:shadow-md hover:scale-[1.03] active:scale-[0.98] ${apgSystem.icon.hover}`}
+                  >
+                    <svg className="w-5 h-5 fill-current" viewBox={item.viewBox}>
+                      <path d={item.path} />
+                    </svg>
+                  </a>
+                ))}
+              </motion.div>
+
+              <motion.div {...apgSystem.motion.itemDelay(0.35)}>
+                <Link
+                  href="/kontak"
+                  className={`${apgSystem.button.base} ${apgSystem.button.size.md} ${apgSystem.button.white} shadow-[0_12px_40px_rgba(255,255,255,0.16)] hover:shadow-[0_16px_52px_rgba(255,255,255,0.22)]`}
+                >
+                  {t('common.contact_us')} <span className={`ml-3 ${apgSystem.icon.hover}`}>›</span>
+                </Link>
+              </motion.div>
+            </div>
+
+            <motion.div {...apgSystem.motion.itemDelay(0.4)} className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-white/90 text-xs font-bold">
+              <a href="#" className="hover:text-white transition-colors">{t('footer.legal.privacy')}</a>
+              <span className="opacity-70">•</span>
+              <a href="#" className="hover:text-white transition-colors">{t('footer.legal.terms')}</a>
+            </motion.div>
+
+            <motion.div {...apgSystem.motion.itemDelay(0.45)} className="mt-6 text-white/75 text-xs font-medium">
+              {copyright}
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </footer>

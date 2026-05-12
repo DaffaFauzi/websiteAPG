@@ -1,95 +1,64 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-
 import { useLanguage } from '@/contexts/LanguageContext';
+import { apgSystem } from '@ds/apg-system';
 
-const TrustSection = () => {
+export default function ProcessSection() {
   const { t } = useLanguage();
-  const partnerLogos = [
-    '/images/apgg.png',
-    '/images/bpr.png',
-    '/images/caraqu.png',
-    '/images/dwp.png',
-    '/images/lps.png',
-    '/images/pataka.png',
-  ];
-
-  const testimonials = [
-    {
-      quote: t('trust.testimonial.1.quote'),
-      author: t('trust.testimonial.1.author'),
-    },
-    {
-      quote: t('trust.testimonial.2.quote'),
-      author: t('trust.testimonial.2.author'),
-    },
-  ];
+  const content = {
+    tag: t('process.tag'),
+    title: t('process.title'),
+    desc: t('process.desc'),
+    steps: [
+      { num: '01', title: t('process.step1.title'), desc: t('process.step1.desc') },
+      { num: '02', title: t('process.step2.title'), desc: t('process.step2.desc') },
+      { num: '03', title: t('process.step3.title'), desc: t('process.step3.desc') },
+      { num: '04', title: t('process.step4.title'), desc: t('process.step4.desc') },
+    ],
+  };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-[var(--background)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
-        {/* Partners */}
-        <div className="text-center mb-16">
-          <h2 className="text-xl sm:text-2xl font-extrabold text-white/50 tracking-[0.2em] uppercase mb-8 sm:mb-12 leading-tight">{t('trust.partners')}</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 items-center opacity-60">
-            {partnerLogos.map((logo, index) => (
-              <div key={index} className="flex justify-center">
-                <Image
-                  src={logo}
-                  alt={`${t('trust.partnerAlt')} ${index + 1}`}
-                  width={120}
-                  height={60}
-                  className="h-8 sm:h-12 w-auto object-contain transition-all duration-500 hover:scale-[1.02]"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16 sm:mb-24">
-          {testimonials.map((t, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileTap={{ scale: 0.98 }}
-              viewport={{ once: true }}
-              className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-slate-900 border border-slate-800 relative overflow-hidden active:scale-95 transition-all duration-200 h-full flex flex-col justify-center"
-            >
-              <div className="absolute top-0 right-0 p-4 sm:p-8 text-4xl sm:text-6xl text-white/5 font-serif italic">&quot;</div>
-              <p className="text-lg sm:text-xl text-white leading-relaxed italic relative z-10 max-w-prose">
-                &quot;{t.quote}&quot;
-              </p>
-              <p className="mt-4 sm:mt-6 text-[#0A66C2] text-sm sm:text-base font-bold tracking-wider">— {t.author}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Final CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="rounded-3xl bg-gradient-to-r from-[#0A66C2] to-[#07337A] p-8 sm:p-12 md:p-16 text-center text-white shadow-2xl relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-8 relative z-10 leading-tight">{t('trust.cta.title')} <br />{t('brand.name')}</h2>
-          <Link
-            href="/kontak"
-            className="inline-flex items-center justify-center gap-3 bg-white text-slate-950 font-black px-8 sm:px-10 py-4 sm:py-5 rounded-2xl w-full sm:w-auto min-h-12 hover:scale-[1.02] active:scale-95 transition-all relative z-10 shadow-xl uppercase tracking-widest text-xs sm:text-sm"
-          >
-            {t('trust.cta.button')}
-            <span className="text-xl">→</span>
-          </Link>
+    <section className={`${apgSystem.spacing.sectionY} bg-slate-50`}>
+      <div className={apgSystem.spacing.container}>
+        <motion.div {...apgSystem.motion.reveal} className="text-center max-w-2xl mx-auto">
+          <motion.p {...apgSystem.motion.itemDelay(0.1)} className={`text-sm text-slate-500 ${apgSystem.typography.tag}`}>
+            {content.tag}
+          </motion.p>
+          <motion.h2 {...apgSystem.motion.itemDelay(0.2)} className={`mt-3 ${apgSystem.typography.h2} text-slate-950`}>
+            {content.title}
+          </motion.h2>
+          <motion.p {...apgSystem.motion.itemDelay(0.3)} className={`mt-4 ${apgSystem.typography.body}`}>
+            {content.desc}
+          </motion.p>
         </motion.div>
+
+        <div className="mt-10 relative">
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const, delay: 0.25 }}
+            className="hidden md:block absolute left-10 right-10 top-8 h-px bg-slate-200 origin-left"
+            aria-hidden
+          />
+
+          <motion.div {...apgSystem.motion.stagger} className="grid grid-cols-1 md:grid-cols-4 gap-6 items-stretch">
+            {content.steps.map((step) => (
+              <motion.div key={step.num} variants={apgSystem.motion.item.variants} className="h-full">
+                <div className={`group ${apgSystem.card.base} ${apgSystem.card.padding} h-full text-center`}>
+                  <div className="mx-auto h-16 w-16 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-[var(--color-primary)] font-semibold tracking-tight">
+                    {step.num}
+                  </div>
+                  <h3 className={`mt-5 ${apgSystem.typography.h3} text-slate-950 leading-relaxed`}>{step.title}</h3>
+                  <p className={`mt-2 ${apgSystem.typography.body}`}>{step.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
-};
-
-export default TrustSection;
+}

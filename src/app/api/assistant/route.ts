@@ -21,6 +21,105 @@ const normalizeProvider = (value: string | undefined) => {
   return 'openai';
 };
 
+const normalizeText = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[\u2019’]/g, "'")
+    .replace(/[^a-z0-9\s@.+-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const tokenize = (value: string) => normalizeText(value).split(' ').filter(Boolean);
+
+const levenshtein = (a: string, b: string) => {
+  if (a === b) return 0;
+  if (!a) return b.length;
+  if (!b) return a.length;
+  const dp = new Array(b.length + 1);
+  for (let j = 0; j <= b.length; j++) dp[j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    let prev = dp[0];
+    dp[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const tmp = dp[j];
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[j] = Math.min(
+        dp[j] + 1,
+        dp[j - 1] + 1,
+        prev + cost
+      );
+      prev = tmp;
+    }
+  }
+  return dp[b.length];
+};
+
+const buildOutOfScopeReply = (language: 'id' | 'en') =>
+  language === 'en'
+    ? "Sorry — I’m focused on helping with information about Ardana Perkasa Group (APG), our services, and our business units. Please ask something related to APG so I can help more precisely."
+    : "Maaf — saya difokuskan untuk membantu memberikan informasi seputar APG Group, layanan perusahaan, dan unit bisnis kami. Silakan ajukan pertanyaan terkait APG agar saya dapat membantu dengan lebih tepat.";
+
+const isInScopeQuery = (query: string) => {
+  const q = normalizeText(query);
+  if (!q) return false;
+  const keywords = [
+    'apg',
+    'ardana',
+    'ardana perkasa',
+    'holding',
+    'group',
+    'subsidiaries',
+    'anak',
+    'perusahaan',
+    'bpr',
+    'dwp',
+    'qjamin',
+    'sipbro',
+    'caraka',
+    'prada',
+    'lps',
+    'pln',
+    'struktur',
+    'organisasi',
+    'komisaris',
+    'direksi',
+    'direktur',
+    'visi',
+    'misi',
+    'karir',
+    'career',
+    'kontak',
+    'contact',
+    'alamat',
+    'email',
+    'whatsapp',
+    'produk',
+    'layanan',
+    'services',
+    'annual',
+    'report',
+    'laporan',
+    'tata',
+    'kelola',
+    'governance',
+  ];
+
+  for (const kw of keywords) {
+    if (q.includes(kw)) return true;
+  }
+
+  const tokens = tokenize(query);
+  const kwTokens = keywords.flatMap((k) => k.split(' ')).filter(Boolean);
+  for (const tok of tokens) {
+    if (tok.length < 4) continue;
+    for (const kw of kwTokens) {
+      if (kw.length < 4) continue;
+      if (levenshtein(tok, kw) <= 1) return true;
+    }
+  }
+  return false;
+};
+
 /**
  * Simple keyword-based search for RAG context
  */
@@ -112,6 +211,13 @@ export async function POST(req: Request) {
   
   console.log(`[Assistant API] RAG Context found: ${relevantDocs.length} docs for query: "${lastMessage}"`);
 
+  if (relevantDocs.length === 0 && !isInScopeQuery(lastMessage)) {
+    return NextResponse.json({
+      reply: buildOutOfScopeReply(language),
+      debug: { hasApiKey: !!apiKey, provider, model, ragDocs: 0, guarded: true }
+    });
+  }
+
   const context = relevantDocs.length > 0 
     ? relevantDocs.map(d => `[Source: ${d.title}]\n${d.content}`).join('\n\n')
     : "No specific local context found. Use general knowledge about Ardana Perkasa Group (APG) as a national holding company in Indonesia.";
@@ -124,10 +230,10 @@ export async function POST(req: Request) {
         '',
         'INSTRUCTIONS:',
         '1. Answer accurately based on the context provided above.',
-        '2. If the context doesn\'t contain the answer, answer based on general professional knowledge about APG or redirect to info@ardanaperkasagroup.id.',
-        '3. Be professional, warm, and concise. Use occasional emojis.',
-        '4. Scope: Focus on APG holding, subsidiaries (BPR, DWP, Proteksi Plus, etc.), and corporate information.',
-        '5. Max 3-4 sentences.'
+        '2. If the context doesn\'t contain the answer, ask a short clarifying question or direct the user to info@apg.co.id.',
+        '3. Keep the tone professional, friendly, and concise. Avoid being overly robotic.',
+        '4. Scope: APG holding, subsidiaries, corporate information, services, and official contact.',
+        '5. Max 4 short sentences.'
       ].join('\n')
     : [
         `Kamu adalah ${assistantName} — asisten digital resmi dari Ardana Perkasa Group (APG).`,
@@ -136,10 +242,10 @@ export async function POST(req: Request) {
         '',
         'INSTRUKSI:',
         '1. Jawab dengan akurat berdasarkan konteks di atas.',
-        '2. Jika konteks tidak cukup, jawab berdasarkan pengetahuan umum profesional tentang APG atau arahkan ke info@ardanaperkasagroup.id.',
-        '3. Bersikap profesional, ramah, dan ringkas. Gunakan emoji secukupnya.',
-        '4. Scope: Fokus pada APG holding, anak perusahaan (BPR, DWP, Proteksi Plus, dsb), dan informasi korporat.',
-        '5. Maksimal 3-4 kalimat.'
+        '2. Jika konteks tidak cukup, ajukan 1 pertanyaan klarifikasi singkat atau arahkan ke info@apg.co.id.',
+        '3. Gunakan gaya bahasa profesional, ramah, dan ringkas. Jangan terlalu robotik.',
+        '4. Scope: APG holding, anak perusahaan, informasi korporat, layanan, dan kontak resmi.',
+        '5. Maksimal 4 kalimat singkat.'
       ].join('\n');
 
   // --- PROVIDER: GEMINI ---
@@ -181,7 +287,14 @@ export async function POST(req: Request) {
       }
 
       const data = await upstream.json();
-      const reply = data?.candidates?.[0]?.content?.parts?.map((p: any) => p.text ?? '').join('').trim();
+      const parts = data?.candidates?.[0]?.content?.parts;
+      const reply =
+        Array.isArray(parts)
+          ? parts
+              .map((p: { text?: unknown }) => (typeof p?.text === 'string' ? p.text : ''))
+              .join('')
+              .trim()
+          : '';
       
       if (reply) return NextResponse.json({ 
         reply,
@@ -194,7 +307,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ 
         reply: relevantDocs.length > 0 
           ? relevantDocs.map(d => d.content).join("\n\n")
-          : (language === 'en' ? "I'm having trouble connecting to my brain, but APG is a national holding company." : "Maaf, koneksi saya terganggu, tapi APG adalah holding company nasional.")
+          : buildOutOfScopeReply(language)
       });
     }
   }
@@ -238,7 +351,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ 
       reply: relevantDocs.length > 0 
         ? relevantDocs.map(d => d.content).join("\n\n")
-        : (language === 'en' ? "I'm having trouble connecting to my brain, but APG is a national holding company." : "Maaf, koneksi saya terganggu, tapi APG adalah holding company nasional.")
+        : buildOutOfScopeReply(language)
     });
   }
 }

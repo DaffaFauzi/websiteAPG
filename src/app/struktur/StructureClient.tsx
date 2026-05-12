@@ -4,10 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import FooterSection from '@/components/sections/FooterSection';
 import { useLanguage } from '@/contexts/LanguageContext';
-import NavbarSection from '@/components/sections/NavbarSection';
 import Button from '@/components/ui/Button';
-import FallbackImage from '@/components/ui/FallbackImage';
-import Image from 'next/image';
+import PageHero from '@/components/ui/PageHero';
 
 const NodeCard = ({ title, compact }: { title: string; compact?: boolean }) => (
   <motion.div
@@ -69,71 +67,16 @@ const StructureClient = () => {
   
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
-      <NavbarSection />
-      
-      <section className="apg-section-divider bg-slate-50 pt-8 pb-8 sm:pt-10 sm:pb-10">
-        <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
-          <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] bg-[#0A66C2] text-white shadow-[0_30px_90px_rgba(2,6,23,0.18)]">
-            <div className="absolute inset-0">
-              <FallbackImage
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=2200"
-                fallbackSrc="/images/presentation-placeholder.svg"
-                alt="Organizational structure"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0A66C2]/92 via-[#0A66C2]/70 to-[#0A66C2]/30" />
-              <div className="absolute inset-0 opacity-[0.10]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(4,26,64,0.45),transparent_60%)]" />
-              </div>
-            </div>
-
-            <div className="relative z-10 px-7 sm:px-10 lg:px-14 pt-10 sm:pt-12 pb-12 sm:pb-14">
-              <div className="flex items-center justify-between gap-4">
-                <div className="inline-flex items-center gap-3 rounded-full bg-white/10 border border-white/15 px-4 py-2 backdrop-blur-md">
-                  <div className="relative h-5 w-16">
-                    <Image
-                      src="/images/apgg.png"
-                      alt={t('brand.logoAlt')}
-                      fill
-                      sizes="64px"
-                      className="object-contain [filter:brightness(0)_invert(1)]"
-                      priority
-                    />
-                  </div>
-                  <span className="text-[10px] sm:text-xs font-black tracking-[0.2em] uppercase text-white/90">
-                    {t('struktur.tag')}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-end">
-                <div>
-                  <h1 className="text-4xl sm:text-6xl lg:text-[4.25rem] font-black tracking-tight leading-[1.03] drop-shadow-sm">
-                    {t('struktur.title')}
-                  </h1>
-                  <p className="mt-6 text-sm sm:text-base text-white/90 leading-relaxed max-w-prose font-medium">
-                    {t('struktur.desc')}
-                  </p>
-                </div>
-
-                <div className="hidden lg:block">
-                  <div className="relative h-[18rem] w-full overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 backdrop-blur-md">
-                    <FallbackImage
-                      src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1600"
-                      fallbackSrc="/images/presentation-placeholder.svg"
-                      alt="Organization planning"
-                      fill
-                      className="object-cover opacity-85"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[#041a40]/40 to-transparent" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        tag={t('struktur.tag')}
+        title={t('struktur.title')}
+        description={t('struktur.desc')}
+        breadcrumbs={[
+          { label: t('nav.home'), href: '/' },
+          { label: t('nav.structure') },
+        ]}
+        imageAlt={t('struktur.title')}
+      />
 
       {/* Main Organizational Chart */}
       <section className="apg-section-divider py-16 lg:py-24 bg-white relative overflow-hidden">
@@ -163,24 +106,30 @@ const StructureClient = () => {
                       <NodeCard title={t('leadership.4.role')} />
                     </div>
 
-                    <div className="relative w-full mt-8">
-                      <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 -top-8 h-8 w-[70%]">
+                    <div className="relative w-full mt-10">
+                      <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 -top-10 h-10 w-[78%]">
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-slate-200" />
                         <div className="absolute bottom-0 left-0 right-0 h-px bg-slate-200" />
                       </div>
-                      <div className="lg:hidden w-px h-8 bg-slate-200 mx-auto" />
+                      <div className="lg:hidden w-px h-10 bg-slate-200 mx-auto" />
 
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 pt-8 lg:pt-10">
-                        <div className="relative">
-                          <div className="hidden lg:block absolute -top-8 left-1/2 -translate-x-1/2 w-px h-8 bg-slate-200" />
-                          <NodeCard title={t('struktur.kadiv_keuangan')} compact />
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 pt-10">
+                        <div className="relative flex flex-col items-center">
+                          <div className="hidden lg:block absolute -top-10 left-1/2 -translate-x-1/2 w-px h-10 bg-slate-200" />
+                          <NodeCard title={t('struktur.manager_keuangan')} compact />
+                          <VLine h={6} />
+                          <NodeCard title={t('struktur.supervisor_keuangan')} compact />
+                          <VLine h={6} />
+                          <NodeCard title={t('struktur.staff_keuangan')} compact />
                         </div>
 
                         <div className="relative flex flex-col items-center">
-                          <div className="hidden lg:block absolute -top-8 left-1/2 -translate-x-1/2 w-px h-8 bg-slate-200" />
-                          <NodeCard title={t('struktur.kadiv_operasional')} compact />
+                          <div className="hidden lg:block absolute -top-10 left-1/2 -translate-x-1/2 w-px h-10 bg-slate-200" />
+                          <NodeCard title={t('struktur.manager_operasional')} compact />
                           <VLine h={6} />
                           <NodeCard title={t('struktur.supervisor_it')} compact />
+                          <VLine h={6} />
+                          <NodeCard title={t('struktur.staff_operasional')} compact />
                         </div>
                       </div>
                     </div>

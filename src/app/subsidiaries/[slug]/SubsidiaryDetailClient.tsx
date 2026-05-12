@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import FooterSection from '@/components/sections/FooterSection';
 import LogoBadge from '@/components/ui/LogoBadge';
+import PageHero from '@/components/ui/PageHero';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
@@ -33,64 +34,56 @@ export default function SubsidiaryDetailClient({ slug, displayName, legalName, p
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
-      {/* Portfolio Header */}
-      <header className="relative overflow-hidden pt-16 sm:pt-20 pb-10 sm:pb-12 bg-gradient-to-br from-[#07337A] to-[#041a40] text-white">
-        <div className="absolute inset-0 pointer-events-none opacity-[0.06]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.65)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.65)_1px,transparent_1px)] bg-[size:5rem_5rem]" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(10,102,194,0.35),transparent_60%)] blur-2xl pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-4xl"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-white/90 text-[9px] sm:text-[10px] font-extrabold tracking-[0.2em] uppercase mb-4 backdrop-blur-md">
-              {t('subsidiary.detail.tag')}
-            </div>
+      <PageHero
+        tag={t('subsidiary.detail.tag')}
+        title={displayName}
+        description={legalName}
+        breadcrumbs={[
+          { label: t('nav.home'), href: '/' },
+          { label: t('nav.subsidiaries'), href: '/subsidiaries' },
+          { label: displayName },
+        ]}
+        imageAlt={displayName}
+      />
 
-            <div className="mt-2 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="relative w-16 h-16 sm:w-24 sm:h-24 bg-white rounded-2xl sm:rounded-3xl border border-white/20 p-2 sm:p-4 shadow-[0_16px_45px_rgba(0,0,0,0.24)] flex items-center justify-center shrink-0"
-              >
+      <section className="apg-section-divider py-10 lg:py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
+          <div className="rounded-[2.5rem] bg-white p-7 sm:p-8 shadow-[0_20px_55px_-35px_rgba(2,6,23,0.20)] ring-1 ring-slate-200/70">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6">
+              <div className="relative w-16 h-16 sm:w-24 sm:h-24 bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-2 sm:p-4 shadow-[0_16px_45px_rgba(2,6,23,0.12)] flex items-center justify-center shrink-0">
                 <div className="sm:hidden">
                   <LogoBadge name={displayName} src={logoSrc} size={46} className="rounded-xl" />
                 </div>
                 <div className="hidden sm:block">
                   <LogoBadge name={displayName} src={logoSrc} size={64} className="rounded-xl" />
                 </div>
-              </motion.div>
+              </div>
               <div>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-white mb-1 drop-shadow-sm">
-                  {displayName}
-                </h1>
-                <p className="text-xs sm:text-sm tracking-[0.15em] text-[#A6C8FF] font-bold uppercase">
+                <p className="text-xs sm:text-sm tracking-[0.15em] text-[#0A66C2] font-black uppercase">
                   {t(`subsidiary.${slug}.sector`)}
                 </p>
-                <p className="mt-2 text-xs text-white/70 font-bold tracking-wide">
+                <h2 className="mt-2 text-xl sm:text-2xl font-extrabold tracking-tight text-slate-950 leading-tight">
+                  {displayName}
+                </h2>
+                <p className="mt-2 text-sm text-slate-600 font-semibold">
                   {legalName}
                 </p>
               </div>
             </div>
 
-            <div className="mt-7 max-w-prose space-y-3">
-              <p className="text-sm sm:text-base lg:text-lg text-white/85 leading-relaxed font-medium">
+            <div className="mt-6 max-w-4xl space-y-3">
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
                 {profileText}
               </p>
-              <p className="text-xs sm:text-sm text-white/75 leading-relaxed font-medium">
+              <p className="text-sm text-slate-600 leading-relaxed font-medium">
                 {t(`subsidiary.${slug}.desc`)}
               </p>
             </div>
 
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8">
               <Link
                 href="/subsidiaries"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10 hover:border-white/40 active:scale-95 transition-all duration-300 shadow-lg truncate whitespace-nowrap"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-extrabold text-slate-950 hover:bg-slate-50 active:scale-95 transition-all duration-300 shadow-sm"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -98,9 +91,9 @@ export default function SubsidiaryDetailClient({ slug, displayName, legalName, p
                 {t('subsidiary.detail.back')}
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </header>
+      </section>
 
       {/* Portfolio Intelligence Dashboard */}
       <section className="apg-section-divider py-10 lg:py-16 bg-slate-50">

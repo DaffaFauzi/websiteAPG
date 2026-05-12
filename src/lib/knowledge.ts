@@ -49,7 +49,7 @@ export const knowledge: KnowledgeItem[] = [
       3. PT. Proteksi Perkasa Solutions (Proteksi Plus): Layanan Proteksi & Asuransi.
       4. PT. Pataka Prima Perkasa Consultant: Konsultasi Olahraga & Komunitas.
       5. PT. Perkasa Lintas Nasional Consultant (PLN Consultant): Solusi Korporat & Konsultasi.
-      6. PT. Caraka Mulia: Broker Asuransi & Manajemen Risiko.
+      6. PT. Caraka Mulia: Pialang dan Konsultan Asuransi.
       7. PT. Qjamin: Penjaminan & Assurance.
       8. PT. Sipbro: Sistem Pendukung Operasional.
       9. PT. Prada Business Consulting: Konsultasi Bisnis & Finansial.
@@ -77,8 +77,8 @@ export const knowledge: KnowledgeItem[] = [
     title: 'Informasi Kontak & Lokasi APG',
     content: `
       Alamat Kantor Pusat: Office Tower Fontana, The Mansion Bougenville, Lt. 51 unit BF 51 A1, Jl. Trembesi Blok D Pademangan Timur, Kec. Pademangan, Jakarta Utara, Jl. Trembesi Blok D Pademangan Timur, Kec. Pademangan, Jakarta Utara.
-      Telepon: +62 81288885132
-      Email: info@ardanaperkasagroup.id
+      Telepon: 0812 8888 5132
+      Email: info@apg.co.id
       Jam Operasional: Senin - Jumat, 08.00- 17.00 WIB.
     `,
     keywords: ['alamat', 'lokasi', 'kantor', 'nomor telepon', 'email', 'hubungi', 'jakarta utara']

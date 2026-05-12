@@ -4,11 +4,9 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Button from '@/components/ui/Button';
-import NavbarSection from '@/components/sections/NavbarSection';
 import FooterSection from '@/components/sections/FooterSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
-import InnerPageHero from '@/components/ui/InnerPageHero';
-import { CareerVisual } from '@/components/ui/HeroVisuals';
+import PageHero from '@/components/ui/PageHero';
 
 // --- Types ---
 interface Job {
@@ -24,8 +22,10 @@ interface Job {
   responsibilities: string[];
 }
 
+type TFunction = (key: string) => string;
+
 // --- Mock Data ---
-const getJobsData = (t: any): Job[] => [
+const getJobsData = (t: TFunction): Job[] => [
   {
     id: '1',
     title: 'Software Engineer',
@@ -66,7 +66,7 @@ const getJobsData = (t: any): Job[] => [
 
 // --- Internal Components ---
 
-const CareerIntroSection = ({ t, isTriggered }: { t: any; isTriggered: boolean }) => (
+const CareerIntroSection = ({ t, isTriggered }: { t: TFunction; isTriggered: boolean }) => (
   <section className={`transition-all duration-700 ${isTriggered ? 'py-8' : 'py-16'} bg-white`}>
     <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
       <motion.div
@@ -93,7 +93,7 @@ const CareerSearchBar = ({
   onSearchTrigger,
   isTriggered
 }: { 
-  t: any; 
+  t: TFunction; 
   search: string; 
   setSearch: (v: string) => void; 
   onSearchTrigger: (val?: string) => void;
@@ -164,7 +164,7 @@ const CareerSearchBar = ({
   );
 };
 
-const JobCard = ({ job, t, onDetail }: { job: Job; t: any; onDetail: (j: Job) => void }) => (
+const JobCard = ({ job, t, onDetail }: { job: Job; t: TFunction; onDetail: (j: Job) => void }) => (
   <motion.div
     layout
     initial={{ opacity: 0, y: 15 }}
@@ -218,7 +218,7 @@ const JobCard = ({ job, t, onDetail }: { job: Job; t: any; onDetail: (j: Job) =>
   </motion.div>
 );
 
-const EmptyState = ({ t, search, onReset }: { t: any; search: string; onReset: () => void }) => (
+const EmptyState = ({ t, search, onReset }: { t: TFunction; search: string; onReset: () => void }) => (
   <motion.div 
     initial={{ opacity: 0, scale: 0.98 }}
     animate={{ opacity: 1, scale: 1 }}
@@ -231,7 +231,8 @@ const EmptyState = ({ t, search, onReset }: { t: any; search: string; onReset: (
     </div>
     <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-3 tracking-tight">{t('career.job_not_found')}</h3>
     <p className="text-slate-400 font-medium mb-10 max-w-sm mx-auto text-sm sm:text-base leading-relaxed">
-      {t('career.empty.message')} <span className="text-slate-900 font-black italic">"{search}"</span>. {t('career.search.try_other')}
+      {t('career.empty.message')}{' '}
+      <span className="text-slate-900 font-black italic">&quot;{search}&quot;</span>. {t('career.search.try_other')}
     </p>
     <Button 
       variant="outline" 
@@ -262,7 +263,6 @@ export default function CareerClient() {
   }, [search, jobsData]);
 
   const handleSearchTrigger = (val?: string) => {
-    const finalSearch = val || search;
     if (val) setSearch(val);
     
     setIsTriggered(true);
@@ -292,17 +292,16 @@ export default function CareerClient() {
 
   return (
     <main className="min-h-screen bg-white text-slate-950">
-      <NavbarSection />
-
-      {/* Hero Section */}
-      <InnerPageHero
+      <PageHero
         tag={t('career.hero.tag')}
         title={t('career.hero.title')}
         description={t('career.hero.subtitle')}
-        size={isTriggered ? 'compact' : 'default'}
-      >
-        <CareerVisual />
-      </InnerPageHero>
+        breadcrumbs={[
+          { label: t('nav.home'), href: '/' },
+          { label: t('nav.career') },
+        ]}
+        imageAlt={t('career.hero.title')}
+      />
 
       <div className="max-w-6xl mx-auto">
         <AnimatePresence mode="wait">
@@ -353,7 +352,7 @@ export default function CareerClient() {
                         <div>
                           <h3 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight leading-none">
                             {t('career.search.results_for')}{' '}
-                            <span className="text-[#0A66C2]">"{search || t('career.all_jobs')}"</span>
+                            <span className="text-[#0A66C2]">&quot;{search || t('career.all_jobs')}&quot;</span>
                           </h3>
                           <p className="mt-3 text-xs font-black text-slate-400 uppercase tracking-widest">
                             {filteredJobs.length} {filteredJobs.length === 1 ? t('career.jobs_found_single') : t('career.jobs_found_plural')}

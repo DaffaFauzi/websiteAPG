@@ -1,112 +1,153 @@
 'use client';
 
-import React from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { apgSystem } from '@ds/apg-system';
 
 const IntroSection: React.FC = () => {
   const router = useRouter();
   const { t } = useLanguage();
   const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { scrollY } = useScroll();
+  const bgY = useTransform(scrollY, [0, 900], [0, -40]);
+  const imageY = useTransform(scrollY, [0, 900], [0, -18]);
+  const [showHeroLogo, setShowHeroLogo] = useState(true);
+  const content = {
+    badge: t('hero.about.badge'),
+    headline: t('hero.headline'),
+    subheadline: t('hero.subheadline'),
+    cta: t('common.learn_more'),
+    illustrationAlt: t('hero.illustrationAlt'),
+    logoAlt: t('brand.logoAlt'),
+  };
 
-  const yBackground = useTransform(scrollYProgress, [0, 1], [0, 70]);
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setShowHeroLogo(latest <= 12);
+  });
 
   return (
-    <section className="apg-section-divider bg-slate-50 pt-6 pb-6 sm:pt-8 sm:pb-8">
-      <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
-        <div className="relative min-h-[36rem] sm:min-h-[42rem] lg:min-h-[46rem] overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] bg-gradient-to-br from-[#0A66C2] via-[#0A66C2] to-[#041E4A] text-white shadow-[0_30px_90px_rgba(2,6,23,0.18)]">
-          <motion.div style={{ y: yBackground }} className="pointer-events-none absolute inset-0 opacity-[0.55]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.16),transparent_55%),radial-gradient(circle_at_70%_60%,rgba(4,26,64,0.35),transparent_60%)]" />
-          </motion.div>
+    <section
+      ref={sectionRef}
+      className={`relative overflow-hidden ${apgSystem.surfaces.primaryGradient} ${apgSystem.surfaces.heroCurve} text-white`}
+    >
+      <motion.div
+        className="pointer-events-none absolute inset-0 opacity-[0.55]"
+        style={reduceMotion ? undefined : { y: bgY }}
+      >
+        <div className={`absolute inset-0 ${apgSystem.surfaces.primaryGradientOverlay}`} />
+      </motion.div>
+      <motion.div
+        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        style={reduceMotion ? undefined : { y: bgY }}
+      >
+        <div className={`absolute inset-0 ${apgSystem.surfaces.gridOverlay}`} />
+      </motion.div>
+      <motion.div className="pointer-events-none absolute inset-0" style={reduceMotion ? undefined : { y: bgY }}>
+        <motion.div
+          className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-3xl"
+          animate={reduceMotion ? undefined : { x: [0, 18, 0], y: [0, 12, 0] }}
+          transition={reduceMotion ? undefined : { duration: 12, repeat: Infinity, ease: [0.42, 0, 0.58, 1] as const }}
+        />
+        <motion.div
+          className="absolute -bottom-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-[#0A66C2]/20 blur-3xl"
+          animate={reduceMotion ? undefined : { x: [0, -16, 0], y: [0, -10, 0] }}
+          transition={reduceMotion ? undefined : { duration: 14, repeat: Infinity, ease: [0.42, 0, 0.58, 1] as const }}
+        />
+        <motion.div
+          className="absolute top-24 -right-28 h-72 w-72 rounded-full bg-[#041E4A]/25 blur-3xl"
+          animate={reduceMotion ? undefined : { x: [0, -14, 0], y: [0, 10, 0] }}
+          transition={reduceMotion ? undefined : { duration: 16, repeat: Infinity, ease: [0.42, 0, 0.58, 1] as const }}
+        />
+      </motion.div>
 
-          <div className="pointer-events-none absolute inset-0 opacity-[0.10]">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.55)_1px,transparent_1px)] bg-[size:4.5rem_4.5rem]" />
+      <div className={`${apgSystem.spacing.container} ${apgSystem.spacing.heroShellPad} ${apgSystem.spacing.heroBottomGap} relative z-10`}>
+        <motion.div
+          initial="hidden"
+          animate={showHeroLogo ? 'show' : 'hidden'}
+          variants={apgSystem.motion.logoBadge.variants}
+          transition={apgSystem.motion.logoBadge.transition}
+          className="absolute left-0 top-7 md:top-9"
+        >
+          <div className={apgSystem.badge.logo}>
+            <div className="relative h-12 w-12">
+              <Image src="/images/apgg.png" alt={content.logoAlt} fill sizes="48px" className="object-contain" />
+            </div>
           </div>
+        </motion.div>
 
-          <div className="relative z-10 px-7 sm:px-10 lg:px-14 pt-12 sm:pt-14 pb-16 sm:pb-20">
-            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-              <div className="text-left">
-                <h1 className="mt-7 text-4xl sm:text-6xl lg:text-[4.25rem] font-black tracking-tight leading-[1.02] max-w-[16ch]">
-                  {t('intro.title.part1')}{' '}
-                  {t('intro.title.highlight')}{' '}
-                  {t('intro.title.part2')}
-                </h1>
+        <div className={`grid items-center gap-10 md:gap-12 lg:grid-cols-2 ${apgSystem.spacing.heroInnerPad}`}>
+          <div className="text-left">
+            <motion.p {...apgSystem.motion.itemDelay(0.1)} className="text-sm font-extrabold tracking-wide text-white/85">
+              {content.badge}
+            </motion.p>
+            <motion.h1 {...apgSystem.motion.itemDelay(0.2)} className={`mt-4 ${apgSystem.typography.h1} max-w-[22ch]`}>
+              {content.headline}
+            </motion.h1>
+            <motion.p {...apgSystem.motion.itemDelay(0.3)} className="mt-5 text-base text-white/80 leading-relaxed max-w-prose">
+              {content.subheadline}
+            </motion.p>
 
-                <div className="mt-6 w-[18rem] h-6">
-                  <div className="h-1/2 bg-[#E11D48]" />
-                  <div className="h-1/2 bg-white" />
-                </div>
-
-                <p className="mt-6 text-sm sm:text-base text-white/90 leading-relaxed max-w-prose font-medium">
-                  {t('intro.desc')}
-                </p>
-
-                <div className="mt-7">
-                  <Button
-                    variant="white"
-                    size="md"
-                    onClick={() => router.push('/tentang')}
-                    className="min-h-12 px-7 rounded-full shadow-[0_18px_40px_rgba(2,6,23,0.22)]"
-                  >
-                    {t('common.learn_more')}
-                    <span className="ml-3 text-base">→</span>
-                  </Button>
-                </div>
-              </div>
-
+            <div className="mt-7 flex items-center gap-3">
               <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={
-                  reduceMotion
-                    ? { opacity: 1, scale: 1 }
-                    : {
-                        opacity: 1,
-                        scale: 1,
-                        y: [0, -12, 0],
-                      }
-                }
-                transition={
-                  reduceMotion
-                    ? { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
-                    : {
-                        opacity: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-                        scale: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-                        y: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
-                      }
-                }
-                className="relative flex justify-center items-end h-[16rem] sm:h-[28rem] lg:h-[34rem]"
+                {...apgSystem.motion.itemDelay(0.45)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.99 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
               >
-                <div className="relative w-full h-full">
-                  <div className="pointer-events-none absolute inset-0 -z-10">
-                    <div className="absolute left-1/2 top-[58%] h-[16rem] sm:h-[24rem] w-[16rem] sm:w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.16),transparent_65%)]" />
-                    <div className="absolute left-1/2 bottom-0 h-4 sm:h-10 w-[12rem] sm:w-[22rem] -translate-x-1/2 rounded-[100%] bg-black/35 blur-[18px] sm:blur-[26px]" />
-                  </div>
-
-                  <motion.div
-                    className="relative h-full w-full will-change-transform transform-gpu"
-                    animate={reduceMotion ? undefined : { x: [0, 8, 0, -8, 0] }}
-                    transition={reduceMotion ? undefined : { duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    <Image
-                      src="/images/hero_section_top_image.png"
-                      alt="APG Hero Illustration"
-                      fill
-                      quality={100}
-                      sizes="(max-width: 48rem) 92vw, (max-width: 80rem) 46vw, 40rem"
-                      className="object-contain object-bottom select-none"
-                      style={{ filter: 'drop-shadow(0 22px 55px rgba(0,0,0,0.28))' }}
-                      priority
-                    />
-                  </motion.div>
-                </div>
+                <Button
+                  variant="white"
+                  size="md"
+                  onClick={() => router.push('/tentang')}
+                  className={`${apgSystem.button.noScaleHover} shadow-[0_10px_30px_rgba(255,255,255,0.16)] hover:shadow-[0_14px_44px_rgba(255,255,255,0.22)]`}
+                >
+                  {content.cta}
+                  <span className={`ml-3 text-base ${apgSystem.icon.hover}`}>→</span>
+                </Button>
               </motion.div>
             </div>
           </div>
+
+          <motion.div {...apgSystem.motion.itemDelay(0.35)} className="relative flex justify-center items-end h-[15rem] sm:h-[22rem] lg:h-[28rem]">
+            <div className="relative w-full h-full max-w-[34rem]">
+              <div className="pointer-events-none absolute inset-0 -z-10">
+                <div className="absolute left-1/2 top-[55%] h-[14rem] sm:h-[18rem] w-[14rem] sm:w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.16),transparent_65%)]" />
+                <div className="absolute left-1/2 bottom-0 h-5 w-[16rem] -translate-x-1/2 rounded-[100%] bg-black/30 blur-[22px]" />
+              </div>
+
+              <motion.div
+                className="relative h-full w-full will-change-transform transform-gpu"
+                animate={reduceMotion ? undefined : apgSystem.motion.float.animate()}
+                transition={reduceMotion ? undefined : apgSystem.motion.float.transition}
+                style={reduceMotion ? undefined : { y: imageY }}
+              >
+                <Image
+                  src="/images/hero_section_top_image.png"
+                  alt={content.illustrationAlt}
+                  fill
+                  quality={100}
+                  sizes="(max-width: 48rem) 92vw, (max-width: 80rem) 46vw, 40rem"
+                  className="object-contain object-bottom select-none"
+                  style={{ filter: 'drop-shadow(0 22px 55px rgba(0,0,0,0.28))' }}
+                  priority
+                />
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0">
+        <svg viewBox="0 0 1440 160" className="block w-full h-[7.5rem] md:h-[10rem]" preserveAspectRatio="none">
+          <path
+            fill="rgb(248 250 252)"
+            d="M0,96L60,85.3C120,75,240,53,360,64C480,75,600,117,720,133.3C840,149,960,139,1080,122.7C1200,107,1320,85,1380,74.7L1440,64L1440,160L1380,160C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160L0,160Z"
+          />
+        </svg>
       </div>
     </section>
   );

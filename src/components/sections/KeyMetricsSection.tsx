@@ -7,7 +7,6 @@ import AnimatedNumber from '@/components/ui/AnimatedNumber';
 import {
   BuildingOfficeIcon,
   UserGroupIcon,
-  BriefcaseIcon,
   GlobeAltIcon,
 } from '@heroicons/react/24/outline';
 
@@ -69,7 +68,7 @@ const KeyMetricsSection: React.FC = () => {
                     initial={{ width: 0 }} 
                     whileInView={{ width: '92%' }} 
                     viewport={{ once: true }}
-                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }}
                     className="h-full bg-gradient-to-r from-[#0A66C2] to-[#38bdf8] rounded-full"
                   />
                 </div>
@@ -84,7 +83,7 @@ const KeyMetricsSection: React.FC = () => {
                     initial={{ width: 0 }} 
                     whileInView={{ width: '85%' }} 
                     viewport={{ once: true }}
-                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
+                    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] as const, delay: 0.4 }}
                     className="h-full bg-gradient-to-r from-[#0A66C2] to-[#38bdf8] rounded-full"
                   />
                 </div>

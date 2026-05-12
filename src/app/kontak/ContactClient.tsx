@@ -5,8 +5,7 @@ import { MapPinIcon, EnvelopeIcon, PhoneIcon, ClockIcon } from '@heroicons/react
 import { motion, AnimatePresence } from 'framer-motion';
 import FooterSection from '@/components/sections/FooterSection';
 import { useLanguage } from '@/contexts/LanguageContext';
-import FallbackImage from '@/components/ui/FallbackImage';
-import Image from 'next/image';
+import PageHero from '@/components/ui/PageHero';
 
 export default function ContactClient() {
   const { t } = useLanguage();
@@ -65,69 +64,18 @@ export default function ContactClient() {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
-      <section className="apg-section-divider bg-slate-50 pt-8 pb-8 sm:pt-10 sm:pb-10">
-        <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
-          <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] bg-[#0A66C2] text-white shadow-[0_30px_90px_rgba(2,6,23,0.18)]">
-            <div className="absolute inset-0">
-              <FallbackImage
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=2200"
-                fallbackSrc="/images/presentation-placeholder.svg"
-                alt="Customer support team"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0A66C2]/92 via-[#0A66C2]/70 to-[#0A66C2]/30" />
-              <div className="absolute inset-0 opacity-[0.10]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(4,26,64,0.45),transparent_60%)]" />
-              </div>
-            </div>
-
-            <div className="relative z-10 px-7 sm:px-10 lg:px-14 pt-10 sm:pt-12 pb-12 sm:pb-14">
-              <div className="flex items-center justify-between gap-4">
-                <div className="inline-flex items-center gap-3 rounded-full bg-white/10 border border-white/15 px-4 py-2 backdrop-blur-md">
-                  <div className="relative h-5 w-16">
-                    <Image
-                      src="/images/apgg.png"
-                      alt={t('brand.logoAlt')}
-                      fill
-                      sizes="64px"
-                      className="object-contain [filter:brightness(0)_invert(1)]"
-                      priority
-                    />
-                  </div>
-                  <span className="text-[10px] sm:text-xs font-black tracking-[0.2em] uppercase text-white/90">
-                    {t('contact.tag')}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-end">
-                <div>
-                  <h1 className="text-4xl sm:text-6xl lg:text-[4.25rem] font-black tracking-tight leading-[1.03] drop-shadow-sm">
-                    {t('contact.title')}
-                  </h1>
-                  <p className="mt-6 text-sm sm:text-base text-white/90 leading-relaxed max-w-prose font-medium">
-                    {t('contact.desc')}
-                  </p>
-                </div>
-
-                <div className="hidden lg:block">
-                  <div className="relative h-[18rem] w-full overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 backdrop-blur-md">
-                    <FallbackImage
-                      src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&q=80&w=1600"
-                      fallbackSrc="/images/presentation-placeholder.svg"
-                      alt="Contact center"
-                      fill
-                      className="object-cover opacity-85"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[#041a40]/40 to-transparent" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        tag={t('contact.tag')}
+        title={t('contact.title')}
+        description={t('contact.desc')}
+        breadcrumbs={[
+          { label: t('nav.home'), href: '/' },
+          { label: t('nav.contact') },
+        ]}
+        imageAlt={t('contact.title')}
+        imageSrc="https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?auto=format&fit=crop&q=80&w=2200"
+        variant="contact"
+      />
 
       <section className="apg-section-divider py-16 lg:py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
