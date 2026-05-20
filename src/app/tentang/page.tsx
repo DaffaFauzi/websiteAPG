@@ -7,9 +7,11 @@ import FallbackImage from '@/components/ui/FallbackImage';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageHero from '@/components/ui/PageHero';
 import Link from 'next/link';
+import { subsidiariesData } from '@/app/subsidiaries/subsidiariesData';
 
 const TentangPage = () => {
   const { t } = useLanguage();
+  const subsidiaries = subsidiariesData.map((s) => s.displayName);
 
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
@@ -53,15 +55,18 @@ const TentangPage = () => {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
               className="lg:col-span-7 space-y-8"
             >
-              <p className="text-lg sm:text-xl md:text-2xl font-medium text-slate-800 leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
                 {t('tentang.hero.p1')}
               </p>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
                 {t('tentang.hero.p2')}
+              </p>
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium">
+                {t('tentang.hero.p3')}
               </p>
               <div className="relative rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] h-[20rem] sm:h-[28rem] mt-10 border border-slate-100">
                 <FallbackImage
-                  src="https://images.unsplash.com/photo-1522071823991-b9671f9d7f1f?auto=format&fit=crop&q=80&w=1200"
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200"
                   fallbackSrc="/images/presentation-placeholder.svg"
                   alt="Corporate Meeting"
                   fill
@@ -70,6 +75,39 @@ const TentangPage = () => {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      <section className="apg-section-divider py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="rounded-[2.5rem] sm:rounded-[3.5rem] border border-slate-200 bg-white p-10 sm:p-12 shadow-sm"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-slate-500 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase">
+              {t('tentang.subsidiaries_update.tag')}
+            </div>
+            <h2 className="mt-5 text-2xl sm:text-4xl font-extrabold tracking-tight text-[#041a40]">
+              {t('tentang.subsidiaries_update.title')}
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-medium max-w-3xl">
+              {t('tentang.subsidiaries_update.desc')}
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {subsidiaries.map((name) => (
+                <div
+                  key={name}
+                  className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-extrabold text-slate-900"
+                >
+                  {name}
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 

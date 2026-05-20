@@ -60,7 +60,7 @@ const KeyMetricsSection: React.FC = () => {
             <div className="hidden sm:block space-y-6 pt-4 max-w-md">
               <div className="space-y-2.5">
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider">
-                  <span>Ecosystem Expansion</span>
+                  <span>{t('metrics.ecosystem_expansion')}</span>
                   <span className="text-[#0A66C2]">92%</span>
                 </div>
                 <div className="h-1.5 w-full bg-slate-800/80 rounded-full overflow-hidden">
@@ -75,7 +75,7 @@ const KeyMetricsSection: React.FC = () => {
               </div>
               <div className="space-y-2.5">
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider">
-                  <span>Partner Integration</span>
+                  <span>{t('metrics.partner_integration')}</span>
                   <span className="text-[#0A66C2]">85%</span>
                 </div>
                 <div className="h-1.5 w-full bg-slate-800/80 rounded-full overflow-hidden">
@@ -153,7 +153,7 @@ const KeyMetricsSection: React.FC = () => {
                 <div className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
                   <AnimatedNumber value={metrics[2].value} format={metrics[2].suffix ? 'suffix' : 'number'} suffix={metrics[2].suffix} />
                 </div>
-                <div className="text-sm text-slate-500 font-medium tracking-wide uppercase">Core Business Domains</div>
+                <div className="text-sm text-slate-500 font-medium tracking-wide uppercase">{t('metrics.domains')}</div>
               </div>
             </motion.div>
           </div>

@@ -4,63 +4,53 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import FooterSection from '@/components/sections/FooterSection';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Button from '@/components/ui/Button';
 import PageHero from '@/components/ui/PageHero';
 
-const NodeCard = ({ title, compact }: { title: string; compact?: boolean }) => (
+const NodeCard = ({ title, width = 'w-32' }: { title: string; width?: string }) => (
   <motion.div
     initial={{ opacity: 0, y: 14, scale: 0.99 }}
     whileInView={{ opacity: 1, y: 0, scale: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     className={[
-      'relative group rounded-2xl border border-slate-200 bg-white px-6 py-4 text-center',
-      'shadow-[0_14px_32px_-18px_rgba(2,6,23,0.18)]',
+      'relative group border border-slate-700 bg-white px-2 py-1.5 text-center flex items-center justify-center z-10',
+      'shadow-sm',
       'transition-[transform,border-color,box-shadow] duration-300',
-      'hover:-translate-y-0.5 hover:border-[#0A66C2]/35 hover:shadow-[0_20px_40px_-18px_rgba(10,102,194,0.25)]',
-      compact ? 'min-h-[4.25rem]' : 'min-h-[4.75rem]',
+      'hover:-translate-y-0.5 hover:border-[#0A66C2] hover:shadow-md',
+      'min-h-[2.5rem]',
+      width
     ].join(' ')}
   >
-    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,rgba(10,102,194,0.10),transparent_62%)]" />
-    </div>
-    <div className={['relative z-10 font-black tracking-tight leading-tight text-slate-950', compact ? 'text-sm sm:text-base' : 'text-base sm:text-lg'].join(' ')}>
-      {title}
+    <div className={'relative z-10 font-bold tracking-tight leading-snug text-slate-800 text-[8px] sm:text-[9px] uppercase'}>
+      <span dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br/>') }} />
     </div>
   </motion.div>
 );
 
-const GroupCard = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
+const TreeLineVertical = ({ h = 4 }: { h?: number }) => <div className="w-[1px] bg-slate-400 mx-auto" style={{ height: `${h * 4}px` }} />;
+
+const GroupCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <motion.div
     initial={{ opacity: 0, y: 18 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-    className="relative w-full max-w-5xl rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-slate-200 bg-white shadow-[0_24px_60px_-30px_rgba(2,6,23,0.20)]"
+    className="relative w-full max-w-none rounded-xl overflow-hidden border border-slate-200 bg-white shadow-lg"
   >
-    <div className="relative px-7 py-5 sm:px-10 sm:py-7 bg-gradient-to-br from-[#0A66C2] via-[#0A66C2] to-[#041E4A] text-white">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.28]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_60%),radial-gradient(circle_at_bottom_left,rgba(4,26,64,0.40),transparent_60%)]" />
-      </div>
-      <div className="relative z-10 flex items-center justify-between gap-4">
-        <div className="text-[10px] sm:text-xs font-black tracking-[0.24em] uppercase text-white/90">
+    <div className="relative px-6 py-4 bg-[#E8F0FE]">
+      <div className="relative z-10 text-center">
+        <div className="text-sm sm:text-base font-black tracking-widest uppercase text-slate-900">
           {title}
         </div>
       </div>
     </div>
-    <div className="p-7 sm:p-10 bg-white">
-      {children}
+    <div className="py-6 sm:py-8 bg-white overflow-x-auto">
+      <div className="min-w-[1400px] px-4">
+        {children}
+      </div>
     </div>
   </motion.div>
 );
-
-const VLine = ({ h = 12 }: { h?: number }) => <div className="w-px bg-slate-200 mx-auto" style={{ height: `${h * 4}px` }} />;
 
 const StructureClient = () => {
   const { t } = useLanguage();
@@ -78,94 +68,256 @@ const StructureClient = () => {
         imageAlt={t('struktur.title')}
       />
 
-      {/* Main Organizational Chart */}
-      <section className="apg-section-divider py-16 lg:py-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.8)_1px,transparent_1px)] bg-[size:32px_32px]" />
-        </div>
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="relative overflow-x-auto">
-            <div className="min-w-[22rem] lg:min-w-0">
-              <div className="flex flex-col items-center">
-                <GroupCard title={t('struktur.title')}>
-                  <div className="flex flex-col items-center">
-                    <div className="w-full max-w-[26rem]">
-                      <NodeCard title={t('leadership.1.role')} />
-                    </div>
-                    <VLine h={6} />
-                    <div className="w-full max-w-[26rem]">
-                      <NodeCard title={t('leadership.2.role')} />
-                    </div>
-                    <VLine h={6} />
-                    <div className="w-full max-w-[26rem]">
-                      <NodeCard title={t('leadership.3.role')} />
-                    </div>
-                    <VLine h={6} />
-                    <div className="w-full max-w-[26rem]">
-                      <NodeCard title={t('leadership.4.role')} />
-                    </div>
-
-                    <div className="relative w-full mt-10">
-                      <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 -top-10 h-10 w-[78%]">
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-slate-200" />
-                        <div className="absolute bottom-0 left-0 right-0 h-px bg-slate-200" />
-                      </div>
-                      <div className="lg:hidden w-px h-10 bg-slate-200 mx-auto" />
-
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 pt-10">
-                        <div className="relative flex flex-col items-center">
-                          <div className="hidden lg:block absolute -top-10 left-1/2 -translate-x-1/2 w-px h-10 bg-slate-200" />
-                          <NodeCard title={t('struktur.manager_keuangan')} compact />
-                          <VLine h={6} />
-                          <NodeCard title={t('struktur.supervisor_keuangan')} compact />
-                          <VLine h={6} />
-                          <NodeCard title={t('struktur.staff_keuangan')} compact />
+      <section className="apg-section-divider py-12 lg:py-16 bg-white relative overflow-hidden">
+        <div className="max-w-[95%] mx-auto px-2 sm:px-6 relative z-10">
+          <GroupCard title={t('org.chart.header')}>
+            
+            {/* RUPS */}
+            <div className="flex flex-col items-center">
+              <NodeCard title={[t('org.chart.gm'), t('org.chart.gm.2')].filter(Boolean).join('<br/>')} width="w-[260px]" />
+              
+              <div className="relative w-full flex justify-center">
+                <TreeLineVertical h={5} />
+                
+                {/* DEWAN KOMISARIS */}
+                <div className="absolute top-[10px] left-[50%] w-[100px] h-[1px] bg-slate-400" />
+                <div className="absolute top-[0px] left-[calc(50%+100px)]">
+                  <NodeCard title={t('org.chart.board')} width="w-[180px]" />
+                </div>
+              </div>
+              
+              <NodeCard title={[t('org.chart.ceo.1'), t('org.chart.ceo.2')].filter(Boolean).join('<br/>')} width="w-[220px]" />
+              <TreeLineVertical h={4} />
+              <NodeCard title={[t('org.chart.opsdir.1'), t('org.chart.opsdir.2')].filter(Boolean).join('<br/>')} width="w-[220px]" />
+              <TreeLineVertical h={5} />
+              
+              {/* Main 4 Divisions */}
+              <div className="relative w-full max-w-[1400px]">
+                {/* Horizontal line connecting the 4 divisions */}
+                <div className="absolute top-0 left-[12.5%] right-[12.5%] h-[1px] bg-slate-400" />
+                
+                <div className="flex justify-between items-start w-full">
+                  
+                  {/* DIV 1: KEUANGAN */}
+                  <div className="flex flex-col items-center w-1/4 px-1">
+                    <div className="w-[1px] h-5 bg-slate-400" />
+                    <NodeCard title={t('org.chart.head.finance')} width="w-[160px]" />
+                    <TreeLineVertical h={5} />
+                    
+                    <div className="relative w-full">
+                      <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                      <div className="flex justify-between items-start w-full">
+                        <div className="flex flex-col items-center w-1/2 px-1">
+                          <div className="w-[1px] h-5 bg-slate-400" />
+                          <NodeCard title={t('org.chart.spv.acc')} width="w-[140px]" />
+                          <TreeLineVertical h={4} />
+                          <div className="relative w-full">
+                            <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                            <div className="flex justify-between items-start w-full gap-1">
+                              <div className="flex flex-col items-center w-1/2">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={t('org.chart.staff.acc')} width="w-full" />
+                              </div>
+                              <div className="flex flex-col items-center w-1/2">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={t('org.chart.staff.tax')} width="w-full" />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-
-                        <div className="relative flex flex-col items-center">
-                          <div className="hidden lg:block absolute -top-10 left-1/2 -translate-x-1/2 w-px h-10 bg-slate-200" />
-                          <NodeCard title={t('struktur.manager_operasional')} compact />
-                          <VLine h={6} />
-                          <NodeCard title={t('struktur.supervisor_it')} compact />
-                          <VLine h={6} />
-                          <NodeCard title={t('struktur.staff_operasional')} compact />
+                        <div className="flex flex-col items-center w-1/2 px-1">
+                          <div className="w-[1px] h-5 bg-slate-400" />
+                          <NodeCard title={t('org.chart.spv.finance')} width="w-[140px]" />
+                          <TreeLineVertical h={4} />
+                          <div className="relative w-full">
+                            <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                            <div className="flex justify-between items-start w-full gap-1">
+                              <div className="flex flex-col items-center w-1/2">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={t('org.chart.staff.finance')} width="w-full" />
+                              </div>
+                              <div className="flex flex-col items-center w-1/2">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={[t('org.chart.staff.bizplan.1'), t('org.chart.staff.bizplan.2')].filter(Boolean).join('<br/>')} width="w-full" />
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </GroupCard>
+
+                  {/* DIV 2: IT */}
+                  <div className="flex flex-col items-center w-1/4 px-1">
+                    <div className="w-[1px] h-5 bg-slate-400" />
+                    <NodeCard title={t('org.chart.head.it')} width="w-[160px]" />
+                    <TreeLineVertical h={5} />
+                    
+                    <div className="relative w-full">
+                      <div className="absolute top-0 left-[30%] right-[15%] h-[1px] bg-slate-400" />
+                      <div className="flex justify-between items-start w-full">
+                        <div className="flex flex-col items-center w-[65%] px-1">
+                          <div className="w-[1px] h-5 bg-slate-400" />
+                          <NodeCard title={t('org.chart.spv.itprog')} width="w-[160px]" />
+                          <TreeLineVertical h={4} />
+                          <div className="relative w-full">
+                            <div className="absolute top-0 left-[8.33%] right-[8.33%] h-[1px] bg-slate-400" />
+                            <div className="flex justify-between items-start w-full gap-1">
+                              {[1, 2, 3, 4, 5, 6].map(num => (
+                                <div key={num} className="flex flex-col items-center w-1/6">
+                                  <div className="w-[1px] h-4 bg-slate-400" />
+                                  {/* Read directly from translations so user gets exactly what they typed */}
+                                  <NodeCard title={t(`org.chart.staff.itprog.${num}`)} width="w-full text-[7.5px]" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center w-[35%] px-1">
+                          <div className="w-[1px] h-5 bg-slate-400" />
+                          <NodeCard title={t('org.chart.spv.itsupport')} width="w-[120px]" />
+                          <TreeLineVertical h={4} />
+                          <div className="relative w-full">
+                            <div className="absolute top-0 left-[16.66%] right-[16.66%] h-[1px] bg-slate-400" />
+                            <div className="flex justify-between items-start w-full gap-1">
+                              {[1, 2, 3].map(num => (
+                                <div key={num} className="flex flex-col items-center w-1/3">
+                                  <div className="w-[1px] h-4 bg-slate-400" />
+                                  <NodeCard title={t(`org.chart.staff.itsupport.${num}`)} width="w-full text-[7.5px]" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* DIV 3: SUPPORT */}
+                  <div className="flex flex-col items-center w-1/4 px-1">
+                    <div className="w-[1px] h-5 bg-slate-400" />
+                    <NodeCard title={t('org.chart.head.support')} width="w-[160px]" />
+                    <TreeLineVertical h={5} />
+                    
+                    <div className="relative w-full">
+                      <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                      <div className="flex justify-between items-start w-full">
+                        <div className="flex flex-col items-center w-1/2 px-1">
+                          <div className="w-[1px] h-5 bg-slate-400" />
+                          <NodeCard title={t('org.chart.spv.marketing')} width="w-[120px]" />
+                          <TreeLineVertical h={4} />
+                          <div className="relative w-full">
+                            <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                            <div className="flex justify-between items-start w-full gap-1">
+                              <div className="flex flex-col items-center w-1/2">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={t('org.chart.staff.digital')} width="w-full text-[7.5px]" />
+                              </div>
+                              <div className="flex flex-col items-center w-1/2">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={[t('org.chart.staff.markexec.1'), t('org.chart.staff.markexec.2')].filter(Boolean).join('<br/>')} width="w-full text-[7.5px]" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center w-1/2 px-1">
+                          <div className="w-[1px] h-5 bg-slate-400" />
+                          <NodeCard title={t('org.chart.spv.compliance')} width="w-[120px]" />
+                          <TreeLineVertical h={4} />
+                          <div className="relative w-full">
+                            <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                            <div className="flex justify-between items-start w-full gap-1">
+                              <div className="flex flex-col items-center w-1/2">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={[t('org.chart.staff.audit.1'), t('org.chart.staff.audit.2')].filter(Boolean).join('<br/>')} width="w-full text-[7.5px]" />
+                              </div>
+                              <div className="flex flex-col items-center w-1/2">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={[t('org.chart.staff.legal.1'), t('org.chart.staff.legal.2')].filter(Boolean).join('<br/>')} width="w-full text-[7.5px]" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* DIV 4: OPERASIONAL */}
+                  <div className="flex flex-col items-center w-1/4 px-1">
+                    <div className="w-[1px] h-5 bg-slate-400" />
+                    <NodeCard title={t('org.chart.head.ops')} width="w-[160px]" />
+                    <TreeLineVertical h={5} />
+                    
+                    <div className="relative w-full">
+                      <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                      <div className="flex justify-between items-start w-full">
+                        <div className="flex flex-col items-center w-1/2 px-1">
+                          <div className="w-[1px] h-5 bg-slate-400" />
+                          <NodeCard title={t('org.chart.spv.hr')} width="w-[160px]" />
+                          <TreeLineVertical h={4} />
+                          <div className="relative w-full">
+                            <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                            <div className="flex justify-between items-start w-full">
+                              <div className="flex flex-col items-center w-1/2 px-1">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={t('org.chart.staff.hr')} width="w-full text-[7.5px]" />
+                              </div>
+                              <div className="flex flex-col items-center w-1/2 px-1">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={t('org.chart.staff.general')} width="w-full text-[7.5px]" />
+                                <TreeLineVertical h={4} />
+                                <div className="relative w-full">
+                                  <div className="absolute top-0 left-[12.5%] right-[12.5%] h-[1px] bg-slate-400" />
+                                  <div className="flex justify-between items-start w-full gap-1">
+                                    <div className="flex flex-col items-center w-1/4">
+                                      <div className="w-[1px] h-4 bg-slate-400" />
+                                      <NodeCard title={[t('org.chart.exec.driver.1'), t('org.chart.exec.driver.2')].filter(Boolean).join('<br/>')} width="w-full text-[7px]" />
+                                    </div>
+                                    <div className="flex flex-col items-center w-1/4">
+                                      <div className="w-[1px] h-4 bg-slate-400" />
+                                      <NodeCard title={[t('org.chart.exec.driver2.1'), t('org.chart.exec.driver2.2')].filter(Boolean).join('<br/>')} width="w-full text-[7px]" />
+                                    </div>
+                                    <div className="flex flex-col items-center w-1/4">
+                                      <div className="w-[1px] h-4 bg-slate-400" />
+                                      <NodeCard title={[t('org.chart.exec.ob.1'), t('org.chart.exec.ob.2')].filter(Boolean).join('<br/>')} width="w-full text-[7px]" />
+                                    </div>
+                                    <div className="flex flex-col items-center w-1/4">
+                                      <div className="w-[1px] h-4 bg-slate-400" />
+                                      <NodeCard title={[t('org.chart.exec.courier.1'), t('org.chart.exec.courier.2')].filter(Boolean).join('<br/>')} width="w-full text-[7px]" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center w-1/2 px-1">
+                          <div className="w-[1px] h-5 bg-slate-400" />
+                          <NodeCard title={[t('org.chart.spv.cosec.1'), t('org.chart.spv.cosec.2')].filter(Boolean).join('<br/>')} width="w-[160px]" />
+                          <TreeLineVertical h={4} />
+                          <div className="relative w-full">
+                            <div className="absolute top-0 left-[25%] right-[25%] h-[1px] bg-slate-400" />
+                            <div className="flex justify-between items-start w-full">
+                              <div className="flex flex-col items-center w-1/2 px-1">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={[t('org.chart.staff.relations.1'), t('org.chart.staff.relations.2')].filter(Boolean).join('<br/>')} width="w-full text-[7.5px]" />
+                              </div>
+                              <div className="flex flex-col items-center w-1/2 px-1">
+                                <div className="w-[1px] h-4 bg-slate-400" />
+                                <NodeCard title={[t('org.chart.staff.corpcom.1'), t('org.chart.staff.corpcom.2')].filter(Boolean).join('<br/>')} width="w-full text-[7.5px]" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Governance CTA */}
-      <section className="apg-section-divider pb-16 lg:pb-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-[#041a40] rounded-[2.5rem] p-12 sm:p-20 text-white relative overflow-hidden"
-          >
-            <div className="relative z-10">
-              <h2 className="text-3xl sm:text-4xl font-black mb-6 tracking-tight">
-                {t('struktur.cta.title')}
-              </h2>
-              <p className="text-slate-300 max-w-xl mx-auto mb-10 text-lg">
-                {t('struktur.cta.desc')}
-              </p>
-              <Button 
-                variant="white"
-                onClick={() => window.location.href = '/kontak'}
-                className="!text-[#041a40] font-bold"
-              >
-                {t('common.contact_us')}
-              </Button>
-            </div>
-          </motion.div>
+            
+          </GroupCard>
         </div>
       </section>
 

@@ -67,6 +67,18 @@ const NavbarSection: React.FC = () => {
     return pathname?.startsWith(href);
   };
 
+  const handleNavClick =
+    (href: string, after?: () => void) =>
+    (e: React.MouseEvent) => {
+      if (pathname === href) {
+        e.preventDefault();
+        after?.();
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        return;
+      }
+      after?.();
+    };
+
   const showContent = scrolled;
 
   const aboutItems = useMemo(
@@ -244,6 +256,7 @@ const NavbarSection: React.FC = () => {
 
             <Link
               href="/kontak"
+              onClick={handleNavClick('/kontak')}
               className={[
                 'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
                 isActiveLink('/kontak') ? 'text-[#0A66C2] bg-[#0A66C2]/10' : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100',
@@ -286,7 +299,7 @@ const NavbarSection: React.FC = () => {
               </button>
             </div>
 
-            <Link href="/" aria-label={t('brand.name')} className="flex items-center">
+            <Link href="/" onClick={handleNavClick('/')} aria-label={t('brand.name')} className="flex items-center">
               <div className="relative h-6 w-20 sm:h-7 sm:w-24">
                 <Image src="/images/apgg.png" alt={t('brand.logoAlt')} fill sizes="96px" className="object-contain" priority />
               </div>
@@ -344,7 +357,7 @@ const NavbarSection: React.FC = () => {
                       <Link
                         key={item.id}
                         href={item.href}
-                        onClick={() => setDesktopDropdown(null)}
+                        onClick={handleNavClick(item.href, () => setDesktopDropdown(null))}
                         className={[
                           'flex items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold transition-colors',
                           isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-800 hover:bg-slate-50',
@@ -366,7 +379,7 @@ const NavbarSection: React.FC = () => {
                       <Link
                         key={item.href}
                         href={item.href}
-                        onClick={() => setDesktopDropdown(null)}
+                        onClick={handleNavClick(item.href, () => setDesktopDropdown(null))}
                         className={[
                           'flex items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold transition-colors',
                           isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-800 hover:bg-slate-50',
@@ -388,7 +401,7 @@ const NavbarSection: React.FC = () => {
                       <Link
                         key={item.href}
                         href={item.href}
-                        onClick={() => setDesktopDropdown(null)}
+                        onClick={handleNavClick(item.href, () => setDesktopDropdown(null))}
                         className={[
                           'flex items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold transition-colors',
                           isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-800 hover:bg-slate-50',
@@ -411,7 +424,7 @@ const NavbarSection: React.FC = () => {
                       <div className="mt-5">
                         <Link
                           href="/anak-perusahaan"
-                          onClick={() => setDesktopDropdown(null)}
+                          onClick={handleNavClick('/anak-perusahaan', () => setDesktopDropdown(null))}
                           className="inline-flex items-center gap-2 text-sm font-semibold text-[#0A66C2] hover:text-[#095aa9]"
                         >
                           {t('nav.subsidiaries_all')} <span>→</span>
@@ -425,12 +438,12 @@ const NavbarSection: React.FC = () => {
                           <Link
                             key={s.slug}
                             href={`/subsidiaries/${s.slug}`}
-                            onClick={() => setDesktopDropdown(null)}
+                            onClick={handleNavClick(`/subsidiaries/${s.slug}`, () => setDesktopDropdown(null))}
                             className="group rounded-xl border border-slate-200 bg-white p-4 hover:bg-slate-50 transition-colors"
                           >
                             <div className="flex items-center gap-3">
-                              <div className="relative h-10 w-10 rounded-lg bg-white border border-slate-200 overflow-hidden grid place-items-center flex-shrink-0">
-                                {s.logoSrc ? <Image src={s.logoSrc} alt="" fill sizes="40px" className="object-contain p-1" /> : null}
+                              <div className="relative h-10 w-32 rounded-lg overflow-hidden grid place-items-center flex-shrink-0">
+                                {s.logoSrc ? <Image src={s.logoSrc} alt="" fill sizes="128px" className={['object-contain object-left', s.cssBlend ? 'mix-blend-multiply' : ''].filter(Boolean).join(' ')} /> : null}
                               </div>
                               <div className="min-w-0">
                                 <div className="text-sm font-semibold text-slate-950 truncate">{s.displayName}</div>
@@ -493,7 +506,7 @@ const NavbarSection: React.FC = () => {
               {pathname !== '/' ? (
                 <Link
                   href="/"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={handleNavClick('/', () => setMobileOpen(false))}
                   className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50 border border-slate-200"
                 >
                   <span className="h-9 w-9 rounded-lg bg-slate-100 grid place-items-center">
@@ -528,7 +541,7 @@ const NavbarSection: React.FC = () => {
                         <Link
                           key={item.id}
                           href={item.href}
-                          onClick={() => setMobileOpen(false)}
+                          onClick={handleNavClick(item.href, () => setMobileOpen(false))}
                           className={[
                             'block rounded-lg px-3 py-2 text-sm transition-colors',
                             isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-50',
@@ -565,7 +578,7 @@ const NavbarSection: React.FC = () => {
                         <Link
                           key={item.href}
                           href={item.href}
-                          onClick={() => setMobileOpen(false)}
+                          onClick={handleNavClick(item.href, () => setMobileOpen(false))}
                           className={[
                             'block rounded-lg px-3 py-2 text-sm transition-colors',
                             isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-50',
@@ -600,7 +613,7 @@ const NavbarSection: React.FC = () => {
                     >
                       <Link
                         href="/anak-perusahaan"
-                        onClick={() => setMobileOpen(false)}
+                        onClick={handleNavClick('/anak-perusahaan', () => setMobileOpen(false))}
                         className={[
                           'block rounded-lg px-3 py-2 text-sm font-semibold transition-colors',
                           isActiveLink('/anak-perusahaan') || isActiveLink('/subsidiaries') ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-50',
@@ -614,12 +627,12 @@ const NavbarSection: React.FC = () => {
                           <Link
                             key={s.slug}
                             href={`/subsidiaries/${s.slug}`}
-                            onClick={() => setMobileOpen(false)}
+                            onClick={handleNavClick(`/subsidiaries/${s.slug}`, () => setMobileOpen(false))}
                             className="rounded-lg border border-slate-200 p-3 hover:bg-slate-50 transition-colors"
                           >
                             <div className="flex items-center gap-2">
-                              <div className="relative h-8 w-8 rounded-lg bg-white border border-slate-200 overflow-hidden flex-shrink-0">
-                                {s.logoSrc ? <Image src={s.logoSrc} alt="" fill sizes="32px" className="object-contain p-1" /> : null}
+                              <div className="relative h-8 w-24 rounded-lg overflow-hidden flex-shrink-0">
+                                {s.logoSrc ? <Image src={s.logoSrc} alt="" fill sizes="96px" className={['object-contain object-left', s.cssBlend ? 'mix-blend-multiply' : ''].filter(Boolean).join(' ')} /> : null}
                               </div>
                               <div className="min-w-0">
                                 <div className="text-xs font-semibold text-slate-900 truncate">{s.displayName}</div>
@@ -657,7 +670,7 @@ const NavbarSection: React.FC = () => {
                         <Link
                           key={item.href}
                           href={item.href}
-                          onClick={() => setMobileOpen(false)}
+                          onClick={handleNavClick(item.href, () => setMobileOpen(false))}
                           className={[
                             'block rounded-lg px-3 py-2 text-sm transition-colors',
                             isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-50',
@@ -673,7 +686,7 @@ const NavbarSection: React.FC = () => {
 
               <Link
                 href="/kontak"
-                onClick={() => setMobileOpen(false)}
+                onClick={handleNavClick('/kontak', () => setMobileOpen(false))}
                 className={[
                   'flex items-center justify-between rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold transition-colors',
                   isActiveLink('/kontak') ? 'bg-[#0A66C2] text-white border-[#0A66C2]' : 'text-slate-900 hover:bg-slate-50',

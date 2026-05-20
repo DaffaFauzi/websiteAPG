@@ -170,50 +170,55 @@ const JobCard = ({ job, t, onDetail }: { job: Job; t: TFunction; onDetail: (j: J
     initial={{ opacity: 0, y: 15 }}
     animate={{ opacity: 1, y: 0 }}
     whileHover={{ y: -4 }}
-    className="group relative rounded-2xl border border-slate-100 bg-white p-6 sm:p-8 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_40px_-10px_rgba(10,102,194,0.1)] hover:border-[#0A66C2]/15 transition-all duration-500"
+    className="group relative rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_40px_-10px_rgba(10,102,194,0.1)] hover:border-[#0A66C2]/15 transition-all duration-300 flex flex-col justify-between h-full"
   >
-    <div className="flex flex-col gap-5">
-      {/* Header Info */}
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-[#0A66C2]/20 transition-all">
-          <svg className="w-6 h-6 text-[#0A66C2]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-          </svg>
+    <div className="flex flex-col gap-4">
+      {/* Position Header (Company & Title) */}
+      <div>
+        <div className="text-xs font-bold text-[#0A66C2] uppercase tracking-wider mb-1">
+          {job.company}
         </div>
-        <div className="space-y-0.5">
-          <div className="flex items-center gap-2 text-xs font-bold text-slate-400">
-            <span className="font-black text-[#041a40] uppercase tracking-wide">{job.company}</span>
-            <span>•</span>
-            <span>{job.location}</span>
-          </div>
-          <h3 className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-[#0A66C2] transition-colors duration-300 tracking-tight">
-            {job.title}
-          </h3>
-        </div>
+        <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-[#0A66C2] transition-colors duration-300 tracking-tight leading-snug">
+          {job.title}
+        </h3>
       </div>
 
-      {/* Badge */}
-      <div>
-        <span className="inline-flex px-3 py-1 bg-slate-50 rounded-lg text-[10px] font-black text-slate-500 uppercase tracking-widest border border-slate-100">
+      {/* Location & Type */}
+      <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500">
+        <span className="inline-flex items-center gap-1">
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          {job.location}
+        </span>
+        <span>•</span>
+        <span className="inline-flex px-2 py-0.5 bg-slate-50 rounded border border-slate-100 text-[10px] uppercase font-bold tracking-wider">
           {job.type}
         </span>
       </div>
 
-      {/* Actions */}
-      <div className="flex items-center gap-3 pt-3 border-t border-slate-50">
-        <Button 
-          variant="outline" 
-          onClick={() => onDetail(job)}
-          className="flex-1 h-11 rounded-xl border-slate-200 text-slate-600 font-bold text-xs hover:bg-slate-50 hover:text-[#0A66C2]"
-        >
-          {t('career.job.cta.detail')}
-        </Button>
-        <Button 
-          className="flex-1 h-11 rounded-xl bg-[#0A66C2] text-white font-bold text-xs shadow-md shadow-blue-500/10 hover:bg-[#0855A1] active:scale-95 transition-all"
-        >
-          {t('career.job.cta.apply')}
-        </Button>
-      </div>
+      {/* Brief Description */}
+      <p className="text-sm text-slate-600 leading-relaxed font-medium line-clamp-3">
+        {job.description}
+      </p>
+    </div>
+
+    {/* Actions / CTA */}
+    <div className="flex items-center gap-3 pt-5 mt-4 border-t border-slate-100">
+      <Button 
+        variant="secondary" 
+        onClick={() => onDetail(job)}
+        className="flex-1 h-11 rounded-xl font-bold text-xs border border-slate-200 text-slate-600 hover:text-[#0A66C2] hover:bg-slate-50 transition-colors"
+      >
+        {t('career.job.cta.detail')}
+      </Button>
+      <Button 
+        className="flex-1 h-11 rounded-xl bg-[#0A66C2] text-white font-bold text-xs shadow-md shadow-blue-500/10 hover:bg-[#0855A1] active:scale-95 transition-all"
+        onClick={() => onDetail(job)}
+      >
+        {t('career.job.cta.apply')}
+      </Button>
     </div>
   </motion.div>
 );
@@ -251,7 +256,7 @@ export default function CareerClient() {
   const jobsData = useMemo(() => getJobsData(t), [t]);
   
   const [search, setSearch] = useState('');
-  const [isTriggered, setIsTriggered] = useState(false);
+  const [isTriggered, setIsTriggered] = useState(true);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
   const filteredJobs = useMemo(() => {
@@ -286,7 +291,7 @@ export default function CareerClient() {
 
   const handleReset = () => {
     setSearch('');
-    setIsTriggered(false);
+    setIsTriggered(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

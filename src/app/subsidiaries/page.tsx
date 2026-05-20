@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import FooterSection from '@/components/sections/FooterSection';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Image from 'next/image';
 import PageHero from '@/components/ui/PageHero';
 import { subsidiariesData } from './subsidiariesData';
 
@@ -44,77 +43,86 @@ export default function SubsidiariesPage() {
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {subsidiariesData.map((s, idx) => {
               const description = t(s.descKey);
               const shortDesc = description.length > 90 ? description.substring(0, 90) + '...' : description;
               const sectorLabel = s.categoryLabelKey ? t(s.categoryLabelKey) : t(s.sectorKey);
 
-              return (
-                <Link
-                  href={`/subsidiaries/${s.slug}`}
-                  key={s.slug}
-                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-sm hover:shadow-lg hover:border-[#0A66C2]/20 transition-all duration-300 ease-out active:scale-[0.98]"
-                >
-                  <div className="relative flex items-center justify-center w-full h-44 sm:h-48 bg-white border-b border-slate-100 overflow-hidden px-8 pt-10 pb-6">
-                    <div
-                      className={[
-                        'relative w-full h-[5rem] sm:h-[5.5rem] max-w-[13rem] mx-auto transform-gpu',
-                        s.slug === 'prada-bc' ? 'scale-[0.9]' : '',
-                        s.slug === 'dwp' ? 'scale-[0.9]' : '',
-                        s.slug === 'bpr' ? 'scale-[0.92]' : '',
-                        s.slug === 'sipbro' ? 'scale-[1.05]' : '',
-                        s.slug === 'qjamin' ? 'scale-[1.04]' : '',
-                        s.slug === 'lps' ? 'scale-[1.12]' : '',
-                        s.slug === 'caraka-mulia' ? 'scale-[1.1]' : '',
-                      ]
-                        .filter(Boolean)
-                        .join(' ')}
-                    >
-                      {s.logoSrc ? (
-                        <Image
-                          src={s.logoSrc}
-                          alt={`${s.displayName} logo`}
-                          fill
-                          className={[
-                            'object-contain transition-transform duration-300 ease-out group-hover:scale-[1.05]',
-                            s.slug === 'prada-bc' ? 'filter brightness-105 contrast-125' : '',
-                            s.slug === 'caraka-mulia' ? 'filter brightness-110 contrast-150 saturate-110' : '',
-                          ]
-                            .filter(Boolean)
-                            .join(' ')}
-                          sizes="(max-width: 48rem) 50vw, (max-width: 75rem) 33vw, 200px"
-                          priority={idx < 3}
-                        />
-                      ) : null}
-                    </div>
+              // Final optical size equalization scale map aligned to correct subsidiaries slugs
+              const subsidiaryLogoScale: Record<string, string> = {
+                "bpr": "scale-100",                      // bpr-bonding
+                "caraka-mulia": "scale-[1.8]",           // caraka-mulia
+                "dwp": "scale-[0.85]",                   // dwp-insurance
+                "sipbro": "scale-[1.1]",                 // sip-bro
+                "qjamin": "scale-[1.1]",                 // khalifah-jamin-perkasa
+                "prada-bc": "scale-[1.2]",               // prada-badminton-club
+                "lps": "scale-100",                      // lps-insurance-consultant
+                "pln": "scale-[1.05]",                   // perkasa-lintas-nasional
+              };
 
-                    <div className="absolute top-3 left-3">
-                      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-100 text-[9px] font-extrabold tracking-[0.18em] text-slate-500 uppercase relative z-10">
-                        {sectorLabel}
-                      </span>
-                    </div>
+              return (
+                <div
+                  key={s.slug}
+                  className="group relative flex flex-col items-center text-center overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 ease-out p-6 gap-4"
+                >
+                  <div className="flex items-center justify-center">
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200/60 text-[9px] font-extrabold tracking-[0.15em] text-slate-500 uppercase">
+                      {sectorLabel}
+                    </span>
                   </div>
 
-                  <div className="p-6 sm:p-7 flex flex-col flex-grow">
-                    <div className="absolute top-0 left-6 right-6 h-px bg-[#0A66C2] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 ease-out origin-left" />
+                  <div className="h-[90px] flex items-center justify-center mb-5 overflow-hidden w-full">
+                    {s.logoSrc ? (
+                      <div className={`flex items-center justify-center h-full ${subsidiaryLogoScale[s.slug] || "scale-100"}`}>
+                        <img
+                          src={s.logoSrc}
+                          alt={`${s.displayName} logo`}
+                          className={['h-[58px] w-auto object-contain select-none transition-transform duration-300 ease-out group-hover:scale-105', s.cssBlend || s.slug === 'caraka-mulia' || s.slug === 'prada-bc' ? 'mix-blend-multiply logo-clean' : ''].filter(Boolean).join(' ')}
+                          loading={idx < 3 ? 'eager' : 'lazy'}
+                        />
+                      </div>
+                    ) : (
+                      <div className="text-lg font-black text-slate-300 uppercase tracking-widest">{s.displayName}</div>
+                    )}
+                  </div>
 
-                    <h2 className="text-base sm:text-lg font-extrabold text-[#041a40] leading-tight mb-2 group-hover:text-[#0A66C2] transition-colors duration-300">
+                  <div className="flex flex-col items-center text-center gap-2 flex-grow">
+                    <h2 className="text-base sm:text-lg font-semibold text-[#041a40] leading-tight mb-1 group-hover:text-[#0A66C2] transition-colors duration-300">
                       {s.legalName}
                     </h2>
 
-                    <p className="text-sm text-slate-500 font-medium leading-relaxed mb-5 flex-grow">
+                    <p className="text-sm text-slate-600 leading-relaxed">
                       {shortDesc}
                     </p>
-
-                    <div className="mt-auto flex items-center text-sm font-bold text-[#0A66C2] group-hover:text-[#041a40] transition-colors duration-300">
-                      {t('subsidiaries.card.cta')}
-                      <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
                   </div>
-                </Link>
+
+                  <div className="mt-auto grid grid-cols-2 gap-3 pt-4 w-full">
+                    <Link
+                      href={`/subsidiaries/${s.slug}`}
+                      className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-slate-50 text-[#041a40] text-[11px] font-extrabold border border-slate-200 hover:bg-slate-100 transition-colors duration-300 after:absolute after:inset-0 after:z-10"
+                    >
+                      {t('subsidiaries.card.cta')}
+                    </Link>
+                    {s.websiteUrl ? (
+                      <a
+                        href={s.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-[#0A66C2] text-white text-[11px] font-extrabold hover:bg-[#041a40] transition-colors duration-300 shadow-sm shadow-blue-100 relative z-20"
+                      >
+                        Visit Website
+                        <svg className="w-3.5 h-3.5 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    ) : (
+                      <div className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-slate-50 text-slate-400 text-[11px] font-extrabold border border-slate-100 cursor-not-allowed relative z-20">
+                        No Website
+                      </div>
+                    )}
+                  </div>
+                </div>
               );
             })}
           </div>
@@ -133,19 +141,19 @@ export default function SubsidiariesPage() {
           >
             <div className="relative z-10 max-w-2xl mx-auto">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-[#0A66C2] text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-8 shadow-sm">
-                Ecosystem Synergies
+                {t('subsidiaries.cta.tag')}
               </div>
               <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 leading-tight tracking-tight">
-                Ingin berkolaborasi dengan ekosistem kami?
+                {t('subsidiaries.cta.title')}
               </h2>
               <p className="text-base sm:text-lg text-slate-600 mb-10 leading-relaxed font-medium">
-                Kami selalu terbuka untuk peluang strategis lintas sektor. Temukan sinergi bersama Ardana Perkasa Group.
+                {t('subsidiaries.cta.desc')}
               </p>
               <Link
                 href="/kontak"
                 className="inline-flex min-h-[3.5rem] items-center justify-center rounded-full bg-[#0A66C2] px-8 sm:px-10 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 truncate whitespace-nowrap"
               >
-                Jelajahi Peluang
+                {t('subsidiaries.cta.button')}
               </Link>
             </div>
           </motion.div>

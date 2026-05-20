@@ -38,6 +38,7 @@ export default async function SubsidiaryDetailPage({ params }: { params: PagePar
       legalName={subsidiary.legalName}
       profile={subsidiary.profile}
       logoSrc={subsidiary.logoSrc}
+      cssBlend={subsidiary.cssBlend}
     />
   );
 }

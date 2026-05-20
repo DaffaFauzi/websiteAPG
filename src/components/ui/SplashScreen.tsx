@@ -292,7 +292,7 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
                   />
                 </div>
                 <div className="mt-2 text-center text-[0.6875rem] font-semibold tracking-[0.16em] text-white/70 uppercase">
-                  {phase === 'exitOverlay' ? 'Welcome' : 'Loading'}
+                  {t('common.loading')}
                 </div>
               </div>
             </div>

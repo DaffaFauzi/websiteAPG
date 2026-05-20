@@ -23,27 +23,28 @@ export default function InsightsSection() {
       title: t('news.1.title'), 
       excerpt: t('news.1.excerpt'), 
       tag: t('news.1.tag'), 
-      href: '/annual-report',
+      href: '/pengumuman/berita',
       date: t('insights.1.date'),
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800'
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800'
     },
     { 
       title: t('news.2.title'), 
       excerpt: t('news.2.excerpt'), 
       tag: t('news.2.tag'), 
-      href: '/annual-report',
+      href: '/pengumuman/berita',
       date: t('insights.2.date'),
-      image: 'https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&q=80&w=800'
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800'
     },
     { 
       title: t('news.3.title'), 
       excerpt: t('news.3.excerpt'), 
       tag: t('news.3.tag'), 
-      href: '/annual-report',
+      href: '/pengumuman/berita',
       date: t('insights.3.date'),
-      image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800'
+      image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800'
     },
   ];
+  const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800';
   const [featured, ...rest] = items;
 
   return (
@@ -85,7 +86,7 @@ export default function InsightsSection() {
               <Link href={featured.href} className={`group h-full flex flex-col overflow-hidden ${apgSystem.card.base}`}>
                 <div className="relative h-56 sm:h-72 w-full overflow-hidden">
                   <Image
-                    src={featured.image}
+                    src={featured.image || PLACEHOLDER_IMAGE}
                     alt={featured.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 60vw"
@@ -113,7 +114,7 @@ export default function InsightsSection() {
                   <Link href={item.href} className={`group h-full grid sm:grid-cols-[10.5rem_1fr] overflow-hidden ${apgSystem.card.base}`}>
                     <div className="relative h-44 sm:h-full w-full overflow-hidden">
                       <Image
-                        src={item.image}
+                        src={item.image || PLACEHOLDER_IMAGE}
                         alt={item.title}
                         fill
                         sizes="(max-width: 1024px) 100vw, 40vw"

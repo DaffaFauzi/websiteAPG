@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import FooterSection from '@/components/sections/FooterSection';
-import LogoBadge from '@/components/ui/LogoBadge';
 import PageHero from '@/components/ui/PageHero';
+import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
@@ -13,9 +13,10 @@ type Props = {
   legalName: string;
   profile: { id: string; en: string };
   logoSrc?: string;
+  cssBlend?: boolean;
 };
 
-export default function SubsidiaryDetailClient({ slug, displayName, legalName, profile, logoSrc }: Props) {
+export default function SubsidiaryDetailClient({ slug, displayName, legalName, profile, logoSrc, cssBlend }: Props) {
   const { t, language } = useLanguage();
   const profileText = language === 'id' ? profile.id : profile.en;
 
@@ -50,13 +51,20 @@ export default function SubsidiaryDetailClient({ slug, displayName, legalName, p
         <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
           <div className="rounded-[2.5rem] bg-white p-7 sm:p-8 shadow-[0_20px_55px_-35px_rgba(2,6,23,0.20)] ring-1 ring-slate-200/70">
             <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6">
-              <div className="relative w-16 h-16 sm:w-24 sm:h-24 bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-2 sm:p-4 shadow-[0_16px_45px_rgba(2,6,23,0.12)] flex items-center justify-center shrink-0">
-                <div className="sm:hidden">
-                  <LogoBadge name={displayName} src={logoSrc} size={46} className="rounded-xl" />
-                </div>
-                <div className="hidden sm:block">
-                  <LogoBadge name={displayName} src={logoSrc} size={64} className="rounded-xl" />
-                </div>
+              <div className="relative h-16 sm:h-24 px-4 sm:px-6 bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-[0_16px_45px_rgba(2,6,23,0.12)] flex items-center justify-center shrink-0">
+                {logoSrc ? (
+                  <div className="relative h-10 sm:h-14 w-32 sm:w-48 flex items-center justify-center">
+                    <Image
+                      src={logoSrc}
+                      alt={`${displayName} logo`}
+                      fill
+                      className={['object-contain', cssBlend ? 'mix-blend-multiply' : ''].filter(Boolean).join(' ')}
+                      sizes="(max-width: 640px) 96px, 160px"
+                    />
+                  </div>
+                ) : (
+                  <div className="text-xl sm:text-2xl font-extrabold text-slate-400">{displayName.charAt(0)}</div>
+                )}
               </div>
               <div>
                 <p className="text-xs sm:text-sm tracking-[0.15em] text-[#0A66C2] font-black uppercase">

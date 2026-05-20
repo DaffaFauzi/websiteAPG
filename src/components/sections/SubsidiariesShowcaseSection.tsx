@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { subsidiariesData } from '@/app/subsidiaries/subsidiariesData';
@@ -16,6 +15,17 @@ const SubsidiariesShowcaseSection = () => {
     title: t('subsidiaries.title'),
     desc: t('subsidiaries.desc'),
     cta: t('nav.subsidiaries_all'),
+  };
+
+  const subsidiaryLogoScale: Record<string, string> = {
+    "bpr": "scale-100",                      // bpr-bonding
+    "caraka-mulia": "scale-[1.8]",           // caraka-mulia
+    "dwp": "scale-[0.85]",                   // dwp-insurance
+    "sipbro": "scale-[1.1]",                 // sip-bro
+    "qjamin": "scale-[1.1]",                 // khalifah-jamin-perkasa
+    "prada-bc": "scale-[1.2]",               // prada-badminton-club
+    "lps": "scale-100",                      // lps-insurance-consultant
+    "pln": "scale-[1.05]",                   // perkasa-lintas-nasional
   };
 
   return (
@@ -43,15 +53,15 @@ const SubsidiariesShowcaseSection = () => {
                       <div className="text-sm font-semibold text-slate-950 leading-relaxed truncate">{s.displayName}</div>
                       <div className="mt-1 text-xs text-slate-500 leading-relaxed">{t(s.sectorKey)}</div>
                     </div>
-                    <div className="relative h-12 w-32 flex-shrink-0">
+                    <div className="h-14 sm:h-16 w-24 sm:w-32 flex items-center justify-center flex-shrink-0 overflow-hidden">
                       {s.logoSrc ? (
-                        <Image
-                          src={s.logoSrc}
-                          alt={s.displayName}
-                          fill
-                          sizes="128px"
-                          className="object-contain transition-all duration-200 ease-out opacity-100 group-hover:scale-[1.08]"
-                        />
+                        <div className={`flex items-center justify-center h-full w-full ${subsidiaryLogoScale[s.slug] || "scale-100"}`}>
+                          <img
+                            src={s.logoSrc}
+                            alt={`${s.displayName} logo`}
+                            className={['h-[38px] sm:h-[48px] w-auto object-contain select-none transition-transform duration-300 ease-out group-hover:scale-105', s.cssBlend || s.slug === 'caraka-mulia' || s.slug === 'prada-bc' ? 'mix-blend-multiply' : ''].filter(Boolean).join(' ')}
+                          />
+                        </div>
                       ) : null}
                     </div>
                   </div>

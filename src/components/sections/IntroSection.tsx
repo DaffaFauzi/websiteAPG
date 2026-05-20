@@ -74,17 +74,14 @@ const IntroSection: React.FC = () => {
           className="absolute left-0 top-7 md:top-9"
         >
           <div className={apgSystem.badge.logo}>
-            <div className="relative h-12 w-12">
-              <Image src="/images/apgg.png" alt={content.logoAlt} fill sizes="48px" className="object-contain" />
+            <div className="relative h-16 w-36">
+              <Image src="/images/apgg.png" alt={content.logoAlt} fill sizes="144px" className="object-contain" />
             </div>
           </div>
         </motion.div>
 
         <div className={`grid items-center gap-10 md:gap-12 lg:grid-cols-2 ${apgSystem.spacing.heroInnerPad}`}>
           <div className="text-left">
-            <motion.p {...apgSystem.motion.itemDelay(0.1)} className="text-sm font-extrabold tracking-wide text-white/85">
-              {content.badge}
-            </motion.p>
             <motion.h1 {...apgSystem.motion.itemDelay(0.2)} className={`mt-4 ${apgSystem.typography.h1} max-w-[22ch]`}>
               {content.headline}
             </motion.h1>

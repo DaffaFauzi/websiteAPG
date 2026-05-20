@@ -15,12 +15,13 @@ IMG_DIR = os.path.join(os.path.dirname(__file__), '..', 'public', 'images')
 LOGOS = [
     'bpr.png',
     'caraka.png',
+    'caraqu.png',
     'dwp.png',
     'lps.png',
     'pln.png',
+    'prada.png',
     'proteksi.png',
     'sipbro.png',
-    # prada, pataka, qjamin are already mostly clean or have colored bg
 ]
 
 def is_near_white(pixel, tolerance=30):

@@ -51,7 +51,7 @@ export const apgSystem = {
   },
   badge: {
     logo:
-      'flex items-center bg-white/95 text-slate-950 border border-white/70 shadow-lg pl-6 pr-12 py-4 rounded-r-3xl rounded-l-none min-w-[9.5rem]',
+      'flex items-center bg-white/95 text-slate-950 border border-white/70 shadow-lg pl-6 pr-8 py-3.5 rounded-r-3xl rounded-l-none',
   },
   diagram: {
     node:
