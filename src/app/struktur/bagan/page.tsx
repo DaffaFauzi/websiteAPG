@@ -45,7 +45,7 @@ function N({ x, y, w, h, lines }: { x: number; y: number; w: number; h: number; 
 }
 
 function L({ x1, y1, x2, y2 }: { x1: number; y1: number; x2: number; y2: number }) {
-  return <line x1={x1} y1={y1} x2={x2} y2={y2} />;
+  return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#000" strokeWidth="2" />;
 }
 
 export default function StrukturBaganPage() {
@@ -80,7 +80,7 @@ export default function StrukturBaganPage() {
               <div className="overflow-auto">
                 <div className="w-fit mx-auto px-6 py-6">
                   <svg width="2400" height="640" viewBox="0 0 2400 640" className="block h-auto max-w-none" role="img" aria-label={title} shapeRendering="crispEdges">
-                    <motion.g stroke="#1e293b" strokeWidth="1.8" fill="none" strokeLinecap="round"
+                    <motion.g stroke="#000" strokeWidth="2" fill="none" strokeLinecap="round"
                       initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.3 }}
                       transition={{ duration: 0.6, delay: 0.5 }}>
                       {/* Top: RUPS → Komisaris → DirUt → Direktur */}
