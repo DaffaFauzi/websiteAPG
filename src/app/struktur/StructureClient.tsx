@@ -44,7 +44,15 @@ const GroupCard = ({ title, children }: { title: string; children: React.ReactNo
         </div>
       </div>
     </div>
-    <div className="py-6 sm:py-8 bg-white overflow-x-auto">
+    <div className="py-6 sm:py-8 bg-white overflow-x-auto cursor-grab active:cursor-grabbing scrollbar-hide">
+      <div className="md:hidden text-center mb-6">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-bold uppercase tracking-wider animate-pulse">
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+          Geser untuk melihat struktur lengkap
+        </div>
+      </div>
       <div className="min-w-[1400px] px-4">
         {children}
       </div>

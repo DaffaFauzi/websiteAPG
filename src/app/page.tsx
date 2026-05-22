@@ -15,13 +15,13 @@ export default function Home() {
     <main className="min-h-screen relative bg-slate-50 text-[var(--foreground)]">
       <IntroSection />
       <WhyChooseUsSection variant="home" />
-      <AboutPreviewSection />
-      <BusinessFocusSection />
-      <SubsidiariesShowcaseSection />
-      <ProcessSection />
-      <InsightsSection />
-      <LeadershipSection />
-      <FinalCTASection />
+      <div className="mt-6 md:mt-0"><AboutPreviewSection /></div>
+      <div className="mt-6 md:mt-0"><BusinessFocusSection /></div>
+      <div className="mt-6 md:mt-0"><SubsidiariesShowcaseSection /></div>
+      <div className="mt-6 md:mt-0"><ProcessSection /></div>
+      {/* <InsightsSection /> */}
+      <div className="mt-6 md:mt-0"><LeadershipSection /></div>
+      <div className="mt-6 md:mt-0"><FinalCTASection /></div>
       <FooterSection />
     </main>
   );

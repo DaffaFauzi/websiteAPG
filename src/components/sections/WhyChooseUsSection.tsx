@@ -33,7 +33,7 @@ export default function WhyChooseUsSection({ variant = 'default' }: WhyChooseUsS
   if (variant === 'home') {
     const serviceItems = content.pillars.slice(0, 3);
     return (
-      <section className={`relative ${apgSystem.spacing.sectionY} -mt-16 md:-mt-20`}>
+      <section className={`relative ${apgSystem.spacing.sectionY} -mt-8 md:-mt-20`}>
         <div className={apgSystem.spacing.container}>
           <motion.div {...apgSystem.motion.reveal} className="text-center max-w-2xl mx-auto">
             <motion.p {...apgSystem.motion.itemDelay(0.1)} className={`text-sm text-slate-500 ${apgSystem.typography.tag}`}>

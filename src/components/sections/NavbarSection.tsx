@@ -14,6 +14,7 @@ const NavbarSection: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
+  const mobileDrawerRef = useRef<HTMLElement>(null);
   const openTimer = useRef<number | null>(null);
   const closeTimer = useRef<number | null>(null);
 
@@ -33,8 +34,10 @@ const NavbarSection: React.FC = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (!navRef.current) return;
-      if (navRef.current.contains(event.target as Node)) return;
+      const target = event.target as Node;
+      if (navRef.current?.contains(target)) return;
+      if (mobileDrawerRef.current?.contains(target)) return;
+      
       setDesktopDropdown(null);
       setMobileOpen(false);
     };
@@ -118,7 +121,7 @@ const NavbarSection: React.FC = () => {
 
   const announcementsItems = useMemo(
     () => [
-      { href: '/pengumuman/berita', label: t('nav.news') },
+      // { href: '/pengumuman/berita', label: t('nav.news') },
       { href: '/karir', label: t('nav.career') },
     ],
     [t],
@@ -148,558 +151,301 @@ const NavbarSection: React.FC = () => {
   };
 
   return (
-    <nav
-      ref={navRef}
-      className={[
-        'fixed top-0 left-0 right-0 z-50',
-        'transition-[background-color,box-shadow,backdrop-filter] duration-[380ms] ease-in-out',
-        scrolled
-          ? 'bg-white/85 backdrop-blur-md shadow-sm border-b border-slate-200/60 pointer-events-auto'
-          : 'bg-transparent pointer-events-none',
-      ].join(' ')}
-      aria-label={t('nav.aria')}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-16 lg:h-20 flex items-center justify-between">
-          <motion.div
-            initial={false}
-            animate={{
-              opacity: showContent ? 1 : 0,
-              y: showContent ? 0 : -10,
-              pointerEvents: showContent ? 'auto' : 'none',
-            }}
-            transition={{ duration: 0.36, ease: [0.42, 0, 0.58, 1] }}
-            className="hidden md:flex items-center gap-1"
-          >
-            {pathname !== '/' ? (
-              <Link
-                href="/"
-                aria-label={t('nav.home')}
-                className={[
-                  'h-10 w-10 rounded-lg grid place-items-center transition-colors',
-                  isActiveLink('/') ? 'text-[#0A66C2]' : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100',
-                ].join(' ')}
-              >
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-6v-6H10v6H4a1 1 0 0 1-1-1v-10.5z" />
-                </svg>
-              </Link>
-            ) : null}
-
-            <div className="relative" onMouseEnter={() => scheduleOpen('about')} onMouseLeave={scheduleClose}>
-              <button
-                type="button"
-                onClick={() => toggleDesktopDropdown('about')}
-                className={[
-                  'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
-                  desktopDropdown === 'about' || aboutItems.some((x) => isActiveLink(x.href))
-                    ? 'text-[#0A66C2] bg-[#0A66C2]/10'
-                    : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100',
-                ].join(' ')}
-                aria-haspopup="menu"
-                aria-expanded={desktopDropdown === 'about'}
-              >
-                {t('nav.about')}
-              </button>
-            </div>
-
-            <div className="relative" onMouseEnter={() => scheduleOpen('structure')} onMouseLeave={scheduleClose}>
-              <button
-                type="button"
-                onClick={() => toggleDesktopDropdown('structure')}
-                className={[
-                  'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
-                  desktopDropdown === 'structure' || structureItems.some((x) => isActiveLink(x.href))
-                    ? 'text-[#0A66C2] bg-[#0A66C2]/10'
-                    : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100',
-                ].join(' ')}
-                aria-haspopup="menu"
-                aria-expanded={desktopDropdown === 'structure'}
-              >
-                {t('nav.structure')}
-              </button>
-            </div>
-
-            <div className="relative" onMouseEnter={() => scheduleOpen('subsidiaries')} onMouseLeave={scheduleClose}>
-              <button
-                type="button"
-                onClick={() => toggleDesktopDropdown('subsidiaries')}
-                className={[
-                  'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
-                  desktopDropdown === 'subsidiaries' || isActiveLink('/anak-perusahaan') || isActiveLink('/subsidiaries')
-                    ? 'text-[#0A66C2] bg-[#0A66C2]/10'
-                    : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100',
-                ].join(' ')}
-                aria-haspopup="menu"
-                aria-expanded={desktopDropdown === 'subsidiaries'}
-              >
-                {t('nav.subsidiaries')}
-              </button>
-            </div>
-
-            <div className="relative" onMouseEnter={() => scheduleOpen('announcements')} onMouseLeave={scheduleClose}>
-              <button
-                type="button"
-                onClick={() => toggleDesktopDropdown('announcements')}
-                className={[
-                  'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
-                  desktopDropdown === 'announcements' || announcementsItems.some((x) => isActiveLink(x.href))
-                    ? 'text-[#0A66C2] bg-[#0A66C2]/10'
-                    : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100',
-                ].join(' ')}
-                aria-haspopup="menu"
-                aria-expanded={desktopDropdown === 'announcements'}
-              >
-                {t('nav.announcements')}
-              </button>
-            </div>
-
-            <Link
-              href="/kontak"
-              onClick={handleNavClick('/kontak')}
-              className={[
-                'px-3 py-2 rounded-lg text-sm font-semibold transition-colors',
-                isActiveLink('/kontak') ? 'text-[#0A66C2] bg-[#0A66C2]/10' : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100',
-              ].join(' ')}
-            >
-              {t('nav.contact')}
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={false}
-            animate={{
-              opacity: showContent ? 1 : 0,
-              y: showContent ? 0 : -10,
-              pointerEvents: showContent ? 'auto' : 'none',
-            }}
-            transition={{ duration: 0.36, ease: [0.42, 0, 0.58, 1] }}
-            className="flex items-center gap-2 sm:gap-3"
-          >
-            <div className="hidden lg:flex items-center gap-1 rounded-xl bg-white/70 backdrop-blur-md border border-slate-200 px-1 py-1">
-              <button
-                onClick={() => setLanguage('id')}
-                className={[
-                  'px-3 py-2 text-xs font-black rounded-lg transition-colors min-h-10',
-                  language === 'id' ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-100',
-                ].join(' ')}
-                aria-label={t('language.id.aria')}
-              >
-                ID
-              </button>
-              <button
-                onClick={() => setLanguage('en')}
-                className={[
-                  'px-3 py-2 text-xs font-black rounded-lg transition-colors min-h-10',
-                  language === 'en' ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-100',
-                ].join(' ')}
-                aria-label={t('language.en.aria')}
-              >
-                EN
-              </button>
-            </div>
-
-            <Link href="/" onClick={handleNavClick('/')} aria-label={t('brand.name')} className="flex items-center">
-              <div className="relative h-6 w-20 sm:h-7 sm:w-24">
-                <Image src="/images/apgg.png" alt={t('brand.logoAlt')} fill sizes="96px" className="object-contain" priority />
-              </div>
-            </Link>
-
-            <button
-              type="button"
-              onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden h-10 w-10 rounded-lg bg-[#0A66C2] text-white grid place-items-center shadow-sm active:scale-[0.98] transition-transform"
-              aria-label={mobileOpen ? t('nav.menu.close') : t('nav.menu.open')}
-              aria-expanded={mobileOpen}
-            >
-              <div className="flex flex-col gap-1.5 items-center justify-center">
-                <motion.span
-                  animate={{ rotate: mobileOpen ? 45 : 0, y: mobileOpen ? 7 : 0, width: 20 }}
-                  transition={{ duration: 0.35, ease: [0.42, 0, 0.58, 1] }}
-                  className="block h-[3px] bg-white rounded-full origin-center"
-                />
-                <motion.span
-                  animate={{ opacity: mobileOpen ? 0 : 1, x: mobileOpen ? 16 : 0 }}
-                  transition={{ duration: 0.25, ease: [0.42, 0, 0.58, 1] }}
-                  className="block h-[3px] w-5 bg-white rounded-full"
-                />
-                <motion.span
-                  animate={{ rotate: mobileOpen ? -45 : 0, y: mobileOpen ? -7 : 0, width: 20 }}
-                  transition={{ duration: 0.35, ease: [0.42, 0, 0.58, 1] }}
-                  className="block h-[3px] bg-white rounded-full origin-center"
-                />
-              </div>
-            </button>
-          </motion.div>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {showContent && desktopDropdown ? (
-          <motion.div
-            key="desktop-dropdown"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.28, ease: [0.42, 0, 0.58, 1] }}
-            className="absolute top-full left-0 right-0"
-            onMouseEnter={() => {
-              clearHoverTimers();
-            }}
-            onMouseLeave={scheduleClose}
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-6">
-              {desktopDropdown === 'about' ? (
-                <div className="rounded-xl bg-white shadow-lg border border-slate-200 p-4 w-full max-w-lg">
-                  <div className="text-xs font-black tracking-[0.18em] uppercase text-slate-500 px-2">{t('nav.about')}</div>
-                  <div className="mt-3 space-y-1">
-                    {aboutItems.map((item) => (
-                      <Link
-                        key={item.id}
-                        href={item.href}
-                        onClick={handleNavClick(item.href, () => setDesktopDropdown(null))}
-                        className={[
-                          'flex items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold transition-colors',
-                          isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-800 hover:bg-slate-50',
-                        ].join(' ')}
-                      >
-                        <span>{item.label}</span>
-                        <span className={isActiveLink(item.href) ? 'text-white/85' : 'text-slate-400'}>→</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-
-              {desktopDropdown === 'structure' ? (
-                <div className="rounded-xl bg-white shadow-lg border border-slate-200 p-4 w-full max-w-md">
-                  <div className="text-xs font-black tracking-[0.18em] uppercase text-slate-500 px-2">{t('nav.structure')}</div>
-                  <div className="mt-3 space-y-1">
-                    {structureItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={handleNavClick(item.href, () => setDesktopDropdown(null))}
-                        className={[
-                          'flex items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold transition-colors',
-                          isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-800 hover:bg-slate-50',
-                        ].join(' ')}
-                      >
-                        <span>{item.label}</span>
-                        <span className={isActiveLink(item.href) ? 'text-white/85' : 'text-slate-400'}>→</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-
-              {desktopDropdown === 'announcements' ? (
-                <div className="rounded-xl bg-white shadow-lg border border-slate-200 p-4 w-full max-w-md">
-                  <div className="text-xs font-black tracking-[0.18em] uppercase text-slate-500 px-2">{t('nav.announcements')}</div>
-                  <div className="mt-3 space-y-1">
-                    {announcementsItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={handleNavClick(item.href, () => setDesktopDropdown(null))}
-                        className={[
-                          'flex items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold transition-colors',
-                          isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-800 hover:bg-slate-50',
-                        ].join(' ')}
-                      >
-                        <span>{item.label}</span>
-                        <span className={isActiveLink(item.href) ? 'text-white/85' : 'text-slate-400'}>→</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-
-              {desktopDropdown === 'subsidiaries' ? (
-                <div className="rounded-xl bg-white shadow-lg border border-slate-200 p-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <div className="lg:col-span-4">
-                      <div className="text-xs font-black tracking-[0.18em] uppercase text-slate-500">{t('nav.subsidiaries')}</div>
-                      <div className="mt-3 text-sm text-slate-600 leading-relaxed">{t('subsidiaries.desc')}</div>
-                      <div className="mt-5">
-                        <Link
-                          href="/anak-perusahaan"
-                          onClick={handleNavClick('/anak-perusahaan', () => setDesktopDropdown(null))}
-                          className="inline-flex items-center gap-2 text-sm font-semibold text-[#0A66C2] hover:text-[#095aa9]"
-                        >
-                          {t('nav.subsidiaries_all')} <span>→</span>
-                        </Link>
-                      </div>
+    <>
+      <nav
+        ref={navRef}
+        className={[
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+          scrolled || mobileOpen
+            ? 'bg-white shadow-md translate-y-0 opacity-100'
+            : 'bg-transparent -translate-y-4 opacity-0 pointer-events-none md:pointer-events-auto',
+        ].join(' ')}
+        aria-label={t('nav.aria')}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-16 lg:h-20 flex items-center justify-between">
+            {/* Mobile View: Logo (Left) & Hamburger (Right) */}
+            <div className="md:hidden flex items-center justify-between w-full pointer-events-auto">
+              {(scrolled || mobileOpen) && (
+                <>
+                  <Link
+                    href="/"
+                    onClick={handleNavClick('/')}
+                    className="transition-opacity duration-300"
+                  >
+                    <div className="relative h-6 w-20 sm:h-7 sm:w-24">
+                      <Image src="/images/apgg.png" alt={t('brand.logoAlt')} fill sizes="96px" className="object-contain" priority />
                     </div>
+                  </Link>
 
-                    <div className="lg:col-span-8">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        {subsidiariesPreview.map((s) => (
-                          <Link
-                            key={s.slug}
-                            href={`/subsidiaries/${s.slug}`}
-                            onClick={handleNavClick(`/subsidiaries/${s.slug}`, () => setDesktopDropdown(null))}
-                            className="group rounded-xl border border-slate-200 bg-white p-4 hover:bg-slate-50 transition-colors"
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className="relative h-10 w-32 rounded-lg overflow-hidden grid place-items-center flex-shrink-0">
-                                {s.logoSrc ? <Image src={s.logoSrc} alt="" fill sizes="128px" className={['object-contain object-left', s.cssBlend ? 'mix-blend-multiply' : ''].filter(Boolean).join(' ')} /> : null}
-                              </div>
-                              <div className="min-w-0">
-                                <div className="text-sm font-semibold text-slate-950 truncate">{s.displayName}</div>
-                                <div className="mt-1 text-xs text-slate-500 truncate">{t(s.sectorKey)}</div>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileOpen((v) => !v)}
+                    className="h-10 w-10 rounded-lg bg-[#0A66C2] text-white flex items-center justify-center shadow-lg active:scale-95 transition-all"
+                    aria-label={mobileOpen ? t('nav.menu.close') : t('nav.menu.open')}
+                  >
+                    <div className="flex flex-col gap-1.5 items-center justify-center">
+                      <motion.span
+                        animate={{ rotate: mobileOpen ? 45 : 0, y: mobileOpen ? 7 : 0, width: 20 }}
+                        className="block h-[2.5px] bg-white rounded-full origin-center"
+                      />
+                      <motion.span
+                        animate={{ opacity: mobileOpen ? 0 : 1, x: mobileOpen ? 10 : 0 }}
+                        className="block h-[2.5px] w-5 bg-white rounded-full"
+                      />
+                      <motion.span
+                        animate={{ rotate: mobileOpen ? -45 : 0, y: mobileOpen ? -7 : 0, width: 20 }}
+                        className="block h-[2.5px] bg-white rounded-full origin-center"
+                      />
                     </div>
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {showContent && mobileOpen ? (
-          <motion.div
-            key="mobile-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-slate-950/25 backdrop-blur-[2px] md:hidden"
-            onClick={() => setMobileOpen(false)}
-          />
-        ) : null}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {showContent && mobileOpen ? (
-          <motion.aside
-            key="mobile-drawer"
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.32, ease: [0.42, 0, 0.58, 1] }}
-            className="fixed top-0 right-0 z-[70] h-full w-[20rem] max-w-[88vw] bg-white shadow-2xl border-l border-slate-200 md:hidden"
-            role="dialog"
-            aria-label={t('nav.menu.open')}
-          >
-            <div className="h-16 px-4 flex items-center justify-between border-b border-slate-200">
-              <div className="relative h-6 w-20">
-                <Image src="/images/apgg.png" alt={t('brand.logoAlt')} fill sizes="80px" className="object-contain" />
-              </div>
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                className="h-10 w-10 rounded-lg hover:bg-slate-100 grid place-items-center"
-                aria-label={t('nav.menu.close')}
-              >
-                <span className="text-xl leading-none">×</span>
-              </button>
+                  </button>
+                </>
+              )}
             </div>
 
-            <div className="p-4 space-y-2">
-              {pathname !== '/' ? (
+            {/* Desktop View: Links (Left) & Logo (Right) */}
+            <div className={`hidden md:flex items-center gap-1 transition-all duration-300 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
+              {pathname !== '/' && (
                 <Link
                   href="/"
-                  onClick={handleNavClick('/', () => setMobileOpen(false))}
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50 border border-slate-200"
+                  className="h-10 w-10 rounded-lg grid place-items-center text-slate-700 hover:text-[#0A66C2] hover:bg-slate-100 transition-colors"
                 >
-                  <span className="h-9 w-9 rounded-lg bg-slate-100 grid place-items-center">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-6v-6H10v6H4a1 1 0 0 1-1-1v-10.5z" />
-                    </svg>
-                  </span>
-                  <span>{t('nav.home')}</span>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
                 </Link>
-              ) : null}
+              )}
 
-              <div className="rounded-xl border border-slate-200 overflow-hidden">
+              <div className="relative" onMouseEnter={() => scheduleOpen('about')} onMouseLeave={scheduleClose}>
                 <button
-                  type="button"
-                  onClick={() => setMobileAccordion((v) => (v === 'about' ? null : 'about'))}
-                  className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50"
-                  aria-expanded={mobileAccordion === 'about'}
+                  onClick={() => toggleDesktopDropdown('about')}
+                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${desktopDropdown === 'about' || aboutItems.some(x => isActiveLink(x.href)) ? 'text-[#0A66C2] bg-blue-50' : 'text-slate-700 hover:bg-slate-100'}`}
                 >
-                  <span>{t('nav.about')}</span>
-                  <span className="text-slate-400">{mobileAccordion === 'about' ? '−' : '+'}</span>
+                  {t('nav.about')}
                 </button>
-                <AnimatePresence initial={false}>
-                  {mobileAccordion === 'about' ? (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22, ease: [0.42, 0, 0.58, 1] }}
-                      className="px-2 pb-2"
-                    >
-                      {aboutItems.map((item) => (
-                        <Link
-                          key={item.id}
-                          href={item.href}
-                          onClick={handleNavClick(item.href, () => setMobileOpen(false))}
-                          className={[
-                            'block rounded-lg px-3 py-2 text-sm transition-colors',
-                            isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-50',
-                          ].join(' ')}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
               </div>
 
-              <div className="rounded-xl border border-slate-200 overflow-hidden">
+              <div className="relative" onMouseEnter={() => scheduleOpen('structure')} onMouseLeave={scheduleClose}>
                 <button
-                  type="button"
-                  onClick={() => setMobileAccordion((v) => (v === 'structure' ? null : 'structure'))}
-                  className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50"
-                  aria-expanded={mobileAccordion === 'structure'}
+                  onClick={() => toggleDesktopDropdown('structure')}
+                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${desktopDropdown === 'structure' || structureItems.some(x => isActiveLink(x.href)) ? 'text-[#0A66C2] bg-blue-50' : 'text-slate-700 hover:bg-slate-100'}`}
                 >
-                  <span>{t('nav.structure')}</span>
-                  <span className="text-slate-400">{mobileAccordion === 'structure' ? '−' : '+'}</span>
+                  {t('nav.structure')}
                 </button>
-                <AnimatePresence initial={false}>
-                  {mobileAccordion === 'structure' ? (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22, ease: [0.42, 0, 0.58, 1] }}
-                      className="px-2 pb-2"
-                    >
-                      {structureItems.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={handleNavClick(item.href, () => setMobileOpen(false))}
-                          className={[
-                            'block rounded-lg px-3 py-2 text-sm transition-colors',
-                            isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-50',
-                          ].join(' ')}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
               </div>
 
-              <div className="rounded-xl border border-slate-200 overflow-hidden">
-                <button
-                  type="button"
-                  onClick={() => setMobileAccordion((v) => (v === 'subsidiaries' ? null : 'subsidiaries'))}
-                  className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50"
-                  aria-expanded={mobileAccordion === 'subsidiaries'}
-                >
-                  <span>{t('nav.subsidiaries')}</span>
-                  <span className="text-slate-400">{mobileAccordion === 'subsidiaries' ? '−' : '+'}</span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {mobileAccordion === 'subsidiaries' ? (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22, ease: [0.42, 0, 0.58, 1] }}
-                      className="px-2 pb-3"
-                    >
-                      <Link
-                        href="/anak-perusahaan"
-                        onClick={handleNavClick('/anak-perusahaan', () => setMobileOpen(false))}
-                        className={[
-                          'block rounded-lg px-3 py-2 text-sm font-semibold transition-colors',
-                          isActiveLink('/anak-perusahaan') || isActiveLink('/subsidiaries') ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-50',
-                        ].join(' ')}
-                      >
-                        {t('nav.subsidiaries_all')}
-                      </Link>
+              <Link
+                href="/subsidiaries"
+                className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${isActiveLink('/subsidiaries') ? 'text-[#0A66C2] bg-blue-50' : 'text-slate-700 hover:bg-slate-100'}`}
+              >
+                {t('nav.subsidiaries')}
+              </Link>
 
-                      <div className="mt-2 grid grid-cols-2 gap-2">
-                        {subsidiariesPreview.slice(0, 4).map((s) => (
-                          <Link
-                            key={s.slug}
-                            href={`/subsidiaries/${s.slug}`}
-                            onClick={handleNavClick(`/subsidiaries/${s.slug}`, () => setMobileOpen(false))}
-                            className="rounded-lg border border-slate-200 p-3 hover:bg-slate-50 transition-colors"
-                          >
-                            <div className="flex items-center gap-2">
-                              <div className="relative h-8 w-24 rounded-lg overflow-hidden flex-shrink-0">
-                                {s.logoSrc ? <Image src={s.logoSrc} alt="" fill sizes="96px" className={['object-contain object-left', s.cssBlend ? 'mix-blend-multiply' : ''].filter(Boolean).join(' ')} /> : null}
-                              </div>
-                              <div className="min-w-0">
-                                <div className="text-xs font-semibold text-slate-900 truncate">{s.displayName}</div>
-                                <div className="text-[10px] text-slate-500 truncate">{t(s.sectorKey)}</div>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 overflow-hidden">
+              <div className="relative" onMouseEnter={() => scheduleOpen('announcements')} onMouseLeave={scheduleClose}>
                 <button
-                  type="button"
-                  onClick={() => setMobileAccordion((v) => (v === 'announcements' ? null : 'announcements'))}
-                  className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50"
-                  aria-expanded={mobileAccordion === 'announcements'}
+                  onClick={() => toggleDesktopDropdown('announcements')}
+                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${desktopDropdown === 'announcements' || announcementsItems.some(x => isActiveLink(x.href)) ? 'text-[#0A66C2] bg-blue-50' : 'text-slate-700 hover:bg-slate-100'}`}
                 >
-                  <span>{t('nav.announcements')}</span>
-                  <span className="text-slate-400">{mobileAccordion === 'announcements' ? '−' : '+'}</span>
+                  {t('nav.announcements')}
                 </button>
-                <AnimatePresence initial={false}>
-                  {mobileAccordion === 'announcements' ? (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22, ease: [0.42, 0, 0.58, 1] }}
-                      className="px-2 pb-2"
-                    >
-                      {announcementsItems.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={handleNavClick(item.href, () => setMobileOpen(false))}
-                          className={[
-                            'block rounded-lg px-3 py-2 text-sm transition-colors',
-                            isActiveLink(item.href) ? 'bg-[#0A66C2] text-white' : 'text-slate-700 hover:bg-slate-50',
-                          ].join(' ')}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
               </div>
 
               <Link
                 href="/kontak"
-                onClick={handleNavClick('/kontak', () => setMobileOpen(false))}
-                className={[
-                  'flex items-center justify-between rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold transition-colors',
-                  isActiveLink('/kontak') ? 'bg-[#0A66C2] text-white border-[#0A66C2]' : 'text-slate-900 hover:bg-slate-50',
-                ].join(' ')}
+                className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${isActiveLink('/kontak') ? 'text-[#0A66C2] bg-blue-50' : 'text-slate-700 hover:bg-slate-100'}`}
               >
-                <span>{t('nav.contact')}</span>
-                <span className={isActiveLink('/kontak') ? 'text-white/85' : 'text-slate-400'}>→</span>
+                {t('nav.contact')}
               </Link>
             </div>
-          </motion.aside>
-        ) : null}
+
+            <div className={`hidden md:block transition-all duration-300 ${scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <Link href="/" className="flex items-center">
+                <div className="relative h-7 w-24">
+                  <Image src="/images/apgg.png" alt={t('brand.logoAlt')} fill sizes="96px" className="object-contain" priority />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Desktop Dropdowns */}
+      <AnimatePresence>
+        {scrolled && desktopDropdown && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            onMouseEnter={() => scheduleOpen(desktopDropdown)}
+            onMouseLeave={scheduleClose}
+            className="fixed top-20 left-1/2 -translate-x-1/2 z-[45] w-[240px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 hidden md:block"
+          >
+            {(desktopDropdown === 'about' ? aboutItems : 
+              desktopDropdown === 'structure' ? structureItems : 
+              announcementsItems).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`block px-4 py-3 rounded-xl text-sm font-bold transition-colors ${isActiveLink(item.href) ? 'bg-blue-50 text-[#0A66C2]' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </motion.div>
+        )}
       </AnimatePresence>
-    </nav>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm md:hidden"
+            />
+            <motion.aside
+              ref={mobileDrawerRef}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 z-[110] h-full w-[280px] bg-white shadow-2xl md:hidden flex flex-col"
+            >
+              <div className="h-16 px-6 flex items-center justify-between border-b border-slate-50 shrink-0">
+                <div className="relative h-6 w-20">
+                  <Image src="/images/apgg.png" alt={t('brand.logoAlt')} fill sizes="80px" className="object-contain" />
+                </div>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="h-10 w-10 rounded-full bg-slate-50 text-slate-400 hover:text-slate-900 grid place-items-center"
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto py-8 px-6 space-y-8">
+                <div className="space-y-6">
+                  {/* Home Link */}
+                  <Link
+                    href="/"
+                    onClick={() => setMobileOpen(false)}
+                    className={`block text-slate-900 font-black text-lg hover:text-[#0A66C2] transition-colors ${isActiveLink('/') ? 'text-[#0A66C2]' : ''}`}
+                  >
+                    {t('nav.home')}
+                  </Link>
+
+                  {/* About Accordion */}
+                  <div className="space-y-4">
+                    <button
+                      onClick={() => setMobileAccordion(v => v === 'about' ? null : 'about')}
+                      className="w-full flex items-center justify-between text-slate-900 font-black text-lg"
+                    >
+                      <span>{t('nav.about')}</span>
+                      <svg className={`w-5 h-5 transition-transform ${mobileAccordion === 'about' ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <AnimatePresence>
+                      {mobileAccordion === 'about' && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden flex flex-col gap-3 pl-4 border-l-2 border-slate-100"
+                        >
+                          {aboutItems.map(item => (
+                            <Link key={item.id} href={item.href} onClick={() => setMobileOpen(false)} className="text-slate-500 font-bold hover:text-[#0A66C2]">
+                              {item.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Structure Accordion */}
+                  <div className="space-y-4">
+                    <button
+                      onClick={() => setMobileAccordion(v => v === 'structure' ? null : 'structure')}
+                      className="w-full flex items-center justify-between text-slate-900 font-black text-lg"
+                    >
+                      <span>{t('nav.structure')}</span>
+                      <svg className={`w-5 h-5 transition-transform ${mobileAccordion === 'structure' ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <AnimatePresence>
+                      {mobileAccordion === 'structure' && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden flex flex-col gap-3 pl-4 border-l-2 border-slate-100"
+                        >
+                          {structureItems.map(item => (
+                            <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="text-slate-500 font-bold hover:text-[#0A66C2]">
+                              {item.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  <Link href="/subsidiaries" onClick={() => setMobileOpen(false)} className="block text-slate-900 font-black text-lg hover:text-[#0A66C2]">
+                    {t('nav.subsidiaries')}
+                  </Link>
+
+                  {/* Announcements Accordion */}
+                  <div className="space-y-4">
+                    <button
+                      onClick={() => setMobileAccordion(v => v === 'announcements' ? null : 'announcements')}
+                      className="w-full flex items-center justify-between text-slate-900 font-black text-lg"
+                    >
+                      <span>{t('nav.announcements')}</span>
+                      <svg className={`w-5 h-5 transition-transform ${mobileAccordion === 'announcements' ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <AnimatePresence>
+                      {mobileAccordion === 'announcements' && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden flex flex-col gap-3 pl-4 border-l-2 border-slate-100"
+                        >
+                          {announcementsItems.map(item => (
+                            <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="text-slate-500 font-bold hover:text-[#0A66C2]">
+                              {item.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  <Link href="/kontak" onClick={() => setMobileOpen(false)} className="block text-slate-900 font-black text-lg hover:text-[#0A66C2]">
+                    {t('nav.contact')}
+                  </Link>
+                </div>
+              </div>
+
+              <div className="p-8 border-t border-slate-50">
+                <div className="text-[10px] font-black text-slate-300 uppercase tracking-[0.3em] text-center">
+                  © {new Date().getFullYear()} ARDANA PERKASA GROUP
+                </div>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

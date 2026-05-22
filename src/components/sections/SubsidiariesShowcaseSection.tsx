@@ -21,7 +21,7 @@ const SubsidiariesShowcaseSection = () => {
     "bpr": "scale-100",                      // bpr-bonding
     "caraka-mulia": "scale-[1.8]",           // caraka-mulia
     "dwp": "scale-[0.85]",                   // dwp-insurance
-    "sipbro": "scale-[1.1]",                 // sip-bro
+    "sipbro": "scale-100",                 // sip-bro
     "qjamin": "scale-[1.1]",                 // khalifah-jamin-perkasa
     "prada-bc": "scale-[1.2]",               // prada-badminton-club
     "lps": "scale-100",                      // lps-insurance-consultant
@@ -53,7 +53,7 @@ const SubsidiariesShowcaseSection = () => {
                       <div className="text-sm font-semibold text-slate-950 leading-relaxed truncate">{s.displayName}</div>
                       <div className="mt-1 text-xs text-slate-500 leading-relaxed">{t(s.sectorKey)}</div>
                     </div>
-                    <div className="h-14 sm:h-16 w-24 sm:w-32 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    <div className="h-14 sm:h-16 w-28 sm:w-32 flex items-center justify-center flex-shrink-0 overflow-hidden">
                       {s.logoSrc ? (
                         <div className={`flex items-center justify-center h-full w-full ${subsidiaryLogoScale[s.slug] || "scale-100"}`}>
                           <img

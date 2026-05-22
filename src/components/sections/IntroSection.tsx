@@ -65,24 +65,24 @@ const IntroSection: React.FC = () => {
         />
       </motion.div>
 
-      <div className={`${apgSystem.spacing.container} ${apgSystem.spacing.heroShellPad} ${apgSystem.spacing.heroBottomGap} relative z-10`}>
+      <div className={`${apgSystem.spacing.container} pt-24 pb-7 md:pt-12 md:pb-8 ${apgSystem.spacing.heroBottomGap} relative z-10`}>
         <motion.div
           initial="hidden"
           animate={showHeroLogo ? 'show' : 'hidden'}
           variants={apgSystem.motion.logoBadge.variants}
           transition={apgSystem.motion.logoBadge.transition}
-          className="absolute left-0 top-7 md:top-9"
+          className="absolute left-0 top-6 md:top-9"
         >
           <div className={apgSystem.badge.logo}>
-            <div className="relative h-16 w-36">
-              <Image src="/images/apgg.png" alt={content.logoAlt} fill sizes="144px" className="object-contain" />
+            <div className="relative h-12 w-28 md:h-16 md:w-36">
+              <Image src="/images/apgg.png" alt={content.logoAlt} fill sizes="(max-width: 768px) 112px, 144px" className="object-contain" />
             </div>
           </div>
         </motion.div>
 
         <div className={`grid items-center gap-10 md:gap-12 lg:grid-cols-2 ${apgSystem.spacing.heroInnerPad}`}>
           <div className="text-left">
-            <motion.h1 {...apgSystem.motion.itemDelay(0.2)} className={`mt-4 ${apgSystem.typography.h1} max-w-[22ch]`}>
+            <motion.h1 {...apgSystem.motion.itemDelay(0.2)} className={`mt-8 md:mt-4 ${apgSystem.typography.h1} max-w-[22ch]`}>
               {content.headline}
             </motion.h1>
             <motion.p {...apgSystem.motion.itemDelay(0.3)} className="mt-5 text-base text-white/80 leading-relaxed max-w-prose">
