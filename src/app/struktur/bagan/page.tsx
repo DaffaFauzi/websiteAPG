@@ -80,7 +80,7 @@ export default function StrukturBaganPage() {
               <div className="overflow-auto">
                 <div className="w-fit mx-auto px-6 py-6">
                   <svg width="2400" height="640" viewBox="0 0 2400 640" className="block h-auto max-w-none" role="img" aria-label={title} shapeRendering="crispEdges">
-                    <motion.g stroke="#334155" strokeWidth="1.4" fill="none" strokeLinecap="round"
+                    <motion.g stroke="#1e293b" strokeWidth="1.8" fill="none" strokeLinecap="round"
                       initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.3 }}
                       transition={{ duration: 0.6, delay: 0.5 }}>
                       {/* Top: RUPS → Komisaris → DirUt → Direktur */}
