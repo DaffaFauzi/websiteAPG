@@ -6,22 +6,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import PageHero from '@/components/ui/PageHero';
 
 const managementList = [
-  { role: 'Dewan Komisaris', name: 'Affa Rosdiana' },
+  { role: 'Komisaris Utama', name: 'Affa Rosdiana' },
+  { role: 'Komisaris', name: 'Affa Rosdiana' },
   { role: 'Direktur Utama', name: 'Muhammad Firdaus' },
   { role: 'Direktur', name: 'Toman Clay Manurung' },
   { role: 'Kepala Divisi Keuangan', name: 'Yeliza Eka Darma' },
-  { role: 'Kepala Divisi Operasional', name: '( Segera )' },
-  { role: 'Kepala Divisi IT', name: '( Segera )' },
-  { role: 'Kepala Divisi Support', name: '( Segera )' },
-  { role: 'Kepala Divisi Operasional', name: '( Segera )' },
-  { role: 'Supervisor Accounting, Tax & Marketing', name: '( Segera )' },
-  { role: 'Supervisor Finance & Corporate Planning', name: '( Segera )' },
   { role: 'Supervisor IT Programmer', name: 'Muhammad Azam' },
-  { role: 'Supervisor IT Support', name: '( Segera )' },
-  { role: 'Supervisor Marketing', name: '( Segera )' },
-  { role: 'Supervisor Compliance', name: '( Segera )' },
-  { role: 'Supervisor SDM & Umum', name: '( Segera )' },
-  { role: 'Supervisor Sekretaris Perusahaan', name: '( Segera )' },
 ];
 
 export default function StrukturManajemenPage() {

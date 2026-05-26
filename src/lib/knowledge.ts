@@ -76,7 +76,7 @@ export const knowledge: KnowledgeItem[] = [
     category: 'contact',
     title: 'Informasi Kontak & Lokasi APG',
     content: `
-      Alamat Kantor Pusat: Office Tower Fontana, The Mansion Bougenville, Lt. 51 unit BF51a2 BF51b2, Jl. Trembesi Blok D Pademangan Timur, Kec. Pademangan, Jakarta Utara, Jl. Trembesi Blok D Pademangan Timur, Kec. Pademangan, Jakarta Utara.
+      Alamat Kantor Pusat: BF-51 A2/B2
       Telepon: 0812 8888 5132
       Email: info@apg.co.id
       Jam Operasional: Senin - Jumat, 08.00- 17.00 WIB.

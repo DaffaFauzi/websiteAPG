@@ -38,13 +38,12 @@ const AboutPreviewSection = () => {
           <div className="relative grid gap-10 lg:grid-cols-12 lg:items-center">
             <motion.div {...apgSystem.motion.itemDelay(0.35)} className="lg:col-span-6">
               <div className="relative overflow-hidden rounded-3xl border-4 border-slate-50 bg-slate-100 shadow-xl aspect-video">
-                <iframe
-                  src="https://www.youtube.com/embed/sW9DbylGvgE?autoplay=0&rel=0"
-                  title="COMPRO - APG"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 w-full h-full border-0"
-                ></iframe>
+                <Image 
+                  src="/images/apg1.png" 
+                  alt="Ardana Perkasa Group Overview" 
+                  fill 
+                  className="object-cover"
+                />
               </div>
             </motion.div>
 

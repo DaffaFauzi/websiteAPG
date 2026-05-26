@@ -21,7 +21,6 @@ export default function Home() {
       <div className="mt-6 md:mt-0"><ProcessSection /></div>
       {/* <InsightsSection /> */}
       <div className="mt-6 md:mt-0"><LeadershipSection /></div>
-      <div className="mt-6 md:mt-0"><FinalCTASection /></div>
       <FooterSection />
     </main>
   );

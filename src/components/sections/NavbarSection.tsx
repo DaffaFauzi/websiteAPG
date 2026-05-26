@@ -223,6 +223,26 @@ const NavbarSection: React.FC = () => {
                 >
                   {t('nav.about')}
                 </button>
+                <AnimatePresence>
+                  {scrolled && desktopDropdown === 'about' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-[240px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 hidden md:block"
+                    >
+                      {aboutItems.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`block px-4 py-3 rounded-xl text-sm font-bold transition-colors ${isActiveLink(item.href) ? 'bg-blue-50 text-[#0A66C2]' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               <div className="relative" onMouseEnter={() => scheduleOpen('structure')} onMouseLeave={scheduleClose}>
@@ -232,6 +252,26 @@ const NavbarSection: React.FC = () => {
                 >
                   {t('nav.structure')}
                 </button>
+                <AnimatePresence>
+                  {scrolled && desktopDropdown === 'structure' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-[240px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 hidden md:block"
+                    >
+                      {structureItems.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`block px-4 py-3 rounded-xl text-sm font-bold transition-colors ${isActiveLink(item.href) ? 'bg-blue-50 text-[#0A66C2]' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               <Link
@@ -248,6 +288,26 @@ const NavbarSection: React.FC = () => {
                 >
                   {t('nav.announcements')}
                 </button>
+                <AnimatePresence>
+                  {scrolled && desktopDropdown === 'announcements' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-[240px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 hidden md:block"
+                    >
+                      {announcementsItems.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`block px-4 py-3 rounded-xl text-sm font-bold transition-colors ${isActiveLink(item.href) ? 'bg-blue-50 text-[#0A66C2]' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               <Link
@@ -268,32 +328,6 @@ const NavbarSection: React.FC = () => {
           </div>
         </div>
       </nav>
-
-      {/* Desktop Dropdowns */}
-      <AnimatePresence>
-        {scrolled && desktopDropdown && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            onMouseEnter={() => scheduleOpen(desktopDropdown)}
-            onMouseLeave={scheduleClose}
-            className="fixed top-20 left-1/2 -translate-x-1/2 z-[45] w-[240px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 hidden md:block"
-          >
-            {(desktopDropdown === 'about' ? aboutItems : 
-              desktopDropdown === 'structure' ? structureItems : 
-              announcementsItems).map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block px-4 py-3 rounded-xl text-sm font-bold transition-colors ${isActiveLink(item.href) ? 'bg-blue-50 text-[#0A66C2]' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Mobile Drawer */}
       <AnimatePresence>

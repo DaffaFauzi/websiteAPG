@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { apgSystem } from '@ds/apg-system';
@@ -32,31 +33,14 @@ export default function LeadershipSection() {
             </motion.p>
           </div>
 
-          <div className="mt-10 max-w-3xl mx-auto">
-            <motion.div {...apgSystem.motion.stagger} className="flex flex-col items-center">
-              {roles.map((role, idx) => (
-                <React.Fragment key={role}>
-                  <motion.div
-                    variants={apgSystem.motion.item.variants}
-                    className="w-full max-w-[30rem]"
-                  >
-                    <div className={`${apgSystem.card.subtle} ${apgSystem.card.padding} text-center`}>
-                      <div className="text-sm font-semibold uppercase tracking-wide text-slate-800 leading-relaxed">{role}</div>
-                    </div>
-                  </motion.div>
-
-                  {idx < roles.length - 1 ? (
-                    <motion.div
-                      aria-hidden
-                      initial={{ scaleY: 0, opacity: 0 }}
-                      whileInView={{ scaleY: 1, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.6 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 + idx * 0.08 }}
-                      className="w-px h-14 bg-gradient-to-b from-slate-200/80 to-slate-200/30 origin-top"
-                    />
-                  ) : null}
-                </React.Fragment>
-              ))}
+          <div className="mt-10 max-w-5xl mx-auto">
+            <motion.div {...apgSystem.motion.itemDelay(0.4)} className="relative aspect-[16/6] w-full overflow-hidden rounded-2xl border border-slate-100 shadow-sm bg-slate-50">
+              <Image 
+                src="/images/bagan.png" 
+                alt="Bagan Struktur Organisasi" 
+                fill 
+                className="object-contain"
+              />
             </motion.div>
 
             <div className="mt-10 flex justify-center">

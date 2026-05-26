@@ -84,14 +84,18 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/images/apgg.png", sizes: "32x32", type: "image/png" },
-      { url: "/images/apgg.png", sizes: "16x16", type: "image/png" },
+      { url: "/images/apgg.png", type: "image/png" },
     ],
     apple: [
-      { url: "/images/apgg.png" }
+      { url: "/images/apgg.png", sizes: "180x180", type: "image/png" }
     ],
   },
 };
+
+export const themeColor = [
+  { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+  { media: '(prefers-color-scheme: dark)', color: '#041E4A' },
+];
 
 export default function RootLayout({
   children,
