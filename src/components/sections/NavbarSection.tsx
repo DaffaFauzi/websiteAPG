@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { subsidiariesData } from '@/app/subsidiaries/subsidiariesData';
 
-type DesktopDropdownId = 'about' | 'structure' | 'subsidiaries' | 'announcements';
+type DesktopDropdownId = 'about' | 'structure' | 'subsidiaries' | 'information';
 
 const NavbarSection: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -100,13 +100,6 @@ const NavbarSection: React.FC = () => {
         desc: t('nav.vision_mission.desc'),
         imageSrc: '/images/presentation-placeholder.svg',
       },
-      {
-        id: 'gallery' as const,
-        href: '/tentang/galeri',
-        label: t('nav.gallery'),
-        desc: t('nav.gallery.desc'),
-        imageSrc: '/images/hero_section_top_image.png',
-      },
     ],
     [t],
   );
@@ -119,10 +112,11 @@ const NavbarSection: React.FC = () => {
     [t],
   );
 
-  const announcementsItems = useMemo(
+  const informationItems = useMemo(
     () => [
-      // { href: '/pengumuman/berita', label: t('nav.news') },
+      { href: '/pengumuman/berita', label: t('nav.news') },
       { href: '/karir', label: t('nav.career') },
+      { href: '/tentang/galeri', label: t('nav.gallery') },
     ],
     [t],
   );
@@ -281,22 +275,22 @@ const NavbarSection: React.FC = () => {
                 {t('nav.subsidiaries')}
               </Link>
 
-              <div className="relative" onMouseEnter={() => scheduleOpen('announcements')} onMouseLeave={scheduleClose}>
+              <div className="relative" onMouseEnter={() => scheduleOpen('information')} onMouseLeave={scheduleClose}>
                 <button
-                  onClick={() => toggleDesktopDropdown('announcements')}
-                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${desktopDropdown === 'announcements' || announcementsItems.some(x => isActiveLink(x.href)) ? 'text-[#0A66C2] bg-blue-50' : 'text-slate-700 hover:bg-slate-100'}`}
+                  onClick={() => toggleDesktopDropdown('information')}
+                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${desktopDropdown === 'information' || informationItems.some(x => isActiveLink(x.href)) ? 'text-[#0A66C2] bg-blue-50' : 'text-slate-700 hover:bg-slate-100'}`}
                 >
-                  {t('nav.announcements')}
+                  {t('nav.information')}
                 </button>
                 <AnimatePresence>
-                  {scrolled && desktopDropdown === 'announcements' && (
+                  {scrolled && desktopDropdown === 'information' && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       className="absolute top-full left-0 mt-2 w-[240px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 hidden md:block"
                     >
-                      {announcementsItems.map((item) => (
+                      {informationItems.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
@@ -435,26 +429,26 @@ const NavbarSection: React.FC = () => {
                     {t('nav.subsidiaries')}
                   </Link>
 
-                  {/* Announcements Accordion */}
+                  {/* Information Accordion */}
                   <div className="space-y-4">
                     <button
-                      onClick={() => setMobileAccordion(v => v === 'announcements' ? null : 'announcements')}
+                      onClick={() => setMobileAccordion(v => v === 'information' ? null : 'information')}
                       className="w-full flex items-center justify-between text-slate-900 font-black text-lg"
                     >
-                      <span>{t('nav.announcements')}</span>
-                      <svg className={`w-5 h-5 transition-transform ${mobileAccordion === 'announcements' ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <span>{t('nav.information')}</span>
+                      <svg className={`w-5 h-5 transition-transform ${mobileAccordion === 'information' ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
                     <AnimatePresence>
-                      {mobileAccordion === 'announcements' && (
+                      {mobileAccordion === 'information' && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           className="overflow-hidden flex flex-col gap-3 pl-4 border-l-2 border-slate-100"
                         >
-                          {announcementsItems.map(item => (
+                          {informationItems.map(item => (
                             <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="text-slate-500 font-bold hover:text-[#0A66C2]">
                               {item.label}
                             </Link>

@@ -6,12 +6,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import PageHero from '@/components/ui/PageHero';
 
 const managementList = [
-  { role: 'Komisaris Utama', name: 'Affa Rosdiana' },
-  { role: 'Komisaris', name: 'Affa Rosdiana' },
-  { role: 'Direktur Utama', name: 'Muhammad Firdaus' },
-  { role: 'Direktur', name: 'Toman Clay Manurung' },
-  { role: 'Kepala Divisi Keuangan', name: 'Yeliza Eka Darma' },
-  { role: 'Supervisor IT Programmer', name: 'Muhammad Azam' },
+  { role: 'Komisaris Utama', name: 'Ibu. Affa Rosdiana' },
+  { role: 'Komisaris', name: 'Ibu. Enimar Yasni' },
+  { role: 'Direktur Utama', name: 'Bapak. Muhammad Firdaus' },
+  { role: 'Direktur', name: 'Bapak. Toman Clay Manurung' },
+  { role: 'Kepala Divisi Keuangan', name: 'Ibu. Yeliza Eka Darma' },
+  { role: 'Supervisor IT Programmer', name: 'Bapak. Muhammad Azam Nur Alwi' },
 ];
 
 export default function StrukturManajemenPage() {

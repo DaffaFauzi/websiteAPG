@@ -13,15 +13,25 @@ export default function GalleryClient() {
 
   const galleryImages = useMemo(
     () => [
-      { src: '/images/apg1.png', alt: 'Galeri APG 1' },
-      { src: '/images/apg2.png', alt: 'Galeri APG 2' },
-      { src: '/images/apg3.png', alt: 'Galeri APG 3' },
-      { src: '/images/apg4.png', alt: 'Galeri APG 4' },
-      { src: '/images/apg5.png', alt: 'Galeri APG 5' },
-      { src: '/images/apg6.png', alt: 'Galeri APG 6' },
-      { src: '/images/apg7.png', alt: 'Galeri APG 7' },
+      { src: '/images/apg1.png', alt: t('gallery.item.1.title') },
+      { src: '/images/apg2.png', alt: t('gallery.item.2.title') },
+      { src: '/images/apg3.png', alt: t('gallery.item.3.title') },
+      { src: '/images/apg4.png', alt: t('gallery.item.4.title') },
+      { src: '/images/apg5.png', alt: t('gallery.item.5.title') },
+      { src: '/images/apg6.png', alt: t('gallery.item.6.title') },
+      { src: '/images/apg7.png', alt: 'Dokumentasi APG' },
+      { src: '/images/1.png', alt: 'Aktivitas Korporat 1' },
+      { src: '/images/2.png', alt: 'Aktivitas Korporat 2' },
+      { src: '/images/3.png', alt: 'Aktivitas Korporat 3' },
+      { src: '/images/4.png', alt: 'Aktivitas Korporat 4' },
+      { src: '/images/5.png', alt: 'Aktivitas Korporat 5' },
+      { src: '/images/6.png', alt: 'Aktivitas Korporat 6' },
+      { src: '/images/7.png', alt: 'Aktivitas Korporat 7' },
+      { src: '/images/8.png', alt: 'Aktivitas Korporat 8' },
+      { src: '/images/9.png', alt: 'Aktivitas Korporat 9' },
+      { src: '/images/10.png', alt: 'Aktivitas Korporat 10' },
     ],
-    [],
+    [t],
   );
 
   const goPrev = useCallback(() => {
@@ -82,7 +92,7 @@ export default function GalleryClient() {
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {galleryImages.map((img, index) => (
               <motion.div
                 key={img.src}
@@ -90,7 +100,7 @@ export default function GalleryClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="relative overflow-hidden rounded-3xl border border-slate-100 bg-slate-50"
+                className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-slate-50"
               >
                 <button
                   type="button"
@@ -98,14 +108,16 @@ export default function GalleryClient() {
                   className="block w-full text-left focus:outline-none"
                   aria-label={`Buka gambar ${index + 1}`}
                 >
-                  <div className="relative aspect-[4/3]">
+                  <div className="relative aspect-[4/3] overflow-hidden">
                     <FallbackImage
                       src={img.src}
                       fallbackSrc="/images/presentation-placeholder.svg"
                       alt={img.alt}
                       fill
-                      className="object-cover object-center"
+                      loading="lazy"
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
                     />
+                    <div className="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#0A66C2]/10 to-transparent" />
                   </div>
                 </button>

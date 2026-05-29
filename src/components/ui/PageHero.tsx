@@ -17,7 +17,8 @@ type PageHeroVariant =
   | 'structure'
   | 'management'
   | 'orgChart'
-  | 'testimonials';
+  | 'testimonials'
+  | 'news';
 
 type Props = {
   tag: string;
@@ -74,6 +75,10 @@ function inferHeroVariant({
     return 'contact';
   }
 
+  if (has('berita') || has('news') || has('informasi') || has('information')) {
+    return 'news';
+  }
+
   if (has('karir') || has('career')) {
     return 'career';
   }
@@ -103,39 +108,39 @@ export default function PageHero({ tag, title, description, breadcrumbs, imageSr
     },
     history: {
       bg: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&q=80&w=1600',
     },
     visionMission: {
       bg: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1600',
     },
     gallery: {
-      bg: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1600',
+      bg: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2200',
+      panel: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=1600',
     },
     contact: {
       bg: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1600',
     },
     career: {
       bg: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1600',
     },
     subsidiaries: {
       bg: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600',
     },
     subsidiaryDetail: {
       bg: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1600',
     },
     structure: {
       bg: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1600',
     },
     management: {
       bg: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1600',
     },
     orgChart: {
       bg: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2200',
@@ -143,13 +148,34 @@ export default function PageHero({ tag, title, description, breadcrumbs, imageSr
     },
     testimonials: {
       bg: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=2200',
-      panel: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
+      panel: 'https://images.unsplash.com/photo-1491333324141-c67d737a032e?auto=format&fit=crop&q=80&w=1600',
+    },
+    news: {
+      bg: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2200',
+      panel: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&q=80&w=1600',
     },
   };
 
   const resolvedBgSrc = imageSrc ?? photoByVariant[resolvedVariant].bg;
   const resolvedPanelSrc = photoByVariant[resolvedVariant].panel;
   const resolvedAlt = imageAlt ?? title;
+  
+  // Custom object position for panel images
+  const panelPosition: Record<PageHeroVariant, string> = {
+    about: 'object-center',
+    history: 'object-center',
+    visionMission: 'object-center',
+    gallery: 'object-center',
+    contact: 'object-center',
+    career: 'object-center',
+    subsidiaries: 'object-center',
+    subsidiaryDetail: 'object-center',
+    structure: 'object-center',
+    management: 'object-bottom',
+    orgChart: 'object-center',
+    testimonials: 'object-center',
+    news: 'object-center',
+  };
   return (
     <section className="apg-section-divider bg-slate-50 pt-8 pb-8 sm:pt-10 sm:pb-10">
       <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
@@ -214,7 +240,7 @@ export default function PageHero({ tag, title, description, breadcrumbs, imageSr
                       fallbackSrc="/images/presentation-placeholder.svg"
                       alt={resolvedAlt}
                       fill
-                      className="object-cover opacity-90"
+                      className={`object-cover opacity-90 ${panelPosition[resolvedVariant]}`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#041a40]/45 to-transparent" />
                   </div>

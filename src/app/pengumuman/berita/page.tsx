@@ -15,19 +15,19 @@ export default function BeritaPage() {
             date: 'Mei 2026',
             title: 'Pembaruan Informasi Korporasi APG',
             excerpt: 'Ringkasan pembaruan korporasi untuk mendukung transparansi informasi kepada publik.',
-            image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600',
+            image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800',
           },
           {
             date: 'April 2026',
             title: 'Aktivitas Kolaborasi & Kemitraan Strategis',
             excerpt: 'Sorotan kegiatan kolaborasi APG dalam memperkuat sinergi lintas sektor.',
-            image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=600',
+            image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=800',
           },
           {
             date: 'Maret 2026',
             title: 'Inisiatif Peningkatan Layanan & Standar Operasional',
             excerpt: 'Langkah peningkatan layanan dengan standar enterprise untuk pengalaman pemangku kepentingan yang lebih baik.',
-            image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=600',
+            image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
           },
         ]
       : [
@@ -35,31 +35,31 @@ export default function BeritaPage() {
             date: 'May 2026',
             title: 'APG Corporate Update',
             excerpt: 'A concise update to support public information transparency.',
-            image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600',
+            image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800',
           },
           {
             date: 'April 2026',
             title: 'Strategic Collaboration & Partnership Highlights',
             excerpt: 'Key activities that strengthen APG’s cross-sector synergy.',
-            image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=600',
+            image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=800',
           },
           {
             date: 'March 2026',
             title: 'Service & Operational Standards Improvement',
             excerpt: 'Continuous improvements with enterprise standards to enhance stakeholder experience.',
-            image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=600',
+            image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
           },
         ];
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
       <PageHero
-        tag={t('nav.announcements')}
+        tag={t('nav.information')}
         title={t('nav.news')}
         description={t('announcements.news.desc')}
         breadcrumbs={[
           { label: t('nav.home'), href: '/' },
-          { label: t('nav.announcements') },
+          { label: t('nav.information') },
           { label: t('nav.news') },
         ]}
         imageAlt={t('nav.news')}

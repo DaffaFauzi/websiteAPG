@@ -21,6 +21,7 @@ export default function SubsidiariesPage() {
           { label: t('nav.subsidiaries') },
         ]}
         imageAlt={t('subsidiaries.title')}
+        variant="subsidiaries"
       />
 
       <section id="portfolio" className="apg-section-divider py-16 lg:py-24 bg-white relative overflow-hidden">

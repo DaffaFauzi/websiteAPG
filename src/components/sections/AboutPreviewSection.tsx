@@ -39,10 +39,10 @@ const AboutPreviewSection = () => {
             <motion.div {...apgSystem.motion.itemDelay(0.35)} className="lg:col-span-6">
               <div className="relative overflow-hidden rounded-3xl border-4 border-slate-50 bg-slate-100 shadow-xl aspect-video">
                 <Image 
-                  src="/images/apg1.png" 
+                  src="/images/2.png" 
                   alt="Ardana Perkasa Group Overview" 
                   fill 
-                  className="object-cover"
+                  className="object-cover object-bottom"
                 />
               </div>
             </motion.div>
